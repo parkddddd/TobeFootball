@@ -1,0 +1,158 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<FDL version="2.1">
+  <Form id="CmmToggle" width="76" height="40" titletext="토글" onload="Form_onload" ontimer="Form_ontimer" background="#ffffff">
+    <Layouts>
+      <Layout height="40" mobileorientation="portrait" width="76">
+        <Div id="divToggle" taborder="0" text="div00" left="0" top="0" ontouchstart="divToggle_ontouchstart" ontouchend="divToggle_ontouchend" onclick="divToggle_onclick" right="0" bottom="0">
+          <Layouts>
+            <Layout>
+              <Static id="staBG" taborder="2" left="4" top="4" height="30" border="1px solid #d9d9d9" borderRadius="20px" background="#dddddd" right="4" onclick="divToggle_staBG_onclick"/>
+              <Button id="btnOff" taborder="0" left="4" top="2" width="34" height="34" borderRadius="20px" boxShadow="0px 2px 2px HSLA(0,0%,0%,0.12)"/>
+              <Button id="btnOn" taborder="1" top="2" width="34" height="34" visible="false" boxShadow="0px 2px 2px HSLA(0,0%,0%,0.12)" borderRadius="20px" right="4"/>
+            </Layout>
+          </Layouts>
+        </Div>
+      </Layout>
+    </Layouts>
+    <Objects/>
+    <Script type="xscript5.1"><![CDATA[/**
+*  Necacro EduPack
+*  @MenuPath    CmmM > CmmToggle (공통 토글버튼)
+*  @FileName 	CmmToggle.xfdl 
+*  @Creator 	Education
+*  @CreateDate 	2022.05.01
+*  @Desction    공통 토글버튼
+************** 소스 수정 이력 ***********************************************
+*  date          		Modifier                Description
+*******************************************************************************
+*  2022.05.01     	Education 	        최초 생성 
+*******************************************************************************
+*/
+
+/************************************************************************************************
+ * FORM 변수 선언 영역
+ ************************************************************************************************/
+this.fvTouchStartX = -1;
+this.callbackfunc;
+/***********************************************************************************************
+* FORM EVENT 영역(onload)
+/***********************************************************************************************/
+this.Form_onload = function(obj:nexacro.Form,e:nexacro.LoadEventInfo)
+{
+    var objTarget = this.parent;	 // div
+	if (this.gfnIsNull(this.parent.onText) == false)  this.divToggle.form.btnOn.set_text(this.parent.onText);
+	if (this.gfnIsNull(this.parent.offText) == false) this.divToggle.form.btnOff.set_text(this.parent.offText);
+    this.callbackfunc = objTarget.callbackfunc;
+};
+
+ /************************************************************************************************
+ * 사용자 FUNCTION 영역
+ ************************************************************************************************/
+this.fnTouchMove = function(startX, endX)
+{
+	var moveX = startX - endX;
+	if(moveX > 10)
+	{
+		this.fnOff();
+	}
+    else if (moveX < -10)
+	{
+        this.fnOn();
+	}
+}
+
+this.getValue = function()
+{
+    if (this.divToggle.form.btnOff.visible)
+    {
+        return false;
+    }
+    else
+    {
+        return true;
+    }	
+};
+
+this.setValue = function(bValue)
+{
+    if (bValue)
+    {
+        this.fnOn();
+    }
+    else
+    {
+		this.fnOff();
+    }
+};
+
+this.fnOn = function()
+{
+    this.divToggle.form.btnOff.set_visible(false);
+    this.divToggle.form.btnOn.set_visible(true);
+	this.divToggle.form.staBG.set_background("#31a2de");    
+
+	if (!this.gfnIsNull(this.callbackfunc))
+	{	
+		this.lookupFunc(this.callbackfunc).call(this.parent.name, true); 
+	} 
+}
+
+this.fnOff = function()
+{
+    this.divToggle.form.btnOff.set_visible(true);
+    this.divToggle.form.btnOn.set_visible(false);
+    this.divToggle.form.staBG.set_background("#dddddd");
+    
+	if (!this.gfnIsNull(this.callbackfunc))
+	{	
+		this.lookupFunc(this.callbackfunc).call(this.parent.name, false); 
+	}    
+}
+
+ /************************************************************************************************
+ * 각 COMPONENT 별 EVENT 영역
+ ************************************************************************************************/
+
+this.divToggle_ontouchstart = function(obj:nexacro.Div,e:nexacro.TouchEventInfo)
+{
+	if (e.touchinputinfos.length == 1)
+        this.fvTouchStartX = e.touchinputinfos[0].screenx;
+	else 
+        this.fvTouchStartX = -1;	
+};
+
+this.divToggle_ontouchend = function(obj:nexacro.Div,e:nexacro.TouchEventInfo)
+{
+	if (this.fvTouchStartX >- 1)
+	{
+		this.fnTouchMove(this.fvTouchStartX, e.touchinputinfos[0].screenx);
+	}	
+};
+
+this.divToggle_onclick = function(obj:nexacro.Div,e:nexacro.ClickEventInfo)
+{
+//     if (e.canvasx < obj.getOffsetWidth()/2)
+//     {
+// 		    this.fnOff();
+//     }
+//     else
+//     {
+//        	this.fnOn();
+//     }  
+};
+
+this.divToggle_staBG_onclick = function(obj:nexacro.Static,e:nexacro.ClickEventInfo)
+{
+    if (e.canvasx < obj.getOffsetWidth()/2)
+    {
+		this.fnOff();
+    }
+    else
+    {
+       	this.fnOn();
+    }   
+};
+]]></Script>
+    <Bind/>
+  </Form>
+</FDL>

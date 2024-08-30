@@ -1,0 +1,193 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<FDL version="2.1">
+  <Form id="Foot2070pu" width="600" height="350" titletext="매니저 급여" onload="form_onload">
+    <Layouts>
+      <Layout height="350" mobileorientation="landscape" width="600">
+        <Div id="divMoney" taborder="0" text="div00" left="29" top="26" width="518" height="106" cssclass="div_WF_Money">
+          <Layouts>
+            <Layout>
+              <Static id="sta00" taborder="0" text="출금 가능 금액" left="30" top="19" width="122" height="30" cssclass="sta_WF_TitleMain"/>
+              <Static id="staMoney" taborder="1" text="1000원" left="27" top="53" width="186" height="43" cssclass="sta_WF_TitleMain"/>
+            </Layout>
+          </Layouts>
+        </Div>
+        <Button id="btnSave" taborder="1" text="출금하기" left="180" top="301" width="100" height="45" onclick="btnSave_onclick" cssclass="btn_WF_GrdPageS"/>
+        <Button id="btnCancel" taborder="2" text="취소" top="300" height="45" right="180" width="100" onclick="btnCancel_onclick" cssclass="btn_WF_GrdPageS"/>
+        <Static id="sta00" taborder="3" text="은행" left="29" top="152" width="24" height="14"/>
+        <Static id="sta01" taborder="4" text="계좌번호" left="296" top="152" width="48" height="14"/>
+        <Combo id="cboBank" taborder="5" left="29" top="176" width="167" height="32" value="" index="-1" innerdataset="dsBank" codecolumn="CODE" datacolumn="CODE_NAME" cssclass="cbo_WF_UserInfo"/>
+        <Edit id="edtAccount" taborder="6" left="296" top="176" height="32" width="251" cssclass="edt_WF_UserInfo"/>
+        <Static id="sta00_00" taborder="7" text="출금 금액" left="29" top="217" width="53" height="14"/>
+        <MaskEdit id="mskWithdraw" taborder="8" left="29" top="241" width="167" height="32" format="," cssclass="msk_WF_UserInfo"/>
+        <Static id="sta02" taborder="9" text="원" left="201" top="250" width="12" height="14"/>
+      </Layout>
+    </Layouts>
+    <Script type="xscript5.1"><![CDATA[
+/**
+*  TobeFootball
+*  @MenuPath     샘플 > script 표준
+*  @FileName     C:\TobeFootball\Foot\Foot1060pu.xfdl
+*  @Creator      박진호
+*  @CreateDate   2024/08/17
+*  @Desction    스크립트 표준 및 주석 표준 정의
+************** 소스 수정 이력 *****************************************************************
+*  date          		Modifier                Description
+*************************************************************************************************
+*  2024/08/17     	        박진호 	              최초 생성
+*************************************************************************************************
+*/
+
+/************************************************************************************************
+ * FORM 변수 선언 영역
+ ************************************************************************************************/
+this.fvObjApp = this.gfnGetApplication();
+
+/************************************************************************************************
+ * FORM EVENT 영역(onload, onbeforeclose)
+ ************************************************************************************************/
+this.form_onload = function(obj:nexacro.Form,e:nexacro.LoadEventInfo)
+{
+	this.gfnFormOnLoad(this);
+	
+	this.fnSearch();
+	this.fnBindCom();
+};
+
+
+/************************************************************************************************
+ * CALLBACK 콜백 처리부분(Transaction, Popup)
+ ************************************************************************************************/
+this.fnCallback = function (svcId, errCd, errMsg)
+{
+	if(svcId=="searchWage"){
+		trace(this.dsMoney.saveXML());
+	}
+	if(svcId=="saveWage"){
+		var nMoney = this.mskWithdraw.text;
+		var sTitle = "출금 완료";	// 모달팝업
+		var sContents = nMoney+"원이 입금되었습니다.";
+		this.fnPopup(sTitle, sContents, "moneyWithdraw");
+	}
+};
+
+this.fnPopupCallback = function (sId, sVal)
+{
+	if(sId=="moneyWithdraw"){
+		this.close();
+	}
+	else if(sId=="WithdrawError"){
+		this.mskWithdraw.setFocus();
+		this.mskWithdraw.setSelect();
+	}
+	else if(sId == "WithdrawZero"){
+		this.mskWithdraw.setFocus();
+	}
+	
+};
+/************************************************************************************************
+ * CRUD 및 TRANSACTION 서비스 호출 처리
+ ************************************************************************************************/
+this.fnSearch = function ()
+{
+	var sId = this.fvObjApp.gdsUserInfo.getColumn(0,"USER_ID");
+	
+	var strSvcUrl = "searchWage.do";
+	var inData    = "";
+	var outData   = "dsMoney=dsMoney";
+	var strArg    = "sId="+sId;
+
+	this.gfnTransaction("searchWage", strSvcUrl, inData, outData, strArg, "fnCallback", true);
+};
+
+this.fnSave = function ()
+{
+	var sId = this.fvObjApp.gdsUserInfo.getColumn(0,"USER_ID");
+	var nWithdrawMoney = this.mskWithdraw.value;
+	
+	var strSvcUrl = "saveWage.do";
+	var inData    = "";
+	var outData   = "";
+	var strArg    = "sId="+sId+" nMoney="+nWithdrawMoney;
+
+	this.gfnTransaction("saveWage", strSvcUrl, inData, outData, strArg, "fnCallback", true);
+};
+/************************************************************************************************
+ * 사용자 FUNCTION 영역
+ ************************************************************************************************/
+/**
+ * @description 공통코드를 innerdataset에 바인딩
+*/
+this.fnBindCom = function ()
+{
+	var arrCode = new Array();
+
+	arrCode.push({codeGroup:"D001", obj: this.cboBank});  //코드값은 ""
+
+    this.gfnGetCommonCode(arrCode);
+};
+
+this.fnPopup = function (sTitle, sContents, popId)
+{
+	var oArg = {paramContents:sContents};
+	var oOption = {title:sTitle};	//top, left를 지정하지 않으면 가운데정렬 //"top=20,left=370"
+	var sPopupCallBack = "fnPopupCallback";
+	this.gfnOpenPopup( popId,"Cmm::CmmAlert.xfdl",oArg,sPopupCallBack,oOption);	
+};
+
+
+/************************************************************************************************
+ * 각 COMPONENT 별 EVENT 영역
+ ************************************************************************************************/
+
+this.btnSave_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	var bWithdraw = ( this.mskWithdraw.value < this.dsMoney.getColumn(0,"WAGE") );
+	trace( this.mskWithdraw.value );
+	if( this.mskWithdraw.value <= 0 || this.gfnIsNull(this.mskWithdraw.value) ){
+		var sTitle = "출금 에러";	// 모달팝업
+		var sContents = "출금 금액을 입력하세요.";
+		this.fnPopup(sTitle, sContents, "WithdrawZero");
+		return;
+	}
+	if( bWithdraw ){
+		this.fnSave();
+	}
+	else{
+		var sTitle = "출금 에러";	// 모달팝업
+		var sContents = "출금 가능 금액을 확인해주세요.";
+		this.fnPopup(sTitle, sContents, "WithdrawError");
+	}
+
+};
+
+
+this.btnCancel_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	this.close();
+};
+]]></Script>
+    <Objects>
+      <Dataset id="dsBank">
+        <ColumnInfo>
+          <Column id="GROUP_CODE" type="STRING" size="256"/>
+          <Column id="GROUP_NAME" type="STRING" size="256"/>
+          <Column id="CODE" type="STRING" size="256"/>
+          <Column id="CODE_NAME" type="STRING" size="256"/>
+        </ColumnInfo>
+      </Dataset>
+      <Dataset id="dsMoney">
+        <ColumnInfo>
+          <Column id="SWAGE" type="STRING" size="32"/>
+          <Column id="BANK" type="STRING" size="32"/>
+          <Column id="ACCOUNT" type="BIGDECIMAL" size="8"/>
+          <Column id="WAGE" type="INT" size="4"/>
+        </ColumnInfo>
+      </Dataset>
+    </Objects>
+    <Bind>
+      <BindItem id="item0" compid="divMoney.form.staMoney" propid="text" datasetid="dsMoney" columnid="SWAGE"/>
+      <BindItem id="item1" compid="cboBank" propid="value" datasetid="dsMoney" columnid="BANK"/>
+      <BindItem id="item2" compid="edtAccount" propid="value" datasetid="dsMoney" columnid="ACCOUNT"/>
+    </Bind>
+  </Form>
+</FDL>

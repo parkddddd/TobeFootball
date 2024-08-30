@@ -1,0 +1,215 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<MetaInfo version="2.0">
+  <Object id="nexacro.UbiViewer">
+    <ObjectInfo inheritance="nexacro.Component" classname="nexacro.UbiViewer" shorttypename="UbiReport" csstypename="UbiReport" csscontrolname="" group="Component" subgroup="Component ( default )" csspseudo="true" container="false" composite="false" tabstop="false" cssstyle="true" contents="false" formats="false" contentseditor="auto" defaultwidth="false" defaultheight="false" registration="allow" edittype="" useinitvalue="true" popup="false" edittypecomponent="" dblclickevent="" requirement="IE8,IE9,IE10,IE11,Chrome,Safari,Firefox,Opera,Desktop Hybrid (Windows),Mobile Hybrid (Android),Mobile Hybrid (iOS),Mobile Web Browser (Android),Mobile Web Browser (iOS)" description="UbiReport4.0 뷰어 컴포넌트입니다." />
+	<PropertyInfo> 
+		<!-- define new property -->
+		<Property name="jrffile" group="information" subgroup="" refreshinfo="" edittype="String" defaultvalue="" readonly="false" initonly="false" hidden="false" control="false" style="false" expr="false" deprecated="false" unused="false" objectinfo="" enuminfo="" unitinfo="" requirement="" description="JRF 파일을 설정한다."/>
+		<Property name="masterfilename" group="information" subgroup="" refreshinfo="" edittype="String" defaultvalue="" readonly="false" initonly="false" hidden="false" control="false" style="false" expr="false" deprecated="false" unused="false" objectinfo="" enuminfo="" unitinfo="" requirement="IE8,IE9,IE10,IE11,Chrome,Safari,Firefox,Opera,Mobile Web Browser (Android),Mobile Web Browser (iOS)" description="마스터 JRF 파일을 설정한다."/>
+		<Property name="key" group="information" subgroup="" refreshinfo="" edittype="String" defaultvalue="" readonly="false" initonly="false" hidden="false" control="false" style="false" expr="false" deprecated="false" unused="false" objectinfo="" enuminfo="" unitinfo="" requirement="" description="세션용 key 값을 설정한다."/>
+		<Property name="arg" group="information" subgroup="" refreshinfo="" edittype="String" defaultvalue="" readonly="false" initonly="false" hidden="false" control="false" style="false" expr="false" deprecated="false" unused="false" objectinfo="" enuminfo="" unitinfo="" requirement="" description="아규먼트 값들을 설정한다."/>
+		<Property name="ubiserverurl" group="information" subgroup="" refreshinfo="" edittype="String" defaultvalue="" readonly="false" initonly="false" hidden="false" control="false" style="false" expr="false" deprecated="false" unused="false" objectinfo="" enuminfo="" unitinfo="" requirement="" description="게이트웨이 주소를 설정한다."/>
+		<Property name="resource" group="information" subgroup="" refreshinfo="" edittype="String" defaultvalue="" readonly="false" initonly="false" hidden="false" control="false" style="false" expr="false" deprecated="false" unused="false" objectinfo="" enuminfo="" unitinfo="" requirement="" description="resource 경로를 설정한다."/>
+		<Property name="resid" group="information" subgroup="" refreshinfo="" edittype="String" defaultvalue="" readonly="false" initonly="false" hidden="false" control="false" style="false" expr="false" deprecated="false" unused="false" objectinfo="" enuminfo="" unitinfo="" requirement="" description="resid 값을 설정한다."/>
+		<Property name="scale" group="Appearance" subgroup="" refreshinfo="" edittype="String" defaultvalue="100" readonly="false" initonly="false" hidden="false" control="false" style="false" expr="false" deprecated="false" unused="false" objectinfo="" enuminfo="" unitinfo="" requirement="" description="리포트의 확대/축소 비율을 설정한다."/>
+		<Property name="toolbar" group="Appearance" subgroup="" refreshinfo="" edittype="Boolean" defaultvalue="true" readonly="false" initonly="false" hidden="false" control="false" style="false" expr="false" deprecated="false" unused="false" objectinfo="" enuminfo="" unitinfo="" requirement="" description="툴바를 보여줄 지의 여부를 설정한다."/>
+		<Property name="scrollpage" group="Action" subgroup="" refreshinfo="" edittype="Boolean" defaultvalue="false" readonly="false" initonly="false" hidden="false" control="false" style="false" expr="false" deprecated="false" unused="false" objectinfo="" enuminfo="" unitinfo="" requirement="" description="리포트를 세로로 나열하여 스크롤 조회를 가능하게 한다."/>
+		<Property name="bgcolor" group="Appearance" subgroup="" refreshinfo="" edittype="Color" defaultvalue="#f3f3f3" readonly="false" initonly="false" hidden="false" control="false" style="false" expr="false" deprecated="false" unused="false" objectinfo="" enuminfo="" unitinfo="" requirement="" description="리포트 배경색을 설정한다."/>
+		<Property name="bgimage" group="Appearance" subgroup="" refreshinfo="" edittype="String" defaultvalue="" readonly="false" initonly="false" hidden="false" control="false" style="false" expr="false" deprecated="false" unused="false" objectinfo="" enuminfo="" unitinfo="" requirement="" description="리포트 배경 이미지를 설정한다."/>
+		<Property name="sheetname" group="information" subgroup="" refreshinfo="" edittype="String" defaultvalue="" readonly="false" initonly="false" hidden="false" control="false" style="false" expr="false" deprecated="false" unused="false" objectinfo="" enuminfo="" unitinfo="" requirement="" description="엑셀 다운로드시 시트명칭을 설정한다."/>      
+		<Property name="ismultireport" group="information" subgroup="" refreshinfo="" edittype="Boolean" defaultvalue="false" readonly="false" initonly="false" hidden="false" control="false" style="false" expr="false" deprecated="false" unused="false" objectinfo="" enuminfo="" unitinfo="" requirement="" description="여러 리포트를 연이어 표시할지의 여부를 설정한다."/>      
+		<Property name="multicount" group="information" subgroup="" refreshinfo="" edittype="String" defaultvalue="1" readonly="false" initonly="false" hidden="false" control="false" style="false" expr="false" deprecated="false" unused="false" objectinfo="" enuminfo="" unitinfo="" requirement="" description="리포트를 여러장 반복하여 표시할지의 여부를 설정한다."/>
+		<Property name="reporttitle" group="information" subgroup="" refreshinfo="" edittype="String" defaultvalue="" readonly="false" initonly="false" hidden="false" control="false" style="false" expr="false" deprecated="false" unused="false" objectinfo="" enuminfo="" unitinfo="" requirement="" description="리포트 타이틀을 지정한다. 파일 저장 시 파일명으로 해당 타이틀을 사용한다."/>
+		<Property name="flicking" group="Action" subgroup="" refreshinfo="" edittype="Boolean" defaultvalue="false" readonly="false" initonly="false" hidden="false" control="false" style="false" expr="false" deprecated="false" unused="false" objectinfo="" enuminfo="" unitinfo="" requirement="" description="플리킹을 지원할지를 설정한다."/>  
+		<Property name="timeout" group="information" subgroup="" refreshinfo="" edittype="String" defaultvalue="60000" readonly="false" initonly="false" hidden="false" control="false" style="false" expr="false" deprecated="false" unused="false" objectinfo="" enuminfo="" unitinfo="" requirement="" description="조회를 위한 접속 시간의 최대 타임아웃 시간을 ms 단위로 설정한다."/>      
+		<Property name="direction" group="Appearance" subgroup="" refreshinfo="" edittype="String" defaultvalue="" readonly="false" initonly="false" hidden="false" control="false" style="false" expr="false" deprecated="false" unused="false" objectinfo="" enuminfo="" unitinfo="" requirement="" description="아랍권의 RTL 로 표현할 경우 rtl 값을 설정한다. 기본값 : 널"/>      
+		<Property name="language" group="information" subgroup="" refreshinfo="" edittype="String" defaultvalue="ko" readonly="false" initonly="false" hidden="false" control="false" style="false" expr="false" deprecated="false" unused="false" objectinfo="" enuminfo="" unitinfo="" requirement="" description="국가별 언어 옵션"/>   
+		<Property name="isexportchartimage" group="Action" subgroup="" refreshinfo="" edittype="Boolean" defaultvalue="true" readonly="false" initonly="false" hidden="false" control="false" style="false" expr="false" deprecated="false" unused="false" objectinfo="" enuminfo="" unitinfo="" requirement="" description="PDF 에 표시될 차트를 이미지 형식으로 포함할지의 여부"/>
+		<Property name="excelExportLineItem" group="Action" subgroup="" refreshinfo="" edittype="Boolean" defaultvalue="false" readonly="false" initonly="false" hidden="false" control="false" style="false" expr="false" deprecated="false" unused="false" objectinfo="" enuminfo="" unitinfo="" requirement="" description="Excel 에 라인 아이템을 포함할지의 여부"/>
+		<Property name="excelSkipMasterItem" group="Action" subgroup="" refreshinfo="" edittype="Boolean" defaultvalue="false" readonly="false" initonly="false" hidden="false" control="false" style="false" expr="false" deprecated="false" unused="false" objectinfo="" enuminfo="" unitinfo="" requirement="" description="Excel 에 마스터 페이지 아이템을 포함할지의 여부"/>
+		<Property name="exceladjustpage" group="Action" subgroup="" refreshinfo="" edittype="Boolean" defaultvalue="false" readonly="false" initonly="false" hidden="false" control="false" style="false" expr="false" deprecated="false" unused="false" objectinfo="" enuminfo="" unitinfo="" requirement="" description="Excel 저장시 페이지 맞춤 여부"/>
+		<Property name="excelPrintPaperSize" group="Action" subgroup="" refreshinfo="" edittype="String" defaultvalue="" readonly="false" initonly="false" hidden="false" control="false" style="false" expr="false" deprecated="false" unused="false" objectinfo="" enuminfo="" unitinfo="" requirement="" description="Excel 저장시 페이지 설정"/>
+		<Property name="excelPrintfitWidth" group="Action" subgroup="" refreshinfo="" edittype="String" defaultvalue="" readonly="false" initonly="false" hidden="false" control="false" style="false" expr="false" deprecated="false" unused="false" objectinfo="" enuminfo="" unitinfo="" requirement="" description="Excel 저장시 페이지 설정"/>
+		<Property name="excelPrintfitHeight" group="Action" subgroup="" refreshinfo="" edittype="String" defaultvalue="" readonly="false" initonly="false" hidden="false" control="false" style="false" expr="false" deprecated="false" unused="false" objectinfo="" enuminfo="" unitinfo="" requirement="" description="Excel 저장시 페이지 설정"/>
+		<!-- HTML 사용을 위한 변수 -->
+		<Property name="isStreaming" group="Action" subgroup="" refreshinfo="" edittype="Boolean" defaultvalue="true" readonly="false" initonly="false" hidden="false" control="false" style="false" expr="false" deprecated="false" unused="false" objectinfo="" enuminfo="" unitinfo="" requirement="IE8,IE9,IE10,IE11,Chrome,Safari,Firefox,Opera,Mobile Web Browser (Android),Mobile Web Browser (iOS)" description="미리보기시 스트림 방식으로 페이지를 표시할지 여부"/>
+		<Property name="useplugin" group="Action" subgroup="" refreshinfo="" edittype="Boolean" defaultvalue="true" readonly="false" initonly="false" hidden="false" control="false" style="false" expr="false" deprecated="false" unused="false" objectinfo="" enuminfo="" unitinfo="" requirement="IE8,IE9,IE10,IE11,Chrome,Safari,Firefox,Opera,Mobile Web Browser (Android),Mobile Web Browser (iOS)" description="UbiViewer 전용 모듈을 이용하여 인쇄를 실행할지 여부"/>
+		<Property name="usepluginsave" group="Action" subgroup="" refreshinfo="" edittype="Boolean" defaultvalue="true" readonly="false" initonly="false" hidden="false" control="false" style="false" expr="false" deprecated="false" unused="false" objectinfo="" enuminfo="" unitinfo="" requirement="IE8,IE9,IE10,IE11,Chrome,Safari,Firefox,Opera,Mobile Web Browser (Android),Mobile Web Browser (iOS)" description="UbiViewer 전용 모듈을 이용하여 저장을 실행할지 여부"/>
+		<Property name="pluginprogress" group="Action" subgroup="" refreshinfo="" edittype="Boolean" defaultvalue="false" readonly="false" initonly="false" hidden="false" control="false" style="false" expr="false" deprecated="false" unused="false" objectinfo="" enuminfo="" unitinfo="" requirement="IE8,IE9,IE10,IE11,Chrome,Safari,Firefox,Opera,Mobile Web Browser (Android),Mobile Web Browser (iOS)" description="UbiViewer 전용 모듈의 프로그레스바의 사용 여부"/>
+		<Property name="printIEobj" group="Action" subgroup="" refreshinfo="" edittype="Boolean" defaultvalue="false" readonly="false" initonly="false" hidden="false" control="false" style="false" expr="false" deprecated="false" unused="false" objectinfo="" enuminfo="" unitinfo="" requirement="IE8,IE9,IE10,IE11,Chrome,Safari,Firefox,Opera,Mobile Web Browser (Android),Mobile Web Browser (iOS)" description="IE 브라우져에서 HTML 인쇄할 경우 IE Object를 이용하여 인쇄할지 여부"/>
+		<Property name="isencrypt" group="Action" subgroup="" refreshinfo="" edittype="Boolean" defaultvalue="false" readonly="false" initonly="false" hidden="false" control="false" style="false" expr="false" deprecated="false" unused="false" objectinfo="" enuminfo="" unitinfo="" requirement="IE8,IE9,IE10,IE11,Chrome,Safari,Firefox,Opera,Mobile Web Browser (Android),Mobile Web Browser (iOS)" description="아규먼트 및 데이터 암호화"/>
+		<Property name="isencrypt64" group="Action" subgroup="" refreshinfo="" edittype="Boolean" defaultvalue="false" readonly="false" initonly="false" hidden="false" control="false" style="false" expr="false" deprecated="false" unused="false" objectinfo="" enuminfo="" unitinfo="" requirement="IE8,IE9,IE10,IE11,Chrome,Safari,Firefox,Opera,Mobile Web Browser (Android),Mobile Web Browser (iOS)" description="아규먼트 및 데이터 암호화 (hex)"/>
+		<Property name="excelsheetperreport" group="information" subgroup="" refreshinfo="" edittype="Boolean" defaultvalue="false" readonly="false" initonly="false" hidden="false" control="false" style="false" expr="false" deprecated="false" unused="false" objectinfo="" enuminfo="" unitinfo="" requirement="" description="MultiReport인 경우 Report별로 시트를 생성"/>
+		<Property name="excelsheetperpage" group="information" subgroup="" refreshinfo="" edittype="Boolean" defaultvalue="false" readonly="false" initonly="false" hidden="false" control="false" style="false" expr="false" deprecated="false" unused="false" objectinfo="" enuminfo="" unitinfo="" requirement="" description="미리보기 시, 페이지 별로 시트 생성"/>
+		<Property name="excelsheetpermasterpage" group="information" subgroup="" refreshinfo="" edittype="Boolean" defaultvalue="false" readonly="false" initonly="false" hidden="false" control="false" style="false" expr="false" deprecated="false" unused="false" objectinfo="" enuminfo="" unitinfo="" requirement="" description="마스터 페이지 별로 시트 생성"/>
+		<!-- ActiveX 사용을 위한 변수 -->
+		<Property name="reporturl" group="information" subgroup="" refreshinfo="" edittype="String" defaultvalue="" readonly="false" initonly="false" hidden="false" control="false" style="false" expr="false" deprecated="false" unused="false" objectinfo="" enuminfo="" unitinfo="" requirement="Desktop Hybrid (Windows)" description="Report File를 가져올 주소를 설정한다."/>
+		<Property name="fileurl" group="information" subgroup="" refreshinfo="" edittype="String" defaultvalue="" readonly="false" initonly="false" hidden="false" control="false" style="false" expr="false" deprecated="false" unused="false" objectinfo="" enuminfo="" unitinfo="" requirement="Desktop Hybrid (Windows)" description="리소스를 가져올 주소를 설정한다."/>
+		<Property name="datasource" group="information" subgroup="" refreshinfo="" edittype="String" defaultvalue="" readonly="false" initonly="false" hidden="false" control="false" style="false" expr="false" deprecated="false" unused="false" objectinfo="" enuminfo="" unitinfo="" requirement="Desktop Hybrid (Windows)" description="데이터소스를 설정한다."/>
+		<Property name="exportfilename" group="information" subgroup="" refreshinfo="" edittype="String" defaultvalue="" readonly="false" initonly="false" hidden="false" control="false" style="false" expr="false" deprecated="false" unused="false" objectinfo="" enuminfo="" unitinfo="" requirement="Desktop Hybrid (Windows)" description="저장파일명 설정한다."/>
+		<Property name="fontElement" group="information" subgroup="" refreshinfo="" edittype="String" defaultvalue="" readonly="false" initonly="false" hidden="false" control="false" style="false" expr="false" deprecated="false" unused="false" objectinfo="" enuminfo="" unitinfo="" requirement="" description="사용자 폰트를 설정한다."/>
+		<Property name="isvoiceye" group="information" subgroup="" refreshinfo="" edittype="String" defaultvalue="" readonly="false" initonly="false" hidden="false" control="false" style="false" expr="false" deprecated="false" unused="false" objectinfo="" enuminfo="" unitinfo="" requirement="" description="PDF 저장 시 보이스아이 바코드 삽입여부"/>
+		<Property name="progress" group="information" subgroup="" refreshinfo="" edittype="String" defaultvalue="" readonly="false" initonly="false" hidden="false" control="false" style="false" expr="false" deprecated="false" unused="false" objectinfo="" enuminfo="" unitinfo="" requirement="Desktop Hybrid (Windows)" description="프로그레스바의 보임 속성"/>
+		<Property name="printsetmode" group="information" subgroup="" refreshinfo="" edittype="String" defaultvalue="1" readonly="false" initonly="false" hidden="false" control="false" style="false" expr="false" deprecated="false" unused="false" objectinfo="" enuminfo="" unitinfo="" requirement="Desktop Hybrid (Windows)" description="인쇄할 페이지 범위 지정 속성"/>
+		<Property name="exportsetmode" group="information" subgroup="" refreshinfo="" edittype="String" defaultvalue="1" readonly="false" initonly="false" hidden="false" control="false" style="false" expr="false" deprecated="false" unused="false" objectinfo="" enuminfo="" unitinfo="" requirement="Desktop Hybrid (Windows)" description="파일 저장할 페이지 범위 지정 속성"/>
+		<Property name="gatewayProtocolType" group="information" subgroup="" refreshinfo="" edittype="String" defaultvalue="" readonly="false" initonly="false" hidden="false" control="false" style="false" expr="false" deprecated="false" unused="false" objectinfo="" enuminfo="" unitinfo="" requirement="Desktop Hybrid (Windows)" description="Data를 가져오는 방식 지정"/>
+		<Property name="isRunThread" group="information" subgroup="" refreshinfo="" edittype="Boolean" defaultvalue="true" readonly="false" initonly="false" hidden="false" control="false" style="false" expr="false" deprecated="false" unused="false" objectinfo="" enuminfo="" unitinfo="" requirement="Desktop Hybrid (Windows)" description="Preview 쓰레드 처리"/>
+	</PropertyInfo> 
+    <CSSInfo>
+      <PropertyInfo>
+      </PropertyInfo>
+    </CSSInfo>
+    <StatusInfo>
+      <Status name="disabled" control="true" default="false" deprecated="false" unused="false" group="status" />
+      <Status name="mouseover" control="true" default="false" deprecated="false" unused="false" group="status" />
+      <Status name="focused" control="true" default="false" deprecated="false" unused="false" group="status" />
+      <Status name="enabled" control="true" default="true" deprecated="false" unused="false" group="status" />
+    </StatusInfo>
+    <ControlInfo />
+    <MethodInfo>
+			<Method name="setRuntimeData" group="" async="false" usecontextmenu="false" deprecated="false" unused="false" requirement="" description="Rumtime Report에 사용할 디자인정보와 그리드 정보를 전달한다.">
+				<Syntax text = "ubiviewer00.setRuntimeData(designDataset, gridDataset)"><Return/></Syntax>
+			</Method>
+			<Method name="retrieve" group="" async="false" usecontextmenu="false" deprecated="false" unused="false" requirement="" description="리포트를 조회한다.">
+				<Syntax text = "ubiviewer00.retrieve()"><Return/></Syntax>
+			</Method>
+			<Method name="aboutBox" group="" async="false" usecontextmenu="false" deprecated="false" unused="false" requirement="" description="AboutBox 정보를 표시합니다.">
+				<Syntax text = "ubiviewer00.aboutBox()"><Return/></Syntax>
+			</Method>
+			<Method name="setDataset" group="" async="false" usecontextmenu="false" deprecated="false" unused="false" requirement="" description="리포트에 해당 데이터셋을 bind한다.">
+				<Syntax text = "ubiviewer00.setDataset(sqlid, dataset)"><Return/></Syntax>
+			</Method>
+			<Method name="addTransaction" group="" async="false" usecontextmenu="false" deprecated="false" unused="false" requirement="" description="트랜젝션을 추가한다.">
+				<Syntax text = "ubiviewer00.addTransaction(parent, strSvcID, strURL, strInDatasets, strOutDatasets, strArgument, nDataType)"><Return/></Syntax>
+			</Method>
+			<Method name="getDesignDataset" group="" async="false" usecontextmenu="false" deprecated="false" unused="false" requirement="" description="디자인 정보를 담고있는 dataset을 생성한다.">
+				<Syntax text = "ubiviewer00.getDesignDataset(parent)"><Return/></Syntax>
+			</Method>
+			<Method name="exportFile" group="" async="false" usecontextmenu="false" deprecated="false" unused="false" requirement="" description="조회된 화면을 파일로 저장합니다.">
+				<Syntax text = "ubiviewer00.exportFile(type, subtype, flag)"><Return/></Syntax>
+			</Method>
+			<Method name="exportPdf" group="" async="false" usecontextmenu="false" deprecated="false" unused="false" requirement="" description="PDF 파일을 저장합니다.">
+				<Syntax text = "ubiviewer00.exportPdf()"><Return/></Syntax>
+			</Method>
+			<Method name="exportExcel" group="" async="false" usecontextmenu="false" deprecated="false" unused="false" requirement="" description="Excel 파일을 저장합니다.">
+				<Syntax text = "ubiviewer00.exportExcel()"><Return/></Syntax>
+			</Method>
+			<Method name="exportExcelNo" group="" async="false" usecontextmenu="false" deprecated="false" unused="false" requirement="" description="Excel 파일을 페이지 구분 없이 저장합니다.">
+				<Syntax text = "ubiviewer00.exportExcelNo()"><Return/></Syntax>
+			</Method>
+			<Method name="exportHml" group="" async="false" usecontextmenu="false" deprecated="false" unused="false" requirement="" description="Hml 파일을 저장합니다.">
+				<Syntax text = "ubiviewer00.exportHml()"><Return/></Syntax>
+			</Method>
+			<Method name="exportPptx" group="" async="false" usecontextmenu="false" deprecated="false" unused="false" requirement="" description="Pptx 파일을 저장합니다.">
+				<Syntax text = "ubiviewer00.exportPptx()"><Return/></Syntax>
+			</Method>
+			<Method name="exportDocx" group="" async="false" usecontextmenu="false" deprecated="false" unused="false" requirement="" description="Docx 파일을 저장합니다.">
+				<Syntax text = "ubiviewer00.exportDocx()"><Return/></Syntax>
+			</Method>
+			<Method name="exportCell" group="" async="false" usecontextmenu="false" deprecated="false" unused="false" requirement="" description="Cell 파일을 저장합니다.">
+				<Syntax text = "ubiviewer00.exportCell()"><Return/></Syntax>
+			</Method>
+			<Method name="exportImage" group="" async="false" usecontextmenu="false" deprecated="false" unused="false" requirement="" description="Image 파일을 저장합니다.">
+				<Syntax text = "ubiviewer00.exportImage()"><Return/></Syntax>
+			</Method>
+			<Method name="exportSet" group="" async="false" usecontextmenu="false" deprecated="false" unused="false" requirement="Runtime" description="파일 저장을 설정창과 함께 실행합니다.">
+				<Syntax text = "ubiviewer00.exportSet('HWP')"><Return/></Syntax>
+			</Method>
+			<Method name="export" group="" async="false" usecontextmenu="false" deprecated="false" unused="false" requirement="HTML5" description="지정한 파일 포맷으로 저장합니다.">
+				<Syntax text = "ubiviewer00.export('PDF', 'true')"><Return/></Syntax>
+			</Method>
+			<Method name="setHmlExtension" group="" async="false" usecontextmenu="false" deprecated="false" unused="false" requirement="" description="HML 파일 저장 시 확장자를 지정합니다.">
+				<Syntax text = "ubiviewer00.setHmlExtension('hwp')"><Return/></Syntax>
+			</Method>
+			<Method name="print" group="" async="false" usecontextmenu="false" deprecated="false" unused="false" requirement="" description="인쇄를 실행합니다.">
+				<Syntax text = "ubiviewer00.print()"><Return/></Syntax>
+			</Method>
+			<Method name="printSet" group="" async="false" usecontextmenu="false" deprecated="false" unused="false" requirement="" description="인쇄를 설정창과 함께 실행합니다.">
+				<Syntax text = "ubiviewer00.printSet()"><Return/></Syntax>
+			</Method>
+			<Method name="printPDF" group="" async="false" usecontextmenu="false" deprecated="false" unused="false" requirement="" description="PDF 형식으로 인쇄를 합니다.">
+				<Syntax text = "ubiviewer00.printPDF()"><Return/></Syntax>
+			</Method>
+			<Method name="printHTML" group="" async="false" usecontextmenu="false" deprecated="false" unused="false" requirement="" description="HTML 형식으로 인쇄를 합니다.">
+				<Syntax text = "ubiviewer00.printHTML()"><Return/></Syntax>
+			</Method>
+			<Method name="previous" group="" async="false" usecontextmenu="false" deprecated="false" unused="false" requirement="" description="이전페이지로 이동합니다.">
+				<Syntax text = "ubiviewer00.previous()"><Return/></Syntax>
+			</Method>
+			<Method name="next" group="" async="false" usecontextmenu="false" deprecated="false" unused="false" requirement="" description="다음페이지로 이동합니다.">
+				<Syntax text = "ubiviewer00.next()"><Return/></Syntax>
+			</Method>
+			<Method name="first" group="" async="false" usecontextmenu="false" deprecated="false" unused="false" requirement="" description="첫 페이지로 이동합니다.">
+				<Syntax text = "ubiviewer00.first()"><Return/></Syntax>
+			</Method>
+			<Method name="last" group="" async="false" usecontextmenu="false" deprecated="false" unused="false" requirement="" description="마지막 페이지로 이동합니다.">
+				<Syntax text = "ubiviewer00.last()"><Return/></Syntax>
+			</Method>
+			<Method name="gopage" group="" async="false" usecontextmenu="false" deprecated="false" unused="false" requirement="" description="지정된 페이지로 이동합니다.">
+				<Syntax text = "ubiviewer00.gopage(iPage)"><Return/></Syntax>
+			</Method>
+			<Method name="zoomIn" group="" async="false" usecontextmenu="false" deprecated="false" unused="false" requirement="" description="페이지를 확대합니다.">
+				<Syntax text = "ubiviewer00.zoomIn()"><Return/></Syntax>
+			</Method>
+			<Method name="zoomOut" group="" async="false" usecontextmenu="false" deprecated="false" unused="false" requirement="" description="페이지를 축소합니다.">
+				<Syntax text = "ubiviewer00.zoomOut()"><Return/></Syntax>
+			</Method>
+			<Method name="refresh" group="" async="false" usecontextmenu="false" deprecated="false" unused="false" requirement="" description="리포트 페이지를 새로고침 합니다.">
+				<Syntax text = "ubiviewer00.refresh()"><Return/></Syntax>
+			</Method>
+			<Method name="setMenuTextToolbar" group="" async="false" usecontextmenu="false" deprecated="false" unused="false" requirement="" description="리포트 메뉴의 메뉴명을 변경합니다.">
+				<Syntax text = "ubiviewer00.setMenuTextToolbar('PRINTSET','인쇄설정')"><Return/></Syntax>
+			</Method>
+			<Method name="setToolbar" group="" async="false" usecontextmenu="false" deprecated="false" unused="false" requirement="" description="유비리포트 뷰어의 툴바를 보이거나 감춥니다.">
+				<Syntax text = "ubiviewer00.setToolbar(false)"><Return/></Syntax>
+			</Method>
+			<Method name="changeScale" group="" async="false" usecontextmenu="false" deprecated="false" unused="false" requirement="" description="조회된 리포트의 배율을 조정합니다.">
+				<Syntax text = "ubiviewer00.changeScale(120)"><Return/></Syntax>
+			</Method>
+			<Method name="setVisibleToolbar" group="" async="false" usecontextmenu="false" deprecated="false" unused="false" requirement="" description="리포트 툴바의 특정 버튼을 보이거나 감춥니다.">
+				<Syntax text = "ubiviewer00.setVisibleToolbar('REFRESH',false)"><Return/></Syntax>
+			</Method>
+			<Method name="setEnableToolbar" group="" async="false" usecontextmenu="false" deprecated="false" unused="false" requirement="" description="리포트 툴바의 특정 버튼을 사용 가능 또는 불가 상태로 설정합니다.">
+				<Syntax text = "ubiviewer00.setEnableToolbar('PRINT',false)"><Return/></Syntax>
+			</Method>
+			<Method name="setSaveMenu" group="" async="false" usecontextmenu="false" deprecated="false" unused="false" requirement="HTML5" description="리포트 툴바의 특정 저장 버튼을 기본 저장 메뉴로 지정합니다.">
+				<Syntax text = "ubiviewer00.setSaveMenu('HWP')"><Return/></Syntax>
+			</Method>
+			<Method name="setPrintMenu" group="" async="false" usecontextmenu="false" deprecated="false" unused="false" requirement="HTML5" description="리포트 툴바의 특정 저장 버튼을 기본 인쇄 메뉴로 지정합니다.">
+				<Syntax text = "ubiviewer00.setPrintMenu('HTML')"><Return/></Syntax>
+			</Method>
+			<Method name="setUserSaveList" group="" async="false" usecontextmenu="false" deprecated="false" unused="false" requirement="HTML5" description="리포트 툴바의 저장 버튼 메뉴의 순서를 지정합니다.">
+				<Syntax text = "ubiviewer00.setUserSaveList('PDF,Xls,Docx,Pptx,Hml,Cell,Image')"><Return/></Syntax>
+			</Method>
+			<Method name="setUserPrintList" group="" async="false" usecontextmenu="false" deprecated="false" unused="false" requirement="HTML5" description="리포트 툴바의 인쇄 버튼 메뉴의 순서를 지정합니다.">
+				<Syntax text = "ubiviewer00.setUserPrintList('Pdf,Html,Ubi')"><Return/></Syntax>
+			</Method>
+			<Method name="callUrl" group="" async="false" usecontextmenu="false" deprecated="false" unused="false" requirement="HTML5" description="뷰어에 설정된 파라미터를 입력받은 URL 주소로  호출합니다.">
+				<Syntax text = "ubiviewer00.callUrl(url, parent, callback)"><Return/></Syntax>
+			</Method>
+			<Method name="getTotalPage" group="" async="false" usecontextmenu="false" deprecated="false" unused="false" requirement="" description="조회된 리포트의 전체 페이지를 가져옵니다.">
+				<Syntax text = "ubiviewer00.getTotalPage()"><Return/></Syntax>
+			</Method>
+			<Method name="getVariable" group="" async="false" usecontextmenu="false" deprecated="false" unused="false" requirement="Runtime" description="유비리포트 뷰어로부터 속성값을 리턴받습니다.">
+				<Syntax text = "ubiviewer00.getVariable('exportFilePath')"><Return/></Syntax>
+			</Method>
+			<Method name="getEnableNoPage" group="" async="false" usecontextmenu="false" deprecated="false" unused="false" requirement="HTML5" description="유비리포트 뷰어로부터 Base type 엑셀 파일 저장 가능 여부를 리턴받습니다.">
+				<Syntax text = "ubiviewer00.getEnableNoPage()"><Return/></Syntax>
+			</Method>
+			<Method name="setPluginProgress" group="" async="false" usecontextmenu="false" deprecated="false" unused="false" requirement="HTML5" description="전용 뷰어의 프로그레스바 보임 속성값을 지정합니다.">
+				<Syntax text = "ubiviewer00.setPluginProgress(true)"><Return/></Syntax>
+			</Method>
+			<Method name="setPluginVariable" group="" async="false" usecontextmenu="false" deprecated="false" unused="false" requirement="HTML5" description="전용 뷰어의 속성값을 지정합니다.">
+				<Syntax text = "ubiviewer00.setPluginVariable('printName', 'FinePrint')"><Return/></Syntax>
+			</Method>
+			<Method name="cleaerPluginVariable" group="" async="false" usecontextmenu="false" deprecated="false" unused="false" requirement="HTML5" description="전용 뷰어의 속성값을 초기화시킵니다.">
+				<Syntax text = "ubiviewer00.cleaerPluginVariable()"><Return/></Syntax>
+			</Method>
+			<Method name="getPrintStatus" group="" async="false" usecontextmenu="false" deprecated="false" unused="false" requirement="Runtime" description="인쇄 결과를 리턴받습니다.">
+				<Syntax text = "ubiviewer00.getPrintStatus()"><Return/></Syntax>
+			</Method>
+    </MethodInfo>
+    <EventHandlerInfo />
+    <ContentsInfo />
+  </Object>
+</MetaInfo>

@@ -1,0 +1,418 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<FDL version="2.1">
+  <Form id="Foot3010fm" width="1038" height="650" titletext="매치관리" onload="form_onload">
+    <Layouts>
+      <Layout height="650" width="1038">
+        <Static id="sta00" taborder="0" text="매치관리" left="10" top="10" width="56" height="17" cssclass="sta_WF_TitleMain"/>
+        <Div id="divMatchDetail" taborder="1" right="10" top="175" text="" height="451" width="394">
+          <Layouts>
+            <Layout>
+              <Static id="sta00" taborder="0" text="구장아이디" left="0" top="0" width="100" height="46" cssclass="sta_WF_DetailLabel"/>
+              <Static id="sta01" taborder="1" left="99" top="0" height="46" cssclass="sta_WF_DetailArea" width="295"/>
+              <Static id="sta00_01_00" taborder="2" text="매치시간" left="0" top="90" width="100" height="46" cssclass="sta_WF_DetailLabel" onclick="div01_sta00_01_00_onclick"/>
+              <Static id="sta01_01_00" taborder="3" left="99" top="45" width="295" height="46" cssclass="sta_WF_DetailArea"/>
+              <Static id="sta00_01_00_00" taborder="4" text="매치일자" left="0" top="45" width="100" height="46" cssclass="sta_WF_DetailLabel"/>
+              <Static id="sta01_01_00_00" taborder="5" left="99" top="90" width="295" height="46" cssclass="sta_WF_DetailArea"/>
+              <Static id="sta00_01_00_00_00_00" taborder="6" text="매니저아이디" left="0" top="135" width="100" height="46" cssclass="sta_WF_DetailLabel"/>
+              <Static id="sta01_01_00_00_00_00" taborder="7" left="99" top="135" width="295" height="46" cssclass="sta_WF_DetailArea"/>
+              <Static id="sta00_00_00_00_00_00_00" taborder="8" text="매니저급여" left="0" top="405" width="100" height="46" cssclass="sta_WF_DetailLabel"/>
+              <Static id="sta00_00_00_00_00_00_00_00" taborder="9" text="신발" left="0" top="315" width="100" height="46" cssclass="sta_WF_DetailLabel"/>
+              <Static id="sta01_01_00_00_00_00_00" taborder="10" left="99" top="180" width="295" height="46" cssclass="sta_WF_DetailArea"/>
+              <Static id="sta00_01_00_00_00_00_00" taborder="11" text="성별구분" left="0" top="180" width="100" height="46" cssclass="sta_WF_DetailLabel"/>
+              <Static id="sta00_00_00_00_00_00_00_00_00" taborder="12" text="매치비" left="0" top="360" width="100" height="46" cssclass="sta_WF_DetailLabel"/>
+              <Static id="sta01_01_00_00_00_00_00_00" taborder="13" left="99" top="225" width="295" height="46" cssclass="sta_WF_DetailArea" text=""/>
+              <Static id="sta00_01_00_00_00_00_00_00" taborder="14" text="경기인원" left="0" top="225" width="100" height="46" cssclass="sta_WF_DetailLabel"/>
+              <Static id="sta00_01_00_00_00_00_00_00_00" taborder="15" text="매치상태" left="0" top="270" width="100" height="46" cssclass="sta_WF_DetailLabel"/>
+              <Edit id="edtStadium" taborder="16" left="105" top="7" width="191" height="32" enable="false"/>
+              <Calendar id="calMatchdate" taborder="17" left="105" top="52" width="175" height="32" enable="false"/>
+              <Combo id="cboGender" taborder="18" left="105" top="187" width="175" height="32" value="" index="-1" innerdataset="dsGender" datacolumn="CODE_NAME" codecolumn="CODE"/>
+              <Button id="btnSelectStadium" taborder="20" text="구장선택" left="306" top="7" height="32" onclick="divMatchDetail_btnSelectStadium_onclick" width="78"/>
+              <Static id="sta01_01_00_00_00_00_00_01" taborder="21" left="98" top="315" width="295" height="46" cssclass="sta_WF_DetailArea" text="" onclick="divMatchDetail_sta01_01_00_00_00_00_00_01_onclick"/>
+              <Static id="sta01_01_00_00_00_00_00_01_00" taborder="22" left="98" top="360" width="295" height="46" cssclass="sta_WF_DetailArea"/>
+              <Static id="sta01_01_00_00_00_00_00_01_00_00" taborder="23" left="98" top="405" width="295" height="46" cssclass="sta_WF_DetailArea"/>
+              <Combo id="cboNum" taborder="24" left="105" top="232" width="175" height="32" value="" index="-1" innerdataset="dsNum" codecolumn="CODE" datacolumn="CODE_NAME" onitemchanged="divMatchDetail_cboNum_onitemchanged"/>
+              <Combo id="cboShoes" taborder="19" left="105" top="322" width="175" height="32" value="" index="-1" innerdataset="dsShoes" datacolumn="CODE_NAME" codecolumn="CODE"/>
+              <MaskEdit id="mskPrice" taborder="25" left="105" top="367" width="175" height="32" format=","/>
+              <MaskEdit id="mskWage" taborder="26" left="105" top="412" width="175" height="32" format=","/>
+              <Edit id="edtManager" taborder="27" left="105" top="142" width="175" height="32"/>
+              <Static id="sta01_01_00_00_00_00_00_01_01" taborder="28" left="99" top="270" width="295" height="46" cssclass="sta_WF_DetailArea" text=""/>
+              <Radio id="rdoState" taborder="29" left="110" top="277" width="283" height="32" innerdataset="dsState" codecolumn="CODE" datacolumn="CODE_NAME" direction="vertical"/>
+              <MaskEdit id="mskStartTime" taborder="30" left="105" top="96" width="175" height="32" format="####-##-## ##:##:##" type="string" enable="false"/>
+            </Layout>
+          </Layouts>
+        </Div>
+        <Grid id="grdMatch" taborder="2" left="10" top="175" right="divMatchDetail:10" binddataset="dsMatch" autofittype="col" nodatatext="데이터가 없습니다." height="451">
+          <Formats>
+            <Format id="default">
+              <Columns>
+                <Column size="144"/>
+                <Column size="169"/>
+                <Column size="60"/>
+                <Column size="80"/>
+                <Column size="80"/>
+                <Column size="50"/>
+                <Column size="80"/>
+              </Columns>
+              <Rows>
+                <Row size="24" band="head"/>
+                <Row size="24"/>
+              </Rows>
+              <Band id="head">
+                <Cell text="구장명"/>
+                <Cell col="1" text="매치날짜"/>
+                <Cell col="2" text="매치시각"/>
+                <Cell col="3" text="성별구분"/>
+                <Cell col="4" text="인원구분"/>
+                <Cell col="5" text="경기인원"/>
+                <Cell col="6" text="매니저아이디"/>
+              </Band>
+              <Band id="body">
+                <Cell text="bind:STADIUM_NAME" edittype="none"/>
+                <Cell col="1" text="bind:MATCH_DATE" displaytype="calendarcontrol" edittype="none"/>
+                <Cell col="2" text="bind:MATCH_TIME" edittype="none"/>
+                <Cell col="3" text="bind:GENDER" displaytype="combotext" combodataset="dsGender" combocodecol="CODE" combodatacol="CODE_NAME" edittype="none"/>
+                <Cell col="4" text="bind:PLAYER_NUM" displaytype="combotext" combodataset="dsNum" combocodecol="CODE" combodatacol="CODE_NAME" edittype="none"/>
+                <Cell col="5" text="bind:PLAYER_COUNT" edittype="none"/>
+                <Cell col="6" text="bind:MANAGER_ID" edittype="none"/>
+              </Band>
+            </Format>
+          </Formats>
+        </Grid>
+        <Div id="divSearch" taborder="3" text="" left="10" top="35" height="100" right="10" cssclass="div_WF_Search">
+          <Layouts>
+            <Layout>
+              <Static id="sta00" taborder="0" text="매치상태" left="10" top="18" width="44" height="14" cssclass="sta_WF_SearchLabel"/>
+              <Radio id="rdoMatchState" taborder="1" left="64" top="13" width="399" height="24" innerdataset="dsSearchState" datacolumn="CODE_NAME" codecolumn="CODE" direction="vertical" index="0" text="전체" value="0" onitemchanged="divSearch_rdoMatchState_onitemchanged"/>
+              <Static id="sta01" taborder="2" text="매치 일자" left="357" width="48" cssclass="sta_WF_SearchLabel" height="14" bottom="18"/>
+              <Static id="sta02" taborder="3" text="구장명" left="10" top="66" width="33" height="14" cssclass="sta_WF_SearchLabel"/>
+              <Edit id="edtName" taborder="4" left="53" top="59" height="28" width="280"/>
+              <Div id="divDate" taborder="5" left="415" top="59" width="258" height="28" url="Cmm::CmmCalFromTo.xfdl"/>
+            </Layout>
+          </Layouts>
+        </Div>
+        <Static id="sta01" taborder="4" text="매치목록" left="10" top="145" width="48" height="20" cssclass="sta_WF_TitleSub"/>
+        <Static id="sta02" taborder="5" text="매치상세" top="145" width="48" height="20" cssclass="sta_WF_TitleSub" right="356"/>
+        <Button id="btnSearch" taborder="6" text="조회" width="63" right="208" cssclass="btn_WF_FrmMain" top="4" height="26" background="#204f75" border="1px solid #0e2436" onclick="btnSearch_onclick"/>
+        <Button id="btnAdd" taborder="7" text="입력" top="4" width="63" height="26" right="142" cssclass="btn_WF_FrmMain" onclick="btnAdd_onclick"/>
+        <Button id="btnDel" taborder="8" text="삭제" top="4" width="63" height="26" right="76" cssclass="btn_WF_FrmMain" onclick="btnDel_onclick"/>
+        <Button id="btnSave" taborder="9" text="저장" top="4" width="63" height="26" right="10" cssclass="btn_WF_FrmMain" onclick="btnSave_onclick"/>
+      </Layout>
+    </Layouts>
+    <Script type="xscript5.1"><![CDATA[
+/**
+*  TobeFootball
+*  @MenuPath     샘플 > script 표준
+*  @FileName     C:\TobeFootball\Foot\Foot3010fm.xfdl
+*  @Creator      박진호
+*  @CreateDate   2024/08/18
+*  @Desction    스크립트 표준 및 주석 표준 정의
+************** 소스 수정 이력 *****************************************************************
+*  date          		Modifier                Description
+*************************************************************************************************
+*  2024/08/18     	        박진호 	              최초 생성
+*************************************************************************************************
+*/
+
+/************************************************************************************************
+ * FORM 변수 선언 영역
+ ************************************************************************************************/
+
+
+/************************************************************************************************
+ * FORM EVENT 영역(onload, onbeforeclose)
+ ************************************************************************************************/
+this.form_onload = function(obj:nexacro.Form,e:nexacro.LoadEventInfo)
+{
+	this.gfnFormOnLoad(this);
+	this.fnBindCom();
+	this.fnSearch();
+};
+
+/************************************************************************************************
+ * CALLBACK 콜백 처리부분(Transaction, Popup)
+ ************************************************************************************************/
+this.fnPopupCallback = function (strId, strVal)
+{
+	if(strId == "selectStadium" && !this.gfnIsNull(strVal) ){
+		var arrVal = strVal.split(":");
+		var nEndTime = parseInt(arrVal[2])+20000;
+		//trace(arrVal);
+		this.divMatchDetail.form.edtStadium.set_value(arrVal[0]);
+		this.dsMatch.setColumn(this.dsMatch.rowposition,"MATCH_DATE",arrVal[1]+"000000");
+		//this.divMatchDetail.form.calMatchdate.set_value(arrVal[1]);
+		this.divMatchDetail.form.mskStartTime.set_value(arrVal[2]);
+		this.dsMatch.setColumn(this.dsMatch.rowposition,"END_TIME",nEndTime);
+	}	
+};
+
+this.fnCallback = function (svcId, errCd, errMsg)
+{
+	if(svcId=="search"){
+		//trace(this.dsMatch.saveXML());
+		//this.fnMatchState();
+	}
+	else if(svcId=="save"){
+		
+	}
+};
+/************************************************************************************************
+ * CRUD 및 TRANSACTION 서비스 호출 처리
+ ************************************************************************************************/
+this.fnSearch = function ()
+{
+	var strSvcUrl = "searchMatch.do";
+	var inData    = "dsSearch=dsSearch";
+	var outData   = "dsMatch=dsMatch";
+	var strArg    = "";
+
+	this.gfnTransaction("search", strSvcUrl, inData, outData, strArg, "fnCallback", true);
+};
+
+this.fnSave = function ()
+{
+	var strSvcUrl = "saveMatch.do";
+	var inData    = "dsMatch=dsMatch:U dsSearch=dsSearch";
+	var outData   = "dsMatch=dsMatch";
+	var strArg    = "";
+
+	this.gfnTransaction("save", strSvcUrl, inData, outData, strArg, "fnCallback", true);
+};
+
+/************************************************************************************************
+ * 사용자 FUNCTION 영역
+ ************************************************************************************************/
+/**
+ * @description 조회 후 진행 전, 중, 후 필터
+*/
+ 
+// this.fnMatchState = function ()
+// {
+// 	var sState = this.divSearch.form.rdoMatchState.value;
+// 	var nTime = parseInt(this.gfnGetDate("time"));
+// 	switch(sState) {
+// 	case "0":
+// 		this.dsMatch.filter("");
+// 		break;
+// 	case "1":
+// 		this.dsMatch.filter("START_TIME>"+nTime);
+// 		break;
+// 	case "2":
+// 		this.dsMatch.filter("START_TIME<="+nTime+"&& END_TIME>="+nTime);
+// 		break;
+// 	case "3":
+// 		this.dsMatch.filter("END_TIME<"+nTime);
+// 		break;
+// 	default:
+// 		break;
+// 	}
+// };
+
+/**
+ * @description 공통코드를 innerdataset에 바인딩
+*/
+this.fnBindCom = function ()
+{
+	var arrCode = new Array();
+
+	arrCode.push({codeGroup:"I001", obj: this.divMatchDetail.form.cboGender}); 
+	arrCode.push({codeGroup:"H001", obj: this.divMatchDetail.form.cboNum});
+	arrCode.push({codeGroup:"J001", obj: this.divMatchDetail.form.cboShoes});
+	arrCode.push({codeGroup:"K001", obj: this.divMatchDetail.form.rdoState});
+	arrCode.push({codeGroup:"K001", obj: this.divSearch.form.rdoMatchState, first:"2::전체"});
+
+    this.gfnGetCommonCode(arrCode);
+};
+
+/**
+ * @description 정합성 체크
+*/
+this.fnVaildate = function ()
+{
+	this.gfnClearValidation(this.dsMatch);
+	
+	this.gfnSetValidation(this.dsMatch, "STADIUM_ID", "구장", "required");	// 구장
+	this.gfnSetValidation(this.dsMatch, "MATCH_DATE", "매치일자", "required");	// 매치일자
+	this.gfnSetValidation(this.dsMatch, "START_TIME", "매치시간", "required");	// 매치시간
+	this.gfnSetValidation(this.dsMatch, "GENDER", "성별구분", "required");	// 성별구분
+	this.gfnSetValidation(this.dsMatch, "PLAYER_NUM", "경기인원", "required");	// 경기인원
+	this.gfnSetValidation(this.dsMatch, "MATCH_STATE", "매치상태", "required");	// 경기인원
+// 	this.gfnSetValidation(this.dsMatch, "MIN_PLAYER", "최소인원", "required");	// 이름
+// 	this.gfnSetValidation(this.dsMatch, "MAX_PLAYER", "최대인원", "required");	// 이름
+	this.gfnSetValidation(this.dsMatch, "SHOES", "신발", "required");	// 신발
+	this.gfnSetValidation(this.dsMatch, "PRICE", "매치비", "required");	// 매치비
+	this.gfnSetValidation(this.dsMatch, "WAGE", "매니저급여", "required");	// 매니저급여
+
+	if (this.gfnValidation(this.dsMatch, "A") == false) return false;
+	else return true;
+	
+};
+
+/************************************************************************************************
+ * 각 COMPONENT 별 EVENT 영역
+ ************************************************************************************************/
+
+this.divMatchDetail_btnSelectStadium_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	var sTitle = "구장 선택";	// 모달팝업
+	var oArg = {};
+	//trace("팝업 전 : " + JSON.stringify(oArg));
+	var oOption = {title:sTitle};	//top, left를 지정하지 않으면 가운데정렬 //"top=20,left=370"
+	var sPopupCallBack = "fnPopupCallback";
+	this.gfnOpenPopup( "selectStadium","Foot::Foot3011pu.xfdl",oArg,sPopupCallBack,oOption);	
+};
+
+this.btnSearch_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	this.fnSearch();
+};
+
+
+this.btnAdd_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	this.dsMatch.addRow();
+};
+
+this.btnDel_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	this.dsMatch.deleteRow(this.dsMatch.rowposition);
+};
+
+this.divMatchDetail_cboNum_onitemchanged = function(obj:nexacro.Combo,e:nexacro.ItemChangeEventInfo)
+{
+	var nNum = e.postvalue;
+	this.dsMatch.setColumn(this.dsMatch.rowposition,"MIN_PLAYER",nNum*2);
+	this.dsMatch.setColumn(this.dsMatch.rowposition,"MAX_PLAYER",nNum*3);
+// 	this.divMatchDetail.form.edtMinNum.set_value(nNum*2);
+// 	this.divMatchDetail.form.edtMaxNum.set_value(nNum*3);
+};
+
+this.btnSave_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	if(!this.fnVaildate())	
+		return;
+	else{
+		this.fnSave();
+	}
+};
+
+this.divSearch_rdoMatchState_onitemchanged = function(obj:nexacro.Radio,e:nexacro.ItemChangeEventInfo)
+{
+	this.fnSearch();
+};
+
+this.dsMatch_onload = function(obj:nexacro.NormalDataset,e:nexacro.DSLoadEventInfo)
+{
+	if(obj.rowcount == 0)
+		this.divMatchDetail.form.btnSelectStadium.set_enable(false);	
+};
+
+this.dsMatch_onrowposchanged = function(obj:nexacro.NormalDataset,e:nexacro.DSRowPosChangeEventInfo)
+{
+	if(obj.rowcount > 0)
+		this.divMatchDetail.form.btnSelectStadium.set_enable(true);
+
+	if( obj.getRowType(e.newrow) == 2){ // 추가된 행
+		obj.setColumn(e.newrow,"MATCH_STATE","10");
+		this.divMatchDetail.form.rdoState.set_enable(false);
+		this.divMatchDetail.form.edtManager.set_enable(false);
+	}
+	else{
+		this.divMatchDetail.form.rdoState.set_enable(true);
+		this.divMatchDetail.form.edtManager.set_enable(false);
+	}
+	
+};
+]]></Script>
+    <Objects>
+      <Dataset id="dsSearch">
+        <ColumnInfo>
+          <Column id="STADIUM_NAME" type="STRING" size="256"/>
+          <Column id="CAL_FROM" type="STRING" size="256"/>
+          <Column id="CAL_TO" type="STRING" size="256"/>
+          <Column id="MATCH_STATE" type="STRING" size="256"/>
+        </ColumnInfo>
+        <Rows>
+          <Row/>
+        </Rows>
+      </Dataset>
+      <Dataset id="dsMatch" onload="dsMatch_onload" onrowposchanged="dsMatch_onrowposchanged">
+        <ColumnInfo>
+          <Column id="MATCH_ID" type="INT" size="4"/>
+          <Column id="STADIUM_ID" type="STRING" size="32"/>
+          <Column id="MANAGER_ID" type="STRING" size="32"/>
+          <Column id="MATCH_DATE" type="DATETIME" size="17"/>
+          <Column id="START_TIME" type="BIGDECIMAL" size="8"/>
+          <Column id="END_TIME" type="BIGDECIMAL" size="8"/>
+          <Column id="GENDER" type="STRING" size="256"/>
+          <Column id="PLAYER_NUM" type="STRING" size="256"/>
+          <Column id="MIN_PLAYER" type="STRING" size="256"/>
+          <Column id="MAX_PLAYER" type="STRING" size="256"/>
+          <Column id="PRICE" type="STRING" size="256"/>
+          <Column id="WAGE" type="STRING" size="256"/>
+          <Column id="MATCH_STATE" type="STRING" size="256"/>
+          <Column id="PLAYER_COUNT" type="STRING" size="256"/>
+          <Column id="SHOES" type="STRING" size="256"/>
+          <Column id="STADIUM_NAME" type="STRING" size="32"/>
+          <Column id="MATCH_TIME" type="STRING" size="256"/>
+        </ColumnInfo>
+      </Dataset>
+      <Dataset id="dsGender">
+        <ColumnInfo>
+          <Column id="GROUP_CODE" type="STRING" size="256"/>
+          <Column id="GROUP_NAME" type="STRING" size="256"/>
+          <Column id="CODE" type="STRING" size="256"/>
+          <Column id="CODE_NAME" type="STRING" size="256"/>
+        </ColumnInfo>
+      </Dataset>
+      <Dataset id="dsNum">
+        <ColumnInfo>
+          <Column id="GROUP_CODE" type="STRING" size="256"/>
+          <Column id="GROUP_NAME" type="STRING" size="256"/>
+          <Column id="CODE" type="STRING" size="256"/>
+          <Column id="CODE_NAME" type="STRING" size="256"/>
+        </ColumnInfo>
+      </Dataset>
+      <Dataset id="dsShoes">
+        <ColumnInfo>
+          <Column id="GROUP_CODE" type="STRING" size="256"/>
+          <Column id="GROUP_NAME" type="STRING" size="256"/>
+          <Column id="CODE" type="STRING" size="256"/>
+          <Column id="CODE_NAME" type="STRING" size="256"/>
+        </ColumnInfo>
+      </Dataset>
+      <Dataset id="dsState">
+        <ColumnInfo>
+          <Column id="GROUP_CODE" type="STRING" size="256"/>
+          <Column id="GROUP_NAME" type="STRING" size="256"/>
+          <Column id="CODE" type="STRING" size="256"/>
+          <Column id="CODE_NAME" type="STRING" size="256"/>
+        </ColumnInfo>
+      </Dataset>
+      <Dataset id="dsSearchState">
+        <ColumnInfo>
+          <Column id="GROUP_CODE" type="STRING" size="256"/>
+          <Column id="GROUP_NAME" type="STRING" size="256"/>
+          <Column id="CODE" type="STRING" size="256"/>
+          <Column id="CODE_NAME" type="STRING" size="256"/>
+        </ColumnInfo>
+      </Dataset>
+    </Objects>
+    <Bind>
+      <BindItem id="item0" compid="divSearch.form.edtName" propid="value" datasetid="dsSearch" columnid="STADIUM_NAME"/>
+      <BindItem id="item1" compid="divMatchDetail.form.edtStartTime" propid="value" datasetid="dsMatch" columnid="START_TIME"/>
+      <BindItem id="item4" compid="divMatchDetail.form.cboGender" propid="value" datasetid="dsMatch" columnid="GENDER"/>
+      <BindItem id="item5" compid="divMatchDetail.form.cboNum" propid="value" datasetid="dsMatch" columnid="PLAYER_NUM"/>
+      <BindItem id="item6" compid="divMatchDetail.form.edtMinNum" propid="value" datasetid="dsMatch" columnid="MIN_PLAYER"/>
+      <BindItem id="item7" compid="divMatchDetail.form.edtMaxNum" propid="value" datasetid="dsMatch" columnid="MAX_PLAYER"/>
+      <BindItem id="item8" compid="divMatchDetail.form.cboShoes" propid="value" datasetid="dsMatch" columnid="SHOES"/>
+      <BindItem id="item9" compid="divMatchDetail.form.mskPrice" propid="value" datasetid="dsMatch" columnid="PRICE"/>
+      <BindItem id="item10" compid="divMatchDetail.form.mskWage" propid="value" datasetid="dsMatch" columnid="WAGE"/>
+      <BindItem id="item11" compid="divMatchDetail.form.edtStadium" propid="value" datasetid="dsMatch" columnid="STADIUM_ID"/>
+      <BindItem id="item2" compid="divMatchDetail.form.calMatchdate" propid="value" datasetid="dsMatch" columnid="MATCH_DATE"/>
+      <BindItem id="item3" compid="divMatchDetail.form.edtManager" propid="value" datasetid="dsMatch" columnid="MANAGER_ID"/>
+      <BindItem id="item12" compid="divMatchDetail.form.rdoState" propid="value" datasetid="dsMatch" columnid="MATCH_STATE"/>
+      <BindItem id="item13" compid="divSearch.form.rdoMatchState" propid="value" datasetid="dsSearch" columnid="MATCH_STATE"/>
+      <BindItem id="item14" compid="divMatchDetail.form.mskStartTime" propid="value" datasetid="dsMatch" columnid="START_TIME"/>
+    </Bind>
+  </Form>
+</FDL>

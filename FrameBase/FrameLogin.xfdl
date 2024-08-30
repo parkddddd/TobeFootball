@@ -1,0 +1,226 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<FDL version="2.1">
+  <Form id="FrameLogin" width="1300" height="820" titletext="로그인" cssclass="fm_WF_Login" onload="form_onload">
+    <Layouts>
+      <Layout height="820" width="1300">
+        <Static id="sta00" taborder="1" text="sta00" left="0" top="0" width="50%" height="50%" visible="false"/>
+        <Div id="divLogin" taborder="0" text="" left="sta00:-200" top="sta00:-309" width="400" height="619" formscrollbartype="none none" cssclass="div_WF_Login">
+          <Layouts>
+            <Layout>
+              <Edit id="edtId" taborder="0" left="33" top="259" width="335" height="50" cssclass="edt_LOGIN_ID" text="Admin" onkeydown="divLogin_edtPw_onkeydown"/>
+              <Edit id="edtPw" taborder="1" left="33" top="349" width="335" height="50" cssclass="edt_LOGIN_PW" password="true" text="1234" onkeydown="divLogin_edtPw_onkeydown"/>
+              <Button id="btnLogin" taborder="2" left="33" top="469" width="335" height="50" onclick="divLogin_btnLogin_onclick" text="로그인" cssclass="btn_LOGIN_Login"/>
+              <Static id="sta00" taborder="3" left="0" top="0" height="250" onclick="divLogin_sta00_onclick" cssclass="sta_LOGIN_Logo" text="" right="0"/>
+              <CheckBox id="chkRemember" taborder="4" text="아이디 기억하기" left="34" top="442" width="150" height="20" cssclass="chk_LOGIN_Remember"/>
+              <Static id="staIdCheck" taborder="5" text="아이디를 입력하세요" left="33" top="310" width="309" height="33" visible="false"/>
+              <Static id="staPwCheck" taborder="6" text="비밀번호를 입력하세요" left="33" top="399" width="309" height="33" visible="false"/>
+              <Button id="btnSignUp" taborder="7" text="회원가입" left="135" top="545" width="130" height="33" onclick="btnSignUp_onclick" cssclass="btn_SignUp"/>
+            </Layout>
+          </Layouts>
+        </Div>
+      </Layout>
+    </Layouts>
+    <Bind>
+      <BindItem id="item0" compid="divLogin.form.edtId" propid="value" datasetid="dsSearch" columnid="USER_ID"/>
+      <BindItem id="item1" compid="divLogin.form.edtPw" propid="value" datasetid="dsSearch" columnid="PASSWORD"/>
+    </Bind>
+    <Script type="xscript5.1"><![CDATA[
+/**
+*  TobeFootball
+*  @MenuPath     샘플 > script 표준
+*  @FileName     C:\TobeFootball\FrameBase\FrameLogin.xfdl
+*  @Creator      박진호
+*  @CreateDate   2024/08/08
+*  @Desction    스크립트 표준 및 주석 표준 정의
+************** 소스 수정 이력 *****************************************************************
+*  date          		Modifier                Description
+*************************************************************************************************
+*  2024/08/08     	        박진호 	              최초 생성
+*************************************************************************************************
+*/
+
+/************************************************************************************************
+ * FORM 변수 선언 영역
+ ************************************************************************************************/
+ this.fvObjApp = this.gfnGetApplication();
+ 
+/************************************************************************************************
+ * FORM EVENT 영역(onload, onbeforeclose)
+ ************************************************************************************************/
+this.form_onload = function(obj:nexacro.Form,e:nexacro.LoadEventInfo)
+{
+	this.gfnFormOnLoad(this);
+	
+	//저장된 아이디 비밀번호 받아오기
+	var sId = nexacro.getPrivateProfile("USER_ID");
+	var sPw = nexacro.getPrivateProfile("USER_PW");
+	if( !this.gfnIsNull(sId) ){
+		this.divLogin.form.edtId.set_value(sId);
+		this.divLogin.form.edtPw.set_value(sPw);
+		this.divLogin.form.chkRemember.set_value(true);
+	}
+	
+	//공통코드 글로벌데이터셋에 받아오기
+	this.fnSearchCom(); 
+};
+
+/************************************************************************************************
+ * CALLBACK 콜백 처리부분(Transaction, Popup)
+ ************************************************************************************************/
+this.fnCallback = function (svcID, errorCode, errorMsg)
+{
+	if (svcID=="userLogin"){
+		if (this.dsList.rowcount == 1){
+			var dsUser = this.fvObjApp.gdsUserInfo;
+			dsUser.setColumn(0,"USER_ID",    this.dsList.getColumn(0, "USER_ID"));	
+			dsUser.setColumn(0,"USER_NAME",  this.dsList.getColumn(0, "NAME"));
+			dsUser.setColumn(0,"USER_TYPE",  this.dsList.getColumn(0, "USER_TYPE"));
+			dsUser.setColumn(0,"TYPE_NAME",  this.dsList.getColumn(0, "TYPE_NAME"));
+			dsUser.setColumn(0,"GENDER",  this.dsList.getColumn(0, "GENDER"));
+			dsUser.setColumn(0,"LEVEL",  this.dsList.getColumn(0, "LEVEL"));
+			this.fnLoginAfter();
+		}
+		else{
+			this.gfnAlert("msg.login.error");
+		}
+	}
+	if(svcID == "ComCode"){
+	}
+};
+
+/************************************************************************************************
+ * CRUD 및 TRANSACTION 서비스 호출 처리
+ ************************************************************************************************/
+this.fnLogin = function ()
+{
+	var strSvcUrl = "userLogin.do";
+	var inData    = "dsSearch=dsSearch";
+	var outData   = "dsList=dsList";
+	var strArg    = "";
+
+	this.gfnTransaction("userLogin", strSvcUrl, inData, outData, strArg, "fnCallback", true);
+};
+
+/**
+ * @description 공통코드 글로벌데이터셋에 받아오기
+*/
+this.fnSearchCom = function ()
+{
+	var strSvcUrl = "commonCodeList.do";
+	var inData    = "";
+	var outData   = "gdsComCode=gdsComCode";
+	var strArg    = "";
+
+	this.gfnTransaction("ComCode", strSvcUrl, inData, outData, strArg, "fnCallback", true);
+};
+
+/************************************************************************************************
+ * 사용자 FUNCTION 영역
+ ************************************************************************************************/
+
+this.fnLoginAfter = function()
+{
+	var sId = this.divLogin.form.edtId.value;
+	var sPw = this.divLogin.form.edtPw.value;
+	var sUserType = this.dsList.getColumn(0,"USER_TYPE");
+	
+	//gloval variable 세팅					
+	nexacro.setEnvironmentVariable("evUserId", this.fvObjApp.gdsUserInfo.getColumn(0,"USER_ID"));
+	nexacro.setEnvironmentVariable("evUserNm", this.fvObjApp.gdsUserInfo.getColumn(0,"USER_NAME"));
+	
+	//아이디 비밀번호 로컬스토리지
+	if (this.divLogin.form.chkRemember.value == true){
+		nexacro.setPrivateProfile("USER_ID",sId);
+		nexacro.setPrivateProfile("USER_PW",sPw);
+		// 저장된 즐겨찾기 불러오기
+	}
+	else{
+		nexacro.setPrivateProfile("USER_ID","");
+		nexacro.setPrivateProfile("USER_PW","");	
+	}
+	
+	
+	//메뉴 세팅	
+	this.fvObjApp.gdsMenu.filter("MENU_GROUP=='"+sUserType+"'");
+	
+	
+	this.fvObjApp.avWorkFrame.set_formurl("FrameBase::FrameMain.xfdl");
+}
+
+/**
+ * @description 유효성 검사
+*/
+
+this.fnValidate = function ()
+{
+	// 다시 시도했을때를 위해 숨김
+	this.divLogin.form.staIdCheck.set_visible(false);
+	this.divLogin.form.staPwCheck.set_visible(false);
+	
+	//var sId = this.dsSearch.getColumn(0,"USER_ID");
+	//var sPw = this.dsSearch.getColumn(0,"PASSWORD");
+	
+	var sId = this.divLogin.form.edtId.value;
+	var sPw = this.divLogin.form.edtPw.value;
+	// 아이디 체크
+	if ( this.gfnIsNull(nexacro.trim(sId)) ){
+		// Msg 보여주고
+		this.divLogin.form.staIdCheck.set_visible(true);
+		//ID 포커스
+		this.divLogin.form.edtId.setFocus();
+		return true;
+	}
+	//패스워드 체크
+	if ( this.gfnIsNull(nexacro.trim(sPw)) ){
+		// Msg 보여주고
+		this.divLogin.form.staPwCheck.set_visible(true);
+		// password 포커스
+		this.divLogin.form.edtPw.setFocus();
+		return true;
+	}
+};
+
+/************************************************************************************************
+ * 각 COMPONENT 별 EVENT 영역
+ ************************************************************************************************/
+ this.divLogin_btnLogin_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	if ( this.fnValidate() )  //값이 널값일때
+	{
+		return;
+	}
+	this.fnLogin();	//서버와통신
+};
+
+this.btnSignUp_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	this.fvObjApp.avWorkFrame.set_formurl("Foot::Foot4010fm.xfdl");
+};
+
+
+this.divLogin_edtPw_onkeydown = function(obj:nexacro.Edit,e:nexacro.KeyEventInfo)
+{
+	if(e.keycode == "13"){
+		this.divLogin.form.edtId.updateToDataset();
+		this.divLogin.form.edtPw.updateToDataset();
+		this.divLogin_btnLogin_onclick();
+	}
+};
+]]></Script>
+    <Objects>
+      <Dataset id="dsList"/>
+      <Dataset id="dsSearch">
+        <ColumnInfo>
+          <Column id="USER_ID" type="STRING" size="256"/>
+          <Column id="PASSWORD" type="STRING" size="256"/>
+        </ColumnInfo>
+        <Rows>
+          <Row>
+            <Col id="USER_ID"/>
+            <Col id="PASSWORD"/>
+          </Row>
+        </Rows>
+      </Dataset>
+    </Objects>
+  </Form>
+</FDL>

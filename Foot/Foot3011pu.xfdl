@@ -1,0 +1,383 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<FDL version="2.1">
+  <Form id="Foot3011pu" width="600" height="500" titletext="구장선택팝업" onload="form_onload">
+    <Layouts>
+      <Layout height="500" mobileorientation="landscape" width="600">
+        <Static id="sta00" taborder="0" text="구장 선택" left="10" top="10" width="52" height="20" cssclass="sta_WF_TitleSub"/>
+        <Div id="divSearch" taborder="1" left="10" top="42" height="50" right="10" cssclass="div_WF_Search">
+          <Layouts>
+            <Layout>
+              <Combo id="cboLocal" taborder="0" left="42" top="12" width="93" height="26" value="" index="-1" innerdataset="dsLocal" codecolumn="CODE" datacolumn="CODE_NAME"/>
+              <Static id="sta00" taborder="1" text="지역" left="10" top="18" width="22" height="14" cssclass="sta_WF_SearchLabel"/>
+              <Static id="sta01" taborder="2" text="구장명" left="184" top="18" width="33" height="14" cssclass="sta_WF_SearchLabel"/>
+              <Edit id="edtStadium" taborder="3" left="227" top="12" width="174" height="26"/>
+              <Button id="btnSearch" taborder="4" left="411" top="12" width="26" height="26" cssclass="btn_WF_Find" onclick="divSearch_btnSearch_onclick"/>
+            </Layout>
+          </Layouts>
+        </Div>
+        <Grid id="grdStadium" taborder="2" left="10" top="102" height="228" right="10" binddataset="dsStadium" autofittype="col">
+          <Formats>
+            <Format id="default">
+              <Columns>
+                <Column size="80"/>
+                <Column size="124"/>
+                <Column size="270"/>
+                <Column size="45"/>
+                <Column size="45"/>
+              </Columns>
+              <Rows>
+                <Row size="24" band="head"/>
+                <Row size="24"/>
+              </Rows>
+              <Band id="head">
+                <Cell text="지역"/>
+                <Cell col="1" text="구장명"/>
+                <Cell col="2" text="주소"/>
+                <Cell col="3" text="가로"/>
+                <Cell col="4" text="세로"/>
+              </Band>
+              <Band id="body">
+                <Cell text="bind:LOCAL" displaytype="combotext" combodataset="dsLocal" combocodecol="CODE" combodatacol="CODE_NAME"/>
+                <Cell col="1" text="bind:NAME"/>
+                <Cell col="2" text="bind:ADDRESS"/>
+                <Cell col="3" text="bind:WIDTH"/>
+                <Cell col="4" text="bind:HEIGHT"/>
+              </Band>
+            </Format>
+          </Formats>
+        </Grid>
+        <Static id="sta00_00" taborder="3" text="매치일자" left="10" top="340" width="52" height="20" cssclass="sta_WF_TitleSub"/>
+        <Static id="sta00_00_00" taborder="4" text="매치시간" left="274" top="340" width="52" height="20" cssclass="sta_WF_TitleSub"/>
+        <Calendar id="calDate" taborder="5" left="10" top="370" width="180" height="40" onchanged="calDate_onchanged" canchange="calDate_canchange"/>
+        <Combo id="cboStartTime" taborder="6" left="274" top="370" width="156" height="40" value="" index="-1" innerdataset="dsTime" codecolumn="START_TIME" datacolumn="TIME" enable="false"/>
+        <Button id="btnSave" taborder="7" text="확인" left="190" top="449" width="90" height="40" onclick="btnSave_onclick"/>
+        <Button id="btnCancel" taborder="8" text="취소" top="449" width="90" height="40" right="190" onclick="btnCancel_onclick"/>
+      </Layout>
+    </Layouts>
+    <Script type="xscript5.1"><![CDATA[
+/**
+*  TobeFootball
+*  @MenuPath     샘플 > script 표준
+*  @FileName     C:\TobeFootball\Foot\Foot3011pu.xfdl
+*  @Creator      박진호
+*  @CreateDate   2024/08/18
+*  @Desction    스크립트 표준 및 주석 표준 정의
+************** 소스 수정 이력 *****************************************************************
+*  date          		Modifier                Description
+*************************************************************************************************
+*  2024/08/18     	        박진호 	              최초 생성
+*************************************************************************************************
+*/
+
+/************************************************************************************************
+ * FORM 변수 선언 영역
+ ************************************************************************************************/
+
+/************************************************************************************************
+ * FORM EVENT 영역(onload, onbeforeclose)
+ ************************************************************************************************/
+this.form_onload = function(obj:nexacro.Form,e:nexacro.LoadEventInfo)
+{
+	this.gfnFormOnLoad(this);
+	
+	this.fnBindCom();
+	this.fnSearch();
+};
+
+
+/************************************************************************************************
+ * CALLBACK 콜백 처리부분(Transaction, Popup)
+ ************************************************************************************************/
+this.fnCallback = function (svcId, errCd, errMsg)
+{
+	if(svcId=="searchTime"){
+		this.fnFilterRow();
+		this.cboStartTime.set_enable(true);
+		this.cboStartTime.set_index(0);
+		/*this.cboStartTime.set_value("");*/
+	}
+};
+
+/************************************************************************************************
+ * CRUD 및 TRANSACTION 서비스 호출 처리
+ ************************************************************************************************/
+this.fnSearch = function ()
+{
+	var strSvcUrl = "selectStadium.do";
+	var inData    = "dsSearch=dsSearch";
+	var outData   = "dsStadium=dsStadium";
+	var strArg    = "";
+
+	this.gfnTransaction("search", strSvcUrl, inData, outData, strArg, "fnCallback", true);
+};
+
+
+this.fnSearchTime = function (sStadium,sdate)
+{
+	var strSvcUrl = "searchStartTime.do";
+	var inData    = "";
+	var outData   = "dsSelectTime=dsSelectTime";
+	var strArg    = "sStadium="+sStadium+" sdate="+sdate;
+
+	this.gfnTransaction("searchTime", strSvcUrl, inData, outData, strArg, "fnCallback", true);
+};
+/************************************************************************************************
+ * 사용자 FUNCTION 영역
+ ************************************************************************************************/
+/**
+ * @description 공통코드를 innerdataset에 바인딩
+*/
+this.fnBindCom = function ()
+{
+	var arrCode = new Array();
+
+	arrCode.push({codeGroup:"G001", obj: this.divSearch.form.cboLocal, first:"2::전체" });  //코드값은 ""
+
+    this.gfnGetCommonCode(arrCode);
+};
+
+this.fnFilterRow = function ()
+{
+	this.dsTime.filter("");
+	var nCnt = this.dsSelectTime.rowcount;
+	for(var i=0; i<nCnt; i++){
+		var sTime1 = this.dsSelectTime.getColumn(i,"START_TIME");
+		var sTime2 = String(parseInt(sTime1)-10000);  //2시간게임이기때문에 한시간전은 예약불가 
+		var sTime3 = String(parseInt(sTime1)+10000);  //진행중이기때문에 예약불가
+		if(sTime2.length<6)  //090000-10000 = 80000  080000으로 만들어줘야함.
+			var sTime2 = "0"+sTime2
+		if(sTime3.length<6)
+			sTime3 = "0" + sTime3;
+		var nRow1 = this.dsTime.findRow("START_TIME",sTime1);
+		var nRow2 = this.dsTime.findRow("START_TIME",sTime2);
+		var nRow3 = this.dsTime.findRow("START_TIME",sTime3);
+		
+		this.dsTime.filterRow(nRow3);  //인덱스가 큰 순서부터 필터.
+		this.dsTime.filterRow(nRow1);
+		this.dsTime.filterRow(nRow2);
+	}
+};
+/************************************************************************************************
+ * 각 COMPONENT 별 EVENT 영역
+ ************************************************************************************************/
+
+
+this.divSearch_btnSearch_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	this.fnSearch();
+};
+
+this.calDate_canchange = function(obj:nexacro.Calendar,e:nexacro.ChangeEventInfo)
+{
+	var sStadiumId = this.dsStadium.getColumn(this.dsStadium.rowposition,"STADIUM_ID");	
+	if( this.gfnIsNull(sStadiumId)){
+		this.alert("구장을 먼저 선택해주세요.")
+		return false;
+	}
+};
+
+this.calDate_onchanged = function(obj:nexacro.Calendar,e:nexacro.ChangeEventInfo)
+{
+	
+	var sStadium = this.dsStadium.getColumn(this.dsStadium.rowposition,"STADIUM_ID");
+	var sdate = e.postvalue;
+	if( !this.gfnIsNull(sStadium) ){
+		this.fnSearchTime(sStadium,sdate);
+	}
+	
+};
+
+this.dsStadium_onrowposchanged = function(obj:nexacro.NormalDataset,e:nexacro.DSRowPosChangeEventInfo)
+{ 
+	
+	var sStadium = obj.getColumn(e.newrow,"STADIUM_ID");
+	var sDate = this.calDate.value;
+	if( !this.gfnIsNull(sDate) ){
+		this.fnSearchTime(sStadium,sDate);
+	}
+};
+
+
+this.btnSave_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	var sStadiumId = this.dsStadium.getColumn(this.dsStadium.rowposition,"STADIUM_ID");
+	var sDate = this.calDate.value;
+	var sStartTime = sDate + this.cboStartTime.value;
+	if( this.gfnIsNull(sStadiumId)){
+		this.alert("구장을 선택해주세요.")
+		return;
+	}
+	if( this.gfnIsNull(sDate)){
+		this.alert("날짜를 선택해주세요.")
+		return;
+	}
+	if( this.gfnIsNull(this.cboStartTime.value)){
+		this.alert("시간을 선택해주세요.")
+		return;
+	}
+	this.close(sStadiumId+":"+sDate+":"+sStartTime);
+};
+
+
+this.btnCancel_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	this.close();
+};
+
+
+
+
+]]></Script>
+    <Objects>
+      <Dataset id="dsSearch">
+        <ColumnInfo>
+          <Column id="LOCAL" type="STRING" size="256"/>
+          <Column id="NAME" type="STRING" size="256"/>
+        </ColumnInfo>
+        <Rows>
+          <Row/>
+        </Rows>
+      </Dataset>
+      <Dataset id="dsLocal">
+        <ColumnInfo>
+          <Column id="GROUP_CODE" type="STRING" size="256"/>
+          <Column id="GROUP_NAME" type="STRING" size="256"/>
+          <Column id="CODE" type="STRING" size="256"/>
+          <Column id="CODE_NAME" type="STRING" size="256"/>
+        </ColumnInfo>
+      </Dataset>
+      <Dataset id="dsStadium" onrowposchanged="dsStadium_onrowposchanged">
+        <ColumnInfo>
+          <Column id="NAME" type="STRING" size="32"/>
+          <Column id="LOCAL" type="STRING" size="32"/>
+          <Column id="WIDTH" type="INT" size="4"/>
+          <Column id="HEIGHT" type="INT" size="4"/>
+          <Column id="ADDRESS" type="STRING" size="32"/>
+          <Column id="SHADE" type="STRING" size="32"/>
+          <Column id="SHOWER" type="STRING" size="32"/>
+          <Column id="PARKING" type="STRING" size="32"/>
+          <Column id="SHOES" type="STRING" size="32"/>
+          <Column id="BEVERAGE" type="STRING" size="32"/>
+          <Column id="MEMO" type="STRING" size="32"/>
+          <Column id="DELETE" type="STRING" size="32"/>
+          <Column id="ADDRESS_DETAIL" type="STRING" size="32"/>
+          <Column id="STADIUM_ID" type="STRING" size="256"/>
+          <Column id="SEQ" type="INT" size="4"/>
+        </ColumnInfo>
+      </Dataset>
+      <Dataset id="dsTime">
+        <ColumnInfo>
+          <Column id="START_TIME" type="STRING" size="256"/>
+          <Column id="TIME" type="STRING" size="256"/>
+        </ColumnInfo>
+        <Rows>
+          <Row>
+            <Col id="START_TIME">000000</Col>
+            <Col id="TIME">00:00</Col>
+          </Row>
+          <Row>
+            <Col id="START_TIME">010000</Col>
+            <Col id="TIME">01:00</Col>
+          </Row>
+          <Row>
+            <Col id="START_TIME">020000</Col>
+            <Col id="TIME">02:00</Col>
+          </Row>
+          <Row>
+            <Col id="START_TIME">030000</Col>
+            <Col id="TIME">03:00</Col>
+          </Row>
+          <Row>
+            <Col id="START_TIME">040000</Col>
+            <Col id="TIME">04:00</Col>
+          </Row>
+          <Row>
+            <Col id="START_TIME">050000</Col>
+            <Col id="TIME">05:00</Col>
+          </Row>
+          <Row>
+            <Col id="START_TIME">060000</Col>
+            <Col id="TIME">06:00</Col>
+          </Row>
+          <Row>
+            <Col id="START_TIME">070000</Col>
+            <Col id="TIME">07:00</Col>
+          </Row>
+          <Row>
+            <Col id="START_TIME">080000</Col>
+            <Col id="TIME">08:00</Col>
+          </Row>
+          <Row>
+            <Col id="START_TIME">090000</Col>
+            <Col id="TIME">09:00</Col>
+          </Row>
+          <Row>
+            <Col id="START_TIME">100000</Col>
+            <Col id="TIME">10:00</Col>
+          </Row>
+          <Row>
+            <Col id="START_TIME">110000</Col>
+            <Col id="TIME">11:00</Col>
+          </Row>
+          <Row>
+            <Col id="START_TIME">120000</Col>
+            <Col id="TIME">12:00</Col>
+          </Row>
+          <Row>
+            <Col id="START_TIME">130000</Col>
+            <Col id="TIME">13:00</Col>
+          </Row>
+          <Row>
+            <Col id="START_TIME">140000</Col>
+            <Col id="TIME">14:00</Col>
+          </Row>
+          <Row>
+            <Col id="START_TIME">150000</Col>
+            <Col id="TIME">15:00</Col>
+          </Row>
+          <Row>
+            <Col id="START_TIME">160000</Col>
+            <Col id="TIME">16:00</Col>
+          </Row>
+          <Row>
+            <Col id="START_TIME">170000</Col>
+            <Col id="TIME">17:00</Col>
+          </Row>
+          <Row>
+            <Col id="START_TIME">180000</Col>
+            <Col id="TIME">18:00</Col>
+          </Row>
+          <Row>
+            <Col id="START_TIME">190000</Col>
+            <Col id="TIME">19:00</Col>
+          </Row>
+          <Row>
+            <Col id="START_TIME">200000</Col>
+            <Col id="TIME">20:00</Col>
+          </Row>
+          <Row>
+            <Col id="START_TIME">210000</Col>
+            <Col id="TIME">21:00</Col>
+          </Row>
+          <Row>
+            <Col id="START_TIME">220000</Col>
+            <Col id="TIME">22:00</Col>
+          </Row>
+          <Row>
+            <Col id="START_TIME">230000</Col>
+            <Col id="TIME">23:00</Col>
+          </Row>
+        </Rows>
+      </Dataset>
+      <Dataset id="dsSelectTime">
+        <ColumnInfo>
+          <Column id="START_TIME" type="STRING" size="256"/>
+        </ColumnInfo>
+      </Dataset>
+    </Objects>
+    <Bind>
+      <BindItem id="item0" compid="divSearch.form.cboLocal" propid="value" datasetid="dsSearch" columnid="LOCAL"/>
+      <BindItem id="item1" compid="divSearch.form.edtStadium" propid="value" datasetid="dsSearch" columnid="NAME"/>
+    </Bind>
+  </Form>
+</FDL>

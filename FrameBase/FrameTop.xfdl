@@ -1,0 +1,212 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<FDL version="2.1">
+  <Form id="FrameTop" width="1300" height="150" titletext="상단바" onload="form_onload">
+    <Layouts>
+      <Layout height="150" width="1300">
+        <Static id="staLogo" taborder="0" left="220" top="25" height="37" width="120" cssclass="sta_TF_UserLogo"/>
+        <Div id="divMenu" taborder="1" left="220" bottom="0" height="65" text="" width="860"/>
+        <Static id="staName" taborder="2" text="교육사업팀 홍길동" top="42" width="120" height="20" cssclass="sta_TF_User_UserInfo" right="300" usedecorate="true"/>
+        <Button id="btnLogOut" taborder="3" top="42" width="80" height="20" right="220" uWord="frame.logOut" cssclass="btn_TF_UserLogout" text="로그아웃" onclick="btnLogOut_onclick"/>
+        <Button id="btnNotice" taborder="4" top="38" width="24" height="24" cssclass="btn_TF_UserPushN" right="461" text=""/>
+        <Static id="staPushCount" taborder="5" text="3" width="18" cssclass="sta_TF_PushCount" bottom="btnNotice:-7" left="btnNotice:-10" height="14"/>
+        <Button id="btnMoney" taborder="6" top="38" width="24" height="24" cssclass="btn_TF_UserMoney" right="498" onclick="btnMoney_onclick"/>
+        <Button id="btnMyPage" taborder="7" top="38" width="24" height="24" cssclass="btn_TF_User" right="424" onclick="btnMyPage_onclick"/>
+      </Layout>
+    </Layouts>
+    <Script type="xscript5.1"><![CDATA[
+/**
+*  TobeFootball
+*  @MenuPath     샘플 > script 표준
+*  @FileName     C:\TobeFootball\FrameBase\FrameTop.xfdl
+*  @Creator      박진호
+*  @CreateDate   2024/08/08
+*  @Desction    스크립트 표준 및 주석 표준 정의
+************** 소스 수정 이력 *****************************************************************
+*  date          		Modifier                Description
+*************************************************************************************************
+*  2024/08/08     	        박진호 	              최초 생성
+*************************************************************************************************
+*/
+
+/************************************************************************************************
+ * FORM 변수 선언 영역
+ ************************************************************************************************/
+this.fvObjApp = this.gfnGetApplication();
+this.fvObjSelectMenu = "";
+this.fvWorkFrame = this.parent.parent.divWork;
+/************************************************************************************************
+ * FORM EVENT 영역(onload, onbeforeclose)
+ ************************************************************************************************/
+this.form_onload = function ()
+{
+	this.gfnFormOnLoad(this);
+	
+	this.fnSetName();
+	this.fnSetMenu();
+};
+
+/************************************************************************************************
+ * CALLBACK 콜백 처리부분(Transaction, Popup)
+ ************************************************************************************************/
+this.fnMsgCallback = function (strId, strVal)
+{
+	if(strId == "confirm.logout"){
+		if(strVal){
+		    //this.fvObjApp.gvLogOut = "Y";
+			this.fvObjApp.exit();
+		} 
+		else{
+			//this.fvObjApp.gvLogOut = "N";
+		}		
+	}	
+};
+
+this.fnPopupCallback = function (strId, strVal)
+{
+	
+};
+/************************************************************************************************
+ * CRUD 및 TRANSACTION 서비스 호출 처리
+ ************************************************************************************************/
+
+
+/************************************************************************************************
+ * 사용자 FUNCTION 영역
+ ************************************************************************************************/
+ /**
+  * @description 상단 이름 설정
+ */
+
+this.fnSetName = function()
+{
+	var sNameCol = "USER_NAME";
+	var sName  = this.fvObjApp.gdsUserInfo.getColumn(0, sNameCol);	
+	
+	var sTypeNameCol = "TYPE_NAME";
+	var sTypeName  = this.fvObjApp.gdsUserInfo.getColumn(0, sTypeNameCol);  //사용자, 매니저	
+	this.staName.set_text(sTypeName+"<fc v='#256cfa'>  "+sName+"</fc>");	
+};
+
+/**
+ * @description 메뉴 동적생성
+*/
+this.fnSetMenu = function ()
+{
+	var sTypeCol = "USER_TYPE";
+	var sType  = this.fvObjApp.gdsUserInfo.getColumn(0, sTypeCol);  //사용자, 매니저	
+	this.fvObjApp.gdsMenu.filter("MENU_GROUP == '"+sType+"'");
+	this.dsMenu.copyData(this.fvObjApp.gdsMenu,true);
+	this.fvObjApp.gdsMenu.filter("");
+	
+	var sUrl = "";
+	var sName = "";
+	var nLeft = 0;
+	var nTop = 5;
+	var nWidth = 0;
+	var nHeight = 40;
+	var nGap = 50;
+	for(var i=0; i<this.dsMenu.rowcount;i++)
+	{
+		sName = this.dsMenu.getColumn(i,"MENU_ID");
+		sMenuName = this.dsMenu.getColumn(i,"MENU_NAME");
+		sUrl = this.dsMenu.getColumn(i,"MENU_URL");
+		objSize = nexacro.getTextSize(sMenuName, 'bold 15px "Verdana", "Malgun Gothic"');  //vWdith는 값을 가지지 않고 .nx너비, .ny 높이
+		//var objSize2 = nexacro.getTextSize( strText, "italic bold 10pt Arial", 100, "char" );
+		
+		//Button.init( strName, vLeft, vTop , vWidth, vHeight [, vRight, vBottom, [vMinWidth, [vMaxWidth, [vMinHeight, [vMaxHeight]]]]] )
+		var objButton = new Button(sName, nLeft, nTop, objSize.nx, nHeight);
+		
+		// Add Object to Parent Form  
+		this.divMenu.addChild(sName, objButton); 
+		objButton.set_text(sMenuName);
+		objButton.set_cssclass("btn_TF_UserMenu");
+		
+		//이벤트 추가
+		objButton.addEventHandler( "onclick", this.fnMenuClick, this );
+		objButton.uId = sName;  //정의한값
+		objButton.url = sUrl
+
+		// Show Object  
+		objButton.show(); 
+		nLeft += ( objSize.nx + nGap);
+		
+		if (i==0){
+			this.fvObjSelectMenu = objButton;
+			this.fvObjSelectMenu.setSelectStatus(true);
+			this.fnMenuClick(objButton);
+			
+		}
+	}	
+};
+
+/************************************************************************************************
+ * 각 COMPONENT 별 EVENT 영역
+ ************************************************************************************************/
+ /**
+  * @description 동적생성된 메뉴 클릭이벤트
+ */
+
+ this.fnMenuClick = function (obj:nexacro.Button,e:nexacro.ClickEventInfo)
+ {
+	
+	//메뉴 선택한 상태로 변경
+	if(this.fvObjSelectMenu != obj){
+		this.fvObjSelectMenu.setSelectStatus(false);
+		obj.setSelectStatus(true);
+		this.fvObjSelectMenu = obj;
+	}
+	
+	// 페이지 변경
+	this.fvWorkFrame.set_url(obj.url);
+ };
+ 
+ this.btnLogOut_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	if(system.navigatorname == "nexacro"){		
+		var sMsgId = "confirm.logout";			//메세지ID
+		var arrArg = "";						//메세지취환될값 배열[생략가능]
+		var sPopId = sMsgId;					//메세지팝업ID[생략가능]	*해당화면에서 메시지 중복사용시 구분되는값을 넣어줘야함
+		var sMsgCallback = "fnMsgCallback";		//메세지콜백[생략가능] 		* confirm성 메시지를 사용 시 반드시 필요
+		
+		// 로그아웃 하시겠습니까?
+		this.gfnAlert(sMsgId, arrArg, sPopId, sMsgCallback);	
+	}
+	else{
+		window.top.location.reload(true);
+	}		
+};
+
+this.btnMoney_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	var sUserType = this.fvObjApp.gdsUserInfo.getColumn(0,"USER_TYPE");
+	
+	if( sUserType == "10" ){  //사용자 머니 충전
+		var sTitle = "머니 충전";	// 모달팝업
+		var oArg = {};
+		var oOption = {title:sTitle};	//top, left를 지정하지 않으면 가운데정렬 //"top=20,left=370"
+		var sPopupCallBack = "fnPopupCallback";
+		this.gfnOpenPopup( "money","Foot::Foot1060pu.xfdl",oArg,sPopupCallBack,oOption);	
+	}
+	else if( sUserType == "20" ){  //매니저 급여 출금
+		var sTitle = "급여 출금";	// 모달팝업
+		var oArg = {};
+		var oOption = {title:sTitle};	//top, left를 지정하지 않으면 가운데정렬 //"top=20,left=370"
+		var sPopupCallBack = "fnPopupCallback";
+		this.gfnOpenPopup( "wage","Foot::Foot2070pu.xfdl",oArg,sPopupCallBack,oOption);			
+	}
+};
+
+this.btnMyPage_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	this.fvObjApp.avSBeforFormName = this.parent.parent.divWork.url;
+	this.parent.parent.divWork.set_url("Foot::Foot4020fm.xfdl");
+};
+
+
+]]></Script>
+    <Objects>
+      <Dataset id="dsUserType"/>
+      <Dataset id="dsMenu"/>
+    </Objects>
+  </Form>
+</FDL>

@@ -1,0 +1,638 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<FDL version="2.1">
+  <Form id="Foot2021fm" width="1300" height="671" titletext="매치 관리 상세" onload="form_onload">
+    <Layouts>
+      <Layout height="671" mobileorientation="landscape" width="1300">
+        <Static id="staTitle" taborder="0" text="사용자목록" left="110" top="0" width="90" height="21" cssclass="sta_WF_FootMatchTitle"/>
+        <Grid id="grd20" taborder="4" top="245" width="729" height="170" right="110" binddataset="ds20" oncellclick="grdBlue_oncellclick" autofittype="col">
+          <Formats>
+            <Format id="default">
+              <Columns>
+                <Column size="60"/>
+                <Column size="40"/>
+                <Column size="100"/>
+                <Column size="80"/>
+                <Column size="40"/>
+                <Column size="40"/>
+                <Column size="40"/>
+                <Column size="40"/>
+                <Column size="40"/>
+                <Column size="40"/>
+                <Column size="40"/>
+              </Columns>
+              <Rows>
+                <Row size="24" band="head"/>
+                <Row size="24"/>
+              </Rows>
+              <Band id="head">
+                <Cell text="교체" cssclass="Red"/>
+                <Cell col="1" text="번호" cssclass="Red"/>
+                <Cell col="2" text="성명" cssclass="Red"/>
+                <Cell col="3" text="레벨" cssclass="Red"/>
+                <Cell col="4" text="경기" cssclass="Red"/>
+                <Cell col="5" text="승" cssclass="Red"/>
+                <Cell col="6" text="패" cssclass="Red"/>
+                <Cell col="7" text="무" cssclass="Red"/>
+                <Cell col="8" text="득점" cssclass="Red"/>
+                <Cell col="9" text="도움" cssclass="Red"/>
+                <Cell col="10" text="평점" cssclass="Red"/>
+              </Band>
+              <Band id="body">
+                <Cell displaytype="buttoncontrol" edittype="button" cssclass="Change"/>
+                <Cell col="1" text="bind:NUM"/>
+                <Cell col="2" text="bind:NAME"/>
+                <Cell col="3" displaytype="combocontrol" combodataset="dsLevel" combocodecol="CODE" combodatacol="CODE_NAME" text="bind:LEVEL" edittype="combo"/>
+                <Cell col="4" text="bind:PLAY_COUNT" displaytype="normal" edittype="none"/>
+                <Cell col="5" text="bind:WIN"/>
+                <Cell col="6" text="bind:LOSE"/>
+                <Cell col="7" text="bind:DRAW"/>
+                <Cell col="8" text="bind:GOAL"/>
+                <Cell col="9" text="bind:ASSIST"/>
+                <Cell col="10" text="bind:RATING" edittype="text" displaytype="editcontrol" editimemode="direct" editinputtype="number"/>
+              </Band>
+            </Format>
+          </Formats>
+        </Grid>
+        <Grid id="grdAll" taborder="1" left="110" top="31" right="grd20:30" binddataset="dsRecord" autofittype="col" height="581">
+          <Formats>
+            <Format id="default">
+              <Columns>
+                <Column size="80"/>
+                <Column size="80"/>
+                <Column size="80"/>
+                <Column size="80"/>
+              </Columns>
+              <Rows>
+                <Row size="24" band="head"/>
+                <Row size="24"/>
+              </Rows>
+              <Band id="head">
+                <Cell text="팀" cssclass="black"/>
+                <Cell col="1" text="성명" cssclass="black"/>
+                <Cell col="2" text="레벨" cssclass="black"/>
+                <Cell col="3" text="아이디" cssclass="black"/>
+              </Band>
+              <Band id="body">
+                <Cell text="bind:TEAM" displaytype="combocontrol" edittype="combo" combodataset="dsTeam" combocodecol="CODE" combodatacol="CODE_NAME"/>
+                <Cell col="1" text="bind:NAME"/>
+                <Cell col="2" text="bind:LEVEL" displaytype="combotext" edittype="none" combodataset="dsLevel" combocodecol="CODE" combodatacol="CODE_NAME"/>
+                <Cell col="3" text="bind:PLAYER_ID"/>
+              </Band>
+            </Format>
+          </Formats>
+        </Grid>
+        <Static id="staTitle00" taborder="2" text="경기기록" top="0" height="21" cssclass="sta_WF_FootMatchTitle" right="749" width="90"/>
+        <Grid id="grd10" taborder="3" top="48" height="170" right="110" width="729" binddataset="ds10" oncellclick="grdBlue_oncellclick" autofittype="col">
+          <Formats>
+            <Format id="default">
+              <Columns>
+                <Column size="60"/>
+                <Column size="40"/>
+                <Column size="100"/>
+                <Column size="80"/>
+                <Column size="40"/>
+                <Column size="40"/>
+                <Column size="40"/>
+                <Column size="40"/>
+                <Column size="40"/>
+                <Column size="40"/>
+                <Column size="40"/>
+              </Columns>
+              <Rows>
+                <Row size="24" band="head"/>
+                <Row size="24"/>
+              </Rows>
+              <Band id="head">
+                <Cell text="교체" cssclass="Blue"/>
+                <Cell col="1" text="번호" cssclass="Blue"/>
+                <Cell col="2" text="성명" cssclass="Blue"/>
+                <Cell col="3" text="레벨" cssclass="Blue"/>
+                <Cell col="4" text="경기" cssclass="Blue"/>
+                <Cell col="5" text="승" cssclass="Blue"/>
+                <Cell col="6" text="패" cssclass="Blue"/>
+                <Cell col="7" text="무" cssclass="Blue"/>
+                <Cell col="8" text="득점" cssclass="Blue"/>
+                <Cell col="9" text="도움" cssclass="Blue"/>
+                <Cell col="10" text="평점" cssclass="Blue"/>
+              </Band>
+              <Band id="body">
+                <Cell displaytype="buttoncontrol" edittype="button" cssclass="Change"/>
+                <Cell col="1" text="bind:NUM"/>
+                <Cell col="2" text="bind:NAME"/>
+                <Cell col="3" displaytype="combocontrol" combodataset="dsLevel" combocodecol="CODE" combodatacol="CODE_NAME" text="bind:LEVEL" edittype="combo"/>
+                <Cell col="4" text="bind:PLAY_COUNT" displaytype="normal" edittype="none"/>
+                <Cell col="5" text="bind:WIN"/>
+                <Cell col="6" text="bind:LOSE"/>
+                <Cell col="7" text="bind:DRAW"/>
+                <Cell col="8" text="bind:GOAL"/>
+                <Cell col="9" text="bind:ASSIST"/>
+                <Cell col="10" text="bind:RATING" edittype="text" displaytype="editcontrol" editimemode="direct" editinputtype="number"/>
+              </Band>
+            </Format>
+          </Formats>
+        </Grid>
+        <Grid id="grd30" taborder="5" top="442" width="729" right="110" binddataset="ds30" oncellclick="grdBlue_oncellclick" autofittype="col" height="170">
+          <Formats>
+            <Format id="default">
+              <Columns>
+                <Column size="60"/>
+                <Column size="40"/>
+                <Column size="100"/>
+                <Column size="80"/>
+                <Column size="40"/>
+                <Column size="40"/>
+                <Column size="40"/>
+                <Column size="40"/>
+                <Column size="40"/>
+                <Column size="40"/>
+                <Column size="40"/>
+              </Columns>
+              <Rows>
+                <Row size="24" band="head"/>
+                <Row size="24"/>
+              </Rows>
+              <Band id="head">
+                <Cell text="교체" cssclass="Green"/>
+                <Cell col="1" text="번호" cssclass="Green"/>
+                <Cell col="2" text="성명" cssclass="Green"/>
+                <Cell col="3" text="레벨" cssclass="Green"/>
+                <Cell col="4" text="경기" cssclass="Green"/>
+                <Cell col="5" text="승" cssclass="Green"/>
+                <Cell col="6" text="패" cssclass="Green"/>
+                <Cell col="7" text="무" cssclass="Green"/>
+                <Cell col="8" text="득점" cssclass="Green"/>
+                <Cell col="9" text="도움" cssclass="Green"/>
+                <Cell col="10" text="평점" cssclass="Green"/>
+              </Band>
+              <Band id="body">
+                <Cell displaytype="buttoncontrol" edittype="button" cssclass="Change"/>
+                <Cell col="1" text="bind:NUM"/>
+                <Cell col="2" text="bind:NAME"/>
+                <Cell col="3" displaytype="combocontrol" combodataset="dsLevel" combocodecol="CODE" combodatacol="CODE_NAME" text="bind:LEVEL" edittype="combo"/>
+                <Cell col="4" text="bind:PLAY_COUNT" displaytype="normal" edittype="none"/>
+                <Cell col="5" text="bind:WIN"/>
+                <Cell col="6" text="bind:LOSE"/>
+                <Cell col="7" text="bind:DRAW"/>
+                <Cell col="8" text="bind:GOAL"/>
+                <Cell col="9" text="bind:ASSIST"/>
+                <Cell col="10" text="bind:RATING" edittype="text" displaytype="editcontrol" editimemode="direct" editinputtype="number"/>
+              </Band>
+            </Format>
+          </Formats>
+        </Grid>
+        <Static id="staTeamRed" taborder="6" text="레드팀" top="228" width="42" cssclass="sta_WF_TitleMain" height="17" right="110"/>
+        <Static id="staTeamBlue" taborder="7" text="블루팀" top="31" width="42" height="17" cssclass="sta_WF_TitleMain" right="110"/>
+        <Static id="staTeamGreen" taborder="8" text="그린팀" top="425" width="42" height="17" cssclass="sta_WF_TitleMain" right="110"/>
+        <Button id="btnStart" taborder="9" text="매치시작" top="619" width="107" height="45" right="244" enable="false" onclick="btnStart_onclick" cssclass="btn_WF_GrdPageS"/>
+        <Button id="btnFinish" taborder="10" text="매치종료" top="619" width="107" height="45" right="110" enable="false" onclick="btnFinish_onclick" cssclass="btn_WF_GrdPageS"/>
+        <PopupDiv id="pdiv00" text="pdiv00" visible="false" left="1220" top="157" width="50" height="24" oncloseup="pdiv00_oncloseup">
+          <Layouts>
+            <Layout>
+              <Spin id="spn00" taborder="0" left="0" top="0" width="50" height="24" displaycomma="true"/>
+            </Layout>
+          </Layouts>
+        </PopupDiv>
+      </Layout>
+    </Layouts>
+    <Script type="xscript5.1"><![CDATA[
+/**
+*  TobeFootball
+*  @MenuPath     샘플 > script 표준
+*  @FileName     C:\TobeFootball\Foot\Foot2021fm.xfdl
+*  @Creator      박진호
+*  @CreateDate   2024/08/26
+*  @Desction    스크립트 표준 및 주석 표준 정의
+************** 소스 수정 이력 *****************************************************************
+*  date          		Modifier                Description
+*************************************************************************************************
+*  2024/08/26     	        박진호 	              최초 생성
+*************************************************************************************************
+*/
+
+/************************************************************************************************
+ * FORM 변수 선언 영역
+ ************************************************************************************************/
+this.fvObjApp = this.gfnGetApplication();
+
+this.fvDsChange = "";
+this.fvNRow = "";
+this.fvNCol = "";
+
+this.fvBExit = false;
+/************************************************************************************************
+ * FORM EVENT 영역(onload, onbeforeclose)
+ ************************************************************************************************/
+this.form_onload = function(obj:nexacro.Form,e:nexacro.LoadEventInfo)
+{
+	this.gfnFormOnLoad(this);
+	this.fnSearch();
+	this.fnBindCom();
+};
+
+
+/************************************************************************************************
+ * CALLBACK 콜백 처리부분(Transaction, Popup)
+ ************************************************************************************************/
+this.fnCallback = function (svcId, errCd, errMsg)
+{
+	if(svcId == "searchMatchRecord"){
+		this.fnDivide();  //팀 나누기
+		this.fnSetEnable();  //매치 상태에 따라 버튼 활성화/비활성화
+		//this.fnExit();
+	}
+	else if(svcId == "updateMatchRecord"){
+		if( !this.fvBExit ){
+			this.fnSearch();
+		}
+		else{
+			this.alert("매치가 종료되었습니다.");
+			this.fnExit();
+		}
+	}
+};
+
+/************************************************************************************************
+ * CRUD 및 TRANSACTION 서비스 호출 처리
+ ************************************************************************************************/
+this.fnSearch = function ()
+{
+	var strSvcUrl = "searchMatchRecord.do";
+	var inData    = "";
+	var outData   = "dsRecord=dsRecord dsMatch=dsMatch";
+	var strArg    = "matchId="+this.fvObjApp.avSMatchId;
+
+	this.gfnTransaction("searchMatchRecord", strSvcUrl, inData, outData, strArg, "fnCallback", true);
+};
+
+this.fnUpdate = function (state)
+{
+	var sUserId = this.fvObjApp.gdsUserInfo.getColumn(0,"USER_ID");
+	var strSvcUrl = "updateMatchRecord.do";
+	var inData    = "ds10=ds10 ds20=ds20 ds30=ds30";
+	var outData   = "";
+	var strArg    = "state="+state+ " matchId="+this.fvObjApp.avSMatchId+ " userId="+sUserId;
+
+	this.gfnTransaction("updateMatchRecord", strSvcUrl, inData, outData, strArg, "fnCallback", true);
+};
+/************************************************************************************************
+ * 사용자 FUNCTION 영역
+ ************************************************************************************************/
+
+/**
+ * @description 공통코드를 innerdataset에 바인딩
+*/
+this.fnBindCom = function ()
+{
+	var arrCode = new Array();
+
+	arrCode.push({codeGroup:"E001", obj: this.dsLevel}); 
+	arrCode.push({codeGroup:"L001", obj: this.dsTeam}); 
+	
+    this.gfnGetCommonCode(arrCode);
+};
+
+/**
+ * @description 팀별로 필터
+*/
+
+this.fnDivide = function ()
+{
+	this.dsRecord.filter("TEAM=='10'");
+	this.ds10.copyData(this.dsRecord,true);
+	this.dsRecord.filter("");
+	
+	this.dsRecord.filter("TEAM=='20'");
+	this.ds20.copyData(this.dsRecord,true);
+	this.dsRecord.filter("");
+	
+	this.dsRecord.filter("TEAM=='30'");
+	this.ds30.copyData(this.dsRecord,true);
+	this.dsRecord.filter("");
+};
+
+/**
+ * @description 매치 상태에 따라서 버튼 enable설정
+*/
+
+this.fnSetEnable = function ()
+{
+	var sState = this.dsMatch.getColumn(0,"MATCH_STATE");
+	if( sState == "20" ){
+		this.btnStart.set_enable(true);
+	}
+	else{
+		this.btnStart.set_enable(false);
+	}
+	
+	if( sState == "30" ){
+		this.btnFinish.set_enable(true);
+	}
+	else{
+		this.btnFinish.set_enable(false);
+	}
+};
+
+/**
+ * @description 종료버튼 클릭시 나가짐.
+*/
+
+this.fnExit = function ()
+{
+	if( this.fvBExit ){
+		this.parent.set_url("Foot::Foot2020fm.xfdl");
+	}
+};
+
+this.fnSetRowposition = function (obj, e)
+{
+	if(obj.getBindDataset() == this.ds10){
+		this.ds20.set_rowposition(-1);
+		this.ds30.set_rowposition(-1);
+	}
+	else if(obj.getBindDataset() == this.ds20){
+		this.ds10.set_rowposition(-1);
+		this.ds30.set_rowposition(-1);
+	}
+	else if(obj.getBindDataset() == this.ds30){
+		this.ds20.set_rowposition(-1);
+		this.ds10.set_rowposition(-1);
+	}
+};
+/************************************************************************************************
+ * 각 COMPONENT 별 EVENT 영역
+ ************************************************************************************************/
+
+this.grdBlue_oncellclick = function(obj:nexacro.Grid,e:nexacro.GridClickEventInfo)
+{
+	var objDs = obj.getBindDataset();
+
+	if(e.cell == 0){ //교체 버튼 클릭시
+		if( this.gfnIsNull(this.fvNRow) ){  // 교체 누르기 전에 아무것도 누르지 않음
+			//alert창 띄우기
+		}
+		else{  // 교체할 로우 선택됨
+			this.dsRecord.set_enableevent(false);
+			
+			//var objDs = obj.getBindDataset(); 함수전체에 사용하기위해 위로뺌
+			
+			var nFirstSeq = this.fvDsChange.getColumn(this.fvNRow,"SEQ");  //바꾸기 전에 키값 구해두기. 전체를 담은 dataset에서도 팀 값 바꿔야하기때문
+			var nSecondSeq = objDs.getColumn(e.row,"SEQ");
+			
+			var nFirstNum = this.fvDsChange.getColumn(this.fvNRow,"NUM");
+			var nSecondNum = objDs.getColumn(e.row,"NUM");
+// 			this.dsTemp.setColumn(0,"NUM",nSecondNum);
+// 			objDs.setColumn(e.row,"NUM",nFirstNum);
+			
+			this.fvDsChange.copyRow(this.fvNRow, objDs, e.row);
+			objDs.copyRow(e.row, this.dsTemp, 0);
+			this.fvDsChange.setColumn(this.fvNRow,"NUM",nFirstNum);  //등번호 교환.
+			objDs.setColumn(e.row,"NUM",nSecondNum);
+			
+			var sFirstTeam = this.fvDsChange.name.substr(2); //ds10에서 10만 추출
+			var sSecondTeam = objDs.name.substr(2); 
+			
+			// dsRecord에서 team변경해주기
+			var nRowFirst = this.dsRecord.findRow("SEQ",nFirstSeq);
+			var nRowSecond = this.dsRecord.findRow("SEQ",nSecondSeq);
+			
+			this.dsRecord.setColumn(nRowFirst,"TEAM",sSecondTeam);
+			this.dsRecord.setColumn(nRowSecond,"TEAM",sFirstTeam);
+			
+			this.dsRecord.set_enableevent(true);
+			
+// 			this.ds10.set_rowposition(-1);
+// 			this.ds20.set_rowposition(-1);
+// 			this.ds30.set_rowposition(-1);
+// 			obj.getBindDataset().set_rowposition(e.row);  //나머지는 셀렉트 표시 없앰
+// 			
+// 			this.fvDsChange = obj.getBindDataset();
+// 			this.fvNRow = e.row;
+// 			this.dsTemp.copyRow(0, this.fvDsChange, e.row);
+		}
+	}
+	else if(e.cell == 1 || e.cell == 4 || e.cell == 5 || e.cell == 6 || e.cell == 7 || e.cell == 8 || e.cell == 9){
+// 		trace("aaaaaaa");
+// 		var sDsName = objDs.name;
+ 		var sCol = obj.getCellProperty("body",e.cell,"text").split(":")[1];
+// 		this.binds["item0"].set_datasetid(sDsName);
+// 		this.binds["item0"].set_columnid(sCol);
+// 		this.binds["item0"].bind();
+// 		trace(this.binds["item0"].datasetid);
+// 		trace(this.binds["item0"].columnid);
+// 		trace(this.pdiv00.form.spn00.value);
+		//trace(obj.getCellProperty("body",e.cell,"text").split(":")[1]);
+		//trace(obj.getBindDataset().name);
+		var objRect = obj.getCellRect(e.row, e.cell);
+		this.pdiv00.trackPopupByComponent(obj, objRect.left, objRect.top);
+		
+		this.fvNCol = sCol;
+		var val = objDs.getColumn(e.row,sCol);
+		this.pdiv00.form.spn00.set_value(val);
+	}
+	//일반 셀 클릭시 정보 담아둠.
+	this.fnSetRowposition(obj, e);  //셀렉트를 한 그리드에서만 하게함. 교체를 용이하게하기위함
+
+	this.fvDsChange = obj.getBindDataset();
+	this.fvNRow = e.row;
+	
+	this.dsTemp.copyRow(0, this.fvDsChange, e.row);
+	
+};
+
+
+this.dsRecord_oncolumnchanged = function(obj:nexacro.NormalDataset,e:nexacro.DSColChangeEventInfo)
+{
+	if(e.columnid == "TEAM"){
+		if( this.gfnIsNull(e.oldvalue) ){  //교체가 아닌 처음 팀지정일때
+			trace("교체가 아닌 초기 지정1");
+			var objDs = this.all["ds"+e.newvalue];  //string으로 오브젝트 구하기.
+			var nNum = objDs.rowcount + 1;
+			var nRow = objDs.addRow();
+			objDs.copyRow(nRow, this.dsRecord, e.row);
+			objDs.setColumn(nRow, "NUM", nRow+1);
+			//this.dsRecord.setColumn(e.row,"NUM",nNum);
+		}
+		else{  //원래 팀이 있을때
+			var objOldDs = this.all["ds"+e.oldvalue];  //원래팀 dataset
+			var objNewDs = this.all["ds"+e.newvalue];  //새로운팀 dataset
+			var nSeq = obj.getColumn(e.row,"SEQ");
+			var nOldRow = objOldDs.findRow("SEQ",nSeq);
+			var nNewRow = objNewDs.addRow();
+			objNewDs.copyRow(nNewRow, objOldDs, nOldRow); //복사하고
+			objNewDs.setColumn(nNewRow, "NUM", nNewRow+1);
+			objOldDs.deleteRow(nOldRow);   //삭제
+			
+		}
+	}
+};
+
+
+this.pdiv00_oncloseup = function(obj:nexacro.PopupDiv,e:nexacro.EventInfo)
+{
+	var val = this.pdiv00.form.spn00.value;
+	this.fvDsChange.setColumn(this.fvNRow, this.fvNCol, val);
+};
+
+this.btnStart_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	//매치 상태 진행중으로 업데이트 기록 업데이트
+	this.fnUpdate("30");
+};
+
+this.btnFinish_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	//매치 상태와 기록 업데이트
+	this.fvBExit = this.confirm("매치를 종료하시겠습니까?");
+	if( this.fvBExit ){
+		//this.fvBExit = true;
+		this.fnUpdate("40");
+	}
+
+};
+
+this.ds10_oncolumnchanged = function(obj:nexacro.NormalDataset,e:nexacro.DSColChangeEventInfo)
+{
+	if( e.columnid == "PLAY_COUNT" || e.columnid == "WIN" || e.columnid == "LOSE" || e.columnid == "DRAW" ){
+		var nGap = e.newvalue - e.oldvalue;
+		for(var i=0; i<obj.rowcount; i++){
+			if( i != e.row ){
+				var nOrgValue = obj.getColumn(i,e.columnid);
+				var nNewValue = nOrgValue + nGap;
+				obj.setColumn(i, e.columnid, nNewValue);
+			}
+		}
+	}
+};
+]]></Script>
+    <Objects>
+      <Dataset id="dsRecord" oncolumnchanged="dsRecord_oncolumnchanged">
+        <ColumnInfo>
+          <Column id="SEQ" type="int" size="4"/>
+          <Column id="MATCH_ID" type="int" size="4"/>
+          <Column id="PLAYER_ID" type="string" size="32"/>
+          <Column id="PLAY_COUNT" type="int" size="4"/>
+          <Column id="GOAL" type="int" size="4"/>
+          <Column id="ASSIST" type="int" size="4"/>
+          <Column id="RATING" type="float" size="4"/>
+          <Column id="NUM" type="int" size="4"/>
+          <Column id="WIN" type="int" size="4"/>
+          <Column id="LOSE" type="int" size="4"/>
+          <Column id="DRAW" type="int" size="4"/>
+          <Column id="TEAM" type="STRING" size="256"/>
+          <Column id="NAME" type="string" size="32"/>
+          <Column id="LEVEL" type="string" size="32"/>
+        </ColumnInfo>
+      </Dataset>
+      <Dataset id="ds20" oncolumnchanged="ds10_oncolumnchanged">
+        <ColumnInfo>
+          <Column id="SEQ" type="int" size="4"/>
+          <Column id="MATCH_ID" type="int" size="4"/>
+          <Column id="PLAYER_ID" type="string" size="32"/>
+          <Column id="PLAY_COUNT" type="int" size="4"/>
+          <Column id="GOAL" type="int" size="4"/>
+          <Column id="ASSIST" type="int" size="4"/>
+          <Column id="RATING" type="float" size="4"/>
+          <Column id="NUM" type="int" size="4"/>
+          <Column id="WIN" type="int" size="4"/>
+          <Column id="LOSE" type="int" size="4"/>
+          <Column id="DRAW" type="int" size="4"/>
+          <Column id="TEAM" type="STRING" size="256"/>
+          <Column id="NAME" type="string" size="32"/>
+          <Column id="LEVEL" type="string" size="32"/>
+        </ColumnInfo>
+      </Dataset>
+      <Dataset id="ds10" oncolumnchanged="ds10_oncolumnchanged">
+        <ColumnInfo>
+          <Column id="SEQ" type="int" size="4"/>
+          <Column id="MATCH_ID" type="int" size="4"/>
+          <Column id="PLAYER_ID" type="string" size="32"/>
+          <Column id="PLAY_COUNT" type="int" size="4"/>
+          <Column id="GOAL" type="int" size="4"/>
+          <Column id="ASSIST" type="int" size="4"/>
+          <Column id="RATING" type="float" size="4"/>
+          <Column id="NUM" type="int" size="4"/>
+          <Column id="WIN" type="int" size="4"/>
+          <Column id="LOSE" type="int" size="4"/>
+          <Column id="DRAW" type="int" size="4"/>
+          <Column id="TEAM" type="STRING" size="256"/>
+          <Column id="NAME" type="string" size="32"/>
+          <Column id="LEVEL" type="string" size="32"/>
+        </ColumnInfo>
+      </Dataset>
+      <Dataset id="ds30" oncolumnchanged="ds10_oncolumnchanged">
+        <ColumnInfo>
+          <Column id="SEQ" type="int" size="4"/>
+          <Column id="MATCH_ID" type="int" size="4"/>
+          <Column id="PLAYER_ID" type="string" size="32"/>
+          <Column id="PLAY_COUNT" type="int" size="4"/>
+          <Column id="GOAL" type="int" size="4"/>
+          <Column id="ASSIST" type="int" size="4"/>
+          <Column id="RATING" type="float" size="4"/>
+          <Column id="NUM" type="int" size="4"/>
+          <Column id="WIN" type="int" size="4"/>
+          <Column id="LOSE" type="int" size="4"/>
+          <Column id="DRAW" type="int" size="4"/>
+          <Column id="TEAM" type="STRING" size="256"/>
+          <Column id="NAME" type="string" size="32"/>
+          <Column id="LEVEL" type="string" size="32"/>
+        </ColumnInfo>
+      </Dataset>
+      <Dataset id="dsLevel">
+        <ColumnInfo>
+          <Column id="GROUP_CODE" type="STRING" size="256"/>
+          <Column id="GROUP_NAME" type="STRING" size="256"/>
+          <Column id="CODE" type="STRING" size="256"/>
+          <Column id="CODE_NAME" type="STRING" size="256"/>
+        </ColumnInfo>
+      </Dataset>
+      <Dataset id="dsTeam">
+        <ColumnInfo>
+          <Column id="GROUP_CODE" type="STRING" size="256"/>
+          <Column id="GROUP_NAME" type="STRING" size="256"/>
+          <Column id="CODE" type="STRING" size="256"/>
+          <Column id="CODE_NAME" type="STRING" size="256"/>
+        </ColumnInfo>
+      </Dataset>
+      <Dataset id="dsTemp">
+        <ColumnInfo>
+          <Column id="SEQ" type="int" size="4"/>
+          <Column id="MATCH_ID" type="int" size="4"/>
+          <Column id="PLAYER_ID" type="string" size="32"/>
+          <Column id="PLAY_COUNT" type="int" size="4"/>
+          <Column id="GOAL" type="int" size="4"/>
+          <Column id="ASSIST" type="int" size="4"/>
+          <Column id="RATING" type="float" size="4"/>
+          <Column id="NUM" type="int" size="4"/>
+          <Column id="WIN" type="int" size="4"/>
+          <Column id="LOSE" type="int" size="4"/>
+          <Column id="DRAW" type="int" size="4"/>
+          <Column id="TEAM" type="STRING" size="256"/>
+          <Column id="NAME" type="string" size="32"/>
+          <Column id="LEVEL" type="string" size="32"/>
+        </ColumnInfo>
+        <Rows>
+          <Row/>
+        </Rows>
+      </Dataset>
+      <Dataset id="dsMatch">
+        <ColumnInfo>
+          <Column id="MATCH_ID" type="INT" size="4"/>
+          <Column id="STADIUM_ID" type="STRING" size="32"/>
+          <Column id="MANAGER_ID" type="STRING" size="32"/>
+          <Column id="MATCH_DATE" type="DATETIME" size="17"/>
+          <Column id="START_TIME" type="BIGDECIMAL" size="8"/>
+          <Column id="END_TIME" type="BIGDECIMAL" size="8"/>
+          <Column id="GENDER" type="STRING" size="32"/>
+          <Column id="PLAYER_NUM" type="STRING" size="32"/>
+          <Column id="MIN_PLAYER" type="INT" size="4"/>
+          <Column id="MAX_PLAYER" type="INT" size="4"/>
+          <Column id="PRICE" type="INT" size="4"/>
+          <Column id="WAGE" type="INT" size="4"/>
+          <Column id="MATCH_STATE" type="STRING" size="32"/>
+          <Column id="PLAYER_COUNT" type="INT" size="4"/>
+          <Column id="SHOES" type="STRING" size="32"/>
+        </ColumnInfo>
+      </Dataset>
+    </Objects>
+  </Form>
+</FDL>

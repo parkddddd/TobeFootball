@@ -1,0 +1,135 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<FDL version="2.1">
+  <Form id="Foot2011pu" width="400" height="500" titletext="매니저 매치상세팝업" onload="form_onload">
+    <Layouts>
+      <Layout height="500" width="400">
+        <Div id="divDetail" taborder="1" text="div00" left="0" top="0" right="0" bottom="70">
+          <Layouts>
+            <Layout>
+              <Static id="staDate" taborder="0" text="2024년 08월 20일 화요일 18:00" left="20" top="0" height="20" cssclass="sta_WF_TitleSub" right="20"/>
+              <Static id="staStadium" taborder="1" text="구장명" left="20" top="30" height="17" cssclass="sta_WF_TitleMain" right="20"/>
+              <Static id="staAddress" taborder="2" text="주소" left="20" top="57" height="14" cssclass="sta_WF_SearchLabel" right="20"/>
+              <Static id="staMatchType" taborder="3" text="매치타입" left="20" top="81" height="14" cssclass="sta_WF_SearchLabel" right="20"/>
+              <Static id="staWage" taborder="4" text="30000원" left="20" top="105" height="35" cssclass="sta_WF_TitleMain" right="20" border="1px solid #c4c4c4, 0px solid, 0px none"/>
+              <Static id="staBg" taborder="5" left="0" top="139" height="20" cssclass="sta_WF_DetailLabel" right="0"/>
+              <Static id="sta01" taborder="6" text="구장특이사항" left="20" top="169" width="84" height="17" cssclass="sta_WF_TitleMain"/>
+              <Static id="staMemo" taborder="7" text="특이사항" left="20" top="192" right="20" height="238" wordWrap="char"/>
+            </Layout>
+          </Layouts>
+        </Div>
+        <Button id="btnSave" taborder="1" text="신청하기" left="20" top="440" right="20" bottom="10" onclick="btnSave_onclick" cssclass="btn_WF_Apply"/>
+      </Layout>
+    </Layouts>
+    <Script type="xscript5.1"><![CDATA[
+
+/**
+*  TobeFootball
+*  @MenuPath     샘플 > script 표준
+*  @FileName     C:\TobeFootball\Foot\Foot2011pu.xfdl
+*  @Creator      박진호
+*  @CreateDate   2024/08/20
+*  @Desction    스크립트 표준 및 주석 표준 정의
+************** 소스 수정 이력 *****************************************************************
+*  date          		Modifier                Description
+*************************************************************************************************
+*  2024/08/20     	        박진호 	              최초 생성
+*************************************************************************************************
+*/
+
+/************************************************************************************************
+ * FORM 변수 선언 영역
+ ************************************************************************************************/
+this.fvObjApp = this.gfnGetApplication();
+
+/************************************************************************************************
+ * FORM EVENT 영역(onload, onbeforeclose)
+ ************************************************************************************************/
+this.form_onload = function(obj:nexacro.Form,e:nexacro.LoadEventInfo)
+{
+	this.gfnFormOnLoad(this);
+	this.fnSearch();
+	
+	if(this.parent.status == "마감"){
+		this.btnSave.set_enable(false);
+	}
+};
+
+/************************************************************************************************
+ * CALLBACK 콜백 처리부분(Transaction, Popup)
+ ************************************************************************************************/
+this.fnCallback = function (svcId, errCd, errMsg)
+{
+	if(svcId == "searchDetail"){
+		this.divDetail.form.staMemo.set_fittocontents("height");
+		this.divDetail.form.resetScroll();
+	}
+	
+	if(svcId == "saveManager"){
+		if(errCd==0){
+			this.alert("매치신청이 완료되었습니다.");
+			this.close("success");
+		}
+
+	}
+};
+
+/************************************************************************************************
+ * CRUD 및 TRANSACTION 서비스 호출 처리
+ ************************************************************************************************/
+this.fnSearch = function ()
+{
+	var strSvcUrl = "searchDetail.do";
+	var inData    = "";
+	var outData   = "dsDetail=dsDetail";
+	var strArg    = "matchId="+this.parent.matchId;
+
+	this.gfnTransaction("searchDetail", strSvcUrl, inData, outData, strArg, "fnCallback", true);
+};
+
+this.fnSave = function ()
+{ 
+	var sManagerId = this.fvObjApp.gdsUserInfo.getColumn(0,"USER_ID");
+	var strSvcUrl = "saveManager.do";
+	var inData    = "";
+	var outData   = "";
+	var strArg    = "matchId="+this.parent.matchId+" managerId="+sManagerId;
+
+	this.gfnTransaction("saveManager", strSvcUrl, inData, outData, strArg, "fnCallback", true);
+};
+/************************************************************************************************
+ * 사용자 FUNCTION 영역
+ ************************************************************************************************/
+
+
+/************************************************************************************************
+ * 각 COMPONENT 별 EVENT 영역
+ ************************************************************************************************/
+
+
+this.btnSave_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	this.fnSave();
+};
+]]></Script>
+    <Objects>
+      <Dataset id="dsDetail">
+        <ColumnInfo>
+          <Column id="DATE" type="STRING" size="32"/>
+          <Column id="STADIUM_NAME" type="STRING" size="32"/>
+          <Column id="ADDRESS" type="STRING" size="32"/>
+          <Column id="MATCH_TYPE" type="STRING" size="32"/>
+          <Column id="WAGE" type="STRING" size="32"/>
+          <Column id="MEMO" type="STRING" size="32"/>
+        </ColumnInfo>
+      </Dataset>
+    </Objects>
+    <Bind>
+      <BindItem id="item0" compid="divDetail.form.staDate" propid="text" datasetid="dsDetail" columnid="DATE"/>
+      <BindItem id="item1" compid="divDetail.form.staStadium" propid="text" datasetid="dsDetail" columnid="STADIUM_NAME"/>
+      <BindItem id="item2" compid="divDetail.form.staAddress" propid="text" datasetid="dsDetail" columnid="ADDRESS"/>
+      <BindItem id="item3" compid="divDetail.form.staMatchType" propid="text" datasetid="dsDetail" columnid="MATCH_TYPE"/>
+      <BindItem id="item4" compid="divDetail.form.staWage" propid="text" datasetid="dsDetail" columnid="WAGE"/>
+      <BindItem id="item5" compid="divDetail.form.staMemo" propid="text" datasetid="dsDetail" columnid="MEMO"/>
+    </Bind>
+  </Form>
+</FDL>

@@ -1,0 +1,285 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<FDL version="2.1">
+  <Form id="Foot1010fm" width="1300" height="671" titletext="사용자매치 목록" onload="form_onload" onclose="Foot1010fm_onclose">
+    <Layouts>
+      <Layout height="671" mobileorientation="landscape" width="1300">
+        <Static id="staBg" taborder="0" left="0" top="0" height="200" cssclass="sta_WF_DetailLabel" right="0"/>
+        <Div id="divStep" taborder="1" left="250" top="5" height="190" url="Foot::Foot4030fm.xfdl" right="250"/>
+        <Div id="divDate" taborder="2" text="div00" left="0" top="210" right="0" height="145">
+          <Layouts>
+            <Layout>
+              <Div id="divSelectDate" taborder="0" left="200" right="200" height="90" top="55" formscrollbartype="none none">
+                <Layouts>
+                  <Layout/>
+                </Layouts>
+              </Div>
+              <Button id="btnPrev" taborder="1" left="150" top="88" width="24" height="24" onclick="divDate_btnPrev_onclick" cssclass="btn_WF_PrevDay"/>
+              <Button id="btnNext" taborder="2" top="88" height="24" width="24" right="150" onclick="divDate_btnNext_onclick" cssclass="btn_WF_NextDay"/>
+              <Combo id="cboLocal" taborder="3" text="cbo00" left="150" top="0" width="96" height="33" innerdataset="dsLocal" codecolumn="CODE" datacolumn="CODE_NAME" onitemchanged="divDate_cboLocal_onitemchanged" cssclass="cbo_WF_UserInfo"/>
+            </Layout>
+          </Layouts>
+        </Div>
+        <ListView id="ListViewMatch" taborder="3" left="150" top="354" height="295" binddataset="dsMatch" right="150" cssclass="lstv_WF_BtnBlue" onbandclick="ListViewMatch_onbandclick" oncellclick="ListViewMatch_onbandclick">
+          <Formats>
+            <Format id="default">
+              <Band id="body" width="100%" height="63">
+                <Cell id="Cell03" left="150" top="10" width="260" height="24" text="bind:STADIUM_NAME" displaytype="normal" edittype="none" font="16px/normal &quot;Verdana&quot;,&quot;Malgun Gothic&quot;"/>
+                <Cell id="Cell05" left="50" top="19" width="100" height="24" text="bind:MATCH_TIME" font="bold 14px/normal &quot;Verdana&quot;,&quot;Malgun Gothic&quot;"/>
+                <Cell id="Cell07" left="150" width="180" text="bind:MATCH_TYPE" font="10px/normal &quot;Verdana&quot;,&quot;Malgun Gothic&quot;" opacity="60%" height="20" bottom="10"/>
+                <Cell id="CellBtn" top="14" width="100" height="34" text="bind:STATUS" right="20" edittype="none" displaytype="buttoncontrol" cssclass="expr:STATUS == &quot;마감&quot; ? &quot;btnGray&quot; : (STATUS == &quot;신청가능&quot; ? &quot;btnBlue&quot; : &quot;btnRed&quot;)"/>
+                <Cell id="Cell00" top="13" width="97" height="37" text="expr:PLAYER_COUNT+&quot;/&quot;+MAX_PLAYER" right="84" font="12px/normal &quot;Verdana&quot;,&quot;Malgun Gothic&quot;"/>
+              </Band>
+            </Format>
+          </Formats>
+        </ListView>
+      </Layout>
+    </Layouts>
+    <Script type="xscript5.1"><![CDATA[
+/**
+*  TobeFootball
+*  @MenuPath     샘플 > script 표준
+*  @FileName     C:\TobeFootball\Foot\Foot2010fm.xfdl
+*  @Creator      박진호
+*  @CreateDate   2024/08/19
+*  @Desction    스크립트 표준 및 주석 표준 정의
+************** 소스 수정 이력 *****************************************************************
+*  date          		Modifier                Description
+*************************************************************************************************
+*  2024/08/19     	        박진호 	              최초 생성
+*************************************************************************************************
+*/
+
+/************************************************************************************************
+ * FORM 변수 선언 영역
+ ************************************************************************************************/
+this.fvObjSelectMenu = "";
+this.fvNMenuCnt = 15;   //동적생성되는 날짜 버튼 개수.
+this.fvNWidth=""  //버튼하나의 가로길이. 스크롤을 위해 전역변수. 버튼으로 스크롤.
+this.fvObjApp = this.gfnGetApplication();
+/************************************************************************************************
+ * FORM EVENT 영역(onload, onbeforeclose)
+ ************************************************************************************************/
+this.form_onload = function(obj:nexacro.Form,e:nexacro.LoadEventInfo)
+{
+	this.gfnFormOnLoad(this);
+	
+	this.fnSetMenu();
+	this.fnBindCom();
+	
+
+};
+
+/************************************************************************************************
+ * CALLBACK 콜백 처리부분(Transaction, Popup)
+ ************************************************************************************************/
+this.fnCallback = function (svcId, errCd, errMsg)
+{
+	if(svcId=="search"){
+		this.fnSetHeight();
+	}
+};
+
+/************************************************************************************************
+ * CRUD 및 TRANSACTION 서비스 호출 처리
+ ************************************************************************************************/
+this.fnSearch = function (date)
+{
+	var sLocal = this.divDate.form.cboLocal.value;
+
+	var strSvcUrl = "searchUserMatch.do";
+	var inData    = "";
+	var outData   = "dsMatch=dsMatch";
+	var strArg    = "sLocal="+sLocal+" date="+date;
+
+	this.gfnTransaction("search", strSvcUrl, inData, outData, strArg, "fnCallback", true);
+};
+
+this.fnPopupCallback = function (strId, strVal)
+{
+	if(strId=="matchDetail"){
+		if(strVal=="success"){
+			var sdate = this.fvObjSelectMenu.date;
+			this.fnSearch(sdate);
+		}
+	}
+};
+
+/************************************************************************************************
+ * 사용자 FUNCTION 영역
+ ************************************************************************************************/
+/**
+ * @description 공통코드를 innerdataset에 바인딩
+*/
+this.fnBindCom = function ()
+{
+	var arrCode = new Array();
+
+	arrCode.push({codeGroup:"G001", obj: this.divDate.form.cboLocal, first:"2::전체"}); 
+
+
+    this.gfnGetCommonCode(arrCode);
+};
+
+/**
+ * @description  listview의 높이를 내용물의 높이와 맞추어 스크롤이 생기지않게함.
+*/
+this.fnSetHeight = function ()
+{
+	var nBandHeight = this.ListViewMatch.getBandProperty("body","height");
+	var nCnt = this.dsMatch.rowcount;
+	var nLstvHeight = nCnt * nBandHeight +2 //ListView의 body의 높이 + 위아래 boder값
+	this.ListViewMatch.set_height(nLstvHeight);
+	this.resetScroll();
+	this.parent.set_height(this.ListViewMatch.getOffsetBottom());
+	this.parent.parent.resetScroll();
+
+};
+
+
+/**
+ * @description 메뉴 동적생성
+*/
+this.fnSetMenu = function ()
+{
+	var nLastDay = this.fnGetLastDayOfMonth();
+
+	var nDate = parseInt(this.gfnGetDate().substr(6,2));  //yymmdd에서 dd부분
+
+	var yearmonth = this.gfnGetDate().substr(0,6);
+
+	var sUrl = "";
+	var sName = "";
+	var nLeft = 0;
+	var nTop = 25;
+	this.fvNWidth = 130;
+	var nHeight = 40;
+	var nGap = 0;
+	for(var i=0; i<this.fvNMenuCnt;i++)
+	{
+		
+		sName = "btn"+nDate;
+		sMenuName = ""+nDate;
+		objSize = nexacro.getTextSize(sMenuName, 'bold 15px "Verdana", "Malgun Gothic"');  //vWdith는 값을 가지지 않고 .nx너비, .ny 높이
+		//var objSize2 = nexacro.getTextSize( strText, "italic bold 10pt Arial", 100, "char" );
+		
+		//Button.init( strName, vLeft, vTop , vWidth, vHeight [, vRight, vBottom, [vMinWidth, [vMaxWidth, [vMinHeight, [vMaxHeight]]]]] )
+		//var objButton = new Button(sName, nLeft, nTop, objSize.nx, nHeight);
+		var objButton = new Button(sName, nLeft, nTop, this.fvNWidth, nHeight);
+
+		// Add Object to Parent Form  
+		this.divDate.form.divSelectDate.addChild(sName, objButton); 
+		objButton.set_text(sMenuName);
+		objButton.set_cssclass("btn_TF_UserMenu");
+		
+		//이벤트 추가
+		objButton.addEventHandler( "onclick", this.fnMenuClick, this );
+		objButton.uId = sName;  //정의한값
+		objButton.date = yearmonth+sMenuName;
+
+		// Show Object  
+		objButton.show(); 
+		//nLeft += ( objSize.nx + nGap);
+		nLeft += ( this.fvNWidth  + nGap);
+		
+		if (i==0){
+			this.fvObjSelectMenu = objButton;
+			this.fvObjSelectMenu.setSelectStatus(true);
+			this.fnMenuClick(objButton);
+			
+		}
+		nDate++;
+		if(nDate>nLastDay){
+			yearmonth = "202409";  //시연 전 오류때문에 하드코딩
+			nDate=1;
+		}
+	}	
+	this.divDate.form.divSelectDate.form.resetScroll();
+};
+
+/**
+ * @description 이달의 마지막날을 구해서 동적생성된 버튼이 이번달을 넘어가지 않게함.
+*/
+
+this.fnGetLastDayOfMonth = function () {
+    var date = new Date();  // 현재 날짜 가져오기
+    var year = date.getFullYear();  // 현재 연도
+    var month = date.getMonth();  // 현재 월 (0부터 시작하므로 이번 달을 얻으려면 그대로 사용)
+    
+    // 다음 달의 첫 번째 날에서 하루를 빼면 이번 달의 마지막 날이 됩니다.
+    var lastDay = new Date(year, month + 1, 0);
+
+    return lastDay.getDate();  // 이번 달의 마지막 날짜를 반환
+}
+/************************************************************************************************
+ * 각 COMPONENT 별 EVENT 영역
+ ************************************************************************************************/
+this.fnMenuClick = function (obj:nexacro.Button,e:nexacro.ClickEventInfo)
+ {
+	
+	//메뉴 선택한 상태로 변경
+	if(this.fvObjSelectMenu != obj){
+		this.fvObjSelectMenu.setSelectStatus(false);
+		obj.setSelectStatus(true);
+		this.fvObjSelectMenu = obj;
+	}
+	
+	// 해당날짜에 트랜잭션
+	this.fnSearch(obj.date);
+ };
+
+
+this.divDate_cboLocal_onitemchanged = function(obj:nexacro.Combo,e:nexacro.ItemChangeEventInfo)
+{
+	var sdate = this.fvObjSelectMenu.date;
+	this.fnSearch(sdate);
+};
+
+this.divDate_btnNext_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	this.divDate.form.divSelectDate.form.scrollBy(this.fvNWidth,0);
+};
+
+this.divDate_btnPrev_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	this.divDate.form.divSelectDate.form.scrollBy(-this.fvNWidth,0);
+};
+
+this.ListViewMatch_onbandclick = function(obj:nexacro.ListView,e:nexacro.ListViewClickEventInfo)
+{
+	//매치 상세 화면으로 변경. 매치아이디 넘겨줘야하니까 전역변수로 매치아이디 받아야함.
+	this.fvObjApp.avSMatchId = this.dsMatch.getColumn(e.row,"MATCH_ID"); //다른화면에서띄울때도 꼭 해줘야함
+	this.parent.set_url("Foot::Foot1011fm.xfdl");
+};
+
+
+
+
+this.Foot1010fm_onclose = function(obj:nexacro.Form,e:nexacro.CloseEventInfo)
+{
+	this.parent.set_height(this.fvObjApp.avNWorkDivHeight);
+	this.parent.parent.resetScroll();
+};
+]]></Script>
+    <Objects>
+      <Dataset id="dsLocal">
+        <ColumnInfo>
+          <Column id="GROUP_CODE" type="STRING" size="256"/>
+          <Column id="GROUP_NAME" type="STRING" size="256"/>
+          <Column id="CODE" type="STRING" size="256"/>
+          <Column id="CODE_NAME" type="STRING" size="256"/>
+        </ColumnInfo>
+      </Dataset>
+      <Dataset id="dsMatch">
+        <ColumnInfo>
+          <Column id="MATCH_ID" type="INT" size="4"/>
+          <Column id="STADIUM_NAME" type="STRING" size="32"/>
+          <Column id="MATCH_TIME" type="STRING" size="32"/>
+          <Column id="MATCH_TYPE" type="STRING" size="32"/>
+          <Column id="STATUS" type="STRING" size="32"/>
+          <Column id="MAX_PLAYER" type="INT" size="4"/>
+          <Column id="PLAYER_COUNT" type="INT" size="4"/>
+        </ColumnInfo>
+      </Dataset>
+    </Objects>
+  </Form>
+</FDL>

@@ -1,0 +1,449 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<FDL version="2.1">
+  <Form id="Foot4020fm" width="1300" height="730" titletext="회원정보수정" onload="form_onload" onsize="Foot4020fm_onsize" onbeforeclose="Foot4020fm_onbeforeclose" onclose="Foot4020fm_onclose">
+    <Layouts>
+      <Layout height="730" mobileorientation="landscape" width="1300">
+        <Div id="divSignUp" taborder="1" left="120" top="0" text="" height="730" width="1060">
+          <Layouts>
+            <Layout>
+              <Static id="staName" taborder="18" text="이름" left="70" top="76" width="52" height="14" cssclass="sta_WF_SearchLabel"/>
+              <Edit id="edtName" taborder="0" left="70" top="95" width="250" height="35" cssclass="edt_WF_UserInfo"/>
+              <Static text="아이디" width="52" height="14" cssclass="sta_WF_SearchLabel" id="staId" left="70" top="150" taborder="19"/>
+              <Edit width="250" height="35" id="edtId" left="70" top="169" taborder="1" inputtype="alpha,digit" onkillfocus="divSignUp_edtId_onkillfocus" cssclass="edt_WF_UserInfo"/>
+              <Static text="비밀번호" width="52" height="14" cssclass="sta_WF_SearchLabel" id="staPw" left="70" top="224" taborder="20"/>
+              <Edit width="300" height="35" id="edtPw" left="70" top="243" taborder="2" password="true" inputtype="alpha,digit,symbol" oninput="divSignUp_edtPw_oninput" cssclass="edt_WF_UserInfo"/>
+              <Static text="비밀번호 확인" width="70" height="14" cssclass="sta_WF_SearchLabel" id="staCheckPw" left="449" top="224" taborder="21"/>
+              <Edit width="300" height="35" id="edtCheckPw" left="449" top="244" taborder="3" password="true" inputtype="alpha,digit,symbol" enable="false" cssclass="edt_WF_UserInfo"/>
+              <Static text="생년월일" width="82" height="14" cssclass="sta_WF_SearchLabel" id="staBirthday" left="449" top="299" taborder="22"/>
+              <Static text="이메일" width="52" height="14" cssclass="sta_WF_SearchLabel" id="staEmail" left="70" top="373" taborder="23"/>
+              <Edit id="edtEmail" taborder="8" left="70" top="392" width="140" height="35" cssclass="edt_WF_UserInfo"/>
+              <Combo id="cboEmail" taborder="10" left="401" top="390" width="150" height="36" innerdataset="innerdataset" codecolumn="codecolumn" datacolumn="datacolumn" canitemchange="divSignUp_cboEmail_canitemchange" value="" index="0" text="직접입력" cssclass="cbo_WF_UserInfo">
+                <Dataset id="innerdataset">
+                  <ColumnInfo>
+                    <Column id="codecolumn" size="256"/>
+                    <Column id="datacolumn" size="256"/>
+                  </ColumnInfo>
+                  <Rows>
+                    <Row>
+                      <Col id="datacolumn">직접입력</Col>
+                      <Col id="codecolumn"/>
+                    </Row>
+                    <Row>
+                      <Col id="datacolumn">naver.com</Col>
+                      <Col id="codecolumn">naver.com</Col>
+                    </Row>
+                    <Row>
+                      <Col id="datacolumn">daum.net</Col>
+                      <Col id="codecolumn">daum.net</Col>
+                    </Row>
+                    <Row>
+                      <Col id="datacolumn">gmail.com</Col>
+                      <Col id="codecolumn">gmail.com</Col>
+                    </Row>
+                    <Row>
+                      <Col id="datacolumn">yahoo.co.kr</Col>
+                      <Col id="codecolumn">yahoo.co.kr</Col>
+                    </Row>
+                    <Row>
+                      <Col id="datacolumn">hanmail.com</Col>
+                      <Col id="codecolumn">hanmail.com</Col>
+                    </Row>
+                  </Rows>
+                </Dataset>
+              </Combo>
+              <Static id="sta02" taborder="24" text="@" left="215" top="402" width="12" height="14"/>
+              <Static text="전화번호" width="52" height="14" cssclass="sta_WF_SearchLabel" id="staPhone" left="70" top="299" taborder="25"/>
+              <Combo id="cboPhone" taborder="4" left="70" top="318" width="65" height="35" value="010" index="0" innerdataset="innerdataset" codecolumn="codecolumn" datacolumn="datacolumn" text="010" cssclass="cbo_WF_UserInfo">
+                <Dataset id="innerdataset">
+                  <ColumnInfo>
+                    <Column id="codecolumn" size="256"/>
+                    <Column id="datacolumn" size="256"/>
+                  </ColumnInfo>
+                  <Rows>
+                    <Row>
+                      <Col id="datacolumn">010</Col>
+                      <Col id="codecolumn">010</Col>
+                    </Row>
+                    <Row>
+                      <Col id="datacolumn">011</Col>
+                      <Col id="codecolumn">011</Col>
+                    </Row>
+                    <Row>
+                      <Col id="datacolumn">016</Col>
+                      <Col id="codecolumn">016</Col>
+                    </Row>
+                    <Row>
+                      <Col id="datacolumn">017</Col>
+                      <Col id="codecolumn">017</Col>
+                    </Row>
+                    <Row>
+                      <Col id="datacolumn">018</Col>
+                      <Col id="codecolumn">018</Col>
+                    </Row>
+                    <Row>
+                      <Col id="datacolumn">019</Col>
+                      <Col id="codecolumn">019</Col>
+                    </Row>
+                  </Rows>
+                </Dataset>
+              </Combo>
+              <Edit id="edtPhone1" taborder="5" left="155" top="318" width="50" height="35" text="" maxlength="4" inputtype="digit" cssclass="edt_WF_UserInfo"/>
+              <Edit id="edtPhone2" taborder="6" left="225" top="318" width="50" height="35" inputtype="digit" maxlength="4" cssclass="edt_WF_UserInfo"/>
+              <Static id="sta00" taborder="26" text="-" left="142" top="328" width="6" height="14"/>
+              <Static id="sta00_00" taborder="27" text="-" left="212" top="328" width="6" height="14"/>
+              <Edit id="edtEmail2" taborder="9" left="234" top="390" width="160" height="36" cssclass="edt_WF_UserInfo"/>
+              <Static text="은행명" width="52" height="14" cssclass="sta_WF_SearchLabel" id="staBank" left="70" top="447" taborder="28"/>
+              <Static id="staIdCheck" taborder="29" left="330" top="171" width="260" height="31" visible="false"/>
+              <Combo id="cboBank" taborder="11" text="cbo00" left="70" top="466" width="121" height="35" innerdataset="dsBank" codecolumn="CODE" datacolumn="CODE_NAME" cssclass="cbo_WF_UserInfo"/>
+              <Static text="계좌번호" width="52" height="14" cssclass="sta_WF_SearchLabel" id="staAccount" left="233" top="447" taborder="30"/>
+              <Edit id="edtAccount" taborder="12" left="233" top="466" width="230" height="35" inputtype="digit" cssclass="edt_WF_UserInfo"/>
+              <Static text="성별" width="52" height="14" cssclass="sta_WF_SearchLabel" id="sta01" left="70" top="521" taborder="31"/>
+              <Static text="선수출신 유무" width="72" height="14" cssclass="sta_WF_SearchLabel" id="sta04" left="449" top="521" taborder="32"/>
+              <Radio id="rdoGender" taborder="13" left="70" top="545" width="280" height="24" direction="vertical" innerdataset="dsGender" codecolumn="CODE" datacolumn="CODE_NAME"/>
+              <Radio id="rdoPro" taborder="14" left="449" top="545" width="280" height="24" direction="vertical" innerdataset="dsPro" codecolumn="CODE" datacolumn="CODE_NAME"/>
+              <Static text="사용자 종류" width="62" height="14" cssclass="sta_WF_SearchLabel" id="sta05" left="70" top="579" taborder="33"/>
+              <Combo id="cboUserType" taborder="15" left="70" top="598" width="100" height="36" value="" index="-1" innerdataset="dsUserType" codecolumn="CODE" datacolumn="CODE_NAME" cssclass="cbo_WF_UserInfo"/>
+              <Edit id="edtBirthday" taborder="7" left="449" top="318" width="300" height="35" text="" displaynulltext="YYYYMMDD" maxlength="8" inputtype="digit" cssclass="edt_WF_UserInfo"/>
+              <Button id="btnSignUp" taborder="16" text="저장" left="382" top="654" width="116" height="52" onclick="divSignUp_btnSignUp_onclick" cssclass="btn_WF_GrdPageS"/>
+              <Button id="btnCancel" taborder="17" text="취소" left="562" top="654" width="116" height="52" onclick="divSignUp_btnCancel_onclick" cssclass="btn_WF_GrdPageS"/>
+              <Static id="staSignUp" taborder="34" text="회원정보 수정" left="0" top="0" height="23" cssclass="sta_WF_Title" width="127"/>
+            </Layout>
+          </Layouts>
+        </Div>
+      </Layout>
+    </Layouts>
+    <Objects>
+      <Dataset id="dsUser" useclientlayout="true">
+        <ColumnInfo>
+          <Column id="MONEY" type="INT" size="4"/>
+          <Column id="BANK" type="STRING" size="256"/>
+          <Column id="PHONE" type="STRING" size="32"/>
+          <Column id="USER_ID" type="STRING" size="32"/>
+          <Column id="LEVEL" type="STRING" size="32"/>
+          <Column id="EMAIL" type="STRING" size="32"/>
+          <Column id="PRO" type="STRING" size="32"/>
+          <Column id="NAME" type="STRING" size="32"/>
+          <Column id="ACCOUNT" type="BIGDECIMAL" size="8"/>
+          <Column id="PASSWORD" type="STRING" size="32"/>
+          <Column id="USER_TYPE" type="STRING" size="32"/>
+          <Column id="GENDER" type="STRING" size="32"/>
+          <Column id="BIRTHDAY" type="STRING" size="17"/>
+          <Column id="PASSWORDCHK" type="STRING" size="32"/>
+          <Column id="ORG_USER_ID" type="STRING" size="32"/>
+        </ColumnInfo>
+        <Rows>
+          <Row/>
+        </Rows>
+      </Dataset>
+      <Dataset id="dsGender">
+        <ColumnInfo>
+          <Column id="GROUP_CODE" type="STRING" size="256"/>
+          <Column id="GROUP_NAME" type="STRING" size="256"/>
+          <Column id="CODE" type="STRING" size="256"/>
+          <Column id="CODE_NAME" type="STRING" size="256"/>
+        </ColumnInfo>
+      </Dataset>
+      <Dataset id="dsPro">
+        <ColumnInfo>
+          <Column id="GROUP_CODE" type="STRING" size="256"/>
+          <Column id="GROUP_NAME" type="STRING" size="256"/>
+          <Column id="CODE" type="STRING" size="256"/>
+          <Column id="CODE_NAME" type="STRING" size="256"/>
+        </ColumnInfo>
+      </Dataset>
+      <Dataset id="dsUserType">
+        <ColumnInfo>
+          <Column id="GROUP_CODE" type="STRING" size="256"/>
+          <Column id="GROUP_NAME" type="STRING" size="256"/>
+          <Column id="CODE" type="STRING" size="256"/>
+          <Column id="CODE_NAME" type="STRING" size="256"/>
+        </ColumnInfo>
+      </Dataset>
+      <Dataset id="dsBank">
+        <ColumnInfo>
+          <Column id="GROUP_CODE" type="STRING" size="256"/>
+          <Column id="GROUP_NAME" type="STRING" size="256"/>
+          <Column id="CODE" type="STRING" size="256"/>
+          <Column id="CODE_NAME" type="STRING" size="256"/>
+        </ColumnInfo>
+      </Dataset>
+    </Objects>
+    <Script type="xscript5.1"><![CDATA[
+/**
+*  TobeFootball
+*  @MenuPath     샘플 > script 표준
+*  @FileName     C:\TobeFootball\Foot\Foot4010fm.xfdl
+*  @Creator      박진호
+*  @CreateDate   2024/08/09
+*  @Desction    스크립트 표준 및 주석 표준 정의
+************** 소스 수정 이력 *****************************************************************
+*  date          		Modifier                Description
+*************************************************************************************************
+*  2024/08/09     	        박진호 	              최초 생성
+*************************************************************************************************
+*/
+
+/************************************************************************************************
+ * FORM 변수 선언 영역
+ ************************************************************************************************/
+this.fvObjApp = this.gfnGetApplication();
+this.nIdCnt="";
+this.bCheckId = false;
+this.sOrgId = "";
+this.sOrgPw = "";
+/************************************************************************************************
+ * FORM EVENT 영역(onload, onbeforeclose)
+ ************************************************************************************************/
+this.form_onload = function(obj:nexacro.Form,e:nexacro.LoadEventInfo)
+{
+	this.gfnFormOnLoad(this);
+	this.fnComCode();
+	this.fnCenter(this.divSignUp);
+	this.fnSetSize();
+	this.fnSearch();
+};
+
+
+this.Foot4020fm_onsize = function(obj:nexacro.Form,e:nexacro.SizeEventInfo)
+{
+	this.fnCenter(this.divSignUp);
+};
+
+
+// this.Foot4020fm_onbeforeclose = function(obj:nexacro.Form,e:nexacro.CloseEventInfo)
+// {
+// 	this.parent.set_height(this.fvObjApp.avNWorkDivHeight);
+// 	this.parent.parent.resetScroll();	
+// };
+
+this.Foot4020fm_onclose = function(obj:nexacro.Form,e:nexacro.CloseEventInfo)
+{
+	this.parent.set_height(this.fvObjApp.avNWorkDivHeight);
+	this.parent.parent.resetScroll();		
+};
+
+
+/************************************************************************************************
+ * CALLBACK 콜백 처리부분(Transaction, Popup)
+ ************************************************************************************************/
+this.fnCallback = function (svcID, errorCode, errorMsg)
+{
+	var objSta = this.divSignUp.form.staIdCheck;
+	if(svcID == "idCheck"){
+		if(!objSta.visible)
+			objSta.set_visible(true);
+		if(this.nIdCnt == 0){
+			objSta.set_cssclass("sta_WF_IdSuccess");
+			objSta.set_text("중복되지 않는 아이디입니다.");
+			this.bCheckId = true;
+		}
+		else{
+			objSta.set_cssclass("sta_WF_IdFail");
+			objSta.set_text("이미 사용중인 아이디입니다.");
+			this.bCheckId = false;
+		}
+	}
+	else if(svcID == "UpdateUserInfo"){
+		this.fvObjApp.avSignUpName = this.dsUser.getColumn(0,"USER_ID");
+		this.fvObjApp.avWorkFrame.set_formurl("Foot::Foot4021fm.xfdl");
+	}
+	else if(svcID == "searchUserInfo"){
+		this.fnSetEmptyData();
+		this.sOrgId = this.dsUser.getColumn(0,"USER_ID");
+		this.sOrgPw = this.dsUser.getColumn(0,"PASSWORD");
+	}
+};
+
+/************************************************************************************************
+ * CRUD 및 TRANSACTION 서비스 호출 처리
+ ************************************************************************************************/
+this.fnSearch = function ()
+{
+	var sUserId = this.fvObjApp.gdsUserInfo.getColumn(0,"USER_ID");
+	
+	var strSvcUrl = "searchUserInfo.do";
+	var inData    = "";
+	var outData   = "dsUser=dsUser";
+	var strArg    = "userId="+sUserId;
+
+	this.gfnTransaction("searchUserInfo", strSvcUrl, inData, outData, strArg, "fnCallback", true);
+}; 
+
+this.fnUpdate = function ()
+{
+		var strSvcUrl = "UpdateUserInfo.do";
+		var inData    = "dsUser=dsUser";
+		var outData   = "";
+		var strArg    = "";
+
+		this.gfnTransaction("UpdateUserInfo", strSvcUrl, inData, outData, strArg, "fnCallback", true);
+};
+
+/**
+ * @description 아이디 중복 검사
+*/
+this.fnCheckId = function ()
+{
+	var sId = this.dsUser.getColumn(0,"USER_ID");
+	var strSvcUrl = "idCheck.do";
+	var inData    = "";
+	var outData   = "";
+	var strArg    = "userId="+sId;
+
+	this.gfnTransaction("idCheck", strSvcUrl, inData, outData, strArg, "fnCallback", true);
+};
+/************************************************************************************************
+ * 사용자 FUNCTION 영역
+ ************************************************************************************************/
+/**
+ * @description 바인딩되어있지 않은 데이터를 데이터셋에 저장
+*/
+this.fnAddDataset = function ()
+{
+	var sPhone = this.divSignUp.form.cboPhone.text + this.divSignUp.form.edtPhone1.value + this.divSignUp.form.edtPhone2.value;
+	var sEmail = this.divSignUp.form.edtEmail.value +"@" +this.divSignUp.form.edtEmail2.value;
+	var sOrgId = this.fvObjApp.gdsUserInfo.getColumn(0,"USER_ID");
+	this.dsUser.setColumn(0,"PHONE",sPhone);
+	this.dsUser.setColumn(0,"EMAIL",sEmail);
+	this.dsUser.setColumn(0,"ORG_USER_ID",sOrgId);
+
+};
+
+/**
+ * @description 공통코드를 innerdataset에 바인딩
+*/
+this.fnComCode = function ()
+{
+	var arrCode = new Array();
+	arrCode.push({codeGroup:"A001", obj: this.divSignUp.form.cboUserType });
+	arrCode.push({codeGroup:"B001", obj: this.divSignUp.form.rdoGender });
+	arrCode.push({codeGroup:"C001", obj:this.divSignUp.form.rdoPro});
+	arrCode.push({codeGroup:"D001", obj:this.divSignUp.form.cboBank});
+
+    this.gfnGetCommonCode(arrCode);
+};
+
+/**
+ * @description 컴포넌트를 center위치로 변경
+*/
+
+this.fnCenter = function (obj)
+{
+	var nLeft = ( this.width / 2 ) - ( obj.width /2 );
+    obj.set_left(nLeft);
+
+};
+
+/**
+ * @description 정합성 체크
+*/
+this.fnVaildate = function ()
+{
+	this.gfnClearValidation(this.dsUser);
+	
+	this.gfnSetValidation(this.dsUser, "NAME", "이름", "required,maxlengthbyte:50");	// 이름
+	this.gfnSetValidation(this.dsUser, "USER_ID", "아이디", "required,maxlengthbyte:50");
+	if(this.divSignUp.form.edtCheckPw.enable == true){
+		this.gfnSetValidation(this.dsUser, "PASSWORD", "비밀번호^_^비밀번호 확인", "required,maxlengthbyte:50,equalto:PASSWORDCHK");	// 비밀번호
+	}
+	this.gfnSetValidation(this.dsUser, "PHONE", "전화번호", "required,length:11");	// 전화번호
+	this.gfnSetValidation(this.dsUser, "BIRTHDAY", "생년월일", "required,date");	// 생년월일
+	this.gfnSetValidation(this.dsUser, "EMAIL", "이메일", "required,isemail");	// 이메일
+	this.gfnSetValidation(this.dsUser, "ACCOUNT", "계좌번호", "required,rangelength:10:14");	// 계좌번호
+
+	if (this.gfnValidation(this.dsUser, "A") == false) return false;
+	else return true;
+	
+};
+
+this.fnSetSize = function ()
+{
+	this.parent.set_height(this.divSignUp.getOffsetBottom());
+	this.parent.parent.resetScroll();
+	trace(this.divSignUp.getOffsetBottom());
+};
+
+this.fnSetEmptyData = function ()
+{
+	var nPhone = this.dsUser.getColumn(0,"PHONE");
+	var nNum1 = nPhone.substr(0,3);
+	var nNum2 = nPhone.substr(3,4);
+	var nNum3 = nPhone.substr(7,4);
+	this.divSignUp.form.cboPhone.set_value(nNum1);
+	this.divSignUp.form.edtPhone1.set_value(nNum2);
+	this.divSignUp.form.edtPhone2.set_value(nNum3);
+	
+	var sEmail = this.dsUser.getColumn(0,"EMAIL");
+	
+	this.divSignUp.form.edtEmail.set_value(sEmail.split("@")[0]);
+	this.divSignUp.form.edtEmail2.set_value(sEmail.split("@")[1]);
+	
+};
+/************************************************************************************************
+ * 각 COMPONENT 별 EVENT 영역
+ ************************************************************************************************/
+ 
+this.divSignUp_cboEmail_canitemchange = function(obj:nexacro.Combo,e:nexacro.ItemChangeEventInfo)
+{
+	var sDomain = e.postvalue;
+	this.divSignUp.form.edtEmail2.set_value(sDomain);
+};
+
+
+this.divSignUp_btnSignUp_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	this.fnAddDataset();
+	if(!this.fnVaildate())	
+		return;
+	if (this.sOrgId != this.dsUser.getColumn(0,"USER_ID")){  //변경되었다면
+		if(!this.bCheckId){
+			this.divSignUp.form.edtId.setFocus();
+			return;
+		}
+	}
+	this.fnUpdate();
+};
+
+
+this.divSignUp_edtId_onkillfocus = function(obj:nexacro.Edit,e:nexacro.KillFocusEventInfo)
+{
+	if(this.sOrgId != obj.value){
+		this.fnCheckId();
+	}
+	else{
+		this.divSignUp.form.staIdCheck.set_visible(false);
+	}
+	
+};
+
+this.divSignUp_btnCancel_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	this.parent.set_url(this.fvObjApp.avSBeforFormName);
+};
+
+
+
+this.divSignUp_edtPw_oninput = function(obj:nexacro.Edit,e:nexacro.InputEventInfo)
+{   //비밀번호가 변경되면 비밀번호 확인란 활성화
+	obj.updateToDataset();
+	if(this.sOrgPw != obj.value)
+		this.divSignUp.form.edtCheckPw.set_enable(true);
+	else
+		this.divSignUp.form.edtCheckPw.set_enable(false);
+};
+
+]]></Script>
+    <Bind>
+      <BindItem id="item0" compid="divSignUp.form.edtName" propid="value" datasetid="dsUser" columnid="NAME"/>
+      <BindItem id="item1" compid="divSignUp.form.edtId" propid="value" datasetid="dsUser" columnid="USER_ID"/>
+      <BindItem id="item2" compid="divSignUp.form.edtPw" propid="value" datasetid="dsUser" columnid="PASSWORD"/>
+      <BindItem id="item3" compid="divSignUp.form.edtBirthday" propid="value" datasetid="dsUser" columnid="BIRTHDAY"/>
+      <BindItem id="item4" compid="divSignUp.form.edtAccount" propid="value" datasetid="dsUser" columnid="ACCOUNT"/>
+      <BindItem id="item5" compid="divSignUp.form.cboBank" propid="value" datasetid="dsUser" columnid="BANK"/>
+      <BindItem id="item6" compid="divSignUp.form.rdoGender" propid="value" datasetid="dsUser" columnid="GENDER"/>
+      <BindItem id="item7" compid="divSignUp.form.rdoPro" propid="value" datasetid="dsUser" columnid="PRO"/>
+      <BindItem id="item8" compid="divSignUp.form.cboUserType" propid="value" datasetid="dsUser" columnid="USER_TYPE"/>
+      <BindItem id="item9" compid="divSignUp.form.edtCheckPw" propid="value" datasetid="dsUser" columnid="PASSWORDCHK"/>
+    </Bind>
+  </Form>
+</FDL>

@@ -1,0 +1,232 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<FDL version="2.1">
+  <Form id="Foot2020fm" width="1300" height="671" titletext="매치 관리 목록" onload="form_onload" onsize="Foot2030fm_onsize">
+    <Layouts>
+      <Layout height="671" width="1300">
+        <Static id="staTitle" taborder="1" text="매치 목록" left="0" top="0" height="72" cssclass="sta_WF_FootTitle" right="0"/>
+        <Div id="divRange" taborder="0" left="192" top="92" width="258" height="28" url="Cmm::CmmCalFromTo.xfdl"/>
+        <Button id="btnSearch" taborder="2" text="" left="684" top="92" width="30" height="28" verticalAlign="" cssclass="btn_WF_Find" onclick="btnSearch_onclick"/>
+        <ListView id="ListViewHistory" taborder="3" left="160" top="135" height="443" right="160" cssclass="lstv_WF_BtnBlue" binddataset="dsList" oncellclick="ListViewHistory_oncellclick" onbandclick="ListViewHistory_oncellclick">
+          <Formats>
+            <Format id="default">
+              <Band id="body" width="100%" height="63">
+                <Cell id="CellDate" left="50" top="0" width="360" height="24" text="bind:DATE" cssclass="date"/>
+                <Cell id="Cell03" left="50" top="19" width="220" height="24" text="bind:STADIUM_NAME" cssclass="stadium"/>
+                <Cell id="Cell05" left="50" top="43" width="180" height="14" text="bind:MATCH_TYPE" cssclass="typeSmall"/>
+                <Cell id="CellBtn" top="12" height="38" displaytype="buttoncontrol" right="20" text="expr:MATCH_STATE == &quot;20&quot; ? &quot;매치 시작!&quot; : (MATCH_STATE == &quot;30&quot; ? &quot;진행중&quot; : &quot;종료&quot; )" edittype="button" cssclass="expr:MATCH_STATE == &quot;20&quot; ? &quot;btnBlue&quot; : (MATCH_STATE == &quot;30&quot; ? &quot;btnRed&quot; : &quot;btnGray&quot; )" width="92"/>
+              </Band>
+            </Format>
+          </Formats>
+        </ListView>
+        <Div id="divPage" taborder="4" left="160" top="588" height="37" url="Cmm::CmmPaging.xfdl" right="160"/>
+        <Combo id="cboState" taborder="5" left="524" top="92" width="150" height="28" value="" index="-1" innerdataset="dsState" codecolumn="CODE" datacolumn="CODE_NAME"/>
+        <Static id="sta00" taborder="6" text="매치상태" left="470" top="99" width="44" height="14" cssclass="sta_WF_SearchLabel"/>
+        <Static id="sta01" taborder="7" text="기간" left="160" top="99" width="22" height="14" cssclass="sta_WF_SearchLabel"/>
+      </Layout>
+    </Layouts>
+    <Script type="xscript5.1"><![CDATA[
+/**
+*  TobeFootball
+*  @MenuPath     샘플 > script 표준
+*  @FileName     C:\TobeFootball\Foot\Foot2030fm.xfdl
+*  @Creator      박진호
+*  @CreateDate   2024/08/21
+*  @Desction    스크립트 표준 및 주석 표준 정의
+************** 소스 수정 이력 *****************************************************************
+*  date          		Modifier                Description
+*************************************************************************************************
+*  2024/08/21     	        박진호 	              최초 생성
+*************************************************************************************************
+*/
+
+/************************************************************************************************
+ * FORM 변수 선언 영역
+ ************************************************************************************************/
+this.fvSCalFrom=""
+this.fvSCalTo=""
+this.fvObjApp = this.gfnGetApplication();
+this.fvRecords=0; 			//목록갯수
+this.fvPage=0;	 			//페이지번호
+this.fvRecordsOffset=0;		//시작rownum
+this.fvTotalCount=0;		//전체데이터갯수  서버에서 addVariable로 받아옴
+this.fvPageCount=0; 		//실제표출페이지갯수
+/************************************************************************************************
+ * FORM EVENT 영역(onload, onbeforeclose)
+ ************************************************************************************************/
+this.form_onload = function(obj:nexacro.Form,e:nexacro.LoadEventInfo)
+{
+	this.gfnFormOnLoad(this);
+	this.fnBindCom();
+	this.fnPageInit();
+	//this.fnSetCenter(this.staTitle,1);
+};
+
+/************************************************************************************************
+ * CALLBACK 콜백 처리부분(Transaction, Popup)
+ ************************************************************************************************/
+this.fnCallback = function (svcId, errCd, errMsg)
+{
+	if(svcId=="searchManagerList"){
+		trace(this.dsList.saveXML());
+		this.fnPagingSetting();
+	}
+};
+
+/************************************************************************************************
+ * CRUD 및 TRANSACTION 서비스 호출 처리
+ ************************************************************************************************/
+this.fnSearch = function ()
+{
+	var sId = this.fvObjApp.gdsUserInfo.getColumn(0,"USER_ID");
+	
+	this.dsSearch.clearData();
+	var nRow = this.dsSearch.addRow();
+	this.dsSearch.setColumn(nRow, "records", this.fvRecords);
+	this.dsSearch.setColumn(nRow, "recordsOffset", this.fvRecordsOffset); 
+	this.dsSearch.setColumn(nRow, "managerId", sId);
+	this.dsSearch.setColumn(nRow, "fromDate", this.fvSCalFrom);
+	this.dsSearch.setColumn(nRow, "toDate", this.fvSCalTo);
+	this.dsSearch.setColumn(nRow, "state", this.cboState.value);
+	
+	
+	var strSvcUrl = "searchManagerList.do";
+	var inData    = "dsSearch=dsSearch";
+	var outData   = "dsList=dsList";
+	var strArg    = "";
+
+	this.gfnTransaction("searchManagerList", strSvcUrl, inData, outData, strArg, "fnCallback", true);
+};
+
+/************************************************************************************************
+ * 사용자 FUNCTION 영역
+ ************************************************************************************************/
+// this.fnSetCenter = function (obj,nType)
+// {
+// 	if(nType==1){  //수평중앙
+// 		var nLeft = ( this.width / 2 ) - ( obj.width /2 );
+// 		obj.set_left(nLeft);
+// 	}
+// 	else if(nType==2){ //수직중앙
+// 		var nTop = (this.height / 2 ) - ( obj.height /2 );
+// 		obj.set_top(nTop);
+// 	}
+// 	else{  //중앙
+// 		var nLeft = ( this.width / 2 ) - ( obj.width /2 );
+// 		var nTop = (this.height / 2 ) - ( obj.height /2 );
+// 		obj.set_left(nLeft);
+// 		obj.set_top(nTop);
+// 	}
+// 
+// };
+
+/**
+ * @description 
+*/
+// this.fnSetHeight = function ()
+// {
+// 	var nHeight = this.ListViewHistory.getBandProperty("body","height");
+// 	var nCnt = this.dsHistory.rowcount;
+// 	var nHeight = nCnt * nHeight +2 //ListView의 body의 높이 + 위아래 boder값
+// 	this.ListViewMatch.set_height(nHeight);
+// 	this.resetScroll();
+// 
+// };
+
+this.fnPageInit = function ()
+{
+	//pagin info init setting
+	this.fvRecords= 7; //목록갯수
+	this.fvPage=0;	 								 //페이지번호
+	this.fvRecordsOffset=0;							 //시작rownum
+	this.fvPageCount = 10;							 //실제표출페이지갯수
+
+	this.fnSearch();
+};
+
+this.fnPagingSetting = function ()
+{
+	//this.fvTotalCount = nexacro.toNumber(this.dsPagingInfo.getColumn("totalCount")); //전체로우갯수
+	//create page 
+	this.divPage.form.fnCreatePage("fnPagingCallback",
+									this.fvTotalCount,
+									this.fvRecords,
+									this.fvPage,
+									this.fvPageCount);	
+};
+
+/**
+ * @description 페이징콜백 페이징화면에서 눌린페이지 넘겨줌
+*/
+this.fnPagingCallback = function(nPage, nRecordsOffset)
+{
+	this.fvPage = nPage; 				
+	this.fvRecordsOffset = nRecordsOffset;
+	
+	this.fnSearch(); //조회함수호출
+};
+
+/**
+ * @description 공통코드를 innerdataset에 바인딩
+*/
+this.fnBindCom = function ()
+{
+	var arrCode = new Array();
+
+	arrCode.push({codeGroup:"K001", obj: this.cboState, first:"2::전체"}); 
+
+    this.gfnGetCommonCode(arrCode);
+};
+/************************************************************************************************
+ * 각 COMPONENT 별 EVENT 영역
+ ************************************************************************************************/
+
+this.btnSearch_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	//trace(this.fvSCalFrom+"~"+this.fvSCalTo);
+	this.fnPageInit();
+	
+};
+
+this.ListViewHistory_oncellclick = function(obj:nexacro.ListView,e:nexacro.ListViewClickEventInfo)
+{
+	// 매치 관리화면으로 전환
+	this.fvObjApp.avSMatchId = this.dsList.getColumn(e.row, "MATCH_ID");
+	this.parent.set_url("Foot::Foot2021fm.xfdl");
+};
+
+]]></Script>
+    <Objects>
+      <Dataset id="dsList">
+        <ColumnInfo>
+          <Column id="rownum" type="float" size="8"/>
+          <Column id="DATE" type="string" size="32"/>
+          <Column id="STADIUM_NAME" type="string" size="32"/>
+          <Column id="MATCH_TYPE" type="string" size="32"/>
+          <Column id="MATCH_STATE" type="string" size="32"/>
+          <Column id="MATCH_ID" type="int" size="4"/>
+          <Column id="START_TIME" type="bigdecimal" size="8"/>
+        </ColumnInfo>
+      </Dataset>
+      <Dataset id="dsSearch">
+        <ColumnInfo>
+          <Column id="records" type="INT" size="256"/>
+          <Column id="page" type="INT" size="256"/>
+          <Column id="recordsOffset" type="INT" size="256"/>
+          <Column id="pageCount" type="INT" size="256"/>
+          <Column id="managerId" type="STRING" size="256"/>
+          <Column id="toDate" type="STRING" size="256"/>
+          <Column id="fromDate" type="STRING" size="256"/>
+          <Column id="state" type="STRING" size="256"/>
+        </ColumnInfo>
+      </Dataset>
+      <Dataset id="dsState">
+        <ColumnInfo>
+          <Column id="GROUP_CODE" type="STRING" size="256"/>
+          <Column id="GROUP_NAME" type="STRING" size="256"/>
+          <Column id="CODE" type="STRING" size="256"/>
+          <Column id="CODE_NAME" type="STRING" size="256"/>
+        </ColumnInfo>
+      </Dataset>
+    </Objects>
+  </Form>
+</FDL>

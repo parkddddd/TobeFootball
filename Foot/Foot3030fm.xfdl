@@ -1,0 +1,407 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<FDL version="2.1">
+  <Form id="Foot3030fm" width="1038" height="650" titletext="회원관리" onload="form_onload">
+    <Layouts>
+      <Layout height="650" mobileorientation="landscape" width="1038">
+        <Static id="sta00" taborder="1" text="회원관리" left="10" top="10" width="56" height="17" cssclass="sta_WF_TitleMain"/>
+        <Div id="divUserDetail" taborder="10" top="120" width="596" height="316" right="18">
+          <Layouts>
+            <Layout>
+              <Static id="sta00" taborder="0" text="이름" left="0" top="0" width="100" height="46" cssclass="sta_WF_DetailLabel"/>
+              <Static id="sta01" taborder="1" left="99" top="0" width="200" height="46" cssclass="sta_WF_DetailArea"/>
+              <Static id="sta00_00" taborder="2" text="아이디" left="298" top="0" width="100" height="46" cssclass="sta_WF_DetailLabel"/>
+              <Static id="sta01_00" taborder="3" left="397" top="0" height="46" cssclass="sta_WF_DetailArea" width="199"/>
+              <Static id="sta00_01_00" taborder="4" text="생년월일" left="0" top="90" width="100" height="46" cssclass="sta_WF_DetailLabel" onclick="div01_sta00_01_00_onclick"/>
+              <Static id="sta01_01_00" taborder="5" left="99" top="45" width="200" height="46" cssclass="sta_WF_DetailArea"/>
+              <Static id="sta00_00_00_00" taborder="6" text="이메일" left="298" top="45" width="100" height="46" cssclass="sta_WF_DetailLabel"/>
+              <Static id="sta01_00_00" taborder="7" left="397" top="45" height="46" cssclass="sta_WF_DetailArea" width="199"/>
+              <Static id="sta00_01_00_00" taborder="8" text="전화번호" left="0" top="45" width="100" height="46" cssclass="sta_WF_DetailLabel"/>
+              <Static id="sta01_01_00_00" taborder="9" left="99" top="90" width="200" height="46" cssclass="sta_WF_DetailArea"/>
+              <Static id="sta00_00_00_00_00" taborder="10" text="보유머니" left="298" top="90" width="100" height="46" cssclass="sta_WF_DetailLabel"/>
+              <Static id="sta01_00_00_00" taborder="11" left="397" top="90" height="46" cssclass="sta_WF_DetailArea" width="199"/>
+              <Static id="sta00_01_00_00_00_00" taborder="12" text="은행" left="0" top="135" width="100" height="46" cssclass="sta_WF_DetailLabel"/>
+              <Static id="sta01_01_00_00_00_00" taborder="13" left="99" top="135" width="200" height="46" cssclass="sta_WF_DetailArea"/>
+              <Static id="sta00_00_00_00_00_00_00" taborder="14" text="계좌번호" left="298" top="135" width="100" height="46" cssclass="sta_WF_DetailLabel"/>
+              <Static id="sta01_00_00_00_00" taborder="15" left="397" top="135" height="46" cssclass="sta_WF_DetailArea" width="199"/>
+              <Static id="sta00_00_00_00_00_00_00_00" taborder="16" text="성별" left="298" top="180" width="100" height="46" cssclass="sta_WF_DetailLabel"/>
+              <Static id="sta01_01_00_00_00_00_00" taborder="17" left="99" top="180" width="200" height="46" cssclass="sta_WF_DetailArea"/>
+              <Static id="sta00_01_00_00_00_00_00" taborder="18" text="선수출신 여부" left="0" top="180" width="100" height="46" cssclass="sta_WF_DetailLabel"/>
+              <Static id="sta01_00_00_00_00_00" taborder="19" left="397" top="180" height="46" cssclass="sta_WF_DetailArea" width="199"/>
+              <Static id="sta00_00_00_00_00_00_00_00_00" taborder="20" text="회원구분" left="298" top="225" width="100" height="46" cssclass="sta_WF_DetailLabel"/>
+              <Static id="sta01_01_00_00_00_00_00_00" taborder="21" left="99" top="225" width="200" height="46" cssclass="sta_WF_DetailArea"/>
+              <Static id="sta00_01_00_00_00_00_00_00" taborder="22" text="레벨" left="0" top="225" width="100" height="46" cssclass="sta_WF_DetailLabel"/>
+              <Static id="sta01_00_00_00_00_00_00" taborder="23" left="397" top="225" height="46" cssclass="sta_WF_DetailArea" width="199"/>
+              <Static id="sta00_01_00_00_00_00_00_00_00" taborder="24" text="승인여부" left="0" top="270" width="100" height="46" cssclass="sta_WF_DetailLabel"/>
+              <Static id="sta01_01_00_00_00_00_00_00_00" taborder="25" left="99" top="270" height="46" cssclass="sta_WF_DetailArea" width="497"/>
+              <Edit id="edt00" taborder="26" left="105" top="7" width="175" height="32"/>
+              <Edit id="edt00_00" taborder="27" left="403" top="7" width="175" height="32"/>
+              <Edit id="edt00_00_00_00" taborder="28" left="403" top="52" width="175" height="32"/>
+              <Edit id="edt00_00_00_00_00_00" taborder="29" left="403" top="142" width="175" height="32"/>
+              <Calendar id="cal00" taborder="30" left="105" top="97" width="175" height="32"/>
+              <Combo id="cboBank" taborder="31" left="105" top="142" width="175" height="32" value="" index="-1" innerdataset="dsBank" datacolumn="CODE_NAME" codecolumn="CODE"/>
+              <Radio id="rdoPro" taborder="32" left="105" top="187" width="175" height="32" innerdataset="dsPro" codecolumn="CODE" datacolumn="CODE_NAME" direction="vertical"/>
+              <Radio id="rdoGender" taborder="33" left="403" top="187" width="175" height="32" innerdataset="dsGender" codecolumn="CODE" datacolumn="CODE_NAME" direction="vertical"/>
+              <Radio id="rdoUserType" taborder="34" left="403" top="232" height="32" innerdataset="dsUserType" codecolumn="CODE" datacolumn="CODE_NAME" direction="vertical" width="193"/>
+              <Combo id="cboLevel" taborder="35" left="105" top="232" width="175" height="32" value="" index="-1" innerdataset="dsLevel" datacolumn="CODE_NAME" codecolumn="CODE"/>
+              <Radio id="rdoGrant" taborder="36" left="105" top="277" height="32" innerdataset="dsGrant" codecolumn="CODE" datacolumn="CODE_NAME" direction="vertical" width="491"/>
+              <MaskEdit id="msk00" taborder="37" left="105" top="52" width="175" height="32" type="string" format="###-####-####"/>
+              <MaskEdit id="msk01" taborder="38" left="403" top="97" width="175" height="32" type="number" format=","/>
+            </Layout>
+          </Layouts>
+        </Div>
+        <Grid id="grdUser" taborder="0" left="10" top="120" right="divUserDetail:10" binddataset="dsUser" autofittype="col" nodatatext="데이터가 없습니다." height="520">
+          <Formats>
+            <Format id="default">
+              <Columns>
+                <Column size="90"/>
+                <Column size="90"/>
+                <Column size="90"/>
+                <Column size="70"/>
+              </Columns>
+              <Rows>
+                <Row size="28" band="head"/>
+                <Row size="28"/>
+              </Rows>
+              <Band id="head">
+                <Cell text="아이디"/>
+                <Cell col="1" text="성명"/>
+                <Cell col="2" text="레벨"/>
+                <Cell col="3" text="회원구분"/>
+              </Band>
+              <Band id="body">
+                <Cell text="bind:USER_ID" displaytype="text" edittype="none"/>
+                <Cell col="1" text="bind:NAME" edittype="none" displaytype="text"/>
+                <Cell col="2" text="bind:LEVEL" displaytype="combotext" combodataset="dsLevel" combocodecol="CODE" combodatacol="CODE_NAME" edittype="none"/>
+                <Cell col="3" text="bind:USER_TYPE" displaytype="combotext" edittype="none" combodataset="dsUserType" combodatacol="CODE_NAME" combocodecol="CODE"/>
+              </Band>
+            </Format>
+          </Formats>
+        </Grid>
+        <Div id="divSearch" taborder="2" text="" left="10" top="35" height="50" right="10" cssclass="div_WF_Search">
+          <Layouts>
+            <Layout>
+              <Static id="sta00" taborder="0" text="회원구분" left="10" top="18" width="44" height="14" cssclass="sta_WF_SearchLabel"/>
+              <Radio id="rdoUserType" taborder="1" left="64" top="13" width="299" height="24" innerdataset="dsSelectUserType" datacolumn="CODE_NAME" codecolumn="CODE" direction="vertical" onitemchanged="divSearch_rdoUserType_onitemchanged"/>
+              <Static id="sta01" taborder="2" text="선수출신여부" left="413" top="18" width="66" height="14" cssclass="sta_WF_SearchLabel"/>
+              <Combo id="cboPro" taborder="3" text="cbo00" left="489" top="11" width="96" height="28" innerdataset="dsSelectPro" datacolumn="CODE_NAME" codecolumn="CODE"/>
+              <Static id="sta02" taborder="4" text="성명" left="635" top="18" width="22" height="14" cssclass="sta_WF_SearchLabel"/>
+              <Edit id="edtName" taborder="5" left="667" top="11" width="160" height="28"/>
+            </Layout>
+          </Layouts>
+        </Div>
+        <Button id="btnSearch" taborder="3" text="조회" width="63" right="142" cssclass="btn_WF_FrmMain" top="4" height="26" background="#204f75" border="1px solid #0e2436" onclick="btnSearch_onclick"/>
+        <Button id="btnDel" taborder="4" text="삭제" top="4" width="63" height="26" right="76" cssclass="btn_WF_FrmMain" onclick="btnDel_onclick"/>
+        <Button id="btnSave" taborder="5" text="저장" top="4" width="63" height="26" right="10" cssclass="btn_WF_FrmMain" onclick="btnSave_onclick"/>
+        <Static id="sta01" taborder="6" text="회원목록" left="10" top="90" width="48" height="20" cssclass="sta_WF_TitleSub"/>
+        <Static id="sta02" taborder="7" text="상세정보" top="90" width="48" height="20" cssclass="sta_WF_TitleSub" right="566"/>
+        <Static id="sta03" taborder="8" text="경기기록" top="450" width="48" height="20" cssclass="sta_WF_TitleSub" right="566"/>
+        <Grid id="grdRecord" taborder="9" top="480" right="10" width="604" binddataset="dsRecord" height="155" autofittype="col">
+          <Formats>
+            <Format id="default">
+              <Columns>
+                <Column size="130"/>
+                <Column size="130"/>
+                <Column size="56"/>
+                <Column size="56"/>
+                <Column size="56"/>
+                <Column size="56"/>
+                <Column size="56"/>
+                <Column size="56"/>
+                <Column size="56"/>
+              </Columns>
+              <Rows>
+                <Row size="24" band="head"/>
+                <Row size="24"/>
+                <Row size="24" band="summ"/>
+              </Rows>
+              <Band id="head">
+                <Cell text="매치일자"/>
+                <Cell col="1" text="구장명"/>
+                <Cell col="2" text="쿼터수"/>
+                <Cell col="3" text="승"/>
+                <Cell col="4" text="무"/>
+                <Cell col="5" text="패"/>
+                <Cell col="6" text="득점"/>
+                <Cell col="7" text="도움"/>
+                <Cell col="8" text="평점"/>
+              </Band>
+              <Band id="body">
+                <Cell text="bind:MATCH_DATE" displaytype="calendarcontrol"/>
+                <Cell col="1" text="bind:NAME"/>
+                <Cell col="2" text="bind:PLAY_COUNT"/>
+                <Cell col="3" text="bind:WIN"/>
+                <Cell col="4" text="bind:DRAW"/>
+                <Cell col="5" text="bind:LOSE"/>
+                <Cell col="6" text="bind:GOAL"/>
+                <Cell col="7" text="bind:ASSIST"/>
+                <Cell col="8" text="bind:RATING"/>
+              </Band>
+              <Band id="summary">
+                <Cell/>
+                <Cell col="1"/>
+                <Cell col="2" text="expr:dataset.getSum(&quot;PLAY_COUNT&quot;)"/>
+                <Cell col="3" text="expr:dataset.getSum(&quot;WIN&quot;)"/>
+                <Cell col="4" text="expr:dataset.getSum(&quot;DRAW&quot;)"/>
+                <Cell col="5" text="expr:dataset.getSum(&quot;LOSE&quot;)"/>
+                <Cell col="6" text="expr:dataset.getSum(&quot;GOAL&quot;)"/>
+                <Cell col="7" text="expr:dataset.getSum(&quot;ASSIST&quot;)"/>
+                <Cell col="8" text="expr:nexacro.round(dataset.getAvg(&quot;RATING&quot;),1)"/>
+              </Band>
+            </Format>
+          </Formats>
+        </Grid>
+      </Layout>
+    </Layouts>
+    <Objects>
+      <Dataset id="dsUser" onrowposchanged="dsUser_onrowposchanged">
+        <ColumnInfo>
+          <Column id="MONEY" type="INT" size="4"/>
+          <Column id="ACCOUNT" type="INT" size="4"/>
+          <Column id="PASSWORD" type="STRING" size="32"/>
+          <Column id="USER_TYPE" type="STRING" size="32"/>
+          <Column id="PHONE" type="INT" size="4"/>
+          <Column id="USER_ID" type="STRING" size="32"/>
+          <Column id="GENDER" type="STRING" size="32"/>
+          <Column id="LEVEL" type="STRING" size="32"/>
+          <Column id="EMAIL" type="STRING" size="32"/>
+          <Column id="PRO" type="STRING" size="32"/>
+          <Column id="BIRTHDAY" type="DATETIME" size="17"/>
+          <Column id="NAME" type="STRING" size="32"/>
+          <Column id="BANK" type="STRING" size="256"/>
+          <Column id="GRANT" type="STRING" size="256"/>
+        </ColumnInfo>
+      </Dataset>
+      <Dataset id="dsLevel">
+        <ColumnInfo>
+          <Column id="GROUP_CODE" type="STRING" size="256"/>
+          <Column id="GROUP_NAME" type="STRING" size="256"/>
+          <Column id="CODE" type="STRING" size="256"/>
+          <Column id="CODE_NAME" type="STRING" size="256"/>
+        </ColumnInfo>
+      </Dataset>
+      <Dataset id="dsUserType">
+        <ColumnInfo>
+          <Column id="GROUP_CODE" type="STRING" size="256"/>
+          <Column id="GROUP_NAME" type="STRING" size="256"/>
+          <Column id="CODE" type="STRING" size="256"/>
+          <Column id="CODE_NAME" type="STRING" size="256"/>
+        </ColumnInfo>
+      </Dataset>
+      <Dataset id="dsBank">
+        <ColumnInfo>
+          <Column id="GROUP_CODE" type="STRING" size="256"/>
+          <Column id="GROUP_NAME" type="STRING" size="256"/>
+          <Column id="CODE" type="STRING" size="256"/>
+          <Column id="CODE_NAME" type="STRING" size="256"/>
+        </ColumnInfo>
+      </Dataset>
+      <Dataset id="dsPro">
+        <ColumnInfo>
+          <Column id="GROUP_CODE" type="STRING" size="256"/>
+          <Column id="GROUP_NAME" type="STRING" size="256"/>
+          <Column id="CODE" type="STRING" size="256"/>
+          <Column id="CODE_NAME" type="STRING" size="256"/>
+        </ColumnInfo>
+      </Dataset>
+      <Dataset id="dsGender">
+        <ColumnInfo>
+          <Column id="GROUP_CODE" type="STRING" size="256"/>
+          <Column id="GROUP_NAME" type="STRING" size="256"/>
+          <Column id="CODE" type="STRING" size="256"/>
+          <Column id="CODE_NAME" type="STRING" size="256"/>
+        </ColumnInfo>
+      </Dataset>
+      <Dataset id="dsGrant">
+        <ColumnInfo>
+          <Column id="GROUP_CODE" type="STRING" size="256"/>
+          <Column id="GROUP_NAME" type="STRING" size="256"/>
+          <Column id="CODE" type="STRING" size="256"/>
+          <Column id="CODE_NAME" type="STRING" size="256"/>
+        </ColumnInfo>
+      </Dataset>
+      <Dataset id="dsSelectUserType">
+        <ColumnInfo>
+          <Column id="GROUP_CODE" type="STRING" size="256"/>
+          <Column id="GROUP_NAME" type="STRING" size="256"/>
+          <Column id="CODE" type="STRING" size="256"/>
+          <Column id="CODE_NAME" type="STRING" size="256"/>
+        </ColumnInfo>
+      </Dataset>
+      <Dataset id="dsSelectPro">
+        <ColumnInfo>
+          <Column id="GROUP_CODE" type="STRING" size="256"/>
+          <Column id="GROUP_NAME" type="STRING" size="256"/>
+          <Column id="CODE" type="STRING" size="256"/>
+          <Column id="CODE_NAME" type="STRING" size="256"/>
+        </ColumnInfo>
+      </Dataset>
+      <Dataset id="dsSearch">
+        <ColumnInfo>
+          <Column id="NAME" type="STRING" size="256"/>
+          <Column id="PRO" type="STRING" size="256"/>
+          <Column id="USER_TYPE" type="STRING" size="256"/>
+        </ColumnInfo>
+        <Rows>
+          <Row/>
+        </Rows>
+      </Dataset>
+      <Dataset id="dsRecord">
+        <ColumnInfo>
+          <Column id="MATCH_DATE" type="DATETIME" size="17"/>
+          <Column id="NAME" type="STRING" size="32"/>
+          <Column id="PLAY_COUNT" type="INT" size="4"/>
+          <Column id="WIN" type="INT" size="4"/>
+          <Column id="DRAW" type="INT" size="4"/>
+          <Column id="LOSE" type="INT" size="4"/>
+          <Column id="GOAL" type="INT" size="4"/>
+          <Column id="ASSIST" type="INT" size="4"/>
+          <Column id="RATING" type="FLOAT" size="4"/>
+        </ColumnInfo>
+      </Dataset>
+    </Objects>
+    <Script type="xscript5.1"><![CDATA[
+/**
+*  TobeFootball
+*  @MenuPath     샘플 > script 표준
+*  @FileName     C:\TobeFootball\Foot\Foot3010fm.xfdl
+*  @Creator      박진호
+*  @CreateDate   2024/07/31
+*  @Desction    스크립트 표준 및 주석 표준 정의
+************** 소스 수정 이력 *****************************************************************
+*  date          		Modifier                Description
+*************************************************************************************************
+*  2024/07/31     	        박진호 	              최초 생성
+*************************************************************************************************
+*/
+
+/************************************************************************************************
+ * FORM 변수 선언 영역
+ ************************************************************************************************/
+
+
+/************************************************************************************************
+ * FORM EVENT 영역(onload, onbeforeclose)
+ ************************************************************************************************/
+this.form_onload = function(obj:nexacro.Form,e:nexacro.LoadEventInfo)
+{
+	this.gfnFormOnLoad(this);
+	
+	this.fnBindCom();
+	this.fnSearch();
+};
+
+/************************************************************************************************
+ * CALLBACK 콜백 처리부분(Transaction, Popup)
+ ************************************************************************************************/
+this.fnCallback = function (svcID, errorCode, errorMsg)
+{
+	if(svcID=="searchRecord"){
+	trace(this.dsRecord.saveXML());	
+	}
+};
+
+/************************************************************************************************
+ * CRUD 및 TRANSACTION 서비스 호출 처리
+ ************************************************************************************************/
+this.fnSearch = function ()
+{
+	var strSvcUrl = "selectUserList.do";
+	var inData    = "dsSearch=dsSearch";
+	var outData   = "dsUser=dsUser";
+	var strArg    = "";
+
+	this.gfnTransaction("search", strSvcUrl, inData, outData, strArg, "fnCallback", true);
+};
+
+this.fnSave = function ()
+{
+	var strSvcUrl = "saveUserList.do";
+	var inData    = "dsUser=dsUser:U";
+	var outData   = "";
+	var strArg    = "";
+
+	this.gfnTransaction("save", strSvcUrl, inData, outData, strArg, "fnCallback", true);
+};
+
+this.fnSearchRecord = function (sId)
+{
+	var strSvcUrl = "selectUserRecord.do";
+	var inData    = "";
+	var outData   = "dsRecord=dsRecord";
+	var strArg    = "sName="+sId;
+
+	this.gfnTransaction("searchRecord", strSvcUrl, inData, outData, strArg, "fnCallback", true);	
+};
+/************************************************************************************************
+ * 사용자 FUNCTION 영역
+ ************************************************************************************************/
+ 
+/**
+ * @description 공통코드를 innerdataset에 바인딩
+*/
+this.fnBindCom = function ()
+{
+	var arrCode = new Array();
+	arrCode.push({codeGroup:"A001", obj: this.dsUserType });
+	arrCode.push({codeGroup:"E001", obj: this.dsLevel });
+	arrCode.push({codeGroup:"B001", obj: this.dsGender });
+	arrCode.push({codeGroup:"F001", obj: this.dsGrant });
+	arrCode.push({codeGroup:"C001", obj: this.dsPro });
+	arrCode.push({codeGroup:"D001", obj: this.dsBank });
+	arrCode.push({codeGroup:"A001", obj: this.divSearch.form.rdoUserType, first:"2::전체" });  //코드값은 ""
+	arrCode.push({codeGroup:"C001", obj: this.divSearch.form.cboPro, first:"2::전체" });  //코드값은 ""
+
+    this.gfnGetCommonCode(arrCode);
+};
+
+/************************************************************************************************
+ * 각 COMPONENT 별 EVENT 영역
+ ************************************************************************************************/
+
+this.btnSearch_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	this.fnSearch();
+};
+
+this.btnDel_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	this.dsUser.deleteRow(this.dsUser.rowposition)
+};
+
+this.btnSave_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	this.fnSave();
+};
+
+this.dsUser_onrowposchanged = function(obj:nexacro.NormalDataset,e:nexacro.DSRowPosChangeEventInfo)
+{
+	var sId = this.dsUser.getColumn(e.newrow,"USER_ID");
+	
+	this.fnSearchRecord(sId)
+};
+
+this.divSearch_rdoUserType_onitemchanged = function(obj:nexacro.Radio,e:nexacro.ItemChangeEventInfo)
+{
+	this.fnSearch();
+};
+]]></Script>
+    <Bind>
+      <BindItem id="item1" compid="divUserDetail.form.edt00_00_00_00_00_00" propid="value" datasetid="dsUser" columnid="ACCOUNT"/>
+      <BindItem id="item2" compid="divUserDetail.form.rdoUserType" propid="value" datasetid="dsUser" columnid="USER_TYPE"/>
+      <BindItem id="item4" compid="divUserDetail.form.edt00_00" propid="value" datasetid="dsUser" columnid="USER_ID"/>
+      <BindItem id="item5" compid="divUserDetail.form.rdoGender" propid="value" datasetid="dsUser" columnid="GENDER"/>
+      <BindItem id="item6" compid="divUserDetail.form.cboLevel" propid="value" datasetid="dsUser" columnid="LEVEL"/>
+      <BindItem id="item7" compid="divUserDetail.form.edt00_00_00_00" propid="value" datasetid="dsUser" columnid="EMAIL"/>
+      <BindItem id="item8" compid="divUserDetail.form.rdoPro" propid="value" datasetid="dsUser" columnid="PRO"/>
+      <BindItem id="item9" compid="divUserDetail.form.cal00" propid="value" datasetid="dsUser" columnid="BIRTHDAY"/>
+      <BindItem id="item10" compid="divUserDetail.form.edt00" propid="value" datasetid="dsUser" columnid="NAME"/>
+      <BindItem id="item11" compid="divUserDetail.form.cboBank" propid="value" datasetid="dsUser" columnid="BANK"/>
+      <BindItem id="item12" compid="divUserDetail.form.rdoGrant" propid="value" datasetid="dsUser" columnid="GRANT"/>
+      <BindItem id="item13" compid="divSearch.form.edtName" propid="value" datasetid="dsSearch" columnid="NAME"/>
+      <BindItem id="item14" compid="divSearch.form.cboPro" propid="value" datasetid="dsSearch" columnid="PRO"/>
+      <BindItem id="item15" compid="divSearch.form.rdoUserType" propid="value" datasetid="dsSearch" columnid="USER_TYPE"/>
+      <BindItem id="item16" compid="divUserDetail.form.msk00" propid="value" datasetid="dsUser" columnid="PHONE"/>
+      <BindItem id="item17" compid="divUserDetail.form.msk01" propid="value" datasetid="dsUser" columnid="MONEY"/>
+    </Bind>
+  </Form>
+</FDL>

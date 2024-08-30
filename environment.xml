@@ -1,0 +1,24 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ENV version="2.1">
+  <Environment themeid="theme::edupack_nexacro" datatyperule="2.0" icon="url('imagerc::KakaoTalk_20240829_114019282.png')">
+    <ScreenDefinition>
+      <Screen id="Desktop_screen" type="desktop" loadingimage="url('imagerc::sta_WF_FootLogo.gif')"/>
+      <Screen id="screen00" type="desktop" loadingimage="url('imagerc::sta_WF_FootLogo.gif')"/>
+    </ScreenDefinition>
+    <Variables>
+      <Variable id="evAdminId"/>
+      <Variable id="evAdminNm"/>
+      <Variable id="evRunMode" initval="L"/>
+      <Variable id="evUserId" initval="admin"/>
+      <Variable id="evUserNm" initval="관리자"/>
+      <Variable id="evTraceMode" initval="true"/>
+      <Variable id="evMessagePopup" initval="true"/>
+      <Variable id="evLanguage" initval="KO"/>
+      <Variable id="evLanguageChange" initval="KO"/>
+      <Variable id="evQuikView" initval="Y"/>
+      <Variable id="evVariable1" initval="Env Variable Value1"/>
+    </Variables>
+    <Cookies/>
+    <httpheader/>
+  </Environment>
+</ENV>

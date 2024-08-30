@@ -1,0 +1,20 @@
+﻿{
+	"name": "UbiReport",
+	"version": "17.0.0.42",
+	"description": "nexacro platform 17 UbiReport Viewer Library",
+	"license": "",
+	"scripts": [
+		"UbiReport4/UbiReport4.js",
+		"UbiReport4/ubihtml.js",
+		"UbiReport4/ubiexcanvas.js",
+		"UbiReport4/ubinonax.js",
+		"UbiReport4/msg.js"
+	],
+	"objInfo": [
+		"UbiReport4/metainfo/UbiReport4.info"
+	],
+	"designscripts": [
+		"UbiReport4/Design/DesignUbiReport4.js"
+	]
+}
+//# sourceURL=ComComp2.json

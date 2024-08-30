@@ -1,0 +1,22 @@
+{
+	"name": "ExtJs",
+	"version": "1.0.0.0",
+	"description": "Library for Nexacro",
+	"license": "",
+	"scripts": [
+        "ExtJs/EduCommon.js",
+        "ExtJs/ExtFrame.js",
+        "ExtJs/ExtUtil.js",
+        "ExtJs/ExtTransaction.js",
+        "ExtJs/ExtValidation.js",
+        "ExtJs/ExtPopup.js",
+        "ExtJs/ExtMultiLanguage.js",
+        "ExtJs/ExtFile.js",
+        "ExtJs/ExtMessage.js",
+        "ExtJs/ExtGrid.js",
+        "ExtJs/ExtExcel.js",
+        "ExtJs/ExtComp.js", 
+        "ExtJs/ExtPivotGrid.js",
+        "ExtJs/ExtrMateChartH5.js"
+	]
+}

@@ -1,0 +1,137 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<FDL version="2.1">
+  <Form id="Foot1060pu" width="600" height="350" titletext="머니 충전" onload="form_onload">
+    <Layouts>
+      <Layout height="350" mobileorientation="landscape" width="600">
+        <Div id="divMoney" taborder="0" text="div00" left="29" top="46" width="518" height="106" cssclass="div_WF_Money">
+          <Layouts>
+            <Layout>
+              <Static id="sta00" taborder="0" text="보유머니" left="30" top="20" width="56" height="17" cssclass="sta_WF_TitleMain"/>
+              <Static id="staMoney" taborder="1" text="1000원" left="30" top="57" width="133" height="17" cssclass="sta_WF_TitleMain"/>
+            </Layout>
+          </Layouts>
+        </Div>
+        <Button id="btnAdd2000" taborder="1" text="2,000원" left="29" top="169" width="91" height="31" onclick="btn_onclick" cssclass="btn_WF_Money"/>
+        <Button id="btnAdd5000" taborder="2" text="5,000원" left="135" top="169" width="91" height="31" onclick="btn_onclick" cssclass="btn_WF_Money"/>
+        <Button id="btnAdd10000" taborder="3" text="10,000원" left="241" top="169" width="91" height="31" onclick="btn_onclick" cssclass="btn_WF_Money"/>
+        <Button id="btnAdd11000" taborder="4" text="11,000원" left="347" top="169" width="91" height="31" onclick="btn_onclick" cssclass="btn_WF_Money"/>
+        <Button id="btnAdd12000" taborder="5" text="12,000원" left="453" top="169" width="91" height="31" onclick="btn_onclick" cssclass="btn_WF_Money"/>
+        <Button id="btnAdd15000" taborder="6" text="15,000원" left="29" top="215" width="91" height="31" onclick="btn_onclick" cssclass="btn_WF_Money"/>
+        <Button id="btnAdd20000" taborder="7" text="20,000원" left="136" top="215" width="91" height="31" onclick="btn_onclick" cssclass="btn_WF_Money"/>
+        <Button id="btnAdd30000" taborder="8" text="30,000원" left="241" top="215" width="91" height="31" onclick="btn_onclick" cssclass="btn_WF_Money"/>
+        <Button id="btnAdd50000" taborder="9" text="50,000원" left="348" top="215" width="91" height="31" onclick="btn_onclick" cssclass="btn_WF_Money"/>
+        <Button id="btnAdd100000" taborder="10" text="100,000원" left="453" top="215" width="91" height="31" onclick="btn_onclick" cssclass="btn_WF_Money"/>
+        <Button id="btnSave" taborder="11" text="충전하기" left="180" top="285" width="100" height="45" onclick="btnSave_onclick" cssclass="btn_WF_GrdPageS"/>
+        <Button id="btnCancel" taborder="12" text="취소" top="285" height="45" right="180" width="100" onclick="btnCancel_onclick" cssclass="btn_WF_GrdPageS"/>
+      </Layout>
+    </Layouts>
+    <Script type="xscript5.1"><![CDATA[
+/**
+*  TobeFootball
+*  @MenuPath     샘플 > script 표준
+*  @FileName     C:\TobeFootball\Foot\Foot1060pu.xfdl
+*  @Creator      박진호
+*  @CreateDate   2024/08/17
+*  @Desction    스크립트 표준 및 주석 표준 정의
+************** 소스 수정 이력 *****************************************************************
+*  date          		Modifier                Description
+*************************************************************************************************
+*  2024/08/17     	        박진호 	              최초 생성
+*************************************************************************************************
+*/
+
+/************************************************************************************************
+ * FORM 변수 선언 영역
+ ************************************************************************************************/
+this.fvObjApp = this.gfnGetApplication();
+
+this.fvSMoney = "";  //트랜잭션 variable
+this.fvSAfterMoney = "";  //충전 후 금액. 트랜잭션 variable  00,000원
+this.fvNAfterMoney = "";  //충전 후 금액. 트랜잭션 variable  00000
+this.fvNChargeMoney = "";  //충전할 금액
+/************************************************************************************************
+ * FORM EVENT 영역(onload, onbeforeclose)
+ ************************************************************************************************/
+this.form_onload = function(obj:nexacro.Form,e:nexacro.LoadEventInfo)
+{
+	this.gfnFormOnLoad(this);
+	
+	this.fnSearch();
+};
+
+
+/************************************************************************************************
+ * CALLBACK 콜백 처리부분(Transaction, Popup)
+ ************************************************************************************************/
+this.fnCallback = function (svcId, errCd, errMsg)
+{
+	if(svcId=="searchMoney"){
+		this.divMoney.form.staMoney.set_text(this.fvSMoney)
+	}
+	if(svcId=="saveMoney"){
+		var sTitle = "충전 완료";	// 모달팝업
+		var sContents = "충전후 잔액: "+this.fvSAfterMoney ;
+		var oArg = {paramContents:sContents};
+		var oOption = {title:sTitle};	//top, left를 지정하지 않으면 가운데정렬 //"top=20,left=370"
+		var sPopupCallBack = "fnPopupCallback";
+		this.gfnOpenPopup( "moneyCharge","Cmm::CmmAlert.xfdl",oArg,sPopupCallBack,oOption);	
+	}
+};
+
+this.fnPopupCallback = function (sId, sVal)
+{
+	if(sId=="moneyCharge"){
+		this.close();
+	}
+};
+/************************************************************************************************
+ * CRUD 및 TRANSACTION 서비스 호출 처리
+ ************************************************************************************************/
+this.fnSearch = function ()
+{
+	var sId = this.fvObjApp.gdsUserInfo.getColumn(0,"USER_ID");
+	var strSvcUrl = "searchMoney.do";
+	var inData    = "";
+	var outData   = "";
+	var strArg    = "sId="+sId;
+
+	this.gfnTransaction("searchMoney", strSvcUrl, inData, outData, strArg, "fnCallback", true);
+};
+
+this.fnSave = function (nMoney)
+{
+	var sId = this.fvObjApp.gdsUserInfo.getColumn(0,"USER_ID");
+	var strSvcUrl = "saveMoney.do";
+	var inData    = "";
+	var outData   = "";
+	var strArg    = "sId="+sId+" nMoney="+nMoney;
+
+	this.gfnTransaction("saveMoney", strSvcUrl, inData, outData, strArg, "fnCallback", true);
+};
+/************************************************************************************************
+ * 사용자 FUNCTION 영역
+ ************************************************************************************************/
+this.btn_onclick = function (obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	var nMoney = obj.name.substr(6);  //btnAdd10000에서 10000만 추출
+	this.fvNChargeMoney = nMoney;
+};
+
+/************************************************************************************************
+ * 각 COMPONENT 별 EVENT 영역
+ ************************************************************************************************/
+
+this.btnSave_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	this.fnSave(this.fvNChargeMoney);
+
+};
+
+
+this.btnCancel_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	this.close();
+};
+]]></Script>
+  </Form>
+</FDL>

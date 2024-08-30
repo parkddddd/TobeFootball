@@ -1,0 +1,105 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<FDL version="2.1">
+  <Form id="CmmPopup" width="512" height="384" titletext="팝업 화면 연결" onload="form_onload">
+    <Layouts>
+      <Layout height="384" width="512">
+        <Button id="btnClose" taborder="0" text="close" width="100" height="28" onclick="btnClose_onclick" left="39.84%" bottom="10" cssclass="btn_POP_Btn"/>
+        <Div id="divForm" taborder="1" left="10" top="10" right="10" bottom="50"/>
+        <Button id="btn00" taborder="2" text="modeless" width="80" height="30" onclick="btn00_onclick" left="10" bottom="10" visible="false"/>
+      </Layout>
+    </Layouts>
+    <Script type="xscript5.1"><![CDATA[/**
+*  Necacro EduPack
+*  @MenuPath    Cmm > CmmPopup.xfdl (공통 팝업페이지)
+*  @FileName 	CmmPopup.xfdl 
+*  @Creator 	Education
+*  @CreateDate 	2022.05.01
+*  @Desction    공통 팝업페이지
+************** 소스 수정 이력 ***************************************************
+*  date          		Modifier                Description
+*******************************************************************************
+*  2022.05.01     	Education 	                최초 생성 
+*******************************************************************************
+*/
+
+/************************************************************************************************
+ * FORM 변수 선언 영역
+ ************************************************************************************************/
+ 
+/***********************************************************************************************
+* FORM EVENT 영역(onload)
+/***********************************************************************************************/
+this.form_onload = function(obj:nexacro.Form,e:nexacro.LoadEventInfo)
+{
+	this.gfnFormOnLoad(this);
+	
+	//trace("paramTitle : " + this.getOwnerFrame().paramTitle);	
+    trace("paramCode : " + this.getOwnerFrame().paramCode);	
+    trace("paramNum : " + this.getOwnerFrame().paramNum);	
+	trace("paramUrl : " + this.getOwnerFrame().paramUrl);	
+	trace("popupType : " + this.getOwnerFrame().popupType);	
+	
+	//타이틀세팅
+	//if( !this.gfnIsNull(this.getOwnerFrame().paramTitle)){
+	//	this.set_titletext(this.getOwnerFrame().paramTitle);
+	//}
+	
+	//divForm url 세팅
+	if( !this.gfnIsNull(this.getOwnerFrame().paramUrl)){
+		this.divForm.set_url(this.getOwnerFrame().paramUrl);
+	}
+};
+
+/************************************************************************************************
+* TRANSACTION 서비스 호출 처리
+************************************************************************************************/
+
+/************************************************************************************************
+ * CALLBACK 콜백 처리부분
+ ************************************************************************************************/
+
+/**
+* fnPopupCallback : popup callback
+* @param  : strId		   - [string]popup id
+* @param  : strVal		   - [string]return val
+* @return : N/A
+*/
+ this.fnPopupCallback = function(strId, strVal)
+ {
+	trace(" strId : " + strId + " strVal : " + strVal);
+ };
+ 
+ /************************************************************************************************
+ * 사용자 FUNCTION 영역
+ ************************************************************************************************/
+ 
+ /************************************************************************************************
+ * 각 COMPONENT 별 EVENT 영역
+ ************************************************************************************************/
+/**
+ * @description popup close
+*/
+this.btnClose_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	var rtnVal;
+	
+	// 팝업에 url Link시 리턴할 form변수
+	if (this.gfnIsNull(this.getOwnerFrame().paramUrl) == false) {
+		rtnVal = this.divForm.form.fvRtnVal;
+	}
+	else {
+		rtnVal = JSON.stringify({aaa:"tobesoft", bbb:"투비소프트"});
+	}
+	
+	this.gfnClosePopup(rtnVal);
+};
+
+this.btn00_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	var oArg = {paramCode:"abcd", paramNum:12345, paramDataset:this.dsTest};
+	var oOption = {popuptype:"modeless",title:"모달리스 팝업",width:"512",height:"384"};	//top, left를 지정하지 않으면 가운데정렬 //top:20,left:370
+	var sPopupCallBack = "fnPopupCallback";
+	this.gfnOpenPopup("modelesspopup2","Cmm::CmmPopup.xfdl",oArg,sPopupCallBack,oOption);	
+};]]></Script>
+  </Form>
+</FDL>

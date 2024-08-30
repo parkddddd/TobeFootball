@@ -1,0 +1,254 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<FDL version="2.1">
+  <Form id="Foot1030fm" width="1300" height="671" titletext="사용자 기록실" onload="form_onload" onsize="Foot1030fm_onsize">
+    <Layouts>
+      <Layout height="671" mobileorientation="landscape" width="1300">
+        <Static id="staTitle" taborder="0" text="기록실" left="0" top="0" height="72" cssclass="sta_WF_FootTitle" right="0"/>
+        <Div id="divRecod" taborder="1" left="300" top="73" height="568" width="700" cssclass="div_WF_BgNavy">
+          <Layouts>
+            <Layout>
+              <Div id="divRecordRange" taborder="0" top="10" height="28" url="Cmm::CmmCalFromTo.xfdl" width="258" right="10"/>
+              <Static id="sta00" taborder="1" text="내 현재 레벨" left="50" top="60" width="160" height="32" cssclass="sta_WF_White28px"/>
+              <Static id="sta00_00" taborder="2" text="세미프로 1" left="50" top="112" width="160" height="37" cssclass="sta_WF_White32px"/>
+              <Static id="sta01" taborder="3" left="50" top="161" height="1" cssclass="sta_WF_Line" right="55"/>
+              <Static id="sta00_00_00_00_00_00" taborder="4" text="6경기" top="64" width="86" height="28" left="240" cssclass="sta_WF_White24px"/>
+              <Static id="sta00_00_00_00_00_00_00" taborder="5" text="1승" top="64" width="62" height="28" left="361" cssclass="sta_WF_White24px"/>
+              <Static id="sta00_00_00_00_00_00_00_00" taborder="6" text="2무" top="64" width="62" height="28" left="482" cssclass="sta_WF_White24px"/>
+              <Static id="sta00_00_00_00_00_00_00_00_00" taborder="7" text="3패" top="64" height="28" left="603" width="62" cssclass="sta_WF_White24px"/>
+              <Static id="sta00_00_00_00_00_00_00_00_00_00" taborder="8" text="10골" top="112" width="59" height="28" left="285" cssclass="sta_WF_White24px"/>
+              <Static id="sta00_00_00_00_00_00_00_00_00_00_00" taborder="9" text="7어시" top="112" width="86" height="28" left="419" cssclass="sta_WF_White24px"/>
+              <Static id="sta00_00_00_00_00_00_00_00_00_00_00_00_00" taborder="10" text="8.1점" top="112" width="87" height="28" left="560" cssclass="sta_WF_White24px"/>
+              <ListView id="ListViewRecord" taborder="11" left="50" top="189" height="332" binddataset="dsList" right="50" cssclass="lstv_WF_Navy">
+                <Formats>
+                  <Format id="default">
+                    <Band id="body" width="100%" height="55">
+                      <Cell id="Cell03" left="5" top="15" width="170" height="24" text="bind:DATE"/>
+                      <Cell id="Cell05" left="185" top="15" width="100" height="24" text="bind:NAME"/>
+                      <Cell id="Cell07" left="380" top="4" width="40" height="24" text="bind:PLAY_COUNT"/>
+                      <Cell id="Cell09" left="430" top="4" width="40" height="24" text="bind:WIN"/>
+                      <Cell id="Cell11" left="480" top="4" width="40" height="24" text="bind:DRAW"/>
+                      <Cell id="Cell13" left="530" top="4" width="40" height="24" text="bind:LOSE"/>
+                      <Cell id="Cell15" left="430" top="30" width="40" height="24" text="bind:GOAL"/>
+                      <Cell id="Cell17" left="480" top="30" width="40" height="24" text="bind:ASSIST"/>
+                      <Cell id="Cell19" left="530" top="30" width="40" height="24" text="bind:RATING"/>
+                    </Band>
+                  </Format>
+                </Formats>
+              </ListView>
+              <Div id="divPage" taborder="12" left="100" top="526" height="37" url="Cmm::CmmPagingRecord.xfdl" right="100" cssclass="div_WF_BgNavy"/>
+            </Layout>
+          </Layouts>
+        </Div>
+      </Layout>
+    </Layouts>
+    <Script type="xscript5.1"><![CDATA[
+/**
+*  TobeFootball
+*  @MenuPath     샘플 > script 표준
+*  @FileName     C:\TobeFootball\Foot\Foot1030fm.xfdl
+*  @Creator      박진호
+*  @CreateDate   2024/08/27
+*  @Desction    스크립트 표준 및 주석 표준 정의
+************** 소스 수정 이력 *****************************************************************
+*  date          		Modifier                Description
+*************************************************************************************************
+*  2024/08/27     	        박진호 	              최초 생성
+*************************************************************************************************
+*/
+
+/************************************************************************************************
+ * FORM 변수 선언 영역
+ ************************************************************************************************/
+this.fvObjApp = this.gfnGetApplication();
+this.fvRecords=0; 			//목록갯수
+this.fvPage=0;	 			//페이지번호
+this.fvRecordsOffset=0;		//시작rownum
+this.fvTotalCount=0;		//전체데이터갯수  서버에서 addVariable로 받아옴
+this.fvPageCount=0; 		//실제표출페이지갯수
+/************************************************************************************************
+ * FORM EVENT 영역(onload, onbeforeclose)
+ ************************************************************************************************/
+this.form_onload = function(obj:nexacro.Form,e:nexacro.LoadEventInfo)
+{
+	this.gfnFormOnLoad(this);
+	this.fnSearch();
+	this.fnSetCenter(this.divRecod);
+};
+
+this.Foot1030fm_onsize = function(obj:nexacro.Form,e:nexacro.SizeEventInfo)
+{
+	this.fnSetCenter(this.divRecod);
+};
+
+/************************************************************************************************
+ * CALLBACK 콜백 처리부분(Transaction, Popup)
+ ************************************************************************************************/
+this.fnCallback = function (svcId, errCd, errMsg)
+{
+	if(svcId == "searchUserRecordAvg" ){
+		//trace(this.dsAvg.saveXML());
+		this.fnPageInit();
+	}
+	else if(svcId == "searchUserRecordPaging"){
+		trace(this.dsList.saveXML());
+		this.fnPagingSetting();
+	}
+};
+
+/************************************************************************************************
+ * CRUD 및 TRANSACTION 서비스 호출 처리
+ ************************************************************************************************/
+this.fnSearch = function ()
+{
+	var sUserId = this.fvObjApp.gdsUserInfo.getColumn(0,"USER_ID");
+	this.dsSearch.setColumn(0,"USER_ID",sUserId);
+
+	var strSvcUrl = "searchUserRecordAvg.do";
+	var inData    = "dsSearch=dsSearch";
+	var outData   = "dsAvg=dsAvg";
+	var strArg    = "";
+
+	this.gfnTransaction("searchUserRecordAvg", strSvcUrl, inData, outData, strArg, "fnCallback", true);
+};
+
+this.fnSearchPaging = function ()
+{
+	var sUserId = this.fvObjApp.gdsUserInfo.getColumn(0,"USER_ID");
+	var sFrom = this.dsSearch.getColumn(0,"CAL_FROM");
+	var sTo = this.dsSearch.getColumn(0,"CAL_TO");
+	
+	this.dsSearchPaging.clearData();
+	var nRow = this.dsSearchPaging.addRow();
+	this.dsSearchPaging.setColumn(nRow, "records", this.fvRecords);
+	this.dsSearchPaging.setColumn(nRow, "recordsOffset", this.fvRecordsOffset); 
+	this.dsSearchPaging.setColumn(nRow,"USER_ID",sUserId);
+	this.dsSearchPaging.setColumn(nRow,"CAL_FROM",sFrom);
+	this.dsSearchPaging.setColumn(nRow,"CAL_TO",sTo);
+	
+
+
+	var strSvcUrl = "searchUserRecordPaging.do";
+	var inData    = "dsSearchPaging=dsSearchPaging";
+	var outData   = "dsList=dsList";
+	var strArg    = "";
+
+	this.gfnTransaction("searchUserRecordPaging", strSvcUrl, inData, outData, strArg, "fnCallback", true);	
+};
+/************************************************************************************************
+ * 사용자 FUNCTION 영역
+ ************************************************************************************************/
+this.fnPageInit = function ()
+{
+	//pagin info init setting
+	this.fvRecords= 6; //목록갯수  6개로하기
+	this.fvPage=0;	 								 //페이지번호
+	this.fvRecordsOffset=0;							 //시작rownum
+	this.fvPageCount = 10;							 //실제표출페이지갯수
+
+	this.fnSearchPaging();
+};
+
+this.fnPagingSetting = function ()
+{
+	//this.fvTotalCount = nexacro.toNumber(this.dsPagingInfo.getColumn("totalCount")); //전체로우갯수
+	//create page 
+	this.divRecod.form.divPage.form.fnCreatePage("fnPagingCallback",
+									this.fvTotalCount,
+									this.fvRecords,
+									this.fvPage,
+									this.fvPageCount);	
+};
+
+/**
+ * @description 페이징콜백 페이징화면에서 눌린페이지 넘겨줌
+*/
+this.fnPagingCallback = function(nPage, nRecordsOffset)
+{
+	this.fvPage = nPage; 				
+	this.fvRecordsOffset = nRecordsOffset;
+	
+	this.fnSearchPaging(); //조회함수호출
+};
+
+/**
+ * @description 수직 중앙을 맞춰주는 함수
+*/
+
+this.fnSetCenter = function (obj)
+{ //수평중앙
+		var nLeft = ( this.width / 2 ) - ( obj.width /2 );
+		obj.set_left(nLeft);
+}
+/************************************************************************************************
+ * 각 COMPONENT 별 EVENT 영역
+ ************************************************************************************************/
+
+this.dsSearch_oncolumnchanged = function(obj:nexacro.NormalDataset,e:nexacro.DSColChangeEventInfo)
+{
+	this.fnSearch();
+};
+
+
+]]></Script>
+    <Objects>
+      <Dataset id="dsAvg">
+        <ColumnInfo>
+          <Column id="LEVEL" type="STRING" size="32"/>
+          <Column id="PLAY_COUNT" type="STRING" size="32"/>
+          <Column id="WIN" type="STRING" size="32"/>
+          <Column id="DRAW" type="STRING" size="32"/>
+          <Column id="LOSE" type="STRING" size="32"/>
+          <Column id="GOAL" type="STRING" size="32"/>
+          <Column id="ASSIST" type="STRING" size="32"/>
+          <Column id="RATING" type="STRING" size="32"/>
+        </ColumnInfo>
+      </Dataset>
+      <Dataset id="dsList">
+        <ColumnInfo>
+          <Column id="rownum" type="FLOAT" size="8"/>
+          <Column id="DATE" type="STRING" size="32"/>
+          <Column id="NAME" type="STRING" size="32"/>
+          <Column id="PLAY_COUNT" type="STRING" size="32"/>
+          <Column id="WIN" type="STRING" size="32"/>
+          <Column id="DRAW" type="STRING" size="32"/>
+          <Column id="LOSE" type="STRING" size="32"/>
+          <Column id="GOAL" type="STRING" size="32"/>
+          <Column id="ASSIST" type="STRING" size="32"/>
+          <Column id="RATING" type="STRING" size="32"/>
+          <Column id="START_TIME" type="BIGDECIMAL" size="8"/>
+        </ColumnInfo>
+      </Dataset>
+      <Dataset id="dsSearch" oncolumnchanged="dsSearch_oncolumnchanged">
+        <ColumnInfo>
+          <Column id="CAL_FROM" type="STRING" size="32"/>
+          <Column id="CAL_TO" type="STRING" size="32"/>
+          <Column id="USER_ID" type="STRING" size="32"/>
+        </ColumnInfo>
+        <Rows>
+          <Row/>
+        </Rows>
+      </Dataset>
+      <Dataset id="dsSearchPaging">
+        <ColumnInfo>
+          <Column id="CAL_FROM" type="STRING" size="32"/>
+          <Column id="CAL_TO" type="STRING" size="32"/>
+          <Column id="USER_ID" type="STRING" size="32"/>
+          <Column id="records" type="INT" size="256"/>
+          <Column id="page" type="INT" size="256"/>
+          <Column id="recordsOffset" type="INT" size="256"/>
+          <Column id="pageCount" type="INT" size="256"/>
+        </ColumnInfo>
+      </Dataset>
+    </Objects>
+    <Bind>
+      <BindItem id="item0" compid="divRecod.form.sta00_00" propid="text" datasetid="dsAvg" columnid="LEVEL"/>
+      <BindItem id="item1" compid="divRecod.form.sta00_00_00_00_00_00" propid="text" datasetid="dsAvg" columnid="PLAY_COUNT"/>
+      <BindItem id="item2" compid="divRecod.form.sta00_00_00_00_00_00_00" propid="text" datasetid="dsAvg" columnid="WIN"/>
+      <BindItem id="item3" compid="divRecod.form.sta00_00_00_00_00_00_00_00" propid="text" datasetid="dsAvg" columnid="DRAW"/>
+      <BindItem id="item4" compid="divRecod.form.sta00_00_00_00_00_00_00_00_00" propid="text" datasetid="dsAvg" columnid="LOSE"/>
+      <BindItem id="item5" compid="divRecod.form.sta00_00_00_00_00_00_00_00_00_00" propid="text" datasetid="dsAvg" columnid="GOAL"/>
+      <BindItem id="item6" compid="divRecod.form.sta00_00_00_00_00_00_00_00_00_00_00" propid="text" datasetid="dsAvg" columnid="ASSIST"/>
+      <BindItem id="item7" compid="divRecod.form.sta00_00_00_00_00_00_00_00_00_00_00_00_00" propid="text" datasetid="dsAvg" columnid="RATING"/>
+    </Bind>
+  </Form>
+</FDL>

@@ -1,0 +1,77 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<FDL version="2.1">
+  <Form id="CmmWebpage" width="900" height="700" titletext="팝업 웹페이지 연결" onload="form_onload">
+    <Layouts>
+      <Layout height="700" width="900">
+        <Button id="btnClose" taborder="0" text="close" width="100" height="30" onclick="btnClose_onclick" left="48%" bottom="10"/>
+        <WebBrowser id="web00" taborder="1" left="10" top="10" onloadcompleted="web00_onloadcompleted" right="10" bottom="50"/>
+      </Layout>
+    </Layouts>
+    <Script type="xscript5.1"><![CDATA[/**
+*  Necacro EduPack
+*  @MenuPath    Cmm > 팝업웹페이지
+*  @FileName 	CmmWebpage.xfdl 
+*  @Creator 	Education
+*  @CreateDate 	2022.05.01
+*  @Desction    html view
+************** 소스 수정 이력 ***********************************************
+*  date          	Modifier                Description
+*******************************************************************************
+*  2022.05.01     	Education 	           	최초 생성 
+*******************************************************************************
+*/
+
+/************************************************************************************************
+ * FORM 변수 선언 영역
+ ************************************************************************************************/
+ 
+/***********************************************************************************************
+* FORM EVENT 영역(onload)
+/***********************************************************************************************/
+this.form_onload = function(obj:nexacro.Form,e:nexacro.LoadEventInfo)
+{
+	this.gfnFormOnLoad(this);
+	var sUrl = this.getOwnerFrame().paramUrl;
+	trace("paramUrl : " + sUrl);
+	
+	//webBrowser url 세팅
+	if (!this.gfnIsNull(sUrl)) {
+		this.web00.set_url(sUrl);
+	}
+};
+
+/************************************************************************************************
+* TRANSACTION 서비스 호출 처리
+************************************************************************************************/
+
+/************************************************************************************************
+ * CALLBACK 콜백 처리부분
+ ************************************************************************************************/
+
+ /************************************************************************************************
+ * 사용자 FUNCTION 영역
+ ************************************************************************************************/
+ 
+ /************************************************************************************************
+ * 각 COMPONENT 별 EVENT 영역
+ ************************************************************************************************/
+/**
+ * @description popup close
+*/
+this.btnClose_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	var rtnVal;
+	
+	rtnVal = JSON.stringify({aaa:"tobesoft", bbb:"투비소프트"});
+	
+	this.gfnClosePopup(rtnVal);
+	//this.close();
+};
+
+this.web00_onloadcompleted = function(obj:nexacro.WebBrowser,e:nexacro.WebLoadCompEventInfo)
+{
+	trace("web00_onloadcompleted");
+};
+]]></Script>
+  </Form>
+</FDL>

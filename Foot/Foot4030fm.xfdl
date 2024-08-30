@@ -1,0 +1,83 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<FDL version="2.1">
+  <Form id="Foot4030fm" width="800" height="190" titletext="스텝 이벤트" onload="form_onload" ontimer="Foot4030fm_ontimer">
+    <Layouts>
+      <Layout height="190" mobileorientation="landscape" width="800" stepcount="8">
+        <Static id="staBanner1" taborder="0" left="0" top="0" right="0" bottom="0" cssclass="sta_WF_Banner1"/>
+        <Static id="staBanner2" taborder="1" left="0" top="0" positionstep="1" right="0" bottom="0" cssclass="sta_WF_Banner2"/>
+        <Static id="staBanner3" taborder="2" left="0" top="0" positionstep="2" cssclass="sta_WF_Banner3" right="0" bottom="0"/>
+        <Static id="staBanner4" taborder="3" left="0" top="0" positionstep="3" right="0" bottom="0" cssclass="sta_WF_Banner4"/>
+        <Static id="staBanner5" taborder="4" left="0" top="0" positionstep="4" right="0" bottom="0" cssclass="sta_WF_Banner5"/>
+        <Static id="staBanner7" taborder="5" left="0" top="0" positionstep="6" right="0" bottom="0" cssclass="sta_WF_Banner7"/>
+        <Static id="staBanner8" taborder="6" left="0" top="0" positionstep="7" right="0" bottom="0" cssclass="sta_WF_Banner8"/>
+        <Static id="staBanner6" taborder="7" left="0" top="0" positionstep="5" right="0" bottom="0" cssclass="sta_WF_Banner6"/>
+      </Layout>
+    </Layouts>
+    <Script type="xscript5.1"><![CDATA[
+/**
+*  TobeFootball
+*  @MenuPath     샘플 > script 표준
+*  @FileName     C:\TobeFootball\Foot\Foot4030fm.xfdl
+*  @Creator      박진호
+*  @CreateDate   2024/08/19
+*  @Desction    스크립트 표준 및 주석 표준 정의
+************** 소스 수정 이력 *****************************************************************
+*  date          		Modifier                Description
+*************************************************************************************************
+*  2024/08/19     	        박진호 	              최초 생성
+*************************************************************************************************
+*/
+
+/************************************************************************************************
+ * FORM 변수 선언 영역
+ ************************************************************************************************/
+this.fvStep = 0;
+this.elapseTime = 2000;
+
+/************************************************************************************************
+ * FORM EVENT 영역(onload, onbeforeclose)
+ ************************************************************************************************/
+this.form_onload = function(obj:nexacro.Form,e:nexacro.LoadEventInfo)
+{
+	this.gfnFormOnLoad(this);
+	this.setTimer(0, this.elapseTime);
+};
+
+this.Foot4030fm_ontimer = function(obj:nexacro.Form,e:nexacro.TimerEventInfo)
+{
+	var nCnt = this.stepselector.stepcount-1;
+	if (e.timerid == 0)
+	{
+		if (this.fvStep == nCnt) {
+			this.fvStep = 0;
+			this.stepselector.set_stepindex(0);
+		}
+		else {
+			this.stepselector.set_stepindex(++this.fvStep);
+		}
+	}
+};
+
+/************************************************************************************************
+ * CALLBACK 콜백 처리부분(Transaction, Popup)
+ ************************************************************************************************/
+
+
+/************************************************************************************************
+ * CRUD 및 TRANSACTION 서비스 호출 처리
+ ************************************************************************************************/
+
+
+/************************************************************************************************
+ * 사용자 FUNCTION 영역
+ ************************************************************************************************/
+
+
+/************************************************************************************************
+ * 각 COMPONENT 별 EVENT 영역
+ ************************************************************************************************/
+
+
+]]></Script>
+  </Form>
+</FDL>

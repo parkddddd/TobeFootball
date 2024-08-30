@@ -1,0 +1,239 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<FDL version="2.1">
+  <Form id="CmmCalFromTo" width="258" height="28" titletext="기간달력" onload="form_onload">
+    <Layouts>
+      <Layout height="28" width="258">
+        <Calendar id="calFrom" taborder="1" left="0" top="0" width="46.51%" height="28" ondropdown="calFrom_ondropdown" dateformat="yyyy-MM-dd" popuptype="none" minwidth="120" maxwidth=""/>
+        <Static id="Static00" taborder="2" text="~" left="calFrom:5" top="2" width="8" height="21"/>
+        <Calendar id="calTo" taborder="0" left="Static00:5" top="0" height="28" popuptype="none" ondropdown="calFrom_ondropdown" dateformat="yyyy-MM-dd" minwidth="120" maxwidth="" width="46.51%"/>
+        <PopupDiv id="pdvCal" text="PopupDiv00" visible="false" left="0" top="30" width="350" height="270" cssclass="pdv_WF_MonthCalBg">
+          <Layouts>
+            <Layout>
+              <Static id="sta00" taborder="6" left="0" top="30" width="350" height="240" cssclass="sta_WF_PdvCalbg"/>
+              <Static id="staTitle" taborder="0" text="기간선택" left="0" top="0" height="30" right="0" uWord="popup.periodselect" cssclass="sta_POP_Title"/>
+              <Button id="btnPdvClose" taborder="1" top="5" width="21" height="21" right="11" onclick="pdvCal_btnPdvCancle_onclick" cssclass="btn_POP_Close"/>
+              <Calendar id="pdvCalFrom" taborder="2" left="8" top="43" width="160" height="179" dateformat="yyyy-MM-dd" editformat="yyyy-MM-dd" type="monthonly" showmonthspin="false" usetrailingday="false" popuptype="none" value="" border="0px none"/>
+              <Calendar id="pdvCalTo" taborder="2" left="180" top="43" width="160" height="179" dateformat="yyyy-MM-dd" editformat="yyyy-MM-dd" type="monthonly" showmonthspin="false" border="0px none"/>
+              <Button id="btnPdvConfirm" taborder="3" text="확인" left="111" top="232" width="60" height="28" onclick="pdvCal_btnPdvConfirm_onclick" uWord="popup.ok" cssclass="btn_POP_Btn"/>
+              <Button id="btnPdvCancle" taborder="3" text="취소" left="177" top="232" width="60" height="28" onclick="pdvCal_btnPdvCancle_onclick" uWord="popup.cancel" cssclass="btn_POP_Btn"/>
+            </Layout>
+          </Layouts>
+        </PopupDiv>
+      </Layout>
+    </Layouts>
+    <Script type="xscript5.1"><![CDATA[/**
+*  Necacro EduPack
+*  @MenuPath    Cmm > CmmCalFromTo (공통 기간달력)
+*  @FileName 	CmmCalFromTo.xfdl 
+*  @Creator 	Education
+*  @CreateDate 	2022.05.01
+*  @Desction    기간달력
+************** 소스 수정 이력 ***************************************************
+*  date          		Modifier                Description
+*******************************************************************************
+*  2017.03.09     	Education 	               최초 생성 
+*******************************************************************************
+*/
+
+/************************************************************************************************
+ * FORM 변수 선언 영역
+ ************************************************************************************************/
+
+/***********************************************************************************************
+* FORM EVENT 영역(onload)
+/***********************************************************************************************/
+this.form_onload = function(obj:nexacro.Form,e:nexacro.LoadEventInfo)
+{
+	//this.gfnFormOnLoad(this);//초기화[필수]
+	this.fnInit(); //달력초기화
+};
+/************************************************************************************************
+* TRANSACTION 서비스 호출 처리
+************************************************************************************************/
+
+/************************************************************************************************
+ * CALLBACK 콜백 처리부분
+ ************************************************************************************************/
+
+ /************************************************************************************************
+ * 사용자 FUNCTION 영역
+ ************************************************************************************************/
+/**
+* @description 달력초기화
+*/
+this.fnInit = function()
+{
+	//요구사항에 따라 오늘날짜 3개월 등등 지정 현재 디폴트="";
+	this.calFrom.set_value("");	//FROM 달력 셋팅
+	this.calTo.set_value("");		//TO 달력 셋팅
+};
+
+/**
+* @description from 일자 갖고오기
+*/
+this.fnGetFromDate = function ()
+{	
+	var sDate = this.calFrom.value;
+	return sDate;
+};
+
+/**
+* @description to 일자 갖고오기
+*/
+this.fnGetToDate = function ()
+{
+	var sDate = this.calTo.value;
+	return sDate;
+};
+
+/**
+* @description from일자 세팅하기
+*/
+this.fnSetFromDate = function (sDate)
+{
+	//this.calFrom.set_value(sDate);
+	if(this.parent.name=="divDate"){
+		this.parent.parent.parent.parent.dsSearch.setColumn(0,"CAL_FROM",sDate);
+	}
+	if(this.parent.name=="divRange"){
+		this.parent.parent.fvSCalFrom = sDate;
+	}
+	if(this.parent.name=="divRecordRange"){
+		this.parent.parent.parent.parent.dsSearch.setColumn(0,"CAL_FROM",sDate);
+	}
+};
+
+/**
+* @description to일자 세팅하기
+*/
+this.fnSetToDate = function (sDate)
+{
+	//this.calTo.set_value(sDate);
+	if(this.parent.name=="divDate"){
+		this.parent.parent.parent.parent.dsSearch.setColumn(0,"CAL_TO",sDate);
+	}
+	if(this.parent.name=="divRange"){
+		this.parent.parent.fvSCalTo = sDate;
+	}
+	if(this.parent.name=="divRecordRange"){
+		this.parent.parent.parent.parent.dsSearch.setColumn(0,"CAL_TO",sDate);
+	}
+};
+
+/**
+* @description enable true/false세팅
+*/
+this.fnSetEnable = function (bValue)
+{
+	this.calFrom.set_enable(bValue);
+	this.calTo.set_enable(bValue);
+};
+
+/**
+* @description readonly true/false세팅
+*/
+this.fnSetReadonly = function (bValue)
+{
+	this.calFrom.set_readonly(bValue);
+	this.calTo.set_readonly(bValue);
+};
+
+/**
+* @description Essential true/false세팅
+*/
+this.fnSetEssential  = function (bValue)
+{
+	//CSS Class가있는 경우 클래스설정 임시로 노란표시
+	if(bValue){
+		this.calFrom.set_background("yellow");
+		this.calTo.set_background("yellow");
+	}else{
+		this.calFrom.set_background("");
+		this.calTo.set_background("");
+	}
+};
+
+ /************************************************************************************************
+ * 각 COMPONENT 별 EVENT 영역
+ ************************************************************************************************/
+/**
+* @description Calendar_ondropdown 이벤트 시 popDiv컴포넌트 띄우기
+*/
+this.calFrom_ondropdown = function(obj:nexacro.Calendar,e:nexacro.EventInfo)
+{
+	var sDate = this.gfnGetDate(); //default today = 해당월1일부터 오늘까지
+	
+	//from달력세팅
+	if (this.gfnIsNull(this.calFrom.value)) {
+		this.pdvCal.form.pdvCalFrom.set_value(sDate.substr(0,6) + "01");
+	} else {
+		this.pdvCal.form.pdvCalFrom.set_value(this.calFrom.value);
+	}
+	
+	//TO 달력 셋팅
+	if (this.gfnIsNull(this.calTo.value)) {
+		this.pdvCal.form.pdvCalTo.set_value(sDate);
+	} else {
+		this.pdvCal.form.pdvCalTo.set_value(this.calTo.value);
+	}
+/*
+	var oForm = this.parent.parent;
+	var nTop = 0;
+	// 상단 팝업
+	if (oForm.getOffsetHeight() < (this.parent.getOffsetBottom() + this.pdvCal.getOffsetHeight())) {
+		nTop = -1 * (this.pdvCal.getOffsetHeight() + 1);
+	}
+	else {
+		nTop = this.parent.getOffsetHeight(); 
+	}
+	
+	var nLeft = 0;
+	// 우측 정렬
+	if (oForm.getOffsetWidth() < (this.parent.getOffsetRight() + this.pdvCal.getOffsetWidth()) ) {
+		nLeft = this.parent.getOffsetWidth() - this.pdvCal.getOffsetWidth();
+	}
+	else {
+		nLeft = 0; 
+	}
+
+	this.pdvCal.trackPopupByComponent(this,nLeft,nTop);
+*/
+	//Div 안에 넣을 경우 팝업 위치 이상해서 수정
+	this.pdvCal.trackPopupByComponent(this.calFrom, 0, obj.height);
+		
+};
+
+/**
+* @description 기간 popDiv컴포넌트 확인(적용) 버튼 클릭
+*/
+this.pdvCal_btnPdvConfirm_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	var sFromValue = this.pdvCal.form.pdvCalFrom.value;
+	var sToValue = this.pdvCal.form.pdvCalTo.value;
+	
+	if( sFromValue > sToValue ){
+		this.alert("시작 날짜는 끝 날짜보다 클 수 없습니다. 다시 선택하세요.");
+		return;
+	}
+	
+	this.calFrom.set_value(sFromValue);
+	this.calTo.set_value(sToValue);
+	
+	this.fnSetFromDate(sFromValue);
+	this.fnSetToDate(sToValue);
+	
+	this.pdvCal.closePopup();
+};
+
+/**
+* @description 기간 popDiv컴포넌트 닫기
+*/ 
+this.pdvCal_btnPdvCancle_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	this.pdvCal.closePopup();
+};
+
+
+]]></Script>
+  </Form>
+</FDL>

@@ -1,0 +1,94 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<FDL version="2.1">
+  <Form id="frameWork" left="0" top="0" width="1050" height="698" onclose="form_onclose" onsize="form_onsize" onactivate="form_onactivate" onload="form_onload" titletext="frameWork">
+    <Layouts>
+      <Layout>
+        <Div id="divWork" taborder="0" left="0" top="37" text="" background="#ffffff" cssclass="div_WF_Bg" right="10" bottom="10">
+          <Layouts>
+            <Layout/>
+          </Layouts>
+        </Div>
+        <Button id="btnMyMenu" taborder="1" left="10" top="4" width="17" height="26" visible="true" cssclass="btn_WF_Mymnu" onclick="btnMyMenu_onclick"/>
+        <Static id="staTitle" taborder="2" text="HOME &gt; 1 DEPTH MENU 01 &gt; 2 depth menu 01 &gt; Template 03" left="31" top="5" width="560" height="26"/>
+      </Layout>
+    </Layouts>
+    <Objects/>
+    <Script type="xscript5.1"><![CDATA[
+/**
+*  TobeFootball
+*  @MenuPath     샘플 > script 표준
+*  @FileName     C:\TobeFootball\AdminFrame\AdminFrameWork.xfdl
+*  @Creator      박진호
+*  @CreateDate   2024/08/06
+*  @Desction    스크립트 표준 및 주석 표준 정의
+************** 소스 수정 이력 *****************************************************************
+*  date          		Modifier                Description
+*************************************************************************************************
+*  2024/08/06     	        박진호 	              최초 생성
+*************************************************************************************************
+*/
+
+/************************************************************************************************
+ * FORM 변수 선언 영역
+ ************************************************************************************************/
+this.fvObjApp = this.gfnGetApplication();
+var sMenuId = "";
+/************************************************************************************************
+ * FORM EVENT 영역(onload, onbeforeclose)
+ ************************************************************************************************/
+this.form_onload = function(obj:nexacro.Form,e:nexacro.LoadEventInfo)
+{
+	this.gfnFormOnLoad(this);
+	var objCF = this.getOwnerFrame();  //부모 프레임 반환.
+	
+	sMenuId = objCF.param.MENU_ID;
+	var sMenuName = objCF.param.MENU_NAME;
+	var sFormUrl = objCF.param.FORM_URL;
+	var sMenuPath = objCF.param.MENU_PATH;
+	
+	this.divWork.set_url(sFormUrl);   //div - url
+	this.staTitle.set_text(sMenuPath)  //static - name
+};
+
+/************************************************************************************************
+ * CALLBACK 콜백 처리부분(Transaction, Popup)
+ ************************************************************************************************/
+
+
+/************************************************************************************************
+ * CRUD 및 TRANSACTION 서비스 호출 처리
+ ************************************************************************************************/
+
+
+/************************************************************************************************
+ * 사용자 FUNCTION 영역
+ ************************************************************************************************/
+
+
+/************************************************************************************************
+ * 각 COMPONENT 별 EVENT 영역
+ ************************************************************************************************/
+
+this.btnMyMenu_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	var sMyMenu = (obj.cssclass == "btn_WF_Mymnu" ? "btn_WF_MymnuS" : "btn_WF_Mymnu");
+	obj.set_cssclass(sMyMenu);
+	
+	//MyMenu에 넣기
+	if (sMyMenu == "btn_WF_MymnuS"){//즐겨찾기 저장
+		var nNewRow = this.fvObjApp.gdsMyMenu.addRow();
+		var nRow = this.fvObjApp.gdsMenu.findRow("MENU_ID",sMenuId)
+		this.fvObjApp.gdsMyMenu.copyRow(nNewRow, this.fvObjApp.gdsMenu, nRow);
+		nexacro.setPrivateProfile("myMenu",this.fvObjApp.gdsMyMenu.saveXML());  //기본 자료형만 들어갈 수 있음. 데이터셋값을 변환시켜줌.
+	} 
+	else{ //삭제
+		var nRow = this.fvObjApp.gdsMyMenu.findRow("MENU_ID",sMenuId);
+		this.fvObjApp.gdsMyMenu.deleteRow(nRow);
+	}
+	
+	// MyMenu 저장. 로그인 시 불러옴.
+	nexacro.setPrivateProfile("gdsMyMenu", this.fvObjApp.gdsMenu.saveXML());
+};
+]]></Script>
+  </Form>
+</FDL>

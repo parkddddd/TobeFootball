@@ -1,0 +1,153 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<FDL version="2.1">
+  <TypeDefinition url="..\default_typedef.xml"/>
+  <Form id="frameMDI" left="0" top="0" width="1058" height="40" onload="form_onload" scrolltype="none" titletext="frameMDI" onsize="form_onsize" scrollbartype="none" background="#f3f5f6">
+    <Layouts>
+      <Layout>
+        <Static id="staBgLine" taborder="5" left="949" top="0" cssclass="sta_MDI_Line" right="10" bottom="0" border="0px none,0px none,1px solid #d3dce"/>
+        <Button id="btnMaximize" taborder="0" top="18" width="21" height="16" right="90" onclick="btnArrange_onclick" cssclass="btn_MDI_Max" text=""/>
+        <Button id="btnCascade" taborder="1" top="18" width="21" height="16" right="70" onclick="btnArrange_onclick" cssclass="btn_MDI_Min"/>
+        <Button id="btnCloseAll" taborder="2" width="21" height="16" right="7" onclick="btnArrange_onclick" tooltiptext="Close All" cssclass="btn_MDI_Allx" top="18"/>
+        <Button id="btnHorizontal" taborder="3" top="18" width="21" height="16" right="50" onclick="btnArrange_onclick" cssclass="btn_MDI_H"/>
+        <Button id="btnTilevertical" taborder="4" top="18" width="21" height="16" right="30" onclick="btnArrange_onclick" cssclass="btn_MDI_V"/>
+        <Tab id="tabMdi" taborder="6" tabindex="0" left="100" top="10" height="30" onchanged="tabMdi_onchanged" showextrabutton="true" onextrabuttonclick="tabMdi_onextrabuttonclick" right="109" cssclass="tab_MDI_Menu" tabbuttonheight="29" tabbuttonstartgap="2" tabbuttongap="2" onsetfocus="tabMdi_onsetfocus" usecontrolkey="false">
+          <Tabpages>
+            <Tabpage id="Tabpage0" text="Tabpage0">
+              <Layouts>
+                <Layout/>
+              </Layouts>
+            </Tabpage>
+          </Tabpages>
+        </Tab>
+        <Button id="btnMain" taborder="7" text="Main" left="0" top="10" width="100" height="30" cssclass="btn_MDI_FrmMain" onclick="btnMain_onclick"/>
+      </Layout>
+    </Layouts>
+    <Objects/>
+    <Script type="xscript5.1"><![CDATA[
+/**
+*  TobeFootball
+*  @MenuPath     샘플 > script 표준
+*  @FileName     C:\TobeFootball\AdminFrame\AdminFrameTab.xfdl
+*  @Creator      박진호
+*  @CreateDate   2024/08/06
+*  @Desction    스크립트 표준 및 주석 표준 정의
+************** 소스 수정 이력 *****************************************************************
+*  date          		Modifier                Description
+*************************************************************************************************
+*  2024/08/06     	        박진호 	              최초 생성
+*************************************************************************************************
+*/
+
+/************************************************************************************************
+ * FORM 변수 선언 영역
+ ************************************************************************************************/
+this.fvObjApp = this.gfnGetApplication();
+
+/************************************************************************************************
+ * FORM EVENT 영역(onload, onbeforeclose)
+ ************************************************************************************************/
+this.form_onload = function(obj:nexacro.Form,e:nexacro.LoadEventInfo)
+{
+	this.tabMdi.removeTabpage(0);
+	this.gfnFormOnLoad(this);
+};
+
+/************************************************************************************************
+ * CALLBACK 콜백 처리부분(Transaction, Popup)
+ ************************************************************************************************/
+
+
+/************************************************************************************************
+ * CRUD 및 TRANSACTION 서비스 호출 처리
+ ************************************************************************************************/
+
+
+/************************************************************************************************
+ * 사용자 FUNCTION 영역
+ ************************************************************************************************/
+/**
+ * @description 탭페이지 추가
+*/
+ 
+this.fnAddTab = function (objFaram)
+{
+	this.tabMdi.insertTabpage(objFaram.MENU_ID,-1,"",objFaram.MENU_NAME); 
+	//지금 url이 필요없음. 위에 text만 사용하고 밑은 work_frame
+};
+
+/************************************************************************************************
+ * 각 COMPONENT 별 EVENT 영역
+ ************************************************************************************************/
+
+this.tabMdi_onchanged = function(obj:nexacro.Tab,e:nexacro.TabIndexChangeEventInfo)
+{
+	// tab클릭하여 선택하기.
+	var sFormId = obj.tabpages[e.postindex].name;
+	this.fvObjApp.avWorkFrame[sFormId].form.setFocus();
+	
+	//탭에서 선택된것을 grid에서 포커스하기.
+	var nRow = this.fvObjApp.gdsMenu.findRow("MENU_ID",sFormId);
+	this.fvObjApp.gdsMenu.set_rowposition(nRow);
+};
+
+this.tabMdi_onextrabuttonclick = function(obj:nexacro.Tab,e:nexacro.TabMouseEventInfo)
+{
+	var sFormId = obj.tabpages[e.index].name;  //이벤트가 발생한 index
+	this.fvObjApp.avWorkFrame[sFormId].form.close();  //화면 닫기
+	obj.removeTabpage(e.index); 
+	if (this.tabMdi.getTabpageCount()==0){
+		this.fvObjApp.avVFrameSet2.set_separatesize(this.fvObjApp.avMainOpen);
+	}
+};
+
+this.btnArrange_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	//btnMaximize   btnCascade   btnHorizontal   btnTilevertical   btnCloseAll
+	var sType = obj.name.replace("btn","");  //btn 제거
+	sType = sType.toLowerCase();  //소문자 변환. 
+	var arrWork = this.fvObjApp.avWorkFrame.frames;
+	switch(sType) {
+	case "maximize":
+		for(var i=0;i<arrWork.length;i++){
+			arrWork[i].set_openstatus(sType);
+			arrWork[i].set_showtitlebar(false);
+			arrWork[i].set_border("0px none");
+		}
+		this.tabMdi.set_tabindex(arrWork.length-1);
+		break;
+	case "closeall":
+		for(var i=arrWork.length-1;i>=0; i--){
+			arrWork[i].form.close();
+			this.tabMdi.removeTabpage(i);
+		}
+		this.fvObjApp.avVFrameSet2.set_separatesize(this.fvObjApp.avMainOpen);
+		break;
+	default:
+		if(arrWork.length == 1)
+			break;
+		this.fvObjApp.avWorkFrame.arrange(sType);
+		for(i=0; i<arrWork.length; i++){
+			arrWork[i].set_showtitlebar(true);
+			arrWork[i].set_border("1px solid");
+			arrWork[i].titlebar.closebutton.set_enable(false);
+		}
+		break;
+	}	
+};
+
+this.tabMdi_onsetfocus = function(obj:nexacro.Tab,e:nexacro.SetFocusEventInfo)
+{
+	if(obj.getTabpageCount() > 0){
+		this.fvObjApp.avVFrameSet2.set_separatesize(this.fvObjApp.avWorkOpen);	
+	}
+};
+
+this.btnMain_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	if(this.tabMdi.getTabpageCount() > 1){
+		this.fvObjApp.avVFrameSet2.set_separatesize(this.fvObjApp.avMainOpen);	
+	}
+};
+]]></Script>
+  </Form>
+</FDL>

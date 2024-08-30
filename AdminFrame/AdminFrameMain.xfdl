@@ -1,0 +1,78 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<FDL version="2.1">
+  <Form id="frameMain" width="1058" height="688" titletext="frameMain" onload="form_onload" onactivate="form_onactivate" onclose="form_onclose" onsize="form_onsize" background="#f3f5f6">
+    <Layouts>
+      <Layout height="688" mobileorientation="landscape" width="1058">
+        <Static id="sta00" taborder="0" left="0" top="0" right="10" bottom="10" cssclass="sta_MF_Bg" visible="true"/>
+        <Static id="st_center" taborder="2" text="sta02" left="0" top="0" width="50%" height="50%" visible="false"/>
+        <Static id="sta01" taborder="1" left="st_center:-402" top="st_center:-120" width="805" height="240" cssclass="sta_MF_Center" visible="true"/>
+      </Layout>
+    </Layouts>
+    <Script type="xscript5.1"><![CDATA[/**
+*  Nexacro Professional Training Couse
+*  @MenuPath    Frame > FrameMain 
+*  @FileName 	FrameMain.xfdl 
+*  @Creator 	TOBESOFT Education
+*  @CreateDate 	2022/12/22
+*  @Desction    메인 화면
+************** 소스 수정 이력 ***********************************************
+*  date          		Modifier                Description
+*******************************************************************************
+*  2022/12/22      		 TOBESOFT Education	 	  	최초 생성 
+*******************************************************************************
+*/
+
+/************************************************************************************************
+ * FORM 변수 선언 영역
+ ************************************************************************************************/
+this.fvObjApp = this.gfnGetApplication();
+this.objArgs;
+
+/***********************************************************************************************
+* FORM EVENT 영역(onload)
+/***********************************************************************************************/
+/**
+ * @description form onload 함수
+ */
+this.form_onload = function(obj:nexacro.Form,e:nexacro.LoadEventInfo)
+{
+	this.form_onsize();
+	
+};
+
+/**
+ * @description workFrame_onclose event
+ */
+this.form_onclose = function(obj:Form, e:nexacro.CloseEventInfo)
+{	
+}
+
+/**
+ * @description onsize event
+ */
+this.form_onsize = function(obj:Form, e:nexacro.SizeEventInfo)
+{	
+	this.resetScroll();
+}
+
+
+/************************************************************************************************
+ * CALLBACK 콜백 처리부분(Transaction, Popup)
+ ************************************************************************************************/
+
+/************************************************************************************************
+ * CRUD 및 TRANSACTION 서비스 호출 처리
+ ************************************************************************************************/
+
+/************************************************************************************************
+ * 사용자 FUNCTION 영역
+ ************************************************************************************************/
+
+this.divNotice_btnClose_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	// 알림창 동기화
+	this.fvObjApp.avTopFrame.form.fnSetNoticeShow(this, false, true);	
+};
+]]></Script>
+  </Form>
+</FDL>

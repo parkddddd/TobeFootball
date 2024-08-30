@@ -1,0 +1,575 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<FDL version="2.1">
+  <Form id="Foot3020fm" width="1038" height="650" titletext="구장관리" onload="form_onload">
+    <Layouts>
+      <Layout height="650" mobileorientation="landscape" width="1038">
+        <Static id="sta00" taborder="0" text="구장관리" left="10" top="10" width="56" height="17" cssclass="sta_WF_TitleMain"/>
+        <Div id="divStadiumDetail" taborder="1" top="120" background="pink" right="10" width="768" height="520">
+          <Layouts>
+            <Layout>
+              <Static id="sta00" taborder="0" text="구장명" left="0" top="0" width="100" height="46" cssclass="sta_WF_DetailLabel"/>
+              <Static id="sta01" taborder="1" left="99" top="0" width="286" height="46" cssclass="sta_WF_DetailArea"/>
+              <Static id="sta00_00" taborder="2" text="구장아이디" left="384" top="0" width="100" height="46" cssclass="sta_WF_DetailLabel"/>
+              <Static id="sta01_00" taborder="3" left="483" top="0" height="46" cssclass="sta_WF_DetailArea" width="285"/>
+              <Edit id="edtName" taborder="4" left="105" top="7" width="175" height="32" onchanged="divStadiumDetail_edtName_onchanged"/>
+              <Static id="sta00_01" taborder="5" text="주소" left="0" top="45" width="100" height="46" cssclass="sta_WF_DetailLabel"/>
+              <Static id="sta01_01" taborder="6" left="99" top="45" width="286" height="46" cssclass="sta_WF_DetailArea"/>
+              <Static id="sta00_00_00" taborder="7" text="상세주소" left="384" top="45" width="100" height="46" cssclass="sta_WF_DetailLabel"/>
+              <Static id="sta01_00_00" taborder="8" left="483" top="45" height="46" cssclass="sta_WF_DetailArea" width="285"/>
+              <Edit id="edtAddress" taborder="9" left="105" top="52" width="175" height="32" readonly="true"/>
+              <Edit id="edtAddressDetail" taborder="10" left="489" top="52" width="175" height="32"/>
+              <Button id="btnSearchAddress" taborder="11" text="주소찾기" left="329" top="54" width="51" height="29" onclick="divStadiumDetail_btnSearchAddress_onclick"/>
+              <Static id="sta00_01_00" taborder="12" text="구장크기" left="0" top="90" width="100" height="46" cssclass="sta_WF_DetailLabel"/>
+              <Static id="sta01_01_00" taborder="13" left="99" top="90" width="286" height="46" cssclass="sta_WF_DetailArea"/>
+              <Static id="sta00_00_00_00" taborder="14" text="지역" left="384" top="90" width="100" height="46" cssclass="sta_WF_DetailLabel"/>
+              <Static id="sta01_00_00_00" taborder="15" left="483" top="90" height="46" cssclass="sta_WF_DetailArea" width="285"/>
+              <Static id="sta00_01_00_00" taborder="16" text="그늘막" left="0" top="135" width="100" height="46" cssclass="sta_WF_DetailLabel"/>
+              <Static id="sta01_01_00_00" taborder="17" left="99" top="135" width="55" height="46" cssclass="sta_WF_DetailArea"/>
+              <CheckBox id="chkShade" taborder="18" left="120" top="152" width="22" height="13" value="0" falsevalue="0" truevalue="1"/>
+              <Static id="sta00_01_00_00_00" taborder="19" text="샤워실" left="153" top="135" width="100" height="46" cssclass="sta_WF_DetailLabel"/>
+              <Static id="sta01_01_00_00_00" taborder="20" left="252" top="135" width="55" height="46" cssclass="sta_WF_DetailArea"/>
+              <CheckBox id="chkShower" taborder="21" left="273" top="152" width="22" height="13" value="0" falsevalue="0" truevalue="1"/>
+              <Static id="sta00_01_00_00_01" taborder="22" text="주차" left="306" top="135" width="100" height="46" cssclass="sta_WF_DetailLabel"/>
+              <Static id="sta01_01_00_00_01" taborder="23" left="405" top="135" width="55" height="46" cssclass="sta_WF_DetailArea"/>
+              <CheckBox id="chkParking" taborder="24" left="426" top="152" width="22" height="13" value="0" falsevalue="0" truevalue="1"/>
+              <Static id="sta00_01_00_00_00_00" taborder="25" text="풋살화대여" left="459" top="135" width="100" height="46" cssclass="sta_WF_DetailLabel"/>
+              <Static id="sta01_01_00_00_00_00" taborder="26" left="558" top="135" width="55" height="46" cssclass="sta_WF_DetailArea"/>
+              <CheckBox id="chkShoes" taborder="27" left="579" top="152" width="22" height="13" value="0" falsevalue="0" truevalue="1"/>
+              <Static id="sta00_01_00_00_00_00_00" taborder="28" text="음료판매" left="612" top="135" width="101" height="46" cssclass="sta_WF_DetailLabel"/>
+              <Static id="sta01_01_00_00_00_00_00" taborder="29" left="712" top="135" width="56" height="46" cssclass="sta_WF_DetailArea"/>
+              <CheckBox id="chkBeverage" taborder="30" left="734" top="152" width="22" height="13" value="0" falsevalue="0" truevalue="1"/>
+              <Static id="sta00_01_00_00_02" taborder="31" text="구장특이사항" left="0" top="180" width="100" height="171" cssclass="sta_WF_DetailLabel"/>
+              <Static id="sta00_01_00_00_02_00" taborder="32" text="구장이미지" left="0" top="350" width="100" height="170" cssclass="sta_WF_DetailLabel"/>
+              <Static id="sta01_00_00_00_00" taborder="33" left="99" top="180" height="171" cssclass="sta_WF_DetailArea" width="669"/>
+              <Static id="sta01_00_00_00_00_00" taborder="34" left="99" top="350" height="170" cssclass="sta_WF_DetailArea" width="669"/>
+              <TextArea id="txtMemo" taborder="35" left="105" top="189" height="154" width="658"/>
+              <Edit id="edtHeight" taborder="36" left="105" top="97" width="44" height="32" text="" inputtype="digit" maxlength="2"/>
+              <Static id="sta02" taborder="37" text="x" left="159" top="106" width="8" height="14"/>
+              <Edit id="edtWidth" taborder="38" left="177" top="97" width="44" height="32" text="" inputtype="digit" maxlength="2"/>
+              <Static id="sta03" taborder="39" text="m" left="231" top="106" width="12" height="14"/>
+              <Combo id="cboLocal" taborder="40" text="cbo00" left="489" top="97" width="175" height="32" innerdataset="dsLocal" datacolumn="CODE_NAME" codecolumn="CODE"/>
+              <ImageViewer id="imgPreview" taborder="41" left="107" top="361" width="400" height="150" stretch="fit"/>
+              <Button id="btnSelectImg" taborder="42" text="이미지 선택" left="512" top="480" height="30" onclick="divStadiumDetail_btnSelectImg_onclick" right="5"/>
+              <Button id="btnPrev" taborder="43" left="449" top="482" width="24" height="24" cssclass="btn_TF_Prev" onclick="divStadiumDetail_btnPrev_onclick"/>
+              <Button id="btnNext" taborder="44" left="478" top="482" width="24" height="24" cssclass="btn_TF_Next" onclick="divStadiumDetail_btnNext_onclick" text=""/>
+              <Edit id="edtId" taborder="45" left="489" top="7" width="175" height="32" enable="false"/>
+              <Button id="btnDelImage" taborder="46" left="478" top="369" width="24" height="24" cssclass="btn_WF_DelImage" onclick="divStadiumDetail_btnDelImage_onclick"/>
+              <Grid id="grd00" taborder="47" left="512" top="361" width="251" height="109" binddataset="dsFile" autofittype="col">
+                <Formats>
+                  <Format id="default">
+                    <Columns>
+                      <Column size="80"/>
+                    </Columns>
+                    <Rows>
+                      <Row size="24"/>
+                    </Rows>
+                    <Band id="body">
+                      <Cell text="bind:FILE_NAME"/>
+                    </Band>
+                  </Format>
+                </Formats>
+              </Grid>
+            </Layout>
+          </Layouts>
+        </Div>
+        <Grid id="grdUser" taborder="2" left="10" top="120" binddataset="dsStadium" autofittype="col" right="divStadiumDetail:10" nodatatext="데이터가 없습니다." height="520">
+          <Formats>
+            <Format id="default">
+              <Columns>
+                <Column size="80"/>
+                <Column size="80"/>
+              </Columns>
+              <Rows>
+                <Row size="24" band="head"/>
+                <Row size="24"/>
+              </Rows>
+              <Band id="head">
+                <Cell text="구장명"/>
+                <Cell col="1" text="지역"/>
+              </Band>
+              <Band id="body">
+                <Cell text="bind:NAME" displaytype="text" edittype="none"/>
+                <Cell col="1" text="bind:LOCAL" displaytype="combotext" edittype="none" combodataset="dsLocal" combocodecol="CODE" combodatacol="CODE_NAME"/>
+              </Band>
+            </Format>
+          </Formats>
+        </Grid>
+        <Div id="divSearch" taborder="3" text="" left="10" top="35" height="50" right="10" cssclass="div_WF_Search">
+          <Layouts>
+            <Layout>
+              <Static id="sta00" taborder="0" text="지역" left="10" top="18" width="22" height="14" cssclass="sta_WF_SearchLabel"/>
+              <Static id="sta02" taborder="1" text="구장명" left="188" top="18" width="33" height="14" cssclass="sta_WF_SearchLabel"/>
+              <Edit id="edtName" taborder="2" left="231" top="11" width="160" height="28"/>
+              <Combo id="cboLocal" taborder="3" text="cbo00" left="42" top="11" width="96" height="28" innerdataset="dsSearchLocal" datacolumn="CODE_NAME" codecolumn="CODE" onitemchanged="divSearch_cboLocal_onitemchanged"/>
+              <Button id="btnSearch" taborder="4" text="" left="409" top="11" width="30" height="28" verticalAlign="" cssclass="btn_WF_Find" onclick="divSearch_btnSearch_onclick"/>
+            </Layout>
+          </Layouts>
+        </Div>
+        <Static id="sta01" taborder="4" text="구장목록" left="10" top="90" width="48" height="20" cssclass="sta_WF_TitleSub"/>
+        <Static id="sta02" taborder="5" text="상세정보" top="90" width="48" height="20" cssclass="sta_WF_TitleSub" right="730"/>
+        <Button id="btnAdd" taborder="6" text="추가" top="4" width="63" height="26" right="10" cssclass="btn_WF_FrmMain" onclick="btnAdd_onclick"/>
+        <Button id="btnDel" taborder="7" text="삭제" top="90" width="63" height="26" right="76" cssclass="btn_WF_FrmMain" onclick="btnDel_onclick"/>
+        <Button id="btnSave" taborder="8" text="저장" top="90" width="63" height="26" right="10" cssclass="btn_WF_FrmMain" onclick="btnSave_onclick"/>
+        <WebView id="WebViewAddress" taborder="9" left="1060" top="116" width="100" height="100" visible="false" onusernotify="WebViewAddress_onusernotify"/>
+      </Layout>
+    </Layouts>
+    <Bind>
+      <BindItem id="item19" compid="divSearch.form.cboLocal" propid="value" datasetid="dsSearch" columnid="LOCAL"/>
+      <BindItem id="item20" compid="divSearch.form.edtName" propid="value" datasetid="dsSearch" columnid="NAME"/>
+      <BindItem id="item22" compid="divStadiumDetail.form.edtName" propid="value" datasetid="dsStadium" columnid="NAME"/>
+      <BindItem id="item23" compid="divStadiumDetail.form.cboLocal" propid="value" datasetid="dsStadium" columnid="LOCAL"/>
+      <BindItem id="item24" compid="divStadiumDetail.form.edtWidth" propid="value" datasetid="dsStadium" columnid="WIDTH"/>
+      <BindItem id="item25" compid="divStadiumDetail.form.edtHeight" propid="value" datasetid="dsStadium" columnid="HEIGHT"/>
+      <BindItem id="item26" compid="divStadiumDetail.form.edtAddress" propid="value" datasetid="dsStadium" columnid="ADDRESS"/>
+      <BindItem id="item27" compid="divStadiumDetail.form.edtAddressDetail" propid="value" datasetid="dsStadium" columnid="ADDRESS_DETAIL"/>
+      <BindItem id="item2" compid="divStadiumDetail.form.txtMemo" propid="value" datasetid="dsStadium" columnid="MEMO"/>
+      <BindItem id="item1" compid="divStadiumDetail.form.chkShade" propid="value" datasetid="dsStadium" columnid="SHADE"/>
+      <BindItem id="item3" compid="divStadiumDetail.form.chkShower" propid="value" datasetid="dsStadium" columnid="SHOWER"/>
+      <BindItem id="item4" compid="divStadiumDetail.form.chkParking" propid="value" datasetid="dsStadium" columnid="PARKING"/>
+      <BindItem id="item5" compid="divStadiumDetail.form.chkShoes" propid="value" datasetid="dsStadium" columnid="SHOES"/>
+      <BindItem id="item6" compid="divStadiumDetail.form.chkBeverage" propid="value" datasetid="dsStadium" columnid="BEVERAGE"/>
+      <BindItem id="item0" compid="divStadiumDetail.form.edtId" propid="value" datasetid="dsStadium" columnid="STADIUM_ID"/>
+    </Bind>
+    <Script type="xscript5.1"><![CDATA[
+/**
+*  TobeFootball
+*  @MenuPath     샘플 > script 표준
+*  @FileName     C:\TobeFootball\Foot\Foot3020fm.xfdl
+*  @Creator      박진호
+*  @CreateDate   2024/08/13
+*  @Desction    스크립트 표준 및 주석 표준 정의
+************** 소스 수정 이력 *****************************************************************
+*  date          		Modifier                Description
+*************************************************************************************************
+*  2024/08/13     	        박진호 	              최초 생성
+*************************************************************************************************
+*/
+
+/************************************************************************************************
+ * FORM 변수 선언 영역
+ ************************************************************************************************/
+this.objFileList = "";
+this.nIndex = 0;
+/************************************************************************************************
+ * FORM EVENT 영역(onload, onbeforeclose)
+ ************************************************************************************************/
+this.form_onload = function(obj:nexacro.Form,e:nexacro.LoadEventInfo)
+{
+	this.gfnFormOnLoad(this);
+	
+	this.WebViewAddress.set_url("http://172.10.14.133:8088/edupack_egov/TobeFootball/daumPost/searchPost.html");
+	
+	this.fnBindCom();
+	this.fnSearch();
+};
+
+/************************************************************************************************
+ * CALLBACK 콜백 처리부분(Transaction, Popup)
+ ************************************************************************************************/
+this.fnCallback = function (svcId, errCd, errMsg)
+{
+	if(svcId=="search"){
+		//trace(this.dsStadium.saveXML());
+	}
+	if(svcId=="insert"){
+		this.fnSearch();
+	}
+	if(svcId=="searchFile"){
+		//trace(this.dsFile.saveXML());
+		//
+	}
+};
+
+/************************************************************************************************
+ * CRUD 및 TRANSACTION 서비스 호출 처리
+ ************************************************************************************************/
+/**
+ * @description 경기장 정보 받아오기
+*/
+
+this.fnSearch = function ()
+{
+	var strSvcUrl = "selectStadium.do";
+	var inData    = "dsSearch=dsSearch";
+	var outData   = "dsStadium=dsStadium";
+	var strArg    = "";
+
+	this.gfnTransaction("search", strSvcUrl, inData, outData, strArg, "fnCallback", true);
+};
+
+/**
+ * @description 이미지 서버에 업로드
+*/
+
+this.fnUploadImage = function ()
+{
+	this.FileUpTransfer.setPostData("userPath","nexa_edu\\stadium_image");
+	this.FileUpTransfer.upload("SvcUrl::edu/uploadFile.do");
+};
+
+
+/**
+ * @description 경기장 수정 및 입력
+*/
+
+this.fnInsertStadium = function ()
+{
+	var sId = this.dsStadium.getColumn(this.dsStadium.rowposition,"STADIUM_ID");	
+	
+	var strSvcUrl = "insertStadium.do";
+	var inData    = "dsStadium=dsStadium:a dsMst=dsMst:u dsFile=dsFile:u";
+	var outData   = "";
+	var strArg    = "sID="+sId;
+
+	this.gfnTransaction("insert", strSvcUrl, inData, outData, strArg, "fnCallback", true);
+};
+
+/**
+ * @description 로우포지션 바뀔때마다 경기장의 file데이터 가져옴
+*/
+
+this.fnSearchFile = function ()
+{
+	var sSeq = this.dsStadium.getColumn(this.dsStadium.rowposition,"SEQ");
+	var strSvcUrl = "searchFile.do";
+	var inData    = "";
+	var outData   = "dsFile=dsFile";
+	var strArg    = "sSeq="+sSeq;
+
+	this.gfnTransaction("searchFile", strSvcUrl, inData, outData, strArg, "fnCallback", true);
+};
+
+/**
+ * @description 구장 삭제
+*/
+this.fnDeleteStadium = function (sId)
+{
+	var strSvcUrl = "deleteStadium.do";
+	var inData    = "";
+	var outData   = "";
+	var strArg    = "sId="+sId;
+
+	this.gfnTransaction("deleteStadium", strSvcUrl, inData, outData, strArg, "fnCallback", true);
+};
+/************************************************************************************************
+ * 사용자 FUNCTION 영역
+ ************************************************************************************************/
+/**
+ * @description 공통코드를 innerdataset에 바인딩
+*/
+this.fnBindCom = function ()
+{
+	var arrCode = new Array();
+
+	arrCode.push({codeGroup:"G001", obj: this.divSearch.form.cboLocal, first:"2::전체" });  //코드값은 ""
+	arrCode.push({codeGroup:"G001", obj: this.divStadiumDetail.form.cboLocal});
+
+    this.gfnGetCommonCode(arrCode);
+};
+
+/**
+ * @description 구장 이미지 미리보기
+*/
+
+this.fnPreview = function (nIndex)
+{
+	
+	if(nexacro._Browser == "Runtime"){
+		this.divStadiumDetail.form.imgPreview.set_image("URL('file://"+this.objFileList[nIndex].fullpath+"')");
+	}
+	else{
+		if ( /\.(jpe?g|png|gif)$/i.test(this.objFileList[nIndex].filename) ) {
+        var reader = new FileReader();
+        
+        reader.targetForm = this;
+      
+        reader.addEventListener("load", function () {
+        this.targetForm.divStadiumDetail.form.imgPreview.set_image(this.result);
+        }, false);
+
+        reader.readAsDataURL(this.objFileList[nIndex]._handle);
+      }    
+	}
+};
+
+
+/**
+ * @description 정합성 체크
+*/
+this.fnVaildate = function ()
+{
+	this.gfnClearValidation(this.dsStadium);
+	
+	this.gfnSetValidation(this.dsStadium, "NAME", "구장명", "required,maxlengthbyte:50");	// 이름
+	this.gfnSetValidation(this.dsStadium, "STADIUM_ID", "구장아이디", "required,maxlengthbyte:50");	// 이름
+	this.gfnSetValidation(this.dsStadium, "ADDRESS", "주소", "required");	// 이름
+	this.gfnSetValidation(this.dsStadium, "WIDTH", "구장크기(가로)", "required");	// 이름
+	this.gfnSetValidation(this.dsStadium, "HEIGHT", "구장크기(세로)", "required");	// 이름
+	this.gfnSetValidation(this.dsStadium, "LOCAL", "지역", "required");	// 이름
+
+	if (this.gfnValidation(this.dsStadium, "A") == false) return false;
+	else return true;
+	
+};
+
+/************************************************************************************************
+ * 각 COMPONENT 별 EVENT 영역
+ ************************************************************************************************/
+
+this.divStadiumDetail_btnSelectImg_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	this.fdgImage.open("구장 이미지 선택",3,"%MYDOCUMENT%");
+};
+
+this.fdgImage_onclose = function(obj:nexacro.FileDialog,e:nexacro.FileDialogEventInfo)
+{
+	this.FileUpTransfer.clearFileList();
+	var arrDs = this.dsFile.extractRows("FILE_TYPE != undefined");
+	this.dsFile.deleteMultiRows(arrDs)
+
+	
+	this.objFileList = e.virtualfiles
+	var objFileList = e.virtualfiles;
+/*	this.fnPreview(this.nIndex);  //이미지를 하나만 넣으면 rowposition이 변경되지 않기 때문에 처음이미지를 보여줌
+*/	this.dsFile.set_enableevent(false);
+	for(var i=0; i<objFileList.length; i++){
+		var bExists = this.FileUpTransfer.existFile(objFileList[i]);
+		if(!bExists){  //!bExists
+			var sFileName = objFileList[i].filename;
+			this.FileUpTransfer.addFile(sFileName, objFileList[i]);
+			
+			var nRow = this.dsFile.addRow();
+			this.dsFile.setColumn(nRow, "FILE_ID", sFileName);
+			this.dsFile.setColumn(nRow, "FILE_NAME", sFileName);
+			this.dsFile.setColumn(nRow, "FILE_TYPE", i);
+		}
+	}
+ 	this.dsFile.set_enableevent(true);
+ 	if( objFileList.length > 0){
+		this.fnPreview(this.nIndex);  //이미지를 하나만 넣으면 rowposition이 변경되지 않기 때문에 처음이미지를 보여줌
+		var nNewFirstIndex = this.dsFile.findRow("FILE_TYPE",0);
+		this.dsFile.set_rowposition( nNewFirstIndex );
+	}
+};
+
+this.divStadiumDetail_btnPrev_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	var nIndex = this.dsFile.rowposition;
+	nIndex--;
+	if (nIndex < 0)
+	{
+		nIndex = this.dsFile.rowcount-1
+	}
+	this.dsFile.set_rowposition(nIndex);
+};
+
+this.divStadiumDetail_btnNext_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	var nIndex = this.dsFile.rowposition;
+	nIndex++;
+	if (nIndex == this.dsFile.rowcount)
+	{
+		nIndex = 0
+	}
+	this.dsFile.set_rowposition(nIndex);
+
+};
+
+this.FileUpTransfer_onsuccess = function(obj:nexacro.FileUpTransfer,e:nexacro.FileUpTransferEventInfo)
+{
+	var objDs = e.datasets[0];
+	var nseq = this.dsStadium.getColumn(this.dsStadium.rowposition,"SEQ");
+	var bSeq = this.gfnIsNull(nseq);
+	var nIndex = this.dsFile.findRow("FILE_TYPE",0);
+	
+	for(var i=0; i<objDs.rowcount; i++){
+		var nRow = this.dsFile.findRow("FILE_NAME", objDs.getColumn(i,"file_name"),nIndex);
+		
+		this.dsFile.setColumn(nRow, "FILE_ID", objDs.getColumn(i,"file_id"));
+//		this.dsFile.setColumn(nRow, "file_name", objDs.getColumn(i,"file_name"));
+		this.dsFile.setColumn(nRow, "FILE_SIZE", objDs.getColumn(i,"file_size"));
+	}
+	
+	if(bSeq){
+	this.dsMst.addRow();
+	this.dsMst.setColumn(0,"FILE_DESC",this.dsStadium.getColumn(this.dsStadium.rowposition,"NAME")+ " files");
+	this.dsMst.setColumn(0,"FILE_DIR","nexa_edu");
+	}
+	
+	this.fnInsertStadium();
+};
+
+
+this.divSearch_btnSearch_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	this.fnSearch();
+};
+
+
+this.btnSave_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	if(!this.fnVaildate())	
+		return;
+	
+	if( this.gfnIsNull(this.objFileList) ){
+		this.fnInsertStadium();
+	} 
+	else{
+		this.fnUploadImage();
+	}
+};
+
+this.btnAdd_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	var nRow = this.dsStadium.addRow();
+	this.dsStadium.setColumn(nRow,"SHADE",'N');
+	this.dsStadium.setColumn(nRow,"SHOWER",'N');
+	this.dsStadium.setColumn(nRow,"PARKING",'N');
+	this.dsStadium.setColumn(nRow,"SHOES",'N');
+	this.dsStadium.setColumn(nRow,"BEVERAGE",'N');
+};
+
+this.btnDel_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	var sId = this.dsStadium.getColumn(this.dsStadium.rowposition,"STADIUM_ID");
+	this.dsStadium.deleteRow(this.dsStadium.rowposition);
+	this.fnDeleteStadium(sId);
+};
+
+
+this.dsStadium_onrowposchanged = function(obj:nexacro.NormalDataset,e:nexacro.DSRowPosChangeEventInfo)
+{
+	if(obj.rowcount > 0)
+		this.divStadiumDetail.form.btnSearchAddress.set_enable(true);
+		
+	this.divStadiumDetail.form.imgPreview.set_image("");
+	this.objFileList = "";
+	this.fnSearchFile();
+};
+
+this.dsFile_onrowposchanged = function(obj:nexacro.NormalDataset,e:nexacro.DSRowPosChangeEventInfo)
+{
+	var nType = this.dsFile.getColumn(this.dsFile.rowposition,"FILE_TYPE");
+	if( this.gfnIsNull(nType) ){
+		//url
+		var serverUrl = this.gfnGetServerUrl();  //http://localhost:8088/edupack_egov/
+		var sImageUrl = serverUrl + "upload_file/nexa_edu/stadium_image/";
+		sImageUrl += this.dsFile.getColumn(this.dsFile.rowposition,"FILE_ID");  //test1.png
+		this.divStadiumDetail.form.imgPreview.set_image(sImageUrl);
+	}
+	else{
+		this.fnPreview(nType);
+	}
+};
+
+
+
+this.divStadiumDetail_btnDelImage_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	this.dsFile.deleteRow(this.dsFile.rowposition);
+};
+
+this.divStadiumDetail_btnSearchAddress_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	this.WebViewAddress.callScript("searchPost()");
+};
+
+this.WebViewAddress_onusernotify = function(obj:nexacro.WebView,e:nexacro.WebUserNotifyEventInfo)
+{
+	trace(e.userdata);
+	var arrAddr = e.userdata.split("||");
+	this.divStadiumDetail.form.edtAddress.set_value(arrAddr[0]+arrAddr[1]+arrAddr[2]);
+};
+
+
+
+
+
+this.divStadiumDetail_edtName_onchanged = function(obj:nexacro.Edit,e:nexacro.ChangeEventInfo)
+{
+	if( this.dsStadium.getRowType(this.dsStadium.rowposition) == 2){
+		var sName = this.divStadiumDetail.form.edtName.value;
+		this.divStadiumDetail.form.edtId.set_value( sName+"_" + this.gfnGetDate("time") );
+	}
+
+};
+
+this.divSearch_cboLocal_onitemchanged = function(obj:nexacro.Combo,e:nexacro.ItemChangeEventInfo)
+{
+	this.fnSearch();
+};
+
+this.dsStadium_onload = function(obj:nexacro.NormalDataset,e:nexacro.DSLoadEventInfo)
+{
+// 이벤트 특성상 한 이벤트로 하는게 안되는거같음. 
+	if(obj.rowcount == 0)
+		this.divStadiumDetail.form.btnSearchAddress.set_enable(false);
+
+};
+
+
+]]></Script>
+    <Objects>
+      <Dataset id="dsStadium" onrowposchanged="dsStadium_onrowposchanged" onload="dsStadium_onload">
+        <ColumnInfo>
+          <Column id="NAME" type="STRING" size="32"/>
+          <Column id="LOCAL" type="STRING" size="32"/>
+          <Column id="WIDTH" type="INT" size="4"/>
+          <Column id="HEIGHT" type="INT" size="4"/>
+          <Column id="ADDRESS" type="STRING" size="32"/>
+          <Column id="SHADE" type="STRING" size="32"/>
+          <Column id="SHOWER" type="STRING" size="32"/>
+          <Column id="PARKING" type="STRING" size="32"/>
+          <Column id="SHOES" type="STRING" size="32"/>
+          <Column id="BEVERAGE" type="STRING" size="32"/>
+          <Column id="MEMO" type="STRING" size="32"/>
+          <Column id="DELETE" type="STRING" size="32"/>
+          <Column id="ADDRESS_DETAIL" type="STRING" size="32"/>
+          <Column id="STADIUM_ID" type="STRING" size="256"/>
+          <Column id="SEQ" type="INT" size="4"/>
+        </ColumnInfo>
+      </Dataset>
+      <Dataset id="dsSearchLocal">
+        <ColumnInfo>
+          <Column id="GROUP_CODE" type="STRING" size="256"/>
+          <Column id="GROUP_NAME" type="STRING" size="256"/>
+          <Column id="CODE" type="STRING" size="256"/>
+          <Column id="CODE_NAME" type="STRING" size="256"/>
+        </ColumnInfo>
+      </Dataset>
+      <Dataset id="dsLocal">
+        <ColumnInfo>
+          <Column id="GROUP_CODE" type="STRING" size="256"/>
+          <Column id="GROUP_NAME" type="STRING" size="256"/>
+          <Column id="CODE" type="STRING" size="256"/>
+          <Column id="CODE_NAME" type="STRING" size="256"/>
+        </ColumnInfo>
+      </Dataset>
+      <Dataset id="dsSearch">
+        <ColumnInfo>
+          <Column id="LOCAL" type="STRING" size="256"/>
+          <Column id="NAME" type="STRING" size="256"/>
+        </ColumnInfo>
+        <Rows>
+          <Row/>
+        </Rows>
+      </Dataset>
+      <FileDialog id="fdgImage" onclose="fdgImage_onclose"/>
+      <FileUpTransfer id="FileUpTransfer" onsuccess="FileUpTransfer_onsuccess"/>
+      <Dataset id="dsFile" useclientlayout="true" onrowposchanged="dsFile_onrowposchanged">
+        <ColumnInfo>
+          <Column id="FILE_ID" type="STRING" size="256"/>
+          <Column id="FILE_NAME" type="STRING" size="256"/>
+          <Column id="FILE_SIZE" type="STRING" size="256"/>
+          <Column id="FILE_TYPE" type="INT" size="4"/>
+        </ColumnInfo>
+      </Dataset>
+      <Dataset id="dsMst">
+        <ColumnInfo>
+          <Column id="FILE_DESC" type="STRING" size="256"/>
+          <Column id="FILE_DIR" type="STRING" size="256"/>
+        </ColumnInfo>
+      </Dataset>
+    </Objects>
+  </Form>
+</FDL>

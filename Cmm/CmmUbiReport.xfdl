@@ -1,0 +1,336 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<FDL version="2.1">
+  <TypeDefinition url="..\default_typedef.xml"/>
+  <Form id="CmmUbiReport" classname="UbiReport" left="0" top="0" width="1024" height="730" titletext="Ubi Report Preview" onload="UbiReport_onload">
+    <Layouts>
+      <Layout>
+        <UbiReport id="UbiViewer" taborder="0" text="UbiViewer" left="1" top="1" right="1" bottom="1"/>
+      </Layout>
+    </Layouts>
+    <Script type="xscript5.1"><![CDATA[/************************************************************************************
+* 뷰어 초기 설정
+************************************************************************************/
+var svcurl = this.gfnGetServerUrl(); //"http://localhost:8017/nexacro";
+
+this.UbiViewer.key = getRandomKey();
+this.UbiViewer.ubiserverurl = svcurl + "/UbiServer";
+this.UbiViewer.resource = svcurl + "/ubi4/js";
+this.UbiViewer.reporturl = svcurl + "/ubi4/work/";
+this.UbiViewer.resid = "UBIHTML";
+this.UbiViewer.scale = "-9999";
+this.UbiViewer.datasource = "Tutorial";	// 런타임용
+
+/************************************************************************************
+* 기타 API
+this.UbiViewer.setUserSaveList('Image,Pdf,Docx,Xls,Pptx,Hml,Cell');
+this.UbiViewer.setUserPrintList('Ubi,Html,Pdf');
+this.UbiViewer.setHmlExtension("HWP");
+this.UbiViewer.addEventHandler('PrintEnd', this.UbiPrintEnd, this);
+this.UbiViewer.addEventHandler('ExportEnd', this.UbiExportEnd, this);
+this.UbiViewer.addEventHandler('LinkButtonDown', this.UbiLinkButtonDown, this);
+this.UbiViewer.printHTML();		// HTML PrintSet
+this.UbiViewer.printPDF();		// PDF PrintSet
+this.UbiViewer.export('PDF');	// PDF/EXCEL/EXCEL_NO/HWP/PPTX/HML/DOCX/CELL/IMAGE
+this.UbiViewer.print();			// Direct Print(전용뷰어)
+this.UbiViewer.printSet();		// PrintSet(전용뷰어)
+************************************************************************************/
+
+this.UbiReport_onload = function(obj:Form, e:nexacro.LoadEventInfo)
+{	
+	// Div 방식
+	if (""+ this.parent.parent == "[object Form]")
+	{
+		var ubiIsRuntime = this.parent.parent.ubiIsRuntime;
+		var ubiReportFile = this.parent.parent.ubiReportFile;
+		var ubiSvcUrl = this.parent.parent.ubiSvcUrl;
+		var ubiLocalDs = this.parent.parent.ubiLocalDs;
+		var ubiGridObj = this.parent.parent.ubiGridObj;
+		var ubiArg = this.parent.parent.ubiArg;
+	}
+	// 팝업 방식
+	else {
+		var ubiIsRuntime = this.parent.ubiIsRuntime;
+		var ubiReportFile = this.parent.ubiReportFile;
+		var ubiSvcUrl = this.parent.ubiSvcUrl;
+		var ubiLocalDs = this.parent.ubiLocalDs;
+		var ubiGridObj = this.parent.ubiGridObj;
+		var ubiArg = this.parent.ubiArg;
+	}
+	
+	// 리포트가 정의되지 않았을 경우 리턴
+	if( ubiReportFile == undefined ) {
+	
+		//alert("리포트 파일명이 정의되지 않았습니다.");
+		return;
+	}
+	
+	// ---------------------------------------
+	// 리포트 파라미터 설정
+	// ---------------------------------------
+	this.UbiViewer.jrffile = ubiReportFile; 
+	this.UbiViewer.arg = ubiArg;
+
+	if( ubiIsRuntime == true ) {
+	
+		var formatRowCount = ubiGridObj.getFormatRowCount();
+		var formatColCount = ubiGridObj.getFormatColCount();
+
+		var widthArray = new Array;
+		var heightArray = new Array;
+
+		var headBgColor = "230.230.230";	// 헤더 배경색 
+		var summBgColor = "240.240.240";	// 합계 배경색 
+		var i = 0;
+		var j = 0;
+		var k = 0;
+
+		// Grid의 Row의 높이를 도출
+		var subidx = 0;
+		var bandtype = "";
+		var prebandtype = "";
+		var bodyStartRow = 0;
+		var summStartRow = 0;
+		
+		for( i = 0; i < formatRowCount; i++ ) {
+		
+			bandtype = ubiGridObj.getFormatRowProperty(i, "band");
+			if( bandtype == prebandtype ) {
+			
+				subidx++;
+			} else {
+			
+				subidx = 0;
+			}
+			heightArray[i] = ubiGridObj.getRealRowSize(i, subidx, false);
+			prebandtype = bandtype;
+		}
+		
+		// Grid의 Column 넓이 도출
+		for( i = 0; i < formatColCount; i++ ) {
+		
+			widthArray[i] = ubiGridObj.getRealColSize(i);
+		}
+
+		var cellcount = 0;
+		var rowcount = 0;
+
+		// ------------------------------------------------------------
+		// 디자인정보를 담고있는 Dataset 생성
+		// ------------------------------------------------------------
+		var designDataset = this.UbiViewer.getDesignDataset(this);
+
+		prebandtype = "";
+		var bandRow = 0;
+		var nRow = 0;
+		var rowidx = 0;
+		var colidx = 0;
+		var colspan = 0;
+		var rowspan = 0;
+		var colwidth = 0;
+		var colheight = 0;
+		var startIdx = 0;
+		var endIdx = 0;
+		var bgcolor = "";
+		
+		// 전체 높이와 넒이를 담은 Row 생성
+		nRow = designDataset.addRow();
+		designDataset.setColumn(nRow, "type", "widths");
+		designDataset.setColumn(nRow, "text", widthArray);
+		nRow = designDataset.addRow();
+		designDataset.setColumn(nRow, "type", "heights");
+		designDataset.setColumn(nRow, "text", heightArray);
+		
+		for( i = 0; i < formatRowCount; i++ ) {
+		
+			bandtype = ubiGridObj.getFormatRowProperty(i, "band");
+			if( bandtype != prebandtype ) {
+			
+				if( bandtype == "head" ) {
+				
+					bandRow = -1;
+					bgcolor = headBgColor;
+				} else if( bandtype == "body" ) {
+				
+					bandRow = 0;
+					bgcolor = "";
+				} else if( bandtype == "summ" ) {
+				
+					bandRow = -2;
+					bgcolor = summBgColor;
+				}
+				
+				cellcount = ubiGridObj.getCellCount(bandtype);
+				
+				for( j = 0; j < cellcount; j++ ) {
+				
+					rowidx = ubiGridObj.getCellProperty(bandtype, j, "row");
+					colidx = ubiGridObj.getCellProperty(bandtype, j, "col");
+					rowspan = ubiGridObj.getCellProperty(bandtype, j, "rowspan");
+					colspan = ubiGridObj.getCellProperty(bandtype, j, "colspan");
+				
+					nRow = designDataset.addRow();
+					designDataset.setColumn(nRow, "type", bandtype);
+					designDataset.setColumn(nRow, "row", rowidx);
+					designDataset.setColumn(nRow, "col", colidx);
+					designDataset.setColumn(nRow, "rowspan", rowspan);
+					designDataset.setColumn(nRow, "colspan", colspan);
+					designDataset.setColumn(nRow, "align", ubiGridObj.getCellProperty(bandtype, j, "align"));
+					
+					if( bandRow != 0 ) {
+					
+						designDataset.setColumn(nRow, "text", ubiGridObj.getCellText(bandRow, j));
+					}
+					designDataset.setColumn(nRow, "bgcolor", bgcolor);
+					designDataset.setColumn(nRow, "leftmargin", "3");
+					designDataset.setColumn(nRow, "rightmargin", "3");
+				}
+			}
+			prebandtype = bandtype;
+		}
+		this.addChild(designDataset.name, designDataset);
+		
+		// ------------------------------------------------------------
+		// 그리드의 텍스트를 Dataset으로 생성
+		// ------------------------------------------------------------
+		cellcount = ubiGridObj.getCellCount("Body");
+		rowcount = ubiGridObj.rowcount;
+		
+		var gridDataset = new Dataset("dsGrid", this);
+		this.addChild(gridDataset.name, gridDataset);
+		
+		// column 생성
+		for( i = 0; i < cellcount; i++ ) {
+		
+			gridDataset.addColumn("column" + i, "string");
+		}
+		
+		// 그리드 데이터 입력
+		for( j = 0; j < rowcount; j++ ) {
+		
+			gridDataset.addRow();
+			for( k = 0; k < cellcount; k++ ) {
+			
+				gridDataset.setColumn(j, k, ubiGridObj.getCellText(j, k));
+			}
+		}
+		// ------------------------------------------------------------
+
+		// dataset SSV 전송에 필요한 정보 생성
+		this.UbiViewer.setRuntimeData(designDataset, gridDataset);
+	
+		// 동적으로 생성된 Dataset 제거
+		this.removeChild(designDataset.name);
+		this.removeChild(gridDataset.name);
+		
+		this.UbiViewer.retrieve(this, "UbiPreviewEnd");
+	}
+	else {
+
+		this.UbiViewer.runtimedata = "";
+		if( ubiSvcUrl != null ) {
+			for( var i = 0; i < ubiSvcUrl.length; i++ ) {
+			
+				var data = ubiSvcUrl[i];
+				if( data.length > 7 ) {
+				
+					this.UbiViewer.addTransaction2(data[7], data[0], data[1], data[2], data[3], data[4], data[5], data[6]);
+				}
+				else {
+					this.UbiViewer.addTransaction(data[6], data[0], data[1], data[2], data[3], data[4], data[5]);
+				}
+			}
+		}
+		else if( ubiLocalDs != null ) {
+		
+			for( var i = 0; i < ubiLocalDs.length; i++) {
+			
+				var data = ubiLocalDs[i];
+				this.UbiViewer.setDataset(data[0], data[1]);
+			}
+		}
+		this.UbiViewer.retrieve(this, "UbiPreviewEnd");
+	}	
+}
+
+/************************************************************************************
+* 미리보기 완료 후 이벤트 처리
+************************************************************************************/
+this.UbiPreviewEnd = function()
+{
+	// 전용뷰어 사용 기준 페이지 : 50페이지 이상이면 전용뷰어 인쇄만 활성화 됩니다.
+	var basePageNum = 50;
+	try {
+		if( basePageNum <= this.UbiViewer.getTotalPage() ) {
+
+			this.UbiViewer.setEnableToolbar("PRINT_PDF", false);
+			this.UbiViewer.setEnableToolbar("PRINT_HTML", false);
+			this.UbiViewer.setEnableToolbar("PRINT_UBI", true);
+			this.UbiViewer.setPluginProgress("true");
+		}
+		else {
+
+			this.UbiViewer.setEnableToolbar("PRINT_PDF", true);
+			this.UbiViewer.setEnableToolbar("PRINT_HTML", true);
+			this.UbiViewer.setEnableToolbar("PRINT_UBI", false);
+			this.UbiViewer.setPluginProgress("false");
+		}
+	}
+	catch (e) {}
+}
+
+/************************************************************************************
+* 인쇄  완료 후 콜백
+************************************************************************************/
+this.UbiPrintEnd = function(flag)
+{
+}
+
+/************************************************************************************
+* 저장 완료 후 콜백
+************************************************************************************/
+this.UbiExportEnd = function(flag, fileName)
+{
+}
+
+/************************************************************************************
+* 링크 콜백
+************************************************************************************/
+this.UbiLinkButtonDown = function(fileName, args)
+{
+}
+
+/************************************************************************************
+* 문자열 치환 함수(유틸)
+************************************************************************************/
+this.replaceAll = function(str, searchStr, replaceStr)
+{
+	return str.split(searchStr).join(replaceStr);
+}
+
+/************************************************************************************
+* 랜덤 Key 생성 함수(유틸)
+************************************************************************************/
+function getRandomKey()
+{
+	var key = "";
+	var nowdate = new Date();
+	var year  = nowdate.getFullYear();
+	var month = nowdate.getMonth() + 1;
+	var day   = nowdate.getDate();
+	var hour  = nowdate.getHours();
+	var min   = nowdate.getMinutes();
+	var sec   = nowdate.getSeconds();
+	var milsec = nowdate.getMilliseconds();
+
+	if (("" + month).length == 1) { month = "0" + month; }
+	if (("" + day).length   == 1) { day   = "0" + day;   }
+	if (("" + hour).length  == 1) { hour  = "0" + hour;  }
+	if (("" + min).length   == 1) { min   = "0" + min;   }
+	if (("" + sec).length   == 1) { sec   = "0" + sec;   }
+	
+	key = ('' + year + month + day + hour + min + sec + milsec) + '_' + ((Math.random() * (1 << 30)).toString(16).replace('.', ''));
+	
+	return key;
+}]]></Script>
+  </Form>
+</FDL>

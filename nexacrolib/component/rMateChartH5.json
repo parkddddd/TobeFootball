@@ -1,0 +1,14 @@
+﻿{
+	"name": "rMateChartH5",
+	"version": "1.0.0.0",
+	"description": "",
+	"license": "",
+	"scripts": [
+			"rMateChartH5/JS/editablegrid-2.0.1.js", 
+			//"rMateChartH5/JS/excanvas.js", 
+			"rMateChartH5/JS/rMateChartH5.js", 
+			"rMateChartH5/LicenseKey/rMateChartH5License.js", 
+			
+	]
+}
+

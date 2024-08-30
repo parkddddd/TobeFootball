@@ -1,0 +1,147 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<FDL version="2.1">
+  <Form id="Foot1012fm" width="1300" height="671" titletext="사용자 신청확인 " cssclass="Foot1011_Bg" onload="form_onload" onsize="Foot1012fm_onsize">
+    <Layouts>
+      <Layout height="671" mobileorientation="landscape" width="1300">
+        <Div id="divInfo" taborder="0" left="300" top="30" height="380" cssclass="div_Bg_White" width="700">
+          <Layouts>
+            <Layout>
+              <Static id="staMsg" taborder="0" text="매치 신청 완료!" left="0" top="0" height="159" cssclass="sta_WF_FootTitle" right="0"/>
+              <Static id="sta00" taborder="1" text="Date" left="30" top="184" width="36" height="17" cssclass="sta_WF_TitleMain"/>
+              <Static id="sta00_00" taborder="2" text="time" left="363" top="184" width="34" height="17" cssclass="sta_WF_TitleMain"/>
+              <Static id="sta00_01" taborder="3" text="stadium" left="30" top="270" width="61" height="17" cssclass="sta_WF_TitleMain"/>
+              <Static id="sta00_01_00" taborder="4" text="type" left="363" top="270" width="34" height="17" cssclass="sta_WF_TitleMain"/>
+              <Static id="sta01" taborder="5" text="2022년" left="29" top="211" width="261" height="14" onclick="divInfo_sta01_onclick"/>
+              <Static id="sta01_00" taborder="6" text="17:00" left="363" top="211" width="261" height="14"/>
+              <Static id="sta01_00_00" taborder="7" text="남여모두●5vs5 ·남여모두 5vs5 " left="363" top="297" width="261" height="14"/>
+              <Static id="sta01_00_00_00" taborder="8" text="경기장" left="30" top="297" width="261" height="14"/>
+            </Layout>
+          </Layouts>
+        </Div>
+        <Div id="divMoney" taborder="1" text="div01" left="300" top="430" cssclass="div_Bg_White" height="201" width="700">
+          <Layouts>
+            <Layout>
+              <Button id="btnBack" taborder="0" text="이전페이지로 이동" left="190" top="123" width="123" height="57" onclick="btnBack_onclick" cssclass="btn_WF_GrdPageS"/>
+              <Button id="btnHome" taborder="1" text="홈으로 이동" top="123" width="123" height="57" right="190" onclick="btnHome_onclick" cssclass="btn_WF_GrdPageS"/>
+              <Static id="sta00" taborder="2" text="결제정보" left="30" top="30" width="72" height="21" cssclass="sta_WF_FootMatchTitle"/>
+              <Static id="sta01" taborder="3" text="결제금액" left="30" top="76" width="56" height="17" cssclass="sta_WF_TitleMain"/>
+              <Static id="sta02" taborder="4" text="10,000원" top="76" height="17" cssclass="sta_WF_TitleMain" width="67" right="30"/>
+              <Static id="sta03" taborder="5" left="30" top="107" height="1" cssclass="sta_WF_Line" right="30" width="640"/>
+            </Layout>
+          </Layouts>
+        </Div>
+      </Layout>
+    </Layouts>
+    <Script type="xscript5.1"><![CDATA[
+/**
+*  TobeFootball
+*  @MenuPath     샘플 > script 표준
+*  @FileName     C:\TobeFootball\Foot\Foot1012fm.xfdl
+*  @Creator      박진호
+*  @CreateDate   2024/08/23
+*  @Desction    스크립트 표준 및 주석 표준 정의
+************** 소스 수정 이력 *****************************************************************
+*  date          		Modifier                Description
+*************************************************************************************************
+*  2024/08/23     	        박진호 	              최초 생성
+*************************************************************************************************
+*/
+
+/************************************************************************************************
+ * FORM 변수 선언 영역
+ ************************************************************************************************/
+this.fvObjApp = this.gfnGetApplication();
+
+/************************************************************************************************
+ * FORM EVENT 영역(onload, onbeforeclose)
+ ************************************************************************************************/
+this.form_onload = function(obj:nexacro.Form,e:nexacro.LoadEventInfo)
+{
+	this.gfnFormOnLoad(this);
+	trace("전달받은 매치아이디"+this.fvObjApp.avSMatchId);
+	this.fnSearch();
+	this.Foot1012fm_onsize();
+};
+
+this.Foot1012fm_onsize = function(obj:nexacro.Form,e:nexacro.SizeEventInfo)
+{
+	this.fnSetHorizonCenter(this.divInfo);
+	this.fnSetHorizonCenter(this.divMoney);
+};
+/************************************************************************************************
+ * CALLBACK 콜백 처리부분(Transaction, Popup)
+ ************************************************************************************************/
+this.fnCallback = function (svcId, errCd, errMsg)
+{
+	if(svcId == "searchSuccessApply"){
+		trace(this.dsSuccess.saveXML());
+	}
+};
+
+/************************************************************************************************
+ * CRUD 및 TRANSACTION 서비스 호출 처리
+ ************************************************************************************************/
+this.fnSearch = function ()
+{
+	var sUserId = this.fvObjApp.gdsUserInfo.getColumn(0,"USER_ID");
+	var strSvcUrl = "searchSuccessApply.do";
+	var inData    = "";
+	var outData   = "dsSuccess=dsSuccess";
+	var strArg    = "matchId="+this.fvObjApp.avSMatchId+" userId="+sUserId;
+
+	this.gfnTransaction("searchSuccessApply", strSvcUrl, inData, outData, strArg, "fnCallback", true);
+};
+
+/************************************************************************************************
+ * 사용자 FUNCTION 영역
+ ************************************************************************************************/
+/**
+ * @description 리사이즈시 센터로 움직임.
+*/
+ 
+this.fnSetHorizonCenter = function (obj)
+{
+	var nLeft = ( this.width / 2 ) - ( obj.width /2 );
+//    var nTop = (this.height / 2 ) - ( obj.height /2 );
+    
+    obj.set_left(nLeft);
+//    obj.set_top(nTop);
+};
+
+/************************************************************************************************
+ * 각 COMPONENT 별 EVENT 영역
+ ************************************************************************************************/
+
+this.btnBack_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	var sUrl = "Foot::"+this.fvObjApp.avSBeforFormName+".xfdl";
+	this.parent.set_url(sUrl);
+};
+
+this.btnHome_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	this.parent.set_url("Foot::Foot1010fm.xfdl");
+};
+
+
+]]></Script>
+    <Objects>
+      <Dataset id="dsSuccess">
+        <ColumnInfo>
+          <Column id="DATE" type="STRING" size="32"/>
+          <Column id="TIME" type="STRING" size="32"/>
+          <Column id="STADIUM_NAME" type="STRING" size="32"/>
+          <Column id="MATCH_TYPE" type="STRING" size="32"/>
+          <Column id="PRICE" type="STRING" size="32"/>
+        </ColumnInfo>
+      </Dataset>
+    </Objects>
+    <Bind>
+      <BindItem id="item0" compid="divInfo.form.sta01" propid="text" datasetid="dsSuccess" columnid="DATE"/>
+      <BindItem id="item1" compid="divInfo.form.sta01_00" propid="text" datasetid="dsSuccess" columnid="TIME"/>
+      <BindItem id="item2" compid="divInfo.form.sta01_00_00_00" propid="text" datasetid="dsSuccess" columnid="STADIUM_NAME"/>
+      <BindItem id="item3" compid="divInfo.form.sta01_00_00" propid="text" datasetid="dsSuccess" columnid="MATCH_TYPE"/>
+      <BindItem id="item4" compid="divMoney.form.sta02" propid="text" datasetid="dsSuccess" columnid="PRICE"/>
+    </Bind>
+  </Form>
+</FDL>

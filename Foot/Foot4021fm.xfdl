@@ -1,0 +1,91 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<FDL version="2.1">
+  <Form id="Foot4011fm" width="1300" height="671" titletext="회원정보수정 완료" onload="form_onload" onsize="Foot4011fm_onsize">
+    <Layouts>
+      <Layout height="671" mobileorientation="landscape" width="1300">
+        <Div id="divSuccess" taborder="0" text="div00" left="300" top="98" width="701" height="474">
+          <Layouts>
+            <Layout>
+              <Static id="staLogo" taborder="0" left="100" top="0" width="500" height="250" cssclass="sta_WF_SignupLogo"/>
+              <Static id="staCheck" taborder="1" left="318" top="250" width="64" height="64" cssclass="sta_WF_SignupCheck"/>
+              <Static id="staSuccessMsg" taborder="2" text="회원정보가" left="297" top="324" width="107" height="23" cssclass="sta_WF_Title" onclick="div00_sta02_onclick"/>
+              <Static id="staSuccessMsg2" taborder="3" text="수정되었습니다." left="276" top="347" width="148" height="23" cssclass="sta_WF_Title"/>
+              <Static id="staNameMsg" taborder="4" text="다시 로그인 해주세요" left="292" top="390" width="117" height="14"/>
+              <Button id="btnLogin" taborder="5" text="로그인" left="276" top="434" width="148" onclick="divSuccess_btnLogin_onclick" cssclass="btn_LOGIN_Login" height="40"/>
+            </Layout>
+          </Layouts>
+        </Div>
+      </Layout>
+    </Layouts>
+    <Script type="xscript5.1"><![CDATA[
+/**
+*  TobeFootball
+*  @MenuPath     샘플 > script 표준
+*  @FileName     C:\TobeFootball\Foot\Foot4011fm.xfdl
+*  @Creator      박진호
+*  @CreateDate   2024/08/12
+*  @Desction    스크립트 표준 및 주석 표준 정의
+************** 소스 수정 이력 *****************************************************************
+*  date          		Modifier                Description
+*************************************************************************************************
+*  2024/08/12     	        박진호 	              최초 생성
+*************************************************************************************************
+*/
+
+/************************************************************************************************
+ * FORM 변수 선언 영역
+ ************************************************************************************************/
+this.fvObjApp = this.gfnGetApplication();
+
+/************************************************************************************************
+ * FORM EVENT 영역(onload, onbeforeclose)
+ ************************************************************************************************/
+this.form_onload = function(obj:nexacro.Form,e:nexacro.LoadEventInfo)
+{
+	this.gfnFormOnLoad(this);
+	
+	this.fnCenter(this.divSuccess);
+	
+	var sName = this.fvObjApp.avSignUpName
+	//this.divSuccess.form.staNameMsg.set_text(sName+"님 회원가입을 축하합니다.");
+};
+
+/************************************************************************************************
+ * CALLBACK 콜백 처리부분(Transaction, Popup)
+ ************************************************************************************************/
+
+
+/************************************************************************************************
+ * CRUD 및 TRANSACTION 서비스 호출 처리
+ ************************************************************************************************/
+
+
+/************************************************************************************************
+ * 사용자 FUNCTION 영역
+ ************************************************************************************************/
+this.fnCenter = function (obj)
+{
+	var nLeft = ( this.width / 2 ) - ( obj.width /2 );
+    var nTop = (this.height / 2 ) - ( obj.height /2 );
+    
+    obj.set_left(nLeft);
+    obj.set_top(nTop);
+   
+};
+
+/************************************************************************************************
+ * 각 COMPONENT 별 EVENT 영역
+ ************************************************************************************************/
+
+this.divSuccess_btnLogin_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	this.fvObjApp.avWorkFrame.set_formurl("FrameBase::FrameLogin.xfdl");
+};
+
+this.Foot4011fm_onsize = function(obj:nexacro.Form,e:nexacro.SizeEventInfo)
+{
+	this.fnCenter(this.divSuccess);
+};
+]]></Script>
+  </Form>
+</FDL>

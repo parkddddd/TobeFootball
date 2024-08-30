@@ -1,0 +1,153 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<FDL version="2.1">
+  <Form id="CmmSlide" width="400" height="130" titletext="슬라이드" onload="Form_onload" ontimer="Form_ontimer">
+    <Layouts>
+      <Layout height="130" mobileorientation="portrait" width="400">
+        <Div id="divSlide" taborder="0" text="Div00" left="0" top="0" width="400" height="130" ondragmove="divSlide_ondragmove">
+          <Layouts>
+            <Layout>
+              <Static id="stBarBg" taborder="0" left="20" top="77" width="360" height="15" background="#dddddd" onclick="divSlide_stBarBg_onclick" border="0px none"/>
+              <Static id="stBar" taborder="1" left="20" top="77" width="250" height="15" background="#31a2de" onclick="divSlide_stBar_onclick"/>
+              <Static id="stTooltip" taborder="2" text="0" left="251" top="36" width="56" height="22"/>
+              <Static id="stMin" taborder="3" text="0" left="20" top="102" width="40" height="25"/>
+              <Static id="stMax" taborder="4" text="99" left="359" top="102" width="26" height="25"/>
+              <Button id="btnBarPoint" taborder="5" left="252" top="69" width="30" height="30" ondrag="divSlide_btnBarPoint_ondrag" ondrop="divSlide_btnBarPoint_ondrop" ontouchend="divSlide_btnBarPoint_ontouchend" cssclass="btn_WF_BarPoint"/>
+            </Layout>
+          </Layouts>
+        </Div>
+      </Layout>
+    </Layouts>
+    <Objects/>
+    <Script type="xscript5.1"><![CDATA[/**
+*  Necacro EduPack
+*  @MenuPath    CmmM > CmmSlide (공통 슬라이드버튼)
+*  @FileName 	CmmSlide.xfdl 
+*  @Creator 	Education
+*  @CreateDate 	2022.05.01
+*  @Desction    공통 슬라이드버튼
+************** 소스 수정 이력 ***********************************************
+*  date          		Modifier                Description
+*******************************************************************************
+*  2022.05.01     	Education	        최초 생성 
+*******************************************************************************
+*/
+
+/************************************************************************************************
+ * FORM 변수 선언 영역
+ ************************************************************************************************/
+this.fvValue = -1;
+this.callbackfunc;
+this.callbackfunc2;
+/***********************************************************************************************
+* FORM EVENT 영역(onload)
+/***********************************************************************************************/
+this.Form_onload = function(obj:nexacro.Form,e:nexacro.LoadEventInfo)
+{
+    var objTarget = this.parent;	 //div
+	this.divSlide.max 	= objTarget.max;
+	this.divSlide.lable = this.gfnTrim(objTarget.lable);
+    this.callbackfunc = objTarget.callbackfunc;    
+    this.callbackfunc2 = objTarget.callbackfunc2;  
+
+	this.divSlide.form.btnBarPoint.clickpointx = 0;
+	this.fnMoveBarPoint(0);    
+};
+
+ /************************************************************************************************
+ * 사용자 FUNCTION 영역
+ ************************************************************************************************/
+
+this.fnMoveBarPoint = function(nClientX)
+{
+    var obj =  this.divSlide;
+	var nMin = 0;
+    var nPadding = 5;
+	var nMax = obj.form.stBarBg.getOffsetWidth(); 
+	var nX = nClientX - obj.form.btnBarPoint.clickpointx;
+	
+	if (nMin > nX)    
+        nX = nMin;
+	else if (nMax < nX)
+        nX = nMax;
+	
+	obj.form.btnBarPoint.move(nX, obj.form.btnBarPoint.getOffsetTop());
+	obj.form.stBar.setOffsetWidth(nX);
+	obj.form.stTooltip.move(nX+nPadding, obj.form.stTooltip.getOffsetTop());
+    this.fvValue = nexacro.round((nX-nMin)/((nMax-nMin)/obj.max));
+	obj.form.stTooltip.set_text(this.fvValue + obj.lable);
+}
+
+this.getValue = function()
+{
+    return this.fvValue;
+};
+
+this.setValue = function(nValue)
+{
+    this.divSlide.form.btnBarPoint.clickpointx = 0;
+    var obj =  this.divSlide;
+	var nMin = 0;
+	var nMax = obj.form.stBarBg.getOffsetWidth();     
+    var nX = nexacro.round(nValue*((nMax-nMin)/obj.max)+nMin);
+    this.fnMoveBarPoint(nX);
+};
+
+ /************************************************************************************************
+ * 각 COMPONENT 별 EVENT 영역
+ ************************************************************************************************/
+
+this.divSlide_btnBarPoint_ondrag = function(obj:nexacro.Button,e:nexacro.DragEventInfo)
+{
+	obj.clickpointx = e.canvasx;
+	return true;
+};
+
+this.divSlide_ondragmove = function(obj:nexacro.Div,e:nexacro.DragEventInfo)
+{
+	this.fnMoveBarPoint(e.clientx);
+	if (!this.gfnIsNull(this.callbackfunc2))
+	{	
+		this.lookupFunc(this.callbackfunc2).call(this.parent.name, this.fvValue); 
+	} 
+};
+
+this.divSlide_stBarBg_onclick = function(obj:nexacro.Static,e:nexacro.ClickEventInfo)
+{
+    this.divSlide.form.btnBarPoint.clickpointx = 0;
+	this.fnMoveBarPoint(e.clientx);
+
+	if (!this.gfnIsNull(this.callbackfunc))
+	{	
+		this.lookupFunc(this.callbackfunc).call(this.parent.name, this.fvValue); 
+	}  
+};
+
+this.divSlide_stBar_onclick = function(obj:nexacro.Static,e:nexacro.ClickEventInfo)
+{
+    this.divSlide.form.btnBarPoint.clickpointx = 0;
+	this.fnMoveBarPoint(e.clientx);
+
+	if (!this.gfnIsNull(this.callbackfunc))
+	{	
+		this.lookupFunc(this.callbackfunc).call(this.parent.name, this.fvValue); 
+	}  
+};
+
+this.divSlide_btnBarPoint_ondrop = function(obj:nexacro.Button,e:nexacro.DragEventInfo)
+{
+	if (!this.gfnIsNull(this.callbackfunc))
+	{	
+		this.lookupFunc(this.callbackfunc).call(this.parent.name, this.fvValue); 
+	}  
+};
+
+this.divSlide_btnBarPoint_ontouchend = function(obj:nexacro.Button,e:nexacro.TouchEventInfo)
+{
+	if (!this.gfnIsNull(this.callbackfunc))
+	{	
+		this.lookupFunc(this.callbackfunc).call(this.parent.name, this.fvValue); 
+	} 
+};]]></Script>
+    <Bind/>
+  </Form>
+</FDL>

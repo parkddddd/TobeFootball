@@ -1,0 +1,152 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<FDL version="2.1">
+  <Form id="LeftFrame" left="0" top="0" width="248" height="760" onsize="Form_onsize" onload="form_onload" titletext="frameLeft" background="#f3f5f6">
+    <Layouts>
+      <Layout>
+        <Div id="divLeft" taborder="2" text="div00" left="10" top="39" bottom="10" cssclass="div_LF_Bg" width="230">
+          <Layouts>
+            <Layout>
+              <Grid id="grdTree" treeinitstatus="expand,all" cssclass="grd_LF_Tree" left="0" top="10" autofittype="col" treeusecheckbox="false" bottom="0" oncellclick="grdTree_oncellclick" binddataset="gdsMenu" treeuseline="false" treeuseimage="false" taborder="0" right="0">
+                <Formats>
+                  <Format id="menu">
+                    <Columns>
+                      <Column size="208"/>
+                    </Columns>
+                    <Rows>
+                      <Row size="32"/>
+                    </Rows>
+                    <Band id="body">
+                      <Cell edittype="tree" text="bind:MENU_NAME" treelevel="bind:MENU_LEVEL" tooltiptext="bind:MENU_NAME" textAlign="left" displaytype="treeitemcontrol" cssclass="expr:MENU_LEVEL == 1 ? &quot;cell_LF_Lev0&quot; : &quot;cell_LF_Lev1&quot;" treestartlevel="1"/>
+                    </Band>
+                  </Format>
+                  <Format id="myMenu">
+                    <Columns>
+                      <Column size="48"/>
+                    </Columns>
+                    <Rows>
+                      <Row size="30"/>
+                    </Rows>
+                    <Band id="body">
+                      <Cell text="bind:MENU_NAME"/>
+                    </Band>
+                  </Format>
+                </Formats>
+              </Grid>
+            </Layout>
+          </Layouts>
+        </Div>
+        <Button id="btnMyMenu" taborder="1" left="92" top="10" width="90" height="30" onclick="btnMyMenu_onclick" visible="true" cssclass="btn_LF_MymenuIcon" text="MyMenu"/>
+        <Button id="btnMenu" taborder="0" left="10" top="10" width="80" height="30" cssclass="btn_LF_MenuIcon" onclick="btnMenu_onclick" text="Menu"/>
+      </Layout>
+    </Layouts>
+    <Objects/>
+    <Script type="xscript5.1"><![CDATA[
+/**
+*  TobeFootball
+*  @MenuPath     샘플 > script 표준
+*  @FileName     C:\TobeFootball\AdminFrame\AdminFrameLeft.xfdl
+*  @Creator      박진호
+*  @CreateDate   2024/08/06
+*  @Desction    스크립트 표준 및 주석 표준 정의
+************** 소스 수정 이력 *****************************************************************
+*  date          		Modifier                Description
+*************************************************************************************************
+*  2024/08/06     	        박진호 	              최초 생성
+*************************************************************************************************
+*/
+
+/************************************************************************************************
+ * FORM 변수 선언 영역
+ ************************************************************************************************/
+this.fvObjApp = this.gfnGetApplication();
+
+/************************************************************************************************
+ * FORM EVENT 영역(onload, onbeforeclose)
+ ************************************************************************************************/
+this.form_onload = function(obj:nexacro.Form,e:nexacro.LoadEventInfo)
+{
+	this.gfnFormOnLoad(this);
+};
+
+/************************************************************************************************
+ * CALLBACK 콜백 처리부분(Transaction, Popup)
+ ************************************************************************************************/
+
+
+/************************************************************************************************
+ * CRUD 및 TRANSACTION 서비스 호출 처리
+ ************************************************************************************************/
+
+
+/************************************************************************************************
+ * 사용자 FUNCTION 영역
+ ************************************************************************************************/
+
+
+/************************************************************************************************
+ * 각 COMPONENT 별 EVENT 영역
+ ************************************************************************************************/
+
+this.grdTree_oncellclick = function(obj:nexacro.Grid,e:nexacro.GridClickEventInfo)
+{
+	// Tree 이미지 클릭시 리턴
+	if(e.clickitem == "treeitembutton") return;
+
+	//ID.NAME,URL
+	var objDs = obj.getBindDataset();   //var strID = this.fvApp.gds_menu; 두가지 모두 가능
+	var sName = objDs.getColumn(e.row,"MENU_ID");
+	var sMenuName = objDs.getColumn(e.row,"MENU_NAME");
+	var sFormUrl = objDs.getColumn(e.row,"MENU_URL");
+	var sMenuPath = objDs.getColumn(e.row,"MENU_PATH");
+	
+	if(this.gfnIsNull(sFormUrl) == false){
+		var arrObj = this.fvObjApp.avWorkFrame.all;
+		for(var i=0; i<arrObj.length;i++){  //창을 다시 띄울때 오류가 나지 않게하기위해. 똑같은 이름의 childframe이 만들어 지는것을 방지하기 위해
+		  if (arrObj[i].name == sName){
+			 arrObj[i].setFocus();
+			 this.fvObjApp.avMdiFrame.form.tabMdi.set_tabindex(i);
+			 return;
+		  }
+		}
+		if (this.fvObjApp.avMdiFrame.form.tabMdi.getTabpageCount() == 0){
+			this.fvObjApp.avVFrameSet2.set_separatesize(this.fvObjApp.avWorkOpen);
+		}
+		//ChileFrame 생성하기
+		var objChildFrame = new ChildFrame(sName,0, 0, null,null, 0, 0);
+
+		// Add Object to Parent Frame  
+		this.fvObjApp.avWorkFrame.addChild(sName, objChildFrame); 
+
+		//url
+		objChildFrame.set_formurl("AdminFrame::AdminFrameWork.xfdl");
+		objChildFrame.set_dragmovetype('normal');
+		objChildFrame.set_openstatus('maximize');
+		objChildFrame.set_showtitlebar(false);
+		objChildFrame.set_resizable(true);		
+		// Show Object  
+		//objChildFrame.show(); 
+		var objFaram = {MENU_ID:sName
+						,MENU_NAME:sMenuName
+						,FORM_URL:sFormUrl
+						,MENU_PATH:sMenuPath};
+		objChildFrame.param = objFaram;
+		objChildFrame.show();
+		this.fvObjApp.avMdiFrame.form.fnAddTab(objFaram);
+	}
+};
+
+this.btnMenu_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	this.divLeft.form.grdTree.set_formatid("menu");
+	this.divLeft.form.grdTree.set_binddataset("gdsMenu");
+};
+
+this.btnMyMenu_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	this.divLeft.form.grdTree
+	this.divLeft.form.grdTree.set_formatid("myMenu");
+	this.divLeft.form.grdTree.set_binddataset("gdsMyMenu");	
+};
+]]></Script>
+  </Form>
+</FDL>

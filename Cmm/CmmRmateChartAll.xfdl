@@ -1,0 +1,257 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<FDL version="2.1">
+  <TypeDefinition url="..\default_typedef.xml"/>
+  <Form id="CmmRmateChartAll" left="0" top="0" width="300" height="300" titletext="Rmate Chart 공통화면" onsize="CmmRmateChartDiv_onsize" onbeforeclose="CmmRmateChartAll_onbeforeclose">
+    <Layouts>
+      <Layout>
+        <WebBrowser id="webChart" taborder="0" left="0" top="0" right="0" bottom="0" visible="false"/>
+      </Layout>
+    </Layouts>
+    <Script type="xscript5.1"><![CDATA[/**
+*  Necacro EduPack
+*  @MenuPath    Cmm > CmmRmateChartAll
+*  @FileName 	CmmRmateChartAll.xfdl 
+*  @Creator 	Education
+*  @CreateDate 	2022.05.01
+*  @Desction    rmate chart 공통 화면 (모든 브라우져 지원)
+************** 소스 수정 이력 ***********************************************
+*  date          	Modifier            Description
+*******************************************************************************
+*  2022.05.01     	Education 	        최초 생성 
+*******************************************************************************
+*/
+
+
+/************************************************************************************************
+ * include 영역(업무화면에서 꼭 필요한 경우에만 사용하세요)
+ ************************************************************************************************/
+include "Lib::rMateChartH5.xjs";
+
+
+/************************************************************************************************
+ * FORM 변수 선언 영역
+ ************************************************************************************************/
+var charId    = "";
+var layoutStr = "";	// 스트링 형식으로 레이아웃 정의.
+var chartData = []; // 차트 데이터
+
+
+/************************************************************************************************
+ * FORM EVENT 영역(onload, onbeforeclose)
+ ************************************************************************************************/
+/**
+ * @class chart 설정 <br>
+ * @param {Sring} id - DIV chart ID
+ * @param {Sring} argLayoutStr - DIV chart Layout
+ * @param {Sring} argChartData - DIV chart Data
+ * @return N/A
+ */
+this.fnSetChart = function(id, argLayoutStr, argChartData)
+{
+	charId    = this.gfnGetUniqueId(id,"");
+	layoutStr = argLayoutStr;
+	chartData = argChartData;
+		
+	// 런타임 접속
+	if (system.navigatorname == "nexacro") 
+	{		
+		// 웹브라우져로 rMateChart를 그릴때면 Onload 후 this.rMateChartOnLoad 함수에서 rMateChart가 그려집니다.
+		this.gfnCreateChart(this.webChart);
+	}
+	// 웹 접속
+	else {
+		// rMateChart 를 생성합니다.
+		// 파라메터 (순서대로) 
+		//  1. 차트의 id ( 임의로 지정하십시오. ) 
+		//  2. 차트가 위치할 div 의 id (즉, 차트의 부모 div 의 id 입니다.)
+		//  3. 차트 생성 시 필요한 환경 변수들의 묶음인 chartVars
+		//  4. 차트의 가로 사이즈 (생략 가능, 생략 시 100%)
+		//  5. 차트의 세로 사이즈 (생략 가능, 생략 시 100%)
+		//  6. 차트 LOAD 후 Layout, Data 설정하는 함수 호출(생략 시 chartVars에 설정된 함수가 호출됨)
+		var chartVars = "";
+		rMateChartH5.create(charId, this.fnGetHolderId(this.parent), chartVars, "100%", "100%", this.chartReadyHandler);
+	}
+}
+
+/**
+ * @class chart Layout 변경 <br>
+ * @param {Sring} argLayoutStr - DIV chart Layout
+ * @return N/A
+ */
+this.fnSetLayout = function(arrLayoutStr)
+{
+	// 런타임 접속
+	if (system.navigatorname == "nexacro") 
+	{
+		layoutStr = arrLayoutStr;
+		this.rMateChartSetLayout(this.webChart, arrLayoutStr);
+	}
+	// 웹 접속
+	else {	
+		document.getElementById(charId).setLayout(arrLayoutStr);
+	}
+}
+
+/**
+ * @class chart Data 변경 <br>
+ * @param {Sring} argChartData - DIV chart Data
+ * @return N/A
+ */
+this.fnSetData = function(argChartData)
+{
+	// 런타임 접속
+	if (system.navigatorname == "nexacro") 
+	{
+		chartData = argChartData;
+		this.rMateChartSetData(this.webChart, argChartData);
+	}
+	// 웹 접속
+	else {
+		document.getElementById(charId).setData(argChartData);
+	}
+}
+
+/************************************************************************************************
+ * 사용자 FUNCTION 영역
+ ************************************************************************************************/
+/**
+ * @class 넥사크로의 DIV 오브젝트에서 차트에서 사용할 id값을 가져오는 함수 <br>
+ * @param {Object} obj - DIV
+ * @return {String} DIV id
+ */
+this.fnGetHolderId = function(obj) {
+	var str = "";
+	str = obj.getElement().dest_handle.id;
+	return str;
+}	
+
+this.chartReadyHandler = function(id) {
+	//trace("chartReadyHandler id : " + id + " / charId : " + charId + " / layoutStr : " + layoutStr);
+	document.getElementById(id).setLayout(layoutStr);
+	document.getElementById(id).setData(chartData);
+}
+
+// size 변경시 resize 처리
+this.CmmRmateChartDiv_onsize = function(obj:nexacro.Form,e:nexacro.SizeEventInfo)
+{
+	if (system.navigatorname != "nexacro") {
+		if (this.gfnIsNull(charId) == false)
+		{
+			document.getElementById(charId).resize();
+		}
+	}
+};
+
+// Runtime 실행 시 웹브라우져에 차트 호출 시 this.rMateChartOnLoad 함수에서 rMateChart를 그려야 합니다.
+this.rMateChartOnLoad = function()
+{
+	//trace('============= rMateChartOnLoad 실행');
+	this.webChart.set_visible(true);
+		
+	this.rMateChartSetLayout(this.webChart, layoutStr);
+	this.rMateChartSetData(this.webChart, chartData);	
+};
+
+
+/************************************************************************************************
+ * 각 COMPONENT 별 EVENT 영역
+ ************************************************************************************************/
+// 웹브라우져로 호출시 메모리 감소를 테스트 하였으나 효과가 없음
+// this.CmmRmateChartAll_onbeforeclose = function(obj:nexacro.Form,e:nexacro.CloseEventInfo)
+// {	
+// 	// 초기화
+// 	var html = "";
+// 	
+// 	this.webChart.getProperty("document").callMethod("write", html);
+// 	this.webChart.getProperty("document").callMethod("close");
+// 
+// 	this.webChart.destroy();
+// 	this.webChart = null;	
+// };
+]]></Script>
+    <Objects>
+      <Dataset id="dsData">
+        <ColumnInfo>
+          <Column id="Month" type="STRING" size="256"/>
+          <Column id="Vancouver" type="INT" size="256"/>
+          <Column id="Toronto" type="STRING" size="256"/>
+          <Column id="Calgary" type="STRING" size="256"/>
+        </ColumnInfo>
+        <Rows>
+          <Row>
+            <Col id="Month">Jan</Col>
+            <Col id="Vancouver">91</Col>
+            <Col id="Toronto">85</Col>
+            <Col id="Calgary">45</Col>
+          </Row>
+          <Row>
+            <Col id="Month">Feb</Col>
+            <Col id="Vancouver">87</Col>
+            <Col id="Toronto">75</Col>
+            <Col id="Calgary">75</Col>
+          </Row>
+          <Row>
+            <Col id="Month">Mar</Col>
+            <Col id="Vancouver">88</Col>
+            <Col id="Toronto">87</Col>
+            <Col id="Calgary">65</Col>
+          </Row>
+          <Row>
+            <Col id="Month">Apr</Col>
+            <Col id="Vancouver">86</Col>
+            <Col id="Toronto">78</Col>
+            <Col id="Calgary">78</Col>
+          </Row>
+          <Row>
+            <Col id="Month">May</Col>
+            <Col id="Vancouver">82</Col>
+            <Col id="Toronto">84</Col>
+            <Col id="Calgary">56</Col>
+          </Row>
+          <Row>
+            <Col id="Month">Jun</Col>
+            <Col id="Vancouver">80</Col>
+            <Col id="Toronto">68</Col>
+            <Col id="Calgary">65</Col>
+          </Row>
+          <Row>
+            <Col id="Month">Jul</Col>
+            <Col id="Vancouver">79</Col>
+            <Col id="Toronto">57</Col>
+            <Col id="Calgary">54</Col>
+          </Row>
+          <Row>
+            <Col id="Month">Aug</Col>
+            <Col id="Vancouver">72</Col>
+            <Col id="Toronto">67</Col>
+            <Col id="Calgary">79</Col>
+          </Row>
+          <Row>
+            <Col id="Month">Sep</Col>
+            <Col id="Vancouver">90</Col>
+            <Col id="Toronto">87</Col>
+            <Col id="Calgary">85</Col>
+          </Row>
+          <Row>
+            <Col id="Month">Oct</Col>
+            <Col id="Vancouver">95</Col>
+            <Col id="Toronto">75</Col>
+            <Col id="Calgary">79</Col>
+          </Row>
+          <Row>
+            <Col id="Month">Nov</Col>
+            <Col id="Vancouver">40</Col>
+            <Col id="Toronto">84</Col>
+            <Col id="Calgary">65</Col>
+          </Row>
+          <Row>
+            <Col id="Month">Dec</Col>
+            <Col id="Vancouver">60</Col>
+            <Col id="Toronto">65</Col>
+            <Col id="Calgary">79</Col>
+          </Row>
+        </Rows>
+      </Dataset>
+    </Objects>
+  </Form>
+</FDL>

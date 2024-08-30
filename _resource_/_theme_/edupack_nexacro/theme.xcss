@@ -1,0 +1,3644 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<XCSS version="1.1">
+  <CSSData><![CDATA[/*******************************************************
+  PROJECT NAME : 
+  CREATION DATES : 2022.10.28
+  DRAFTER :
+  DISTRIBUTION DATE :
+  AMENDER :
+  MODIIFICATION DATES :
+*******************************************************/
+/*************** Form ***************/
+.Form
+{
+	background : #ffffff;
+	color : #262626;
+	font : 12px "Verdana", "Malgun Gothic";
+}
+.Form[userstatus=contents]
+{
+	background : transparent;
+}
+/*************** MainFrame ***************/
+.MainFrame
+{
+	-nexa-border : 1px solid #9d9d9d;
+}
+/*************** ChildFrame/FrameSet ***************/
+.ChildFrame,.FrameSet,.HFrameSet,.TileFrameSet,.VFrameSet
+{
+	background : #ffffff;
+}
+
+.ChildFrame.chf_POP_Msg
+{
+	background : #ffffff;
+	border-radius : 10px;	
+}.ChildFrame .titlebar
+{
+	background : #03b864;
+	color : #ffffff;
+}
+.ChildFrame .titlebar .maxbutton
+{
+	-nexa-icon : url('theme://images/btn_TF_MaxP.png');	
+}
+.ChildFrame .titlebar .maxbutton[status=mouseover]
+{
+	-nexa-icon : url('theme://images/btn_TF_Max.png');	
+}
+.ChildFrame .titlebar .minbutton
+{
+	-nexa-icon : url('theme://images/btn_TF_MinP.png');
+}
+.ChildFrame .titlebar .minbutton[status=mouseover]
+{
+	-nexa-icon : url('theme://images/btn_TF_Min.png');	
+}
+.ChildFrame .titlebar .normalbutton
+{
+	-nexa-icon : url('theme://images/btn_TF_NormalP.png');
+}
+.ChildFrame .titlebar .normalbutton[status=mouseover]
+{
+	-nexa-icon : url('theme://images/btn_TF_Normal.png');	
+}
+.ChildFrame .titlebar .closebutton
+{
+	-nexa-icon : url('theme://images/btn_TF_CloseP.png');	
+}
+.ChildFrame .titlebar .closebutton[status=mouseover],
+.ChildFrame .titlebar .closebutton[userstatus=pushed]
+{	
+	background : #e81123;
+}
+/*************** VScrollBarControl ***************/
+.VScrollBarControl
+{
+	-nexa-border : 0px none, 0px none, 0px none, 1px solid #c4c4c4;
+	-nexa-padding : 0px 2px;
+	background : #f5f5f5;
+}
+.VScrollBarControl[status=disabled]
+{
+	opacity : 0.5;
+}
+.VScrollBarControl .decbutton
+{
+	-nexa-icon : url('theme://images/scl_WF_VDec.png');
+}
+.VScrollBarControl .decbutton[status=mouseover],
+.VScrollBarControl .decbutton[userstatus=pushed]
+{
+	-nexa-icon : url('theme://images/scl_WF_VDecP.png');
+}
+.VScrollBarControl .decbutton[status=disabled]
+{
+	opacity : 0.5;
+}
+.VScrollBarControl .incbutton
+{
+	-nexa-icon : url('theme://images/scl_WF_VInc.png');
+}
+.VScrollBarControl .incbutton[status=mouseover],
+.VScrollBarControl .incbutton[userstatus=pushed]
+{
+	-nexa-icon : url('theme://images/scl_WF_VIncP.png');
+}
+.VScrollBarControl .incbutton[status=disabled]
+{
+	opacity : 0.5;
+}
+.VScrollBarControl .trackbar
+{
+	background : #9d9d9d;
+}
+.VScrollBarControl .trackbar[status=mouseover],
+.VScrollBarControl .trackbar[userstatus=pushed]
+{
+	background : #7b7b7b;
+}
+.VScrollBarControl .trackbar[status=disabled]
+{
+	opacity : 0.5;
+}
+/*************** HScrollBarControl ***************/
+.HScrollBarControl
+{
+	-nexa-border : 1px solid #c4c4c4, 0px none, 0px none, 0px none;
+	-nexa-padding : 2px 0px;
+	background : #f5f5f5;	
+} 
+.HScrollBarControl[status=disabled]
+{
+	opacity : 0.5;
+}
+.HScrollBarControl .decbutton
+{
+	-nexa-icon : url('theme://images/scl_WF_HDec.png');
+}
+.HScrollBarControl .decbutton[status=mouseover],
+.HScrollBarControl .decbutton[userstatus=pushed]
+{
+	-nexa-icon : url('theme://images/scl_WF_HDecP.png');
+}
+.HScrollBarControl .decbutton[status=disabled]
+{
+	opacity : 0.5;
+}
+.HScrollBarControl .incbutton
+{
+	-nexa-icon : url('theme://images/scl_WF_HInc.png');
+}
+.HScrollBarControl .incbutton[status=mouseover],
+.HScrollBarControl .incbutton[userstatus=pushed]
+{
+	-nexa-icon : url('theme://images/scl_WF_HIncP.png');
+}
+.HScrollBarControl .incbutton[status=disabled]
+{
+	opacity : 0.5;
+}
+.HScrollBarControl .trackbar
+{
+	background : #9d9d9d;
+}
+.HScrollBarControl .trackbar[status=mouseover],
+.HScrollBarControl .trackbar[userstatus=pushed]
+{
+	background : #7b7b7b;
+}
+.HScrollBarControl .trackbar[status=disabled]
+{
+	opacity : 0.5;
+}
+/*************** TitleBarControl ***************/
+.TitleBarControl
+{
+	-nexa-padding : 0px 0px 0px 10px;
+	background : #f3f5f6;
+	color : #0e2436;
+	font : 12px "Verdana", "Malgun Gothic";	
+}
+.TitleBarControl .minbutton
+{
+	-nexa-icon : url('theme://images/btn_TF_Min.png');
+	-nexa-padding : 8px 0px 0px;	
+}
+.TitleBarControl .minbutton[status=mouseover]
+{
+	background : #d3dce1;
+}
+.TitleBarControl .minbutton[userstatus=pushed]
+{
+	-nexa-icon : url('theme://images/btn_TF_MinP.png');
+	background : #4f8fc5;
+}
+.TitleBarControl .maxbutton
+{
+	-nexa-icon : URL("theme://images/btn_TF_Max.png");
+}
+.TitleBarControl .maxbutton[status=mouseover]
+{
+	background : #d3dce1;
+}
+.TitleBarControl .maxbutton[userstatus=pushed]
+{
+	-nexa-icon : URL("theme://images/btn_TF_MaxP.png");
+	background : #4f8fc5;
+}
+.TitleBarControl .normalbutton
+{
+	-nexa-icon : URL("theme://images/btn_TF_Normal.png");
+}
+.TitleBarControl .normalbutton[status=mouseover]
+{
+	background : #d3dce1;
+}
+.TitleBarControl .normalbutton[userstatus=pushed]
+{
+	-nexa-icon : URL("theme://images/btn_TF_NormalP.png");
+	background : #4f8fc5;
+}
+.TitleBarControl .closebutton
+{
+	-nexa-icon : URL("theme://images/btn_TF_Close.png");
+}
+.TitleBarControl .closebutton[status=mouseover],
+.TitleBarControl .closebutton[userstatus=pushed]
+{
+	-nexa-icon : URL("theme://images/btn_TF_CloseP.png");
+	background : #e81123;
+}
+/*************** Component ***************/
+/*********** Static ***********/
+.Static
+{
+/*	-nexa-word-wrap : char;*/
+}
+.Static[status=disabled]
+{
+	opacity : 0.5;
+}
+/*********** Edit ***********/
+.Edit
+{
+	-nexa-border : 1px solid #c4c4c4;
+	-nexa-padding : 0px 8px;
+	background : #ffffff;
+}
+.Edit[status=mouseover],
+.Edit[status=focused]
+{
+	-nexa-border : 1px solid #5eb7ff;
+}
+.Edit[status=disabled]
+{
+	opacity : 0.5;
+}
+.Edit[userstatus=nulltext]
+{
+	color : #7b7b7b;
+}
+.Edit[status=readonly]
+{
+	-nexa-border : 1px solid #c4c4c4;
+	background : #e9e9e9;
+}
+.Edit.edt_WF_Essential
+{
+	-nexa-border : 1px solid #c4c4c4;
+	background : url('theme://images/icon_Essential.png') no-repeat left top;	
+}
+/*********** MaskEdit ***********/
+.MaskEdit
+{
+	-nexa-border : 1px solid #c4c4c4;
+	-nexa-padding : 0px 8px;
+	background : #ffffff;
+}
+.MaskEdit[status=mouseover],
+.MaskEdit[status=focused]
+{
+	-nexa-border : 1px solid #5eb7ff;
+}
+.MaskEdit[status=disabled]
+{
+	opacity : 0.5;
+}
+.MaskEdit[userstatus=nulltext]
+{
+	color : #7b7b7b;
+}
+.MaskEdit[status=readonly]
+{
+	-nexa-border : 1px solid #c4c4c4;
+	background : #e9e9e9;
+}
+.MaskEdit[userstatus=invalidtext]
+{
+	color : #e03c0a;	
+}
+.MaskEdit.msk_WF_Essential
+{
+	-nexa-border : 1px solid #c4c4c4;
+	background : url('theme://images/icon_Essential.png') no-repeat left top;
+}
+/*********** TextArea ***********/
+.TextArea
+{
+	-nexa-border : 1px solid #c4c4c4;
+	-nexa-padding : 8px 8px 0px;
+	-nexa-word-wrap : char;
+	background : #ffffff;
+	font : 12px/20px "Verdana", "Malgun Gothic";
+}
+.TextArea[status=mouseover],
+.TextArea[status=focused]
+{
+	-nexa-border : 1px solid #5eb7ff;
+}
+.TextArea[status=disabled]
+{
+	opacity : 0.5;
+}
+.TextArea[userstatus=nulltext]
+{
+	color : #7b7b7b;
+}
+.TextArea[status=readonly]
+{
+	-nexa-border : 1px solid #c4c4c4;
+	background : #e9e9e9;
+}
+.TextArea.txt_WF_Essential
+{
+	-nexa-border : 1px solid #c4c4c4;
+	background : url('theme://images/icon_Essential.png') no-repeat left top;	
+}
+/*********** Button ***********/
+.Button
+{
+	-nexa-border : 1px solid #c4c4c4;
+	background : linear-gradient(#ffffff 0%,#d9d9d9 100%);
+	cursor : pointer;
+}
+.Button[status=mouseover],
+.Button[status=focused],
+.Button[userstatus=selected]
+{
+	-nexa-border : 1px solid #5eb7ff;
+}
+.Button[userstatus=pushed]
+{
+	background : linear-gradient(#d9d9d9 0%,#ffffff 100%);
+}
+.Button[status=disabled]
+{
+	opacity : 0.5;
+}
+
+/*********** Spin ***********/
+.Spin
+{
+	-nexa-border : 1px solid #c4c4c4;
+	background : #ffffff;
+}
+.Spin[status=mouseover],
+.Spin[status=focused]
+{
+	-nexa-border : 1px solid #5eb7ff;
+}
+.Spin[status=disabled]
+{
+	opacity : 0.5;
+}
+.Spin[status=readonly]
+{
+	-nexa-border : 1px solid #c4c4c4;
+	background : #e9e9e9;
+}
+.Spin .spindownbutton
+{
+	-nexa-icon : url('theme://images/spn_WF_DnBtn.png');
+}
+.Spin .spindownbutton[userstatus=pushed]
+{
+	-nexa-icon : url('theme://images/spn_WF_DnBtnP.png');
+}
+.Spin .spindownbutton[status=disabled]
+{
+	opacity : 0.5;
+}
+.Spin .spinupbutton
+{
+	-nexa-icon : url('theme://images/spn_WF_Upbtn.png');
+}
+.Spin .spinupbutton[userstatus=pushed]
+{
+	-nexa-icon : url('theme://images/spn_WF_UpbtnP.png');
+}
+.Spin .spinupbutton[status=disabled]
+{
+	opacity : 0.5;
+}
+.Spin .spinedit
+{
+	-nexa-padding : 0px 8px;
+	-nexa-text-align : left;
+}
+/*********** CheckBox ***********/
+.CheckBox
+{
+	-nexa-icon : url('theme://images/chk_WF_Box.png');
+	-nexa-text-padding : 0px 0px 0px 8px;
+}
+.CheckBox[status=disabled]
+{
+	-nexa-icon : url('theme://images/chk_WF_BoxD.png');
+	color : #9d9d9d;
+}
+.CheckBox[status=mouseover]
+{
+	-nexa-icon : url('theme://images/chk_WF_BoxM.png');
+}
+.CheckBox[userstatus=selected]
+{
+	-nexa-icon : url('theme://images/chk_WF_BoxS.png');
+}
+.CheckBox[status=mouseover][userstatus=selected]
+{
+	-nexa-icon : url('theme://images/chk_WF_BoxMS.png');
+}
+.CheckBox[status=disabled][userstatus=selected]
+{
+	-nexa-icon : url('theme://images/chk_WF_BoxDS.png');
+	color : #9d9d9d;	
+}
+/*********** Radio ***********/
+.Radio .radioitem
+{
+	-nexa-icon : url('theme://images/rdo_WF_Item.png');
+	-nexa-text-padding : 0px 8px;
+}
+.Radio .radioitem[status=disabled]
+{
+	-nexa-icon : url('theme://images/rdo_WF_ItemD.png');
+	color : #9d9d9d;	
+}
+.Radio .radioitem[status=mouseover]
+{
+	-nexa-icon : url('theme://images/rdo_WF_ItemM.png');
+}
+.Radio .radioitem[userstatus=selected]
+{
+	-nexa-icon : url('theme://images/rdo_WF_ItemS.png');
+}
+.Radio .radioitem[status=mouseover][userstatus=selected]
+{
+	-nexa-icon : url('theme://images/rdo_WF_ItemMS.png');
+}
+/*********** ListBox / ListBoxControl ***********/
+.ListBox,
+.ListBoxControl
+{
+	-nexa-border : 1px solid #c4c4c4;
+	background : #ffffff;
+}
+.ListBox[status=disabled],
+.ListBoxControl[status=disabled]
+{
+	opacity : 0.5;
+}
+.ListBox .listboxitem,
+.ListBoxControl .listboxitem
+{
+	-nexa-padding : 6px 10px;
+}
+.ListBox .listboxitem[status=mouseover],
+.ListBoxControl .listboxitem[status=mouseover]
+{
+	color : #3078b4;
+}
+.ListBox .listboxitem[userstatus=selected],
+.ListBoxControl .listboxitem[userstatus=selected]
+{
+	background : #3078b4;
+	color : #ffffff;
+}
+/*********** Combo ***********/
+.Combo
+{
+	-nexa-border : 1px solid #c4c4c4;
+	background : #ffffff;
+}
+.Combo[status=mouseover],
+.Combo[status=focused]
+{
+	-nexa-border : 1px solid #5eb7ff;
+}
+.Combo[status=disabled]
+{
+	opacity : 0.5;
+}
+.Combo[status=readonly]
+{
+	-nexa-border : 1px solid #c4c4c4;
+	background : #e9e9e9;
+}
+.Combo .comboedit
+{
+	-nexa-padding : 0px 0px 0px 8px;
+}
+.Combo .dropbutton
+{
+	-nexa-icon : url('theme://images/cbo_WF_DropBtn.png');
+}
+.Combo .dropbutton[userstatus=pushed]
+{
+	-nexa-icon : url('theme://images/cbo_WF_DropBtnP.png');
+}
+.Combo.cbo_WF_Essential
+{
+	-nexa-border : 1px solid #c4c4c4;
+	background : url('theme://images/icon_Essential.png') no-repeat left top;
+}
+/*********** Calendar ***********/
+.Calendar
+{
+	-nexa-border : 1px solid #c4c4c4;
+	background : #ffffff;
+}
+.Calendar[status=mouseover],
+.Calendar[status=focused]
+{
+	-nexa-border : 1px solid #5eb7ff;
+}
+.Calendar[status=disabled]
+{
+	opacity : 0.5;
+}
+.Calendar[status=readonly]
+{
+	-nexa-border : 1px solid #c4c4c4;
+	background : #e9e9e9;
+}
+.Calendar .calendaredit[userstatus=nulltext]
+{
+	color : #7b7b7b;
+}
+.Calendar.cal_WF_Essential
+{
+	-nexa-border : 1px solid #c4c4c4;
+	background : url('theme://images/icon_Essential.png') no-repeat left top;	
+}
+.Calendar .calendaredit
+{
+	-nexa-padding : 0px 0px 0px 8px;
+}
+.Calendar .dropbutton
+{
+	-nexa-icon : url('theme://images/cal_WF_DropBtn.png');
+}
+.Calendar .dropbutton[userstatus=pushed],
+.Calendar .dropbutton[status=mouseover]
+{
+	-nexa-icon : url('theme://images/cal_WF_DropBtnP.png');
+}
+.Calendar .calendarspindownbutton
+{
+	-nexa-icon : url('theme://images/cal_WF_TypeSpnDn.png');
+	-nexa-border : 1px solid #c4c4c4,0px none,0px none,1px solid #c4c4c4;
+}
+.Calendar .calendarspindownbutton[userstatus=pushed],
+.Calendar .calendarspindownbutton[status=mouseover]
+{
+	-nexa-icon : url('theme://images/cal_WF_TypeSpnDnP.png');
+
+}
+.Calendar .calendarspinupbutton
+{
+	-nexa-icon : url('theme://images/cal_WF_TypeSpnUp.png');
+	-nexa-border : 0px none,0px none,0px none,1px solid #c4c4c4;
+}
+.Calendar .calendarspinupbutton[userstatus=pushed],
+.Calendar .calendarspinupbutton[status=mouseover]
+{
+	-nexa-icon : url('theme://images/cal_WF_TypeSpnUpP.png');	
+}
+/*********** DatePickerControl ***********/
+.DatePickerControl
+{
+	-nexa-border : 1px solid #c4c4c4;
+	background : #ffffff;
+}
+.DatePickerControl .head
+{
+	background : #08497f;
+}
+.DatePickerControl .head .monthstatic
+{
+	color : #ffffff;
+	font : 13px "Verdana","Malgun Gothic";
+}
+.DatePickerControl .head .yearstatic
+{
+	color : #ffffff;
+	font : 13px "Verdana","Malgun Gothic";
+}
+.DatePickerControl .head .nextbutton
+{
+	-nexa-icon : url('theme://images/cal_WF_NextBtn.png');
+}
+.DatePickerControl .head .nextbutton[userstatus=pushed],
+.DatePickerControl .head .nextbutton[status=mouseover]
+{
+	-nexa-icon : url('theme://images/cal_WF_NextBtnP.png');
+}
+.DatePickerControl .head .nextbutton[status=disabled]
+{
+	opacity : 0.5;
+}
+.DatePickerControl .head .prevbutton
+{
+	-nexa-icon : url('theme://images/cal_WF_PrevBtn.png');
+}
+.DatePickerControl .head .prevbutton[userstatus=pushed],
+.DatePickerControl .head .prevbutton[status=mouseover]
+{
+	-nexa-icon : url('theme://images/cal_WF_PrevBtnP.png');
+}
+.DatePickerControl .head .prevbutton[status=disabled]
+{
+	opacity : 0.5;
+}
+.DatePickerControl .head .yearspin .spinedit
+{
+	color : #ffffff;
+	font : 12px "Verdana","Malgun Gothic";
+}
+.DatePickerControl .head .yearspin .spindownbutton
+{
+	-nexa-icon : url('theme://images/cal_WF_SpnDn.png');
+}
+.DatePickerControl .head .yearspin .spindownbutton[userstatus=pushed]
+{
+	-nexa-icon : url('theme://images/cal_WF_SpnDnP.png');
+}
+.DatePickerControl .head .yearspin .spindownbutton[status=disabled]
+{
+	-nexa-icon : url('theme://images/cal_WF_SpnDnD.png');
+}
+.DatePickerControl .head .yearspin .spinupbutton
+{
+	-nexa-icon : url('theme://images/cal_WF_SpnUp.png');
+}
+.DatePickerControl .head .yearspin .spinupbutton[userstatus=pushed]
+{
+	-nexa-icon : url('theme://images/cal_WF_SpnUpP.png');
+}
+.DatePickerControl .head .yearspin .spinupbutton[status=disabled]
+{
+	-nexa-icon : url('theme://images/cal_WF_SpnUpD.png');
+}
+.DatePickerControl .head .monthspin .spinedit
+{
+	color : #ffffff;
+	font : 12px "Verdana","Malgun Gothic";
+}
+.DatePickerControl .head .monthspin .spindownbutton
+{
+	-nexa-icon : url('theme://images/cal_WF_SpnDn.png');
+}
+.DatePickerControl .head .monthspin .spindownbutton[userstatus=pushed]
+{
+	-nexa-icon : url('theme://images/cal_WF_SpnDnP.png');
+}
+.DatePickerControl .head .monthspin .spindownbutton[status=disabled]
+{
+	-nexa-icon : url('theme://images/cal_WF_SpnDnD.png');
+}
+.DatePickerControl .head .monthspin .spinupbutton
+{
+	-nexa-icon : url('theme://images/cal_WF_SpnUp.png');
+}
+.DatePickerControl .head .monthspin .spinupbutton[userstatus=pushed]
+{
+	-nexa-icon : url('theme://images/cal_WF_SpnUpP.png');
+}
+.DatePickerControl .head .monthspin .spinupbutton[status=disabled]
+{
+	-nexa-icon : url('theme://images/cal_WF_SpnUpD.png');
+}
+.DatePickerControl .body .weekband
+{
+	background : #e9e9e9;
+}
+.DatePickerControl .body .weekitem[userstatus=saturday]
+{
+	color : #2a689c;
+}
+.DatePickerControl .body .weekitem[userstatus=sunday]
+{
+	color : #e03c0a;
+}
+.DatePickerControl .body .dayitem[status=mouseover]
+{
+	background : #e9e9e9;
+}
+.DatePickerControl .body .dayitem[userstatus=saturday]
+{
+	color : #2a689c;
+}
+.DatePickerControl .body .dayitem[userstatus=selected]
+{
+	background : #3078b4;
+	color : #ffffff;
+}
+.DatePickerControl .body .dayitem[userstatus=sunday]
+{
+	color : #e03c0a;
+}
+.DatePickerControl .body .dayitem[userstatus=today]
+{
+	background : #c0d6e8;
+}
+.DatePickerControl .body .dayitem[userstatus=trailingday]
+{
+	color : #c4c4c4;
+}
+/*********** Menu ***********/
+.Menu
+{
+	background : #e9e9e9;
+}
+.Menu .menuitem
+{
+	-nexa-padding : 0px 20px;
+}
+.Menu .menuitem[status=mouseover]
+{
+	background : #c4c4c4;
+}
+.Menu .menuitem[userstatus=selected]
+{
+	background : #434343;
+	color : #ffffff;
+}
+/*********** PopupMenu / PopupMenuControl ***********/
+.PopupMenu,
+.PopupMenuControl
+{
+	-nexa-border : 1px solid #c4c4c4;
+	background : #ffffff;
+}
+.PopupMenu .popupmenuitem,
+.PopupMenuControl .popupmenuitem
+{
+	-nexa-padding : 5px ;
+}
+.PopupMenu .popupmenuitem[status=mouseover],
+.PopupMenuControl .popupmenuitem[status=mouseover]
+{
+	color : #3078b4;
+}
+.PopupMenu .popupmenuitem[status=disabled],
+.PopupMenuControl .popupmenuitem[status=disabled]
+{
+	opacity : 0.5;
+}
+.PopupMenu .popupmenuitem .popupmenuitemexpandimage,
+.PopupMenuControl .popupmenuitem .popupmenuitemexpandimage
+{
+	-nexa-icon : url('theme://images/pmnu_WF_ExpandBtn.png');
+}
+.PopupMenu .popupmenuitem .popupmenuitemhotkeytext,
+.PopupMenuControl .popupmenuitem .popupmenuitemhotkeytext
+{
+	font : 10px "Verdana","Malgun Gothic";
+	color : #111111;
+}
+.PopupMenu .popupmenuitem .popupmenuitemtext,
+.PopupMenuControl .popupmenuitem .popupmenuitemtext
+{
+	-nexa-padding : 0px 10px 0px 5px;
+}
+.PopupMenu .popupmenuitem .popupmenuitemcheckbox,
+.PopupMenuControl .popupmenuitem .popupmenuitemcheckbox
+{
+	-nexa-icon : url('theme://images/pmnu_WF_ChkIcon.png');
+}
+/*********** Tab ***********/
+.Tab .tabbuttonitem
+{
+	-nexa-border : 1px solid #dcdcde;
+	background : #f2f4f7;
+	-nexa-padding : 8px 20px;
+	font : bold 12px "Vedana","Malgun Gothic";
+}
+.Tab .tabbuttonitem[status=disabled]
+{
+	opacity : 0.5;
+}
+.Tab .tabbuttonitem[status=mouseover],
+.Tab .tabbuttonitem[userstatus=selected]
+{
+	-nexa-border : 1px solid #dcdcde,1px solid #dcdcde,0px none,1px solid #dcdcde;
+	background : #ffffff;
+	color : #262626;
+}
+.Tab .tabpage
+{
+	-nexa-border : 1px solid #dcdcde;
+	background : #ffffff;
+}
+.Tab .nextbutton
+{
+	-nexa-icon : url('theme://images/tab_WF_NextBtn.png');
+	-nexa-padding : 2px 3px;		
+}
+.Tab .nextbutton[status=mouseover],
+.Tab .nextbutton[userstatus=pushed]
+{
+	-nexa-icon : url('theme://images/tab_WF_NextBtnP.png');
+}
+.Tab .nextbutton[status=disabled]
+{
+	opacity : 0.5;
+}
+.Tab .prevbutton
+{
+	-nexa-icon : url('theme://images/tab_WF_PrevBtn.png');
+	-nexa-padding : 2px 3px;		
+}
+.Tab .prevbutton[status=mouseover],
+.Tab .prevbutton[userstatus=pushed]
+{
+	-nexa-icon : url('theme://images/tab_WF_PrevBtnP.png');
+}
+.Tab .prevbutton[status=disabled]
+{
+	opacity : 0.5;
+}
+.Tab .tabbuttonitem .extrabutton
+{
+	-nexa-icon : url('theme://images/tab_WF_ExtraBtn.png');
+	-nexa-padding : 0px 0px 0px 20px;
+}
+/*********** GroupBox ***********/
+.GroupBox .groupboxcontents
+{
+	-nexa-border : 1px solid #c4c4c4;
+	background : #ffffff;
+}
+.GroupBox .groupboxcontents[status=disabled]
+{
+	opacity : 0.5;
+}
+.GroupBox .groupboxtitle
+{
+	background : #ffffff;
+	-nexa-padding : 0px 3px;
+}
+.GroupBox .groupboxtitle[status=disabled]
+{
+	color : #a6a6a6;
+}
+/*********** ProgressBar / ProgressBarControl ***********/
+.ProgressBar,
+.ProgressBarControl
+{
+	-nexa-border : 1px solid #c4c4c4;
+	background : #ffffff;
+}
+.ProgressBar[status=disabled],
+.ProgressBarControl[status=disabled]
+{
+	opacity : 0.5;
+}
+.ProgressBar .progressbaritem,
+.ProgressBarControl .progressbaritem
+{
+	background : #3078b4;
+}
+.ProgressBar .progressbaritem[status=disabled],
+.ProgressBarControl .progressbaritem[status=disabled]
+{
+	background : #eaebec;
+}
+.ProgressBar .progressbartext,
+.ProgressBarControl .progressbartext
+{
+	-nexa-text-align : right;
+}
+/*********** Div / PopupDiv ***********/
+.Div,
+.PopupDiv
+{
+	background : #ffffff;
+	/* No style applied */
+}
+/*********** ImageViewer ***********/
+.ImageViewer
+{
+	-nexa-border : 1px solid #c4c4c4;
+	background : #ffffff;
+}
+/*********** FileDownload ***********/
+.FileDownload
+{
+	-nexa-border : 1px solid #c4c4c4;
+	background : linear-gradient(#ffffff 0%,#d9d9d9 100%);
+}
+.FileDownload[status=mouseover],
+.FileDownload[userstatus=pushed]
+{
+	-nexa-border : 1px solid #5eb7ff;
+	background : linear-gradient(#d9d9d9 0%,#ffffff 100%);
+}
+.FileDownload[status=disabled]
+{
+	opacity : 0.5;
+}
+/*********** FileUpload ***********/
+.FileUpload
+{
+	-nexa-border : 1px solid #eaebec;
+	background : #ffffff;
+}
+.FileUpload .fileuploaditem .fileuploaditemedit,
+.FileUpload .fileuploaditem .fileuploaditemedit[status=mouseover],
+.FileUpload .fileuploaditem .fileuploaditemedit[status=focused]
+{
+	-nexa-border : 1px solid #c4c4c4;
+	background : #ffffff;
+}
+.FileUpload .fileuploaditem .fileuploaditemedit[status=disabled]
+{
+	opacity : 0.5;
+}
+.FileUpload .fileuploaditem .fileuploaditembutton
+{
+	-nexa-border : 1px solid #c4c4c4;
+	background : linear-gradient(#ffffff 0%,#d9d9d9 100%);
+	-nexa-padding : 4px 0px;
+}
+.FileUpload .fileuploaditem .fileuploaditembutton[status=mouseover],
+.FileUpload .fileuploaditem .fileuploaditembutton[status=focused]
+{
+	-nexa-border : 1px solid #000000;
+	background : linear-gradient(#d9d9d9 0%,#ffffff 100%);
+}
+.FileUpload .fileuploaditem .fileuploaditembutton[status=disabled]
+{
+	opacity : 0.5;
+}
+/*********** Sketch ***********/
+.Sketch
+{
+	-nexa-border : 1px solid #c4c4c4;
+	background : #ffffff;
+}
+.Sketch[status=disabled]
+{
+	background : #e9e9e9;
+}
+/*********** StepControl ***********/
+.StepControl
+{
+	-nexa-padding : 0px 0px 10px 0px;
+}
+.StepControl .stepitem
+{
+	-nexa-icon : URL('theme://images/stp_WF_Item.png');	
+}
+.StepControl .stepitem[userstatus=pushed],
+.StepControl .stepitem[userstatus=selected]
+{
+	-nexa-icon : URL('theme://images/stp_WF_ItemS.png');
+}
+/*********** WebBrowser ***********/
+.WebBrowser
+{
+	-nexa-border : 1px solid #c4c4c4;
+}
+/*********** View ***********/
+.View
+{
+	-nexa-border : 1px solid #c4c4c4;
+	background : #ffffff;
+}
+/*********** Splitter ***********/
+.Splitter
+{
+	-nexa-border : 1px solid #c9c6c3;
+	background : URL('theme://images/img_WF_VSplitter.png') no-repeat center center #eaeaea;
+}
+.Splitter.spl_WF_H
+{
+	background : URL('theme://images/img_WF_HSplitter.png') no-repeat center center #eaeaea;
+}
+/***** ListView *****/
+.ListView
+{
+	-nexa-border : 1px solid #c4c4c4,0px solid #c4c4c4;
+	background : #ffffff;
+}
+.ListView[status=disabled]
+{
+	background : #f5f5f5;
+}
+.ListView .body
+{
+	-nexa-border : 0px none, 0px none, 1px solid #d9d9d9, 0px none;
+	background : #ffffff;
+}
+.ListView .body[userstatus=selected]
+{
+	background : #f1f7fb;
+}
+.ListView .body .expandbar
+{
+	-nexa-icon : url('theme://images/lstv_WF_ExpanbarCollicon.png');	
+}
+.ListView .body .expandbar[userstatus=collapse]
+{
+	-nexa-icon : url('theme://images/lstv_WF_ExpanbarCollicon.png');
+}
+.ListView .body .expandbar[userstatus=expand]
+{
+	-nexa-icon : url('theme://images/lstv_WF_ExpanbarExpicon.png');
+}
+.ListView .detail
+{
+	-nexa-border : 0px none, 0px none, 1px solid #d9d9d9, 0px none;
+	background : #f5f5f5;
+}
+.ListView .detail[userstatus=selected]
+{
+	background : #e9e9e9;
+}
+.ListView .body .cell.lstv_WF_BdyCName
+{
+	font : bold 16px "Verdana","Malgun Gothic";
+	-nexa-text-align : center;
+}
+.ListView .body .cell.lstv_WF_BdyCId
+{
+	font : bold 14px "Verdana","Malgun Gothic";
+	-nexa-text-align : center;
+}
+.ListView .body .cell.lstv_WF_BdyCGender
+{
+	font : 14px "Verdana","Malgun Gothic";
+	-nexa-text-align : center;
+}
+.ListView .body .cell.lstv_WF_BdyCLabel
+{
+	font : bold 14px "Verdana","Malgun Gothic";
+}
+.ListView .body .cell.lstv_WF_BdyCValue
+{
+	font : 14px "Verdana","Malgun Gothic";
+	-nexa-text-align : left;
+}
+.ListView .detail .cell.lstv_WF_DtailCLabel
+{
+	font : bold 14px "Verdana","Malgun Gothic";
+}
+.ListView .detail .cell.lstv_WF_DtailCValue
+{
+	font : 14px "Verdana","Malgun Gothic";
+	-nexa-text-align : left;	
+}
+
+/*********** ListViewCellControl ***********/
+.ListViewCellControl .cellbutton
+{
+	-nexa-border : 1px solid #c4c4c4;
+	background : linear-gradient(#ffffff 0%,#d9d9d9 100%);
+	cursor : pointer;
+}
+.ListViewCellControl .cellbutton[status=mouseover],
+.ListViewCellControl .cellbutton[status=focused],
+.ListViewCellControl .cellbutton[userstatus=selected]
+{
+	-nexa-border : 1px solid #000000;
+}
+.ListViewCellControl .cellbutton[userstatus=pushed]
+{
+	background : linear-gradient(#d9d9d9 0%,#ffffff 100%);
+}
+.ListViewCellControl .cellbutton[status=disabled]
+{
+	opacity : 0.5;
+}
+.ListViewCellControl .cellcalendar
+{
+	-nexa-border : 1px solid #c4c4c4;
+	background : #ffffff;
+}
+.ListViewCellControl .cellcalendar[status=mouseover],
+.ListViewCellControl .cellcalendar[status=focused]
+{
+	-nexa-border : 1px solid #5eb7ff;
+}
+.ListViewCellControl .cellcalendar[status=disabled]
+{
+	opacity : 0.5;
+}
+.ListViewCellControl .cellcalendar .calendaredit
+{
+	-nexa-padding : 0px 0px 0px 8px;
+}
+.ListViewCellControl .cellcalendar .dropbutton
+{
+	-nexa-icon : url('theme://images/cal_WF_DropBtn.png');
+}
+.ListViewCellControl .cellcalendar .dropbutton[userstatus=pushed],
+.ListViewCellControl .cellcalendar .dropbutton[status=mouseover]
+{
+	-nexa-icon : url('theme://images/cal_WF_DropBtnP.png');
+}
+.ListViewCellControl .cellcheckbox
+{
+	-nexa-icon : url('theme://images/grd_WF_CellChk.png');
+}
+.ListViewCellControl .cellcheckbox[status=disabled]
+{
+	opacity : 0.5;
+}
+.ListViewCellControl .cellcheckbox[userstatus=selected]
+{
+	-nexa-icon : url('theme://images/grd_WF_CellChkS.png');
+}
+.ListViewCellControl .cellcombo
+{
+	-nexa-border : 1px solid #c4c4c4;
+	background : #ffffff;
+}
+.ListViewCellControl .cellcombo[status=mouseover],
+.ListViewCellControl .cellcombo[status=focused]
+{
+	-nexa-border : 1px solid #5eb7ff;
+}
+.ListViewCellControl .cellcombo[status=disabled]
+{
+	opacity : 0.5;
+}
+.ListViewCellControl .cellcombo .comboedit
+{
+	-nexa-padding : 0px 0px 0px 8px;
+}
+.ListViewCellControl .cellcombo .dropbutton
+{
+	-nexa-icon : url('theme://images/cbo_WF_DropBtn.png');
+}
+.ListViewCellControl .cellcombo .dropbutton[userstatus=pushed]
+{
+	-nexa-icon : url('theme://images/cbo_WF_DropBtnP.png');
+}
+.ListViewCellControl .celledit
+{
+	-nexa-border : 1px solid #c4c4c4;
+	-nexa-padding : 0px 8px;
+	background : #ffffff;
+}
+.ListViewCellControl .celledit[status=mouseover],
+.ListViewCellControl .celledit[status=focused]
+{
+	-nexa-border : 1px solid #5eb7ff;
+}
+.ListViewCellControl .celledit[status=disabled]
+{
+	opacity : 0.5;
+}
+.ListViewCellControl .cellmaskedit
+{
+	-nexa-border : 1px solid #c4c4c4;
+	-nexa-padding : 0px 8px;
+	background : #ffffff;
+}
+.ListViewCellControl .cellmaskedit[status=mouseover],
+.ListViewCellControl .cellmaskedit[status=focused]
+{
+	-nexa-border : 1px solid #5eb7ff;
+}
+.ListViewCellControl .cellmaskedit[status=disabled]
+{
+	opacity : 0.5;
+}
+.ListViewCellControl .celltextarea
+{
+	-nexa-border : 1px solid #c4c4c4;
+	-nexa-padding : 8px 8px 0px;
+	-nexa-word-wrap : char;
+	background : #ffffff;
+	font : 13px/20px "Verdana", "Malgun Gothic";
+}
+.ListViewCellControl .celltextarea[status=mouseover],
+.ListViewCellControl .celltextarea[status=focused]
+{
+	-nexa-border : 1px solid #5eb7ff;
+}
+.ListViewCellControl .celltextarea[status=disabled]
+{
+	opacity : 0.5;
+}
+.ListViewCellControl .cellexpandbutton
+{
+	-nexa-icon : url('theme://images/grd_WF_ExpandIcon.png');
+}
+.ListViewCellControl .cellexpandbutton[status=disabled]
+{
+	opacity : 0.5;
+}
+/*********** Grid ***********/
+.Grid
+{
+	-nexa-border : 1px solid #d3dce1;
+	background : #ffffff;
+}
+
+.GridCellControl .celltextarea[status=readonly]
+{
+	-nexa-border : 1px solid #c4c4c4;
+	background : #e9e9e9;
+	-nexa-padding :0px 8px;
+	-nexa-text-align : center;
+}
+.Grid .head .row .cell
+{
+	background : #f3f5f6;
+	-nexa-border : 1px solid #d9d9d9;
+	-nexa-text-align : center;
+	font : bold 12px "Verdana,Malgun Gothic";
+	color : #000000;
+/*	letter-spacing : -1px;	*/
+}
+.Grid .head .row .cell .subcell
+{
+	-nexa-text-align : center;
+}
+.Grid .body .row .cell
+{
+	background : #ffffff;
+	-nexa-border : 1px solid #d9d9d9;
+	-nexa-padding : 2px;
+	font : 12px "Verdana,Malgun Gothic";
+	color : #262626;
+}
+.Grid .body .row .cell[status=mouseover]
+{
+	background : #f2f4f7;
+}
+.Grid .body .row .cell[userstatus=selected]
+{
+	background : #e8ecf8;
+}
+.Grid .summary .row .cell
+{
+	background : #f3f5f6;
+	-nexa-border : 1px solid #d9d9d9;
+	-nexa-text-align : center;
+}
+/*********** GridCellControl ***********/
+.GridCellControl .cellbutton
+{
+	-nexa-border : 1px solid #c4c4c4;
+	background : linear-gradient(#ffffff 0%,#d9d9d9 100%);
+	cursor : pointer;
+}
+.GridCellControl .cellbutton[status=mouseover],
+.GridCellControl .cellbutton[status=focused],
+.GridCellControl .cellbutton[userstatus=selected]
+{
+	-nexa-border : 1px solid #000000;
+}
+.GridCellControl .cellbutton[userstatus=pushed]
+{
+	background : linear-gradient(#d9d9d9 0%,#ffffff 100%);
+}
+.GridCellControl .cellbutton[status=disabled]
+{
+	opacity : 0.5;
+}
+.GridCellControl .cellcalendar
+{
+	-nexa-border : 0px none;
+	background : transparent;
+}
+.GridCellControl .cellcalendar[status=focused]
+{
+	-nexa-border : 1px solid #5eb7ff;
+	background : #ffffff;
+
+}
+
+.GridCellControl .cellcalendar[status=mouseover]
+{
+	-nexa-border : 0px none;
+	background : transparent;
+
+}
+.GridCellControl .cellcalendar[status=disabled]
+{
+	opacity : 0.5;
+}
+.GridCellControl .cellcalendar .calendaredit
+{
+	-nexa-padding : 0px 0px 0px 8px;
+	-nexa-text-align : center;
+}
+.GridCellControl .cellcalendar .dropbutton
+{
+	-nexa-icon : url('theme://images/cal_WF_DropBtn.png');
+}
+.GridCellControl .cellcalendar .dropbutton[userstatus=pushed],
+.GridCellControl .cellcalendar .dropbutton[status=mouseover]
+{
+	-nexa-icon : url('theme://images/cal_WF_DropBtnP.png');
+}
+.GridCellControl .cellcheckbox
+{
+	-nexa-icon : url('theme://images/grd_WF_CellChk.png');
+}
+.GridCellControl .cellcheckbox[status=disabled]
+{
+	opacity : 0.5;
+}
+.GridCellControl .cellcheckbox[userstatus=selected]
+{
+	-nexa-icon : url('theme://images/grd_WF_CellChkS.png');
+}
+.GridCellControl .cellcombo
+{
+	-nexa-border : 0px none;
+	background : transparent;
+}
+.GridCellControl .cellcombo[status=mouseover]
+{
+	-nexa-border : 0px none;
+	background : transparent;
+}
+
+.GridCellControl .cellcombo[status=focused]
+{
+	-nexa-border : 1px solid #5eb7ff;
+	background : #ffffff;
+}
+.GridCellControl .cellcombo[status=disabled]
+{
+	opacity : 0.5;
+}
+.GridCellControl .cellcombo .comboedit
+{
+	-nexa-padding : 0px 0px 0px 8px;
+}
+.GridCellControl .cellcombo .dropbutton
+{
+	-nexa-icon : url('theme://images/cbo_WF_DropBtn.png');
+}
+.GridCellControl .cellcombo .dropbutton[userstatus=pushed]
+{
+	-nexa-icon : url('theme://images/cbo_WF_DropBtnP.png');
+}
+.GridCellControl .celledit
+{
+	-nexa-border : 1px solid #c4c4c4;
+	-nexa-padding : 0px 8px;
+	background : #ffffff;
+}
+.GridCellControl .celledit[status=mouseover],
+.GridCellControl .celledit[status=focused]
+{
+	-nexa-border : 1px solid #5eb7ff;
+}
+.GridCellControl .celledit[status=disabled]
+{
+	opacity : 0.5;
+}
+.GridCellControl .cellmaskedit
+{
+	-nexa-border : 1px solid #c4c4c4;
+	-nexa-padding : 0px 8px;
+	background : #ffffff;
+}
+.GridCellControl .cellmaskedit[status=mouseover],
+.GridCellControl .cellmaskedit[status=focused]
+{
+	-nexa-border : 1px solid #5eb7ff;
+}
+.GridCellControl .cellmaskedit[status=disabled]
+{
+	opacity : 0.5;
+}
+.GridCellControl .cellradioitem
+{
+	-nexa-icon : url('theme://images/rdo_WF_Item.png');
+	-nexa-text-padding : 0px 10px;
+}
+.GridCellControl .cellradioitem[status=disabled]
+{
+	opacity : 0.5;
+}
+.GridCellControl .cellradioitem[status=mouseover]
+{
+	-nexa-icon : url('theme://images/rdo_WF_ItemM.png');
+}
+.GridCellControl .cellradioitem[userstatus=selected]
+{
+	-nexa-icon : url('theme://images/rdo_WF_ItemS.png');
+}
+.GridCellControl .cellradioitem[status=mouseover][userstatus=selected]
+{
+	-nexa-icon : url('theme://images/rdo_WF_ItemMS.png');
+}
+
+.GridCellControl .celltextarea
+{
+	-nexa-border : 1px solid #c4c4c4;
+	-nexa-padding : 8px 8px 0px;
+	-nexa-word-wrap : char;
+	background : #ffffff;
+	font : 13px/20px "Verdana", "Malgun Gothic";
+}
+.GridCellControl .celltextarea[status=mouseover],
+.GridCellControl .celltextarea[status=focused]
+{
+	-nexa-border : 1px solid #5eb7ff;
+}
+.GridCellControl .celltextarea[status=disabled]
+{
+	opacity : 0.5;
+}
+.GridCellControl .cellprogressbar
+{
+	-nexa-border : 1px solid #c4c4c4;
+	background : #ffffff;
+	-nexa-padding : 5px 0px;
+}
+.GridCellControl .cellprogressbar .progressbaritem
+{
+	background : #08497f;
+}
+.GridCellControl .cellprogressbar .progressbartext
+{
+	-nexa-text-align : right;
+}
+.GridCellControl .cellexpandbutton
+{
+	-nexa-icon : url('theme://images/grd_WF_ExpandIcon.png');
+}
+.GridCellControl .cellexpandbutton[status=disabled]
+{
+	opacity : 0.5;
+}
+.GridCellControl .celltreeitem .treeitembutton[userstatus=collapse]
+{
+	-nexa-icon : url('theme://images/grd_WF_TreeCollBtn.png');
+}
+.GridCellControl .celltreeitem .treeitembutton[userstatus=expand]
+{
+	-nexa-icon : url('theme://images/grd_WF_TreeExpBtn.png');
+}
+.GridCellControl .celltreeitem .treeitemimage[userstatus=collapse]
+{
+	-nexa-icon : url('theme://images/grd_WF_TreeCollImg.png');
+}
+.GridCellControl .celltreeitem .treeitemimage[userstatus=expand]
+{
+	-nexa-icon : url('theme://images/grd_WF_TreeExpImg.png');
+}
+.GridCellControl .celltreeitem .treeitemimage
+{
+	-nexa-icon : url('theme://images/grd_WF_TreeImg.png');
+}
+.GridCellControl .celltreeitem .treeitemcheckbox
+{
+	-nexa-icon : url('theme://images/chk_WF_Box.png');
+}
+.GridCellControl .celltreeitem .treeitemcheckbox[status=disabled]
+{
+	opacity : 0.5;
+}
+.GridCellControl .celltreeitem .treeitemcheckbox[status=mouseover]
+{
+	-nexa-icon : url('theme://images/chk_WF_BoxM.png');
+}
+.GridCellControl .celltreeitem .treeitemcheckbox[userstatus=selected]
+{
+	-nexa-icon : url('theme://images/chk_WF_BoxS.png');
+}
+.GridCellControl .celltreeitem .treeitemcheckbox[status=mouseover][userstatus=selected]
+{
+	-nexa-icon : url('theme://images/chk_WF_BoxMS.png');
+}
+/******************************************************************************/
+/*************** Guide Area ***************/
+.Static.sta_WF_GTitle
+{
+	-nexa-border : 1px solid #c2c7e1;
+	background : #e2ebf3;
+	font : 12px "Verdana";
+	color : #0b1742;
+	-nexa-text-align : center;
+}
+.Static.sta_WF_GLabel
+{
+	-nexa-border : 1px solid #c2c7e1;
+	background : #f8fafc;	
+	font : 12px "Verdana";
+	color : #0b1742;
+	-nexa-text-align : center;	
+}
+.Static.sta_WF_GArea
+{
+	-nexa-border : 1px solid #c2c7e1;
+	background : #ffffff;	
+}
+.Static.sta_WF_GStatus
+{
+	font : 12px "Verdana";
+	color : #746f6f;
+}
+.Static.sta_WF_GSize
+{
+	-nexa-text-align 	: center;
+	background		: #ff0000;
+	color			: #000000;
+	font			: bold 12px "Dotum";
+	opacity 		: 0.3;
+}
+.Static.sta_WF_GLineV
+{
+	-nexa-edge 	: URL('theme://images/sta_WF_GLineV.png') 5px 2px;
+}
+.Static.sta_WF_GLineH
+{
+	-nexa-edge 	: URL('theme://images/sta_WF_GLineH.png') 5px 2px;
+}
+.Static.sta_WF_GTxt
+{
+	font		: 12px "Verdana";
+}
+/***************************************************/
+.Static.sta_Right
+{
+	-nexa-border : 0px none,0px none,0px none,1px solid #d3dce1;
+	background : #f3f5f6;
+}
+/******************** TopFrame ********************/
+.Static.sta_TF_Bg
+{
+	background : #03b864;
+}
+.Button.btn_TF_Logout,
+.Button.btn_TF_Logout[status=focused],
+.Button.btn_TF_Logout[userstatus=selected],
+.Button.btn_TF_Logout[status=mouseover],
+.Button.btn_TF_Logout[userstatus=pushed]
+{
+	-nexa-border : 0px none, 0px none, 0px none, 1px solid #ffffff;
+	background : transparent;
+	color : #ffffff;
+	font : bold 12px "Verdana","Malgun Gothic";	
+	opacity : 0.8;
+}.Button.btn_TF_Logout[status=disabled]
+{
+	background : transparent;	
+	color : #9d9d9d;
+	opacity : 0.8;	
+}
+.Static.sta_TF_UserInfo
+{
+	-nexa-border : 0px none;
+	-nexa-padding : 0px 10px 0px 0px;
+	-nexa-text-align : center;
+	color : #ffffff;
+	font : bold 12px "Verdana","Malgun Gothic";	
+	opacity : 0.8;
+}
+
+.Static.sta_TF_PushCount
+{
+	-nexa-border : 1px solid #EEEEEE;
+	background : #d60000;
+	color : #ffffff;
+	font : 10px/normal "Verdana","Malgun Gothic";
+	border-radius : 4px 4px;
+	-nexa-text-align : center;
+}
+.Button.btn_TF_Prev,
+.Button.btn_TF_Prev[userstatus=selected],
+.Button.btn_TF_Prev[status=mouseover],
+.Button.btn_TF_Prev[status=focused],
+.Button.btn_TF_Prev[userstatus=pushed]
+{
+	-nexa-border : 0px none;
+	background :  URL("theme://images/btn_TF_Prev.png") no-repeat center center;
+}
+
+.Button.btn_TF_PushN,
+.Button.btn_TF_PushN[userstatus=selected],
+.Button.btn_TF_PushN[status=mouseover],
+.Button.btn_TF_PushN[status=focused],
+.Button.btn_TF_PushN[userstatus=pushed]
+{
+	-nexa-border : 0px none;
+	background : url('theme://images/img_TF_PushN.png') no-repeat center center transparent;
+}
+
+.Button.btn_TF_Prev[status=disabled]
+{ 
+	-nexa-border : 0px none;
+	background : URL("theme://images/btn_TF_Prev.png") no-repeat center center ;
+	opacity : 1;
+}
+.Button.btn_TF_Next,
+.Button.btn_TF_Next[userstatus=selected],
+.Button.btn_TF_Next[status=mouseover],
+.Button.btn_TF_Next[status=focused],
+.Button.btn_TF_Next[userstatus=pushed]
+{
+	-nexa-border : 0px none;
+	background : URL("theme://images/btn_TF_Next.png") no-repeat center center;
+}
+
+.Button.btn_TF_Next[status=disabled]
+{ 
+	-nexa-border :0px none;
+	background : URL("theme://images/btn_TF_Next.png") no-repeat center center ;
+	opacity : 1;
+}
+.Button.btn_TF_Menu,
+.Button.btn_TF_Menu[status=focused]
+{
+	-nexa-border : 0px none;
+	background : transparent;
+	color : #ffffff;
+	font : bold 15px "Verdana", "Malgun Gothic";
+	letter-spacing : -1px;
+}
+.Button.btn_TF_Menu[userstatus=pushed],
+.Button.btn_TF_Menu[status=mouseover]{
+	color : #dfe83f;
+	-nexa-border : 0px none;
+	font : bold 15px "Verdana", "Malgun Gothic";
+	background : transparent;	
+	letter-spacing : -1px;
+}
+.Button.btn_TF_Menu[status=disabled]
+{
+	opacity : 0.5;
+}
+/******************** LeftFrame ********************/
+.Static.sta_LF_NexacroLogo
+{
+	background : url('theme://images/sta_LF_NexacroLogo.png') no-repeat center center #3078b4;
+}
+
+.Static.sta_Main_Logo
+{
+	background : url('theme://images/sta_LF_NexacroLogo.png') no-repeat center center;
+}
+.Static.sta_LF_IconN
+{
+	background : url('theme://images/sta_LF_IconN.png') no-repeat center center #3078b4;
+}
+.Button.btn_LF_Find,
+.Button.btn_LF_Find[status=mouseover],
+.Button.btn_LF_Find[status=focused],
+.Button.btn_LF_Find[userstatus=pushed],
+.Button.btn_LF_Find[userstatus=selected]
+{
+	background : transparent;
+	-nexa-border : 0px none;
+	-nexa-icon	: URL("theme://images/img_LF_Find.png") ;
+}
+
+.Button.btn_LF_Change,
+.Button.btn_LF_Change[status=mouseover],
+.Button.btn_LF_Change[status=focused],
+.Button.btn_LF_Change[userstatus=pushed],
+.Button.btn_LF_Change[userstatus=selected]
+{
+	background : transparent;
+	-nexa-border : 0px none;
+	-nexa-icon	: URL("theme://images/img_LF_Change.png") ;
+}
+
+.Button.btn_LF_Pin,
+.Button.btn_LF_Pin[status=mouseover],
+.Button.btn_LF_Pin[status=focused],
+.Button.btn_LF_Pin[userstatus=pushed],
+.Button.btn_LF_Pin[userstatus=selected]
+{
+	background : transparent;
+	-nexa-border : 0px none;
+	-nexa-icon	: URL("theme://images/img_LF_Pin.png") ;
+}
+.Button.btn_LF_MenuIcon,
+.Button.btn_LF_MenuIcon[status=mouseover],
+.Button.btn_LF_MenuIcon[status=disabled]
+{
+	-nexa-border : 1px solid #dbdde7;
+	-nexa-icon : url('theme://images/img_LF_Menu.png');
+	-nexa-icon-position : left;
+	background : #f2f4f7;
+	-nexa-text-align : left;
+	-nexa-padding : 0px 0px 0px 6px;
+	-nexa-text-padding : 0px 0px 0px 8px;
+}
+
+.Button.btn_LF_MenuIcon[status=focused],
+.Button.btn_LF_MenuIcon[userstatus=pushed],
+.Button.btn_LF_MenuIcon[userstatus=selected]
+{
+	-nexa-border : 1px solid #dbdde7,1px solid #dbdde7,0px none;
+	-nexa-icon : url('theme://images/img_LF_Menu.png');
+	-nexa-icon-position : left;
+	background : #ffffff;
+	-nexa-text-align : left;
+	-nexa-padding : 0px 0px 0px 6px;
+	-nexa-text-padding : 0px 0px 0px 8px;
+}
+
+.Button.btn_LF_MymenuIcon,
+.Button.btn_LF_MymenuIcon[status=mouseover],
+.Button.btn_LF_MymenuIcon[status=disabled]
+{
+	-nexa-border : 1px solid #dbdde7;
+	-nexa-icon : url('theme://images/img_LF_Mymenu.png');
+	-nexa-icon-position : left;
+	background : #f2f4f7;
+	-nexa-text-align : left;
+	-nexa-padding : 0px 0px 0px 6px;
+	-nexa-text-padding : 0px 0px 0px 8px;
+}
+
+.Button.btn_LF_MymenuIcon[status=focused],
+.Button.btn_LF_MymenuIcon[userstatus=pushed],
+.Button.btn_LF_MymenuIcon[userstatus=selected]
+{
+	-nexa-border : 1px solid #dbdde7,1px solid #dbdde7,0px none;
+	-nexa-icon : url('theme://images/img_LF_Mymenu.png');
+	-nexa-icon-position : left;
+	background : #ffffff;
+	-nexa-text-align : left;
+	-nexa-padding : 0px 0px 0px 6px;
+	-nexa-text-padding : 0px 0px 0px 8px;
+}
+
+
+.Div.div_LF_Bg
+{
+	-nexa-border : 1px solid #d3dce1;
+	background : #ffffff;
+}
+.Grid.grd_LF_Tree
+{
+	-nexa-border : 0px none;
+	background : #ffffff;
+/*	letter-spacing : -1px;*/
+}
+.Grid.grd_LF_Tree .body .row .cell
+{
+	background : #ffffff;
+	-nexa-border : 0px none;
+	color : #666666;
+	font : 13px "Verdana", "Malgun Gothic";
+	-nexa-padding : 0px 0px 0px 10px;	
+}
+.Grid.grd_LF_Tree .body .row .cell[status=mouseover]
+{
+	background : #f5f5f5;
+	-nexa-border : 0px none;
+	color : #666666;
+}
+.Grid.grd_LF_Tree .body .row .cell[userstatus=selected]
+{
+	font : bold 13px "Verdana", "Malgun Gothic";	
+	background : transparent;
+	color : #2d5bcc;
+}
+.Grid.grd_LF_Tree .body .row .cell .celltreeitem .treeitembutton[userstatus=collapse]
+{
+	-nexa-icon : url('theme://images/grd_LF_TreeIconColl.png');
+}
+.Grid.grd_LF_Tree .body .row .cell .celltreeitem .treeitembutton[userstatus=expand]
+{
+	-nexa-icon : url('theme://images/grd_LF_TreeIconExp.png');
+}
+
+.Grid.grd_LF_Tree .body .row .cell.cell_LF_Lev1 .celltreeitem .treeitemimage[userstatus=leaf]
+{
+	-nexa-icon : url('theme://images/grd_LF_Favlist.png');
+}
+.Grid.grd_LF_Tree .body .row .cell.cell_LF_Lev0
+{
+	color : #333333;
+	font : 13px "Verdana", "Malgun Gothic";
+	-nexa-color-odd : #333333;	
+}
+.Grid.grd_LF_Tree .body .row .cell.cell_LF_Lev1
+{
+	font : 13px "Verdana", "Malgun Gothic";
+	-nexa-color-odd : #666666;
+	color : #666666;	
+}
+.Edit.edt_LF_Search,
+.Edit.edt_LF_Search[status=focused],
+.Edit.edt_LF_Search[status=mouseover]
+{
+	background :#7aaed9;
+	-nexa-border : 0px none;
+	-nexa-padding : 0px 30px 0px 8px;
+	color : #ffffff;
+	border-radius : 5px ;
+	font : 12px "Verdana","Malgun Gothic";	
+}
+.Edit.edt_LF_Search[userstatus=nulltext]
+{
+	background :#7aaed9;
+	-nexa-border : 0px none;
+	-nexa-padding : 0px 30px 0px 8px;
+	color : #ffffff;
+	border-radius : 5px;
+	font : 12px "Verdana","Malgun Gothic";
+}
+.Button.btn_LF_Search,
+.Button.btn_LF_Search[status=mouseover],
+.Button.btn_LF_Search[status=focused],
+.Button.btn_LF_Search[userstatus=pushed],
+.Button.btn_LF_Search[userstatus=selected]
+{
+	-nexa-icon : URL("theme://images/btn_LF_Search.png");
+	background :  transparent;
+	-nexa-border : 0px none;
+}
+.Grid.grd_LF_Detail
+{
+	-nexa-border : 0px none;
+}
+.Grid.grd_LF_Detail .vscrollbar
+{
+	background : #7aaed9;
+	-nexa-border : 0px none;
+	-nexa-padding : 3px 0px;
+}
+.Grid.grd_LF_Detail .vscrollbar .trackbar,
+.Grid.grd_LF_Detail .vscrollbar .trackbar[status=mouseover]
+{
+	background : #08497f;
+}
+.Grid.grd_LF_Detail .body .row .cell
+{
+	-nexa-border : 0px none;
+	background : #4f8fc5;
+	-nexa-text-align : center;
+	font : 12px "Verdana","MAlgun Gothic";
+	color : #ffffff;
+}
+.Grid.grd_LF_Detail .body .row .cell[status=mouseover]
+{
+	color : #262626;
+	background : #4f8fc5;
+	cursor : pointer;
+}
+.Grid.grd_LF_Detail .body .row .cell[userstatus=selected]
+{
+	color : #262626;
+	background : #d3dce1;
+	font : 12px "Verdana","MAlgun Gothic";	
+}
+/******************** MDIFrame ********************/
+.Static.sta_MDI_Line
+{
+	-nexa-border : 0px none,0px none,1px solid #d3dce1,0px none;
+}.Button.btn_MDI_FrmMain, 
+.Button.btn_MDI_FrmMain[userstatus=selected],
+.Button.btn_MDI_FrmMain[status=mouseover],
+.Button.btn_MDI_FrmMain[status=focused],
+.Button.btn_MDI_FrmMain[userstatus=pushed]
+{
+	-nexa-border : 0px none;
+	background : #25cf50;
+	color : #ffffff;
+}
+.Button.btn_MDI_FrmMain[status=disabled]
+{
+	opacity : 0.5;	
+}
+.Button.btn_MDI_Max
+{
+	-nexa-border : 0px none;
+	-nexa-icon : URL("theme://images/btn_MDI_Max.png");
+	background : transparent;
+}
+.Button.btn_MDI_Max[status=mouseover],
+.Button.btn_MDI_Max[userstatus=pushed],
+.Button.btn_MDI_Max[status=focused]
+{
+	-nexa-icon : URL("theme://images/btn_MDI_Max.png");
+	background : #b4b4b4;
+	-nexa-border : 0px none;	
+}
+.Button.btn_MDI_Min
+{
+	-nexa-border : 0px none;
+	-nexa-icon : URL("theme://images/btn_MDI_Min.png");
+	background : transparent;
+}
+.Button.btn_MDI_Min[status=mouseover],
+.Button.btn_MDI_Min[userstatus=pushed],
+.Button.btn_MDI_Min[status=focused]
+{
+	-nexa-icon : URL("theme://images/btn_MDI_Min.png");
+	background : #b4b4b4;
+	-nexa-border : 0px none;	
+}
+.Button.btn_MDI_V
+{
+	-nexa-border : 0px none;
+	-nexa-icon : URL("theme://images/btn_MDI_Verti.png");
+	background : transparent;
+}
+.Button.btn_MDI_V[status=mouseover],
+.Button.btn_MDI_V[userstatus=pushed],
+.Button.btn_MDI_V[status=focused]
+{
+	-nexa-icon : URL("theme://images/btn_MDI_Verti.png");
+	background : #b4b4b4;
+	-nexa-border : 0px none;	
+}
+.Button.btn_MDI_H
+{
+	-nexa-border : 0px none;
+	-nexa-icon : URL("theme://images/btn_MDI_Horz.png");
+	background : transparent;
+}
+.Button.btn_MDI_H[status=mouseover],
+.Button.btn_MDI_H[userstatus=pushed],
+.Button.btn_MDI_H[status=focused]
+{
+	-nexa-icon : URL("theme://images/btn_MDI_Horz.png");
+	background : #b4b4b4;
+	-nexa-border : 0px none;		
+}
+.Button.btn_MDI_Allx
+{
+	-nexa-border : 0px none;
+	-nexa-icon : URL("theme://images/btn_MDI_AllX.png");
+	background : transparent;
+}
+.Button.btn_MDI_Allx[status=mouseover],
+.Button.btn_MDI_Allx[userstatus=pushed],
+.Button.btn_MDI_Allx[status=focused]
+{
+	-nexa-icon : URL("theme://images/btn_MDI_AllX.png");
+	background : #b4b4b4;
+	-nexa-border : 0px none;
+}
+.Button.btn_MDI_Collapse,
+.Button.btn_MDI_Collapse[status=disabled],
+.Button.btn_MDI_Collapse[status=mouseover],
+.Button.btn_MDI_Collapse[status=focused],
+.Button.btn_MDI_Collapse[userstatus=pushed],
+.Button.btn_MDI_Collapse[userstatus=selected]
+{
+	-nexa-border : 0px none;
+	background : url('theme://images/btn_MDI_Collapse.png') no-repeat top center;
+}
+.Button.btn_MDI_Expand,
+.Button.btn_MDI_Expand[status=disabled],
+.Button.btn_MDI_Expand[status=mouseover],
+.Button.btn_MDI_Expand[status=focused],
+.Button.btn_MDI_Expand[userstatus=pushed],
+.Button.btn_MDI_Expand[userstatus=selected]
+{
+	-nexa-border : 0px none;
+	background : url('theme://images/btn_MDI_Expand.png') no-repeat top center;
+}
+.Tab.tab_MDI_Menu .tabbuttonitem
+{
+	-nexa-border : 1px solid #d3dce1;
+	background : #f2f4f7;
+	-nexa-padding : 0px 20px 0px 10px;
+	color :  #7b7b7b;
+	font : bold 12px "Vedana","Malgun Gothic";
+}
+.Tab.tab_MDI_Menu .tabbuttonitem[status=disabled]
+{
+	opacity : 0.5;
+}
+.Tab.tab_MDI_Menu .tabbuttonitem[status=mouseover]
+{
+	-nexa-border : 1px solid #d3dce1,1px solid #d3dce1,0px none;
+	background : #f2f4f7;
+	color : #0e63a9;
+}
+.Tab.tab_MDI_Menu .tabbuttonitem[userstatus=selected]
+{
+	-nexa-border : 1px solid #d3dce1,1px solid #d3dce1,0px none;
+	background : #ffffff;
+	color : #444444;
+	font : bold 12px "Vedana","Malgun Gothic";
+}
+.Tab.tab_MDI_Menu .tabpage
+{
+	-nexa-border : 1px solid #d3dce1;
+}
+/******************** LOGIN ********************/
+.Static.sta_LOGIN_Logo
+{
+	background : url('theme://images/img_LOGIN_Login.png') no-repeat center center;
+}.Edit.edt_LOGIN_ID
+{
+	-nexa-border : 0px none;
+	background : url('theme://images/img_LOGIN_ID.png') no-repeat 6% center #d3dce1;
+	-nexa-padding : 1px 0px 0px 50px;
+	font : 16px "Verdana","Malgun Gothic";
+}
+.Edit.edt_LOGIN_ID[status=mouseover],
+.Edit.edt_LOGIN_ID[status=focused]
+{
+	-nexa-border : 0px none,0px none, 1px solid #a3bbc1;
+}
+.Edit.edt_LOGIN_ID[userstatus=nulltext]
+{
+	color : #7b7b7b;
+}
+.Edit.edt_LOGIN_PW
+{
+	-nexa-border : 0px none;
+	background : url('theme://images/img_LOGIN_PW.png') no-repeat 6% center #d3dce1;
+	-nexa-padding : 1px 0px 0px 50px;
+	font : 16px "Verdana","Malgun Gothic";
+}
+.Edit.edt_LOGIN_PW[status=mouseover],
+.Edit.edt_LOGIN_PW[status=focused]
+{
+	-nexa-border : 0px none,0px none, 1px solid #a3bbc1;
+}
+.Edit.edt_LOGIN_PW[userstatus=nulltext]
+{
+	color : #7b7b7b;
+}
+.Button.btn_LOGIN_Login,
+.Button.btn_LOGIN_Login[status=disabled],
+.Button.btn_LOGIN_Login[status=mouseover],
+.Button.btn_LOGIN_Login[status=focused],
+.Button.btn_LOGIN_Login[userstatus=pushed],
+.Button.btn_LOGIN_Login[userstatus=selected]
+{
+	background : #f5a11d;
+	-nexa-border : 1px solid #f5a11d;
+	opacity : 1;
+	color : #ffffff;
+	font : bold 16px/normal "Verdana","Malgun Gothic";
+	letter-spacing : -1px;
+	border-radius : 6px;
+}
+.Combo.cbo_LOGIN_Language
+{
+	-nexa-border : 1px solid #c4c4c4;
+}
+.Combo.cbo_LOGIN_Language[status=mouseover],
+.Combo.cbo_LOGIN_Language[status=focused]
+{
+	-nexa-border : 1px solid #3078b4;
+}
+.Combo.cbo_LOGIN_Language .comboedit[userstatus=nulltext]
+{
+	color : #9d9d9d;
+	font : 13px "Verdana","Malgun Gothic";
+}
+
+/******************** MainFrmae ********************/
+.Div.div_MF_Notice
+{
+	-nexa-border : 1px solid #a3bbc1;
+	background : #FFFFFF;
+	border-radius : 10px 10px 0px 0px ;
+/*
+	background : #d3dce1;
+*/
+}
+.Button.btn_MF_Close,
+.Button.btn_MF_Close[status=mouseover],
+.Button.btn_MF_Close[status=focused],
+.Button.btn_MF_Close[userstatus=selected],
+.Button.btn_MF_Close[userstatus=pushed]
+{
+	-nexa-border : 0px none;
+	-nexa-icon : URL("theme://images/btn_MF_Close.png");	
+	background :  transparent;
+}
+.Static.sta_MF_Bg
+{
+	background : #ffffff;
+	-nexa-border : 0px none,1px solid #d3dce1,1px solid #d3dce1,1px solid #d3dce1;	
+	
+/*
+	-nexa-border : 0px none,0px none,1px solid #d3dce1,1px solid #d3dce1;	
+
+*/
+}.Static.sta_MF_Center
+{
+	background : url('theme://images/sta_MF_Center1.png') no-repeat center center;
+}
+
+.Static.sta_MF_Notice
+{
+	background : url('theme://images/img_MF_Notice.png') no-repeat center center;
+}
+/******************** PopUp ********************/
+.Button.btn_POP_Btn
+{
+	-nexa-border : 0px none;
+	background : #235782;	
+	color : #ffffff;
+	font : bold 13px "Malgun Gothic";
+	letter-spacing : 1px;
+}
+.Button.btn_POP_Close,
+.Button.btn_POP_Close[status=mouseover],
+.Button.btn_POP_Close[userstatus=pushed],
+.Button.btn_POP_Close[status=focused],
+.Button.btn_POP_Close[userstatus=selected]
+{
+	-nexa-border : 0px none;
+	background : URL("theme://images/btn_POP_Close.png") no-repeat center center transparent;
+}
+
+.Button.btn_POP_Cancel,
+.Button.btn_POP_Cancel[status=focused],
+.Button.btn_POP_Cancel[status=mouseover],
+.Button.btn_POP_Cancel[userstatus=pushed]
+{
+	-nexa-border : 1px solid #a3bbc1;
+	background : #ffffff;
+	color : #0c064b;
+	font: bold 14px "Verdana","Malgun Gothic";
+}
+.Button.btn_POP_Ok,
+.Button.btn_POP_Ok[status=mouseover],
+.Button.btn_POP_Ok[userstatus=pushed],
+.Button.btn_POP_Ok[status=focused]
+{
+	-nexa-border : 1px solid #a3bbc1;
+	background : #3078b4;
+	color : #ffffff;
+	font: bold 14px "Verdana","Malgun Gothic";	
+}
+
+.Button.btn_POP_Close[status=disabled]
+{
+	-nexa-border : 0px none;
+	background : URL("theme://images/btn_POP_Close.png") no-repeat center center transparent;
+	opacity : 0.5;
+}
+.Static.sta_POP_Title
+{
+	background : #1f2b36;
+	-nexa-padding : 0px 0px 0px 14px;
+	font : bold 12px "Verdana","Malgun Gothic";
+	color : #ffffff;
+	letter-spacing : 1px;
+}
+
+.Static.sta_POP_Error
+{
+	background : url("theme://images/sta_POP_Error.png") no-repeat center center /70% 70%;
+}
+.Static.sta_POP_Information
+{
+	background : url("theme://images/sta_POP_Information.png") no-repeat center center /70% 70%;	
+}
+.Static.sta_POP_Question
+{
+	background : url("theme://images/sta_POP_Question.png") no-repeat center center /70% 70%;	
+}
+.Static.sta_POP_Warning
+{
+	background : url("theme://images/sta_POP_Warning.png") no-repeat center center /70% 70%;	
+}
+.Static.sta_POP_Contents
+{
+	font : 14px/26px "Verdana","Malgun Gothic";
+	-nexa-padding : 10px;
+}/******************** WorKFrmae ********************/
+/************** Work Title Area **************/
+.Button.btn_WF_MymnuS,
+.Button.btn_WF_MymnuS[status=disabled],
+.Button.btn_WF_MymnuS[status=mouseover],
+.Button.btn_WF_MymnuS[status=focused],
+.Button.btn_WF_MymnuS[userstatus=pushed],
+.Button.btn_WF_MymnuS[userstatus=selected]
+{
+	background : transparent;
+	-nexa-border : 0px none;
+	-nexa-icon : URL("theme://images/btn_WF_MymnuS.png");
+}
+.Button.btn_WF_Mymnu,
+.Button.btn_WF_Mymnu[status=disabled],
+.Button.btn_WF_Mymnu[status=mouseover],
+.Button.btn_WF_Mymnu[status=focused],
+.Button.btn_WF_Mymnu[userstatus=pushed],
+.Button.btn_WF_Mymnu[userstatus=selected]
+{
+	background : transparent;
+	-nexa-border : 0px none;
+	-nexa-icon : URL("theme://images/btn_WF_Mymnu.png");
+}
+.Button.btn_WF_CRUD
+{
+	-nexa-border : 0px none;
+	background : #0e63a9;
+	color : #ffffff;
+}
+.Button.btn_WF_CRUD[status=mouseover],
+.Button.btn_WF_CRUD[status=focused],
+.Button.btn_WF_CRUD[userstatus=pushed]
+{
+	-nexa-border : 0px none;
+	background : #4f8fc5;
+	color : #ffffff;
+}
+/******************************************/
+.Div.div_WF_Bg
+{
+	background : #ffffff;
+	-nexa-border : 0px none,0px none,1px solid #d3dce1,1px solid #d3dce1;
+}
+.Div.div_WF_TitleBg
+{
+	-nexa-border : 0px none,0px none,0px none,1px solid #d3dce1;
+}
+.Div.div_WF_Area
+{
+	-nexa-border : 1px solid #c4c4c4;
+	background : #ffffff;
+}
+.Button.btn_WF_FrmMain, 
+.Button.btn_WF_FrmMain[status=focused],
+.Button.btn_WF_FrmMain[userstatus=selected],
+.Button.btn_WF_FrmMain[status=mouseover],
+.Button.btn_WF_FrmMain[userstatus=pushed]
+{
+	-nexa-border : 1px solid #0e2436;
+	background : #4f8fc5;
+	color : #ffffff;
+}
+.Static.sta_WF_TitleMain
+{
+	font : bold 15px "Verdana","Malgun Gothic";
+	letter-spacing : -1px;
+}
+.Div.div_WF_Search
+{
+	-nexa-border : 1px solid #d3dce1;
+	background : #f3f5f6;
+}
+
+.Div.div_WF_Detail
+{
+	-nexa-border : 1px solid #d3dce1;
+	background : #f5f8ff;
+}
+.Static.sta_WF_SearchLabel
+{	
+	font : bold 12px "Verdana", "Malgun Gothic";
+	-nexa-text-align : left;
+	letter-spacing : -1px;	
+}
+.Button.btn_WF_Find,
+.Button.btn_WF_Find[status=disabled],
+.Button.btn_WF_Find[status=mouseover],
+.Button.btn_WF_Find[status=focused],
+.Button.btn_WF_Find[userstatus=pushed],
+.Button.btn_WF_Find[userstatus=selected]
+{
+	-nexa-border : 0px none;
+	-nexa-icon : url('theme://images/btn_WF_Search.png');
+	background : #0e2436;
+	opacity : 1;
+}
+.Static.sta_WF_TitleSub
+{
+	font : bold 13px "Verdana","Malgun Gothic";
+	letter-spacing : -1px;
+	-nexa-padding : 5px 0px 0px;
+}
+.Static.sta_WF_DetailLabel
+{
+	font : bold 12px "Verdana","Malgun Gothic";
+	letter-spacing : -1px;
+	-nexa-border : 1px solid #d3dce1;
+	color : #262626;
+	background : #f3f5f6;
+	-nexa-padding : 0px 20px 0px 10px;
+}
+.Static.sta_WF_DetailLabelEn
+{
+	font : 12px "Verdana","Malgun Gothic";
+	letter-spacing : 0px;
+	-nexa-border : 1px solid #d3dce1;
+	color : #000000;
+	background : #f3f5f6;
+	-nexa-padding : 0px 20px 0px 10px;
+}
+
+.Static.sta_WF_DetailLabelText
+{
+	-nexa-padding : 0px 10px 0px 20px;
+	font : bold 12px "Verdana", "Malgun Gothic";
+	-nexa-text-align : right;
+	letter-spacing : -1px;
+}
+.Static.sta_WF_DetailArea
+{
+	-nexa-border : 1px solid #d3dce1;
+	background : #ffffff;	
+}
+.Button.btn_WF_FrmSub,
+.Button.btn_WF_FrmSub[userstatus=selected]
+{
+	-nexa-border : 1px solid #319ddc;
+	background : #51b3ea;
+	color : #ffffff;
+	font : 12px "Verdana","Malgun Gothic";
+}
+
+.Button.btn_WF_FrmSub[status=mouseover],
+.Button.btn_WF_FrmSub[status=focused],
+.Button.btn_WF_FrmSub[userstatus=pushed]
+{
+	-nexa-border : 1px solid #319ddc;
+	background : #3e8dd3;
+	color : #ffffff;
+	font : 12px "Verdana","Malgun Gothic";
+}
+.Button.btn_WF_FrmSub[status=disabled]
+{
+	opacity : 0.6;
+}
+.Static.sta_WF_Desc
+{
+	-nexa-padding : 10px 7px;
+	-nexa-border : 1px solid #7aaed9;
+	font : 12px/21px "Verdana","MalgunGothic";
+	-nexa-word-wrap : char;
+	background : #f1f7fb;
+	-nexa-vertical-align : top;
+}
+.Button.btn_WF_PagingNext,
+.Button.btn_WF_PagingNext[status=mouseover],
+.Button.btn_WF_PagingNext[status=focused],
+.Button.btn_WF_PagingNext[userstatus=pushed],
+.Button.btn_WF_PagingNext[userstatus=selected]
+{
+	-nexa-border : 0px none;
+	background : transparent;
+	-nexa-icon : url('imagerc::angle-small-right.png');
+}
+.Button.btn_WF_PagingNext[status=disabled]
+{
+	background : transparent;	
+	opacity : 0.5;
+}
+.Button.btn_WF_PagingPrev,
+.Button.btn_WF_PagingPrev[status=mouseover],
+.Button.btn_WF_PagingPrev[status=focused],
+.Button.btn_WF_PagingPrev[userstatus=pushed],
+.Button.btn_WF_PagingPrev[userstatus=selected]
+{
+	-nexa-border : 0px none;
+	background : transparent;
+	-nexa-icon : url('imagerc::angle-small-left.png');
+}
+
+.Button.btn_WF_PopSearch,
+.Button.btn_WF_PopSearch[status=mouseover],
+.Button.btn_WF_PopSearch[userstatus=pushed]
+{
+	-nexa-border : 1px solid #c4c4c4;
+	background : url('theme://images/grd_WF_ExpandIcon.png') no-repeat center center /0px;
+}.Button.btn_WF_PagingPrev[status=disabled]
+{
+	background : transparent;	
+	opacity : 0.5;
+}
+.Button.btn_WF_PagingDNext,
+.Button.btn_WF_PagingDNext[status=mouseover],
+.Button.btn_WF_PagingDNext[status=focused],
+.Button.btn_WF_PagingDNext[userstatus=pushed],
+.Button.btn_WF_PagingDNext[userstatus=selected]
+{
+	-nexa-border : 0px none;
+	background : transparent;
+	-nexa-icon : url('imagerc::angle-double-small-right.png');
+}
+.Button.btn_WF_PagingDNext[status=disabled]
+{
+	background : transparent;	
+	opacity : 0.5;
+}
+.Button.btn_WF_PagingDPrev,
+.Button.btn_WF_PagingDPrev[status=mouseover],
+.Button.btn_WF_PagingDPrev[status=focused],
+.Button.btn_WF_PagingDPrev[userstatus=pushed],
+.Button.btn_WF_PagingDPrev[userstatus=selected]
+{
+	-nexa-border : 0px none;
+	background : transparent;
+	-nexa-icon : url('imagerc::angle-double-small-left.png');
+}
+.Button.btn_WF_PagingDPrev[status=disabled]
+{
+	background : transparent;	
+	opacity : 0.5;
+}
+.Button.btn_WF_Paging,
+.Button.btn_WF_Paging[status=mouseover]
+{
+	-nexa-border : 0px none;
+	background : transparent;
+	font :14px "Verdana", "Malgun Gothic";
+	color : #262626;
+}
+.Button.btn_WF_Paging[userstatus=pushed],
+.Button.btn_WF_Paging[userstatus=selected],
+.Button.btn_WF_Paging[status=focused]
+{
+	-nexa-border : 0px none;
+	background : transparent;
+	border-radius : 5px;
+	font :bold 14px/normal "Verdana","Malgun Gothic";
+	color : #262626;	
+}
+.Button.btn_WF_RShuttle,
+.Button.btn_WF_RShuttle[status=mouseover],
+.Button.btn_WF_RShuttle[status=focused],
+.Button.btn_WF_RShuttle[userstatus=pushed],
+.Button.btn_WF_RShuttle[userstatus=selected]
+{
+	-nexa-icon : url('theme://images/btn_WF_PagingDNext.png');
+}
+.Button.btn_WF_RShuttle[status=disabled]
+{
+	opacity : 0.6;
+}
+.Button.btn_WF_LShuttle,
+.Button.btn_WF_LShuttle[status=mouseover],
+.Button.btn_WF_LShuttle[status=focused],
+.Button.btn_WF_LShuttle[userstatus=pushed],
+.Button.btn_WF_LShuttle[userstatus=selected]
+{
+	-nexa-icon : url('theme://images/btn_WF_PagingDPrev.png');
+}
+.Button.btn_WF_LShuttle[status=disabled]
+{
+	opacity : 0.6;
+}
+.Button.btn_WF_Add,
+.Button.btn_WF_Add[status=mouseover],
+.Button.btn_WF_Add[userstatus=pushed],
+.Button.btn_WF_Add[status=focused],
+.Button.btn_WF_Add[userstatus=selected]
+{
+	-nexa-icon : URL("theme://images/btn_WF_Add.png");
+}
+.Button.btn_WF_Add[status=disabled]
+{
+	-nexa-icon : URL("theme://images/btn_WF_Add.png");
+	opacity : 0.5;
+}
+.Button.btn_WF_Del,
+.Button.btn_WF_Del[status=mouseover],
+.Button.btn_WF_Del[userstatus=pushed],
+.Button.btn_WF_Del[status=focused],
+.Button.btn_WF_Del[userstatus=selected]
+{
+	-nexa-icon : URL("theme://images/btn_WF_Del.png");
+}
+.Button.btn_WF_Del[status=disabled]
+{
+	-nexa-icon : URL("theme://images/btn_WF_Del.png");
+	opacity : 0.5;
+}
+.Button.btn_WF_SettingIcon,
+.Button.btn_WF_SettingIcon[status=disabled],
+.Button.btn_WF_SettingIcon[status=mouseover],
+.Button.btn_WF_SettingIcon[status=focused],
+.Button.btn_WF_SettingIcon[userstatus=pushed],
+.Button.btn_WF_SettingIcon[userstatus=selected]
+{
+	-nexa-border : 0px none;
+	background : url('theme://images/btn_WF_SettingIcon.png') no-repeat center center transparent;
+	opacity : 1;
+}
+.Button.btn_WF_PrintIcon,
+.Button.btn_WF_PrintIcon[status=disabled],
+.Button.btn_WF_PrintIcon[status=mouseover],
+.Button.btn_WF_PrintIcon[status=focused],
+.Button.btn_WF_PrintIcon[userstatus=pushed],
+.Button.btn_WF_PrintIcon[userstatus=selected]
+{
+	-nexa-border : 0px none;
+	background : url('theme://images/btn_WF_PrintIcon.png') no-repeat center center transparentt;
+	opacity : 1;
+}
+.Button.btn_WF_SaveIcon,
+.Button.btn_WF_SaveIcon[status=disabled],
+.Button.btn_WF_SaveIcon[status=mouseover],
+.Button.btn_WF_SaveIcon[status=focused],
+.Button.btn_WF_SaveIcon[userstatus=pushed],
+.Button.btn_WF_SaveIcon[userstatus=selected]
+{
+	-nexa-icon : url('theme://images/btn_WF_SaveIcon.png');
+	-nexa-text-padding : 0px 0px 0px 10px;
+	opacity : 1;
+	
+}
+.Button.btn_WF_DeleteIcon,
+.Button.btn_WF_DeleteIcon[status=disabled],
+.Button.btn_WF_DeleteIcon[status=mouseover],
+.Button.btn_WF_DeleteIcon[status=focused],
+.Button.btn_WF_DeleteIcon[userstatus=pushed],
+.Button.btn_WF_DeleteIcon[userstatus=selected]
+{
+	-nexa-icon : url('theme://images/btn_WF_DeleteIcon.png');
+	-nexa-text-padding : 0px 0px 0px 10px;
+	opacity : 1;
+}
+.Button.btn_WF_InsertIcon,
+.Button.btn_WF_InsertIcon[status=disabled],
+.Button.btn_WF_InsertIcon[status=mouseover],
+.Button.btn_WF_InsertIcon[status=focused],
+.Button.btn_WF_InsertIcon[userstatus=pushed],
+.Button.btn_WF_InsertIcon[userstatus=selected]
+{
+	-nexa-icon : url('theme://images/btn_WF_InsertIcon.png');
+	-nexa-text-padding : 0px 0px 0px 10px;
+	opacity : 1;
+}
+.Button.btn_WF_RetrieveIcon,
+.Button.btn_WF_RetrieveIcon[status=disabled],
+.Button.btn_WF_RetrieveIcon[status=mouseover],
+.Button.btn_WF_RetrieveIcon[status=focused],
+.Button.btn_WF_RetrieveIcon[userstatus=pushed],
+.Button.btn_WF_RetrieveIcon[userstatus=selected]
+{
+	-nexa-icon : url('theme://images/btn_WF_RetrieveIcon.png');
+	-nexa-text-padding : 0px 0px 0px 10px;
+	opacity : 1;
+}
+
+.Button.btn_POP_Btn[status=focused],
+.Button.btn_POP_Btn[status=mouseover],
+.Button.btn_POP_Btn[userstatus=pushed],
+.Button.btn_POP_Btn[userstatus=selected]
+{
+	-nexa-border : 0px none;
+	background : #124269;	
+	color : #ffffff;
+	font : bold 13px "Malgun Gothic";
+	letter-spacing : 1px;
+}
+.Button.btn_POP_Btn[status=disabled]
+{
+	-nexa-border : 0px none;
+	background : #6e9cc1;	
+	color : #959393;
+	font : bold 13px "Malgun Gothic";
+	letter-spacing : 1px;
+	opacity : 1;
+}
+.Button.btn_WF_ShuttleL,
+.Button.btn_WF_ShuttleL[userstatus=selected]
+{
+	-nexa-border : 0px none;
+	background : transparent;
+	-nexa-icon : URL("theme://images/btn_WF_suttleLN.png");
+}
+.Button.btn_WF_ShuttleL[status=mouseover],
+.Button.btn_WF_ShuttleL[status=focused]
+{
+	-nexa-border : 0px none;
+	background : transparent;	
+	-nexa-icon : URL("theme://images/btn_WF_SuttleLM.png");
+}
+.Button.btn_WF_ShuttleL[userstatus=pushed]
+{
+	-nexa-border : 0px none;
+	background : transparent;	
+	-nexa-icon : URL("theme://images/btn_WF_suttleLP.png");
+}
+.Button.btn_WF_ShuttleL[status=disabled]
+{
+	-nexa-border : 0px none;
+	background : transparent;
+	opacity : 1;
+	-nexa-icon : URL("theme://images/btn_WF_suttleLD.png");
+}
+.Button.btn_WF_ShuttleR,
+.Button.btn_WF_ShuttleR[userstatus=selected]
+{
+	-nexa-border : 0px none;
+	background : transparent;	
+	-nexa-icon : URL("theme://images/btn_WF_suttleRN.png");
+}
+.Button.btn_WF_ShuttleR[status=mouseover],
+.Button.btn_WF_ShuttleR[status=focused]
+{
+	-nexa-border : 0px none;
+	background : transparent;	
+	-nexa-icon : URL("theme://images/btn_WF_suttleRM.png");
+}
+.Button.btn_WF_ShuttleR[userstatus=pushed]
+{
+	-nexa-border : 0px none;
+	background : transparent;	
+	-nexa-icon : URL("theme://images/btn_WF_suttleRP.png");
+}
+.Button.btn_WF_ShuttleR[status=disabled]
+{
+	-nexa-border : 0px none;
+	background : transparent;
+	opacity : 1;
+	-nexa-icon : URL("theme://images/btn_WF_suttleRD.png");
+}
+.Static.sta_WF_PdvCalbg
+{
+	background : #ffffff;	
+	-nexa-border : 0px none,1px solid #1f2b36,1px solid #1a0461,1px solid #1f2b36;
+}
+.Static.sta_WF_PdvCalYYYY
+{
+	font : bold 14px "Malgun Gothic";
+	-nexa-text-align : center;
+}
+.Button.btn_WF_MultiCombo,
+.Button.btn_WF_MultiCombo[status=focused],
+.Button.btn_WF_MultiCombo[userstatus=pushed],
+.Button.btn_WF_MultiCombo[status=mouseover],
+.Button.btn_WF_MultiCombo[userstatus=selected]
+{
+	-nexa-icon : url("theme://images/btn_WF_MultiCombo.png");
+}
+.PopupDiv.pdiv_WF_MultiCombo
+{
+	background : #ffffff;
+	-nexa-border : 1px solid #c4c4c4;
+}
+.CheckBox.chk_WF_Toggle,
+.CheckBox.chk_WF_Toggle[status=mouseover]
+{
+	-nexa-icon : url('theme://images/chk_WF_ToggleOff.png');
+}
+
+.CheckBox.chk_LOGIN_Remember
+{
+	-nexa-icon : url('theme://images/chk_LOGIN_Remember.png');
+	color : #08497f;
+}
+.CheckBox.chk_LOGIN_Remember[status=disabled],
+.CheckBox.chk_LOGIN_Remember[status=mouseover],
+.CheckBox.chk_LOGIN_Remember[userstatus=selected],
+.CheckBox.chk_LOGIN_Remember[status=mouseover][userstatus=selected]
+{
+	-nexa-icon : url('theme://images/chk_LOGIN_RememberS.png');
+	color : #08497f;	
+}
+.CheckBox.chk_WF_Toggle[userstatus=selected],
+.CheckBox.chk_WF_Toggle[status=mouseover][userstatus=selected]
+{
+	-nexa-icon : url('theme://images/chk_WF_ToggleOn.png');
+}.Button.btn_WF_BarPoint,
+.Button.btn_WF_BarPoint[status=disabled],
+.Button.btn_WF_BarPoint[status=mouseover],
+.Button.btn_WF_BarPoint[status=focused],
+.Button.btn_WF_BarPoint[userstatus=pushed],
+.Button.btn_WF_BarPoint[userstatus=selected]
+{
+	-nexa-border : 0px none;
+	background : transparent;
+	-nexa-icon : url('theme://images/btn_WF_BarPoint.png');
+	opacity : 1;
+}
+.Static.sta_WF_Contents
+{
+	-nexa-border : 1px solid #d3dce1;
+	-nexa-word-wrap : english;
+	-nexa-padding : 5px;
+	font : 12px/18px "Verdana","Malgun Gothic";
+}
+
+.Static.sta_WF_TitleType1
+{
+	font : bold 13px "Verdana","Malgun Gothic";
+	letter-spacing : -1px;
+}
+.Static.sta_WF_LabelTxt12
+{
+	font : 13px "Verdana","Malgun Gothic";
+	color : #212d9b;
+	letter-spacing : 0px;
+}
+
+
+
+/***** [2023.7.5일자 추가 기능] *****/
+/***** CheckBoxSet *****/
+.CheckBoxSet .checkboxsetitem
+{
+	-nexa-icon : url('theme://images/chk_WF_Box.png');
+	-nexa-text-padding : 0px 0px 0px 8px;
+}
+.CheckBoxSet .checkboxsetitem[status=disabled]
+{
+	-nexa-icon : url('theme://images/chk_WF_BoxD.png');
+	color : #9d9d9d;
+}
+.CheckBoxSet .checkboxsetitem[status=mouseover]
+{
+	-nexa-icon : url('theme://images/chk_WF_BoxM.png');
+}
+.CheckBoxSet .checkboxsetitem[userstatus=selected]
+{
+	-nexa-icon : url('theme://images/chk_WF_BoxS.png');
+}
+.CheckBoxSet .checkboxsetitem[status=mouseover][userstatus=selected]
+{
+	-nexa-icon : url('theme://images/chk_WF_BoxMS.png');
+}
+.CheckBoxSet .checkboxsetitem[status=disabled][userstatus=selected]
+{
+	-nexa-icon : url('theme://images/chk_WF_BoxDS.png');
+}
+.CheckBoxSet .checkboxsetitem[status=readonly]
+{
+	-nexa-icon : url('theme://images/chks_WF_ItemRead.png');
+	color : #919396;
+}
+/***** MultiCombo *****/
+.MultiCombo
+{
+	-nexa-border : 1px solid #acacac;
+	background : #ffffff;
+		font : 12px "Malgun Gothic";
+}
+.MultiCombo[status=mouseover],
+.MultiCombo[status=focused]
+{
+	-nexa-border : 1px solid #000000;
+}
+.MultiCombo[status=disabled]
+{
+	opacity : 0.5;
+}
+.MultiCombo .dropbutton,
+.MultiCombo .dropbutton[status=mouseover],
+.MultiCombo .dropbutton[status=focused],
+.MultiCombo .dropbutton[userstatus=selected]
+{
+	-nexa-icon : url('theme://images/mcbo_WF_Drop.png');
+}
+.MultiCombo .multicombotext
+{
+	-nexa-padding : 0px 0px 0px 10px;
+}
+.MultiComboListControl
+{
+	-nexa-border : 1px solid #acacac;
+	background : #ffffff;
+}
+.MultiComboListControl .multicomboedit
+{
+	-nexa-padding : 10px;
+	-nexa-border : 0px none,0px none,1px solid #acacac;
+	background : #f9f9fa;
+}
+.MultiComboListControl .selectallcheckbox
+{
+	-nexa-icon : url('theme://images/mcbo_WF_ChkAllItem.png');
+	-nexa-text-padding : 0px 0px 0px 10px;
+	-nexa-padding : 8px;
+	font : 13px "Verdana", "Malgun Gothic";
+}
+.MultiComboListControl .selectallcheckbox[status=mouseover]
+{
+	color : #eb174e;
+}
+.MultiComboListControl .selectallcheckbox[userstatus=selected]
+{
+	-nexa-icon : url('theme://images/mcbo_WF_ChkAllItemS.png');
+	background : #eb174e;
+	color : #ffffff;
+}
+.MultiComboListControl .checkboxset .checkboxsetitem
+{
+	-nexa-icon : url('theme://images/mcbo_WF_ChkItem.png');
+	-nexa-padding : 8px;
+	-nexa-text-padding : 0px 0px 0px 10px;
+	font : 13px "Verdana", "Malgun Gothic";
+}
+.MultiComboListControl .checkboxset .checkboxsetitem[status=mouseover]
+{
+	color : #00b1eb;
+}
+.MultiComboListControl .checkboxset .checkboxsetitem[status=readonly]
+{
+	-nexa-icon : url('theme://images/mcbo_WF_ChkItemR.png');
+	color : #888888;
+}
+.MultiComboListControl .checkboxset .checkboxsetitem[userstatus=selected]
+{
+	-nexa-icon : url('theme://images/mcbo_WF_ChkItemS.png');
+	color : #143a84;
+}
+.MultiCombo .multicombotagbox
+{
+	-nexa-padding : 5px;
+}
+.MultiCombo .multicombotagbox .tagboxedit
+{
+	-nexa-border : 1px solid #d3d3d3;
+	-nexa-padding : 3px 10px;
+	border-radius : 18px;
+}
+.MultiCombo .multicombotagbox .tagboxitem 
+{
+	-nexa-padding : 5px;
+	background : #eeeeee;
+	border-radius : 18px;
+	font : 13px "Verdana","Malgun Gothic";
+}
+.MultiCombo .multicombotagbox .tagboxitem .tagbutton
+{
+	-nexa-icon : url('theme://images/mcbo_WF_Tagbtn.png');
+}
+.MultiCombo .multicombotagbox .tagboxitem .tagtext
+{
+	-nexa-padding :2px 5px ;
+}
+/***** DatePickerControl *****/
+.DatePickerControl .body .monthitem[status=mouseover]
+{
+	background : #e7f5fe;
+}
+.DatePickerControl .body .monthitem[userstatus=selected]
+{
+	background : #00b1eb;
+	color : #ffffff;
+	font : bold 14px "Verdana", "Malgun Gothic";	
+}
+.DatePickerControl .body .yearitem[status=mouseover]
+{
+	background : #e7f5fe;
+}
+.DatePickerControl .body .yearitem[userstatus=selected]
+{
+	background : #00b1eb;
+	color : #ffffff;
+	font : bold 14px "Verdana", "Malgun Gothic";	
+}
+.DatePickerControl .body .yearitem[userstatus=trailingyear]
+{
+	color : #919396;
+}
+.DatePickerControl .body .yearitem[status=mouseover][userstatus=trailingyear]
+{
+	-nexa-border : 1px solid #e1e1e1;
+	background : #eeeeee;
+	color : #919396;
+}
+
+
+.Static.sta_TF_Logo
+{
+	background : url('theme://images/sta_TF_Logo.png') no-repeat center center;
+}
+.Static.sta_TF_AdminLogo
+{
+	background : url('theme://images/sta_TF_AdminLogo.png') no-repeat center center;
+}
+.Static.sta_TF_UserLogo
+{
+	background : url('theme://images/sta_TF_FootLogo.png') no-repeat center center;
+}
+.Form.fm_WF_Login
+{
+	background : #f3f5f6;
+}
+.Div.div_WF_Login
+{
+	background : #f3f5f6;
+}
+.Button.btn_TF_UserMenu,
+.Button.btn_TF_UserMenu[status=mouseover],
+.Button.btn_TF_UserMenu[status=focused]
+{
+	color : #727f88;
+	-nexa-border : 0px none;
+	font : bold 15px "Verdana", "Malgun Gothic";
+	background : transparent;	
+	letter-spacing : -1px;
+}
+.Button.btn_TF_Selected,
+.Button.btn_TF_Selected[status=mouseover],
+.Button.btn_TF_Selected[status=focused]
+{
+	color : #000000;
+	-nexa-border : 0px none;
+	font : bold 15px "Verdana", "Malgun Gothic";
+	background : transparent;	
+	letter-spacing : -1px;
+}
+.Button.btn_TF_UserLogout,
+.Button.btn_TF_UserLogout[status=mouseover],
+.Button.btn_TF_UserLogout[status=focused],
+.Button.btn_TF_UserLogout[userstatus=pushed],
+.Button.btn_TF_UserLogout[userstatus=selected]
+{
+	-nexa-border : 0px none, 0px none, 0px none, 1px solid #7aaed9;
+	background : transparent;
+	color : #070952;
+	font : bold 12px "Verdana","Malgun Gothic";	
+	opacity : 0.8;
+}
+.Static.sta_TF_User_UserInfo
+{
+	-nexa-border : 0px none;
+	-nexa-padding : 0px 10px 0px 0px;
+	-nexa-text-align : center;
+	color : #070952;
+	font : bold 12px "Verdana","Malgun Gothic";	
+	opacity : 0.8;
+}
+.Button.btn_TF_Menu[userstatus=selected]
+{
+	color :  #dfe83f;
+	-nexa-border : 0px none;
+	font : bold 15px "Verdana", "Malgun Gothic";
+	background : transparent;	
+	letter-spacing : -1px;
+}
+.Button.btn_TF_UserMenu[userstatus=selected]
+{
+	color : #000000;
+	-nexa-border : 0px none;
+	font : bold 15px "Verdana", "Malgun Gothic";
+	background : transparent;	
+	letter-spacing : -1px;
+
+}
+.Button.btn_TF_UserMoney,
+.Button.btn_TF_UserMoney[status=mouseover],
+.Button.btn_TF_UserMoney[status=focused],
+.Button.btn_TF_UserMoney[userstatus=pushed],
+.Button.btn_TF_UserMoney[userstatus=selected]
+{
+	-nexa-border : 0px none;
+	background : url('theme://images/img_TF_UserMoney.png') no-repeat center center transparent;
+}
+.Button.btn_TF_UserPushN,
+.Button.btn_TF_UserPushN[status=mouseover],
+.Button.btn_TF_UserPushN[status=focused],
+.Button.btn_TF_UserPushN[userstatus=pushed],
+.Button.btn_TF_UserPushN[userstatus=selected]
+{
+	-nexa-border : 0px none;
+	background : url('theme://images/img_TF_UserPushN.png') no-repeat center center transparent;
+}
+.Button.btn_TF_User,
+.Button.btn_TF_User[status=mouseover],
+.Button.btn_TF_User[status=focused],
+.Button.btn_TF_User[userstatus=pushed],
+.Button.btn_TF_User[userstatus=selected]
+{
+	-nexa-border : 0px none;
+	background : url('theme://images/img_TF_User.png') no-repeat center center transparent;
+}
+.Button.btn_SignUp,
+.Button.btn_SignUp[status=mouseover],
+.Button.btn_SignUp[status=focused],
+.Button.btn_SignUp[userstatus=pushed],
+.Button.btn_SignUp[userstatus=selected]
+{
+	-nexa-border : 0px none;
+	background : transparent;
+	color : #070952;
+	font :  16px "Verdana","Malgun Gothic";	
+	opacity : 0.8;
+}
+.Static.sta_WF_Title
+{
+	font : bold 20px "Verdana","Malgun Gothic";
+
+}
+.Static.sta_WF_IdSuccess
+{
+	color : #5d7546;
+
+}
+.Static.sta_WF_IdFail
+{
+	color : #990b25;
+}
+.Static.sta_WF_SignupLogo
+{
+	background : url('theme://images/img_WF_SignUpLogo.png') no-repeat center center;
+}
+.Static.sta_WF_SignupCheck
+{
+	background : url('theme://images/img_WF_SignUpCheck.png') no-repeat center center transparent;
+}
+.Button.btn_WF_DelImage,
+.Button.btn_WF_DelImage[status=mouseover],
+.Button.btn_WF_DelImage[status=focused],
+.Button.btn_WF_DelImage[userstatus=pushed],
+.Button.btn_WF_DelImage[userstatus=selected]
+{
+	background : url('theme://images/btn_del.png') no-repeat center center;
+	
+}
+.Static.sta_WF_Banner1
+{
+	background : url('theme://images/sta_banner1.jpg') no-repeat center center;
+	
+}
+.ImageViewer.img_WF_Banner1,
+.ImageViewer.img_WF_Banner1[status=mouseover],
+.ImageViewer.img_WF_Banner1[status=focused]
+{
+	background : #c4c4c4;
+	
+}
+.Static.sta_WF_Banner2
+{
+	background : url('theme://images/sta_banner2.png') no-repeat center center;
+}
+.Static.sta_WF_Banner3
+{
+	background : url('theme://images/sta_banner3.png') no-repeat center center;
+}
+.Static.sta_WF_Banner4
+{
+	background : url('theme://images/sta_banner4.png') no-repeat center center;
+}
+.Static.sta_WF_Banner5
+{
+	background : url('theme://images/sta_banner5.png') no-repeat center center;
+}
+.Static.sta_WF_Banner6
+{
+	background : url('theme://images/sta_banner6.png') no-repeat center center;
+}
+.Static.sta_WF_Banner7
+{
+	background : url('theme://images/sta_banner7.png') no-repeat center center;
+}
+.Static.sta_WF_Banner8
+{
+	background : url('theme://images/sta_banner8.png') no-repeat center center;
+}
+.ListViewCellControl
+{
+}
+.Button.btn_WF_NextDay,
+.Button.btn_WF_NextDay[status=disabled],
+.Button.btn_WF_NextDay[status=focused],
+.Button.btn_WF_NextDay[userstatus=pushed],
+.Button.btn_WF_NextDay[userstatus=selected]
+{
+	background : url('theme://images/btn_WF_NextDay.png') no-repeat center;
+	opacity : 70%;
+	-nexa-border : 0px none;
+
+}
+.Button.btn_WF_NextDay[status=mouseover]
+{
+	background : url('theme://images/btn_WF_NextDay.png') no-repeat center;
+	opacity : 100%;
+	-nexa-border : 0px none;
+}
+.Button.btn_WF_PrevDay[status=mouseover],
+.Button.btn_WF_PrevDay[status=focused]
+{
+	-nexa-border : 0px none;
+	background : url('theme://images/btn_WF_PrevDay.png') no-repeat center center;
+	opacity : 100%;
+
+}
+.Button.btn_WF_PrevDay
+{
+	-nexa-border : 0px none;
+	background : url('theme://images/btn_WF_PrevDay.png') no-repeat center center;
+	opacity : 70%;
+}
+.Button.btn_WF_PrevDay[status=disabled]
+{
+	-nexa-border : 0px none;
+	background : url('theme://images/btn_WF_PrevDay.png') no-repeat center center;
+	opacity : 70%;
+}
+.Button.btn_WF_PrevDay[userstatus=pushed]
+{
+	-nexa-border : 0px none;
+	background : url('theme://images/btn_WF_PrevDay.png') no-repeat center center;
+	opacity : 70%;
+}
+.Button.btn_WF_PrevDay[userstatus=selected]
+{
+	-nexa-border : 0px none;
+	background : url('theme://images/btn_WF_PrevDay.png') no-repeat center center;
+	opacity : 70%;
+}
+.ListView.lstv_WF_BtnBlue
+{
+	-nexa-border : 1px solid #c4c4c4,0px solid #c4c4c4;
+	background : #ffffff;
+	cursor : pointer;
+}
+.ListView.lstv_WF_BtnBlue .body .cell.date
+{
+	font : bold 16px/normal "Verdana","Malgun Gothic";
+	color : #282b33;
+}
+.ListView.lstv_WF_BtnBlue .body .cell.btnBlue .cellbutton,
+.ListView.lstv_WF_BtnBlue .body .cell.btnBlue .cellbutton[status=disabled],
+.ListView.lstv_WF_BtnBlue .body .cell.btnBlue .cellbutton[status=mouseover],
+.ListView.lstv_WF_BtnBlue .body .cell.btnBlue .cellbutton[status=focused],
+.ListView.lstv_WF_BtnBlue .body .cell.btnBlue .cellbutton[userstatus=pushed],
+.ListView.lstv_WF_BtnBlue .body .cell.btnBlue .cellbutton[userstatus=selected]
+{
+	background : #1570ff;
+	color : #ffffff;
+	font : 12px/normal "Verdana","Malgun Gothic";
+	border-radius : 6px;
+	-nexa-border : 0px none;
+}
+.ListView .body .cell
+{
+}
+.ListView .body .cell .cellbutton
+{
+}
+.ListView .body .cell .cellbutton.BtnBlue
+{
+	background : #1570ff;
+
+}
+.ListView.lstv_WF_BtnBlue .body .cell.btnRed .cellbutton,
+.ListView.lstv_WF_BtnBlue .body .cell.btnRed .cellbutton[status=disabled],
+.ListView.lstv_WF_BtnBlue .body .cell.btnRed .cellbutton[status=mouseover],
+.ListView.lstv_WF_BtnBlue .body .cell.btnRed .cellbutton[status=focused],
+.ListView.lstv_WF_BtnBlue .body .cell.btnRed .cellbutton[userstatus=pushed],
+.ListView.lstv_WF_BtnBlue .body .cell.btnRed .cellbutton[userstatus=selected]
+{
+	background : #ff4d37;
+	color : #ffffff;
+	font : 12px/normal "Verdana","Malgun Gothic";
+	border-radius : 6px;
+	-nexa-border : 0px none;
+}
+.Static.sta_WF_FootTitle
+{
+	font : bold 30px/normal "Verdana","Malgun Gothic";
+	-nexa-border : 0px none, 0px none, 1px solid #c4c4c4;
+	-nexa-text-align : center;
+
+}
+.ListView.lstv_WF_BtnBlue .body .cell.btnEnable .cellbutton,
+.ListView.lstv_WF_BtnBlue .body .cell.btnEnable .cellbutton[status=disabled],
+.ListView.lstv_WF_BtnBlue .body .cell.btnEnable .cellbutton[status=mouseover],
+.ListView.lstv_WF_BtnBlue .body .cell.btnEnable .cellbutton[status=focused],
+.ListView.lstv_WF_BtnBlue .body .cell.btnEnable .cellbutton[userstatus=pushed],
+.ListView.lstv_WF_BtnBlue .body .cell.btnEnable .cellbutton[userstatus=selected]
+{
+	background : #262626;
+	color : #cccccc;
+	font : 12px/normal "Verdana","Malgun Gothic";
+	border-radius : 6px;
+	-nexa-border : 0px none;
+}
+.ListView.lstv_WF_BtnBlue .body .cell.btnGray .cellbutton,
+.ListView.lstv_WF_BtnBlue .body .cell.btnGray .cellbutton[status=disabled],
+.ListView.lstv_WF_BtnBlue .body .cell.btnGray .cellbutton[status=mouseover],
+.ListView.lstv_WF_BtnBlue .body .cell.btnGray .cellbutton[status=focused],
+.ListView.lstv_WF_BtnBlue .body .cell.btnGray .cellbutton[userstatus=pushed],
+.ListView.lstv_WF_BtnBlue .body .cell.btnGray .cellbutton[userstatus=selected]
+{
+	background : #eeeeee;
+	color : #cccccc;
+	font : 12px/normal "Verdana","Malgun Gothic";
+	border-radius : 6px;
+	-nexa-border : 0px none;
+}
+.Form.Foot1011_Bg
+{
+	background : #f2f5f7;
+}
+.Div.div_Bg_White
+{
+	background : #ffffff;
+	-nexa-border : 0px none;
+}
+.ImageViewer.ImageViewer_NoBorder
+{
+	-nexa-border : 0px none;
+}
+.Static.sta_WF_Foot_Stadium
+{
+	background : url('theme://images/ic_info_stadium.jpg') no-repeat center center;
+}
+.Static.sta_WF_FootMatchTitle
+{
+	font : bold 18px/normal "Verdana","Malgun Gothic";
+}
+.Static.sta_WF_FootMatchDetail
+{
+	font : 16px/normal "Verdana","Malgun Gothic";
+}
+.Static.sta_WF_Foot_Shoes
+{
+	background : url('theme://images/ic_info_shoes.jpg') no-repeat center center;
+}
+.Static.sta_WF_Foot_Gender
+{
+	background : url('theme://images/ic_info_gender.jpg') no-repeat center center;
+}
+.Static.sta_WF_Foot_Player
+{
+background : url('theme://images/ic_info_max_player_cnt.jpg') no-repeat center center;
+}
+.Static.sta_WF_Foot_Shade
+{
+	background : url('theme://images/ic_awning_black.png') no-repeat center center;
+}
+.Static.sta_WF_Foot_Shower
+{
+	background : url('theme://images/ic_info_shower.jpg') no-repeat center center;
+}
+.Static.sta_WF_Foot_Parking
+{
+background : url('theme://images/ic_info_park.jpg') no-repeat center center;
+}
+.Static.sta_WF_Foot_Beverage
+{
+	background : url('theme://images/ic_info_beverage.jpg') no-repeat center center;
+}
+.Static.sta_WF_22px
+{
+	font : 22px/normal "Verdana","Malgun Gothic";
+}
+.Static.sta_WF_Foot_Manager
+{
+	background : url('theme://images/ic_manager.jpg') no-repeat center center;
+}
+.Static.sta_WF_Center
+{
+	-nexa-text-align : center;
+
+}
+.Static.sta_WF_Chart
+{
+	background : #fed771;
+}
+.Div.div_WF_Chart
+{
+	background : #f2f5f7;
+	border-radius : 5px;
+	-nexa-border : 0px none;
+}
+.Static.sta_WF_Line
+{
+	-nexa-border : 1px solid #d2d3d5, 0px none, 0px none;
+}
+.Static.sta_WF_FormBg
+{
+	background : #f2f5f7;
+}
+.Button.btn_WF_Apply,
+.Button.btn_WF_Apply[status=mouseover],
+.Button.btn_WF_Apply[status=focused],
+.Button.btn_WF_Apply[userstatus=pushed],
+.Button.btn_WF_Apply[userstatus=selected]
+{
+	font : bold 18px/normal "Verdana","Malgun Gothic";
+	color : #ffffff;
+	background : #1570ff;
+	border-radius : 5px;
+}
+.Button.btn_WF_Apply[status=disabled]
+{
+}
+.Form.Foot1011_Bg[userstatus=contents]
+{
+background : #f2f5f7;
+}
+.ListView.lstv_WF_BtnBlue .body .cell.typeSmall
+{
+	font : 10px/normal "Verdana","Malgun Gothic" ;
+	color : #282b33;
+	opacity : 70%;
+}
+.ListView.lstv_WF_BtnBlue .body .cell.stadium
+{
+	font : 16px/normal "Verdana","Malgun Gothic" ;
+	color : #282b33;
+}
+.ListView.lstv_WF_BtnBlue .body .cell.btn_bottom
+{
+}
+.ListView.lstv_WF_BtnBlue .body .cell.btn_bottom .cellbutton,
+.ListView.lstv_WF_BtnBlue .body .cell.btn_bottom .cellbutton[status=disabled],
+.ListView.lstv_WF_BtnBlue .body .cell.btn_bottom .cellbutton[status=mouseover],
+.ListView.lstv_WF_BtnBlue .body .cell.btn_bottom .cellbutton[status=focused],
+.ListView.lstv_WF_BtnBlue .body .cell.btn_bottom .cellbutton[userstatus=pushed],
+.ListView.lstv_WF_BtnBlue .body .cell.btn_bottom .cellbutton[userstatus=selected]
+{
+	background : #f2f5f7;
+	color : #65727b;
+	border-radius : 5px;
+	font : 16px/normal "Verdana","Malgun Gothic";
+	-nexa-border : 0px none;
+}
+.ListView.lstv_WF_BtnBlue .body
+{
+}
+.ListView.lstv_WF_BtnBlue .body[userstatus=selected]
+{
+	background : #ffffff;
+}
+.ListView.lstv_WF_BtnBlue .body .cell.type
+{
+	font : 12px/normal "Verdana","Malgun Gothic" ;
+	color : #282b33;
+	opacity : 70%;
+}
+.ListView.lstv_WF_BtnBlue .body .cell.num
+{
+	color : #ffffff;
+	font : 32px/normal "Verdana","Malgun Gothic";
+	-nexa-text-align : center;
+
+}
+.Static.sta_WF_Foot_Pro
+{
+	background : url('imagerc::ic_plaby_pom.jpg') no-repeat center center;
+	
+}
+.Static.sta_WF_22pxBold
+{
+	font : bold 22px/normal "Verdana","Malgun Gothic";
+}
+.ListView.lstv_WF_Navy
+{
+	-nexa-border : 0px none;
+	background : #00156b;
+	color : #ffffff;
+}
+.ListView.lstv_WF_Navy .body,
+.ListView.lstv_WF_Navy .body[status=mouseover],
+.ListView.lstv_WF_Navy .body[status=focused],
+.ListView.lstv_WF_Navy .body[userstatus=selected]
+{
+	color : #ffffff;
+	background : #00156b;
+	-nexa-border : 0px none;
+}
+.ListView.lstv_WF_Navy .body .cell
+{
+	font : bold 12px/normal "Verdana","Malgun Gothic";
+}
+.Div.div_WF_Transparent
+{
+	background : transparent;
+}
+.Button.btn_WF_GrdPageS,
+.Button.btn_WF_GrdPageS[status=disabled],
+.Button.btn_WF_GrdPageS[status=mouseover],
+.Button.btn_WF_GrdPageS[status=focused],
+.Button.btn_WF_GrdPageS[userstatus=pushed],
+.Button.btn_WF_GrdPageS[userstatus=selected]
+{
+	-nexa-border : 0px none;
+	background : #262626;
+	border-radius : 5px;
+	font :bold 14px/normal "Verdana","Malgun Gothic";
+	color : #ffffff;	
+}
+.Button.btn_WF_GrdPageS_White,
+.Button.btn_WF_GrdPageS_White[status=disabled],
+.Button.btn_WF_GrdPageS_White[status=mouseover],
+.Button.btn_WF_GrdPageS_White[status=focused],
+.Button.btn_WF_GrdPageS_White[userstatus=pushed],
+.Button.btn_WF_GrdPageS_White[userstatus=selected]
+{
+	-nexa-border : 0px none;
+	background : #ffffff;
+	border-radius : 5px;
+	font :bold 14px/normal "Verdana","Malgun Gothic";
+	color : #00156b;
+}
+.Button.btn_WF_Paging_White,
+.Button.btn_WF_Paging_White[status=mouseover]
+{
+	-nexa-border : 0px none;
+	background : transparent;
+	font :14px "Verdana", "Malgun Gothic";
+	color : #ffffff;
+}
+.Button.btn_WF_Paging_White[status=focused],
+.Button.btn_WF_Paging_White[userstatus=pushed],
+.Button.btn_WF_Paging_White[userstatus=selected]
+{
+	-nexa-border : 0px none;
+	background : transparent;
+	font :bold 14px "Verdana", "Malgun Gothic";
+	color : #ffffff;
+}
+.Button.btn_WF_PagingDNext_White,
+.Button.btn_WF_PagingDNext_White[status=mouseover],
+.Button.btn_WF_PagingDNext_White[status=focused],
+.Button.btn_WF_PagingDNext_White[userstatus=pushed],
+.Button.btn_WF_PagingDNext_White[userstatus=selected]
+{
+	-nexa-border : 0px none;
+	background : transparent;
+	-nexa-icon : url('imagerc::angle-double-small-right(1).png');
+}
+.Button.btn_WF_PagingDNext_White[status=disabled]
+{
+	background : transparent;	
+	opacity : 0.5;
+}
+.Button.btn_WF_PagingDPrev_White,
+.Button.btn_WF_PagingDPrev_White[status=mouseover],
+.Button.btn_WF_PagingDPrev_White[status=focused],
+.Button.btn_WF_PagingDPrev_White[userstatus=pushed],
+.Button.btn_WF_PagingDPrev_White[userstatus=selected]
+{
+	-nexa-border : 0px none;
+	background : transparent;
+	-nexa-icon : url('imagerc::angle-double-small-left(1).png');
+}
+.Button.btn_WF_PagingDPrev_White[status=disabled]
+{
+	background : transparent;	
+	opacity : 0.5;
+}
+.Button.btn_WF_PagingNext_White,
+.Button.btn_WF_PagingNext_White[status=mouseover],
+.Button.btn_WF_PagingNext_White[status=focused],
+.Button.btn_WF_PagingNext_White[userstatus=pushed],
+.Button.btn_WF_PagingNext_White[userstatus=selected]
+{
+	-nexa-border : 0px none;
+	background : transparent;
+	-nexa-icon : url('imagerc::angle-small-right(1).png');
+}
+.Button.btn_WF_PagingNext_White[status=disabled]
+{
+	background : transparent;	
+	opacity : 0.5;
+}
+.Button.btn_WF_PagingPrev_White,
+.Button.btn_WF_PagingPrev_White[status=mouseover],
+.Button.btn_WF_PagingPrev_White[status=focused],
+.Button.btn_WF_PagingPrev_White[userstatus=pushed],
+.Button.btn_WF_PagingPrev_White[userstatus=selected]
+{
+	-nexa-border : 0px none;
+	background : transparent;
+	-nexa-icon : url('imagerc::angle-small-left(1).png');
+}
+.Button.btn_WF_PagingPrev_White[status=disabled]
+{
+	background : transparent;	
+	opacity : 0.5;
+}
+.Form.Foot1011_Bg_White
+{
+	background : transparent;
+}
+.Div.div_WF_BgNavy
+{
+	background : #00156b;
+}
+.Static.sta_WF_White24px
+{
+	font : bold 24px/normal "Verdana","Malgun Gothic";
+	color : #ffffff;
+}
+.Static.sta_WF_White28px
+{
+	font :  28px/normal "Verdana","Malgun Gothic";
+	color : #ffffff;
+}
+.Static.sta_WF_White32px
+{
+	font : bold 32px/normal "Verdana","Malgun Gothic";
+	color : #ffffff;
+}
+.Form.Foot1011_Bg_White[userstatus=contents]
+{
+	background : transparent;
+}
+.Div.div_WF_Money
+{
+	-nexa-border : 1px solid black;
+	border-radius : 5px;
+	font : bold 15px/normal "Verdana,Malgun Gothic";
+
+}
+.Button.btn_WF_Money,
+.Button.btn_WF_Money[status=disabled]
+{
+	-nexa-border : 0px none;
+	background : #f2f5f7;
+	color : #7d8991;
+	border-radius : 5px;
+}
+.Button.btn_WF_Money[userstatus=selected],
+.Button.btn_WF_Money[status=mouseover],
+.Button.btn_WF_Money[status=focused],
+.Button.btn_WF_Money[userstatus=pushed]
+{
+	-nexa-border : 0px none;
+	background : #1570ff;
+	color : #ffffff;
+	border-radius : 5px;
+}
+.Edit.edt_WF_UserInfo,
+.Edit.edt_WF_UserInfo[status=readonly],
+.Edit.edt_WF_UserInfo[userstatus=nulltext]
+{
+	-nexa-border : 0px none, 0px none, 1px solid gainsboro;
+}
+.Edit.edt_WF_UserInfo[status=focused],
+.Edit.edt_WF_UserInfo[status=mouseover]
+{
+	-nexa-border : 0px none, 0px none, 1px solid black;
+	
+}
+.Combo.cbo_WF_UserInfo,
+.Combo.cbo_WF_UserInfo[status=readonly]
+{
+	-nexa-border : 0px none, 0px none, 1px solid gainsboro;
+}
+.Combo.cbo_WF_UserInfo[status=focused],
+.Combo.cbo_WF_UserInfo[status=mouseover]
+{
+	-nexa-border : 0px none, 0px none, 1px solid black;
+}
+.Combo.cbo_WF_UserInfo .combolist
+{
+	-nexa-border : 0px none;
+}
+.Combo.cbo_WF_UserInfo .combolist[status=mouseover],
+.Combo.cbo_WF_UserInfo .combolist[status=focused]
+{
+}
+.Combo.cbo_WF_UserInfo .combolist .listboxitem
+{
+	-nexa-border : 0px none;
+	color : darkgray;
+	background : #ffffff;
+}
+.Combo.cbo_WF_UserInfo .combolist .listboxitem[userstatus=selected],
+.Combo.cbo_WF_UserInfo .combolist .listboxitem[status=mouseover],
+.Combo.cbo_WF_UserInfo .combolist .listboxitem[status=focused]
+{
+	-nexa-border : 0px none, 0px none, 1px solid black;
+	color : black;
+	background : #ffffff;
+	
+}
+.Grid .head .row
+{
+}
+.Grid .head .row .cell.black
+{
+	background : #000000;
+	-nexa-border : 1px solid #d9d9d9;
+	-nexa-text-align : center;
+	font : bold 12px "Verdana,Malgun Gothic";
+	color : #ffffff;
+}
+.Grid .head .row .cell.Blue
+{
+	background : #156dff;
+	-nexa-border : 1px solid #d9d9d9;
+	-nexa-text-align : center;
+	font : bold 12px "Verdana,Malgun Gothic";
+	color : #ffffff;
+}
+.Grid .head .row .cell.Red
+{
+	background : #ff4936;
+	-nexa-border : 1px solid #d9d9d9;
+	-nexa-text-align : center;
+	font : bold 12px "Verdana,Malgun Gothic";
+	color : #ffffff;
+}
+.Grid .head .row .cell.Green
+{
+	background : #009f64;
+	-nexa-border : 1px solid #d9d9d9;
+	-nexa-text-align : center;
+	font : bold 12px "Verdana,Malgun Gothic";
+	color : #ffffff;
+}
+.Grid .body .row .cell.Change
+{
+}
+.Grid .body .row .cell.Change .cellbutton,
+.Grid .body .row .cell.Change .cellbutton[status=mouseover],
+.Grid .body .row .cell.Change .cellbutton[status=focused],
+.Grid .body .row .cell.Change .cellbutton[userstatus=pushed],
+.Grid .body .row .cell.Change .cellbutton[userstatus=selected]
+{
+	-nexa-icon : url('imagerc::replace.png');
+	background : transparent;
+	-nexa-border : 0px none;
+
+}
+.MaskEdit.msk_WF_UserInfo,
+.MaskEdit.msk_WF_UserInfo[status=readonly]
+{
+	-nexa-border : 0px none, 0px none, 1px solid gainsboro;
+
+}
+.MaskEdit.msk_WF_UserInfo[status=focused],
+.MaskEdit.msk_WF_UserInfo[status=mouseover]
+{
+	-nexa-border : 0px none, 0px none, 1px solid black;
+}
+]]></CSSData>
+  <Predefines/>
+</XCSS>

@@ -1,0 +1,100 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ADL version="2.0">
+  <Application id="Application_Desktop" screenid="Desktop_screen" onload="Application_onload" licenseurl="NexacroN_client_license.xml">
+    <Layout>
+      <MainFrame id="mainframe" showtitlebar="true" showstatusbar="true" left="0" top="0" width="1300" height="820" titletext="TobeFootball">
+        <VFrameSet id="VFrameSet" separatesize="*,0,0">
+          <Frames>
+            <ChildFrame id="LoginFrame" showtitlebar="false" showstatusbar="false" formurl="AdminFrame::AdminFrameLogin.xfdl" dragmovetype="none"/>
+            <ChildFrame id="TopFrame" formurl="AdminFrame::AdminFrameTop.xfdl" showtitlebar="false" dragmovetype="none"/>
+            <HFrameSet id="HFrameSet" separatesize="248,*">
+              <Frames>
+                <ChildFrame id="LeftFrame" formurl="AdminFrame::AdminFrameLeft.xfdl" showtitlebar="false" dragmovetype="none"/>
+                <VFrameSet id="VFrameSet2" separatesize="40,0,*">
+                  <Frames>
+                    <ChildFrame id="MdiFrame" formurl="AdminFrame::AdminFrameTab.xfdl" showtitlebar="false" dragmovetype="none"/>
+                    <FrameSet id="WorkFrame"/>
+                    <ChildFrame id="MainFrame" formurl="AdminFrame::AdminFrameMain.xfdl" showtitlebar="false" dragmovetype="none"/>
+                  </Frames>
+                </VFrameSet>
+              </Frames>
+            </HFrameSet>
+          </Frames>
+        </VFrameSet>
+      </MainFrame>
+    </Layout>
+  </Application>
+  <Script type="xscript5.1"><![CDATA[
+/**
+*  TobeFootball
+*  @MenuPath     샘플 > script 표준
+*  @FileName     C:\TobeFootball\Application_Desktop.xadl
+*  @Creator      박진호
+*  @CreateDate   2024/08/06
+*  @Desction    스크립트 표준 및 주석 표준 정의
+************** 소스 수정 이력 *****************************************************************
+*  date          		Modifier                Description
+*************************************************************************************************
+*  2024/08/06     	        박진호 	              최초 생성
+*************************************************************************************************
+*/
+
+/************************************************************************************************
+ * FORM 변수 선언 영역
+ ************************************************************************************************/
+this.avVFrameSet   = "";
+this.avLoginFrame  = "";
+this.avHFrameSet   = "";
+this.avBottomFrame = "";
+this.avLeftFrame   = "";
+this.avVFrameSet2  = "";
+this.avTopFrame    = "";
+this.avMdiFrame    = "";
+this.avMainFrame   = "";
+this.avWorkFrame   = "";
+
+this.avTopOpen   = "0,50,*";
+this.avTopClose  = "0,0,*";
+this.avLeftOpen  = "248,0,*";
+this.avLeftClose = "0,40,*";
+this.avMainOpen  = "40,0,*";
+this.avWorkOpen  = "40,*,0";
+
+/************************************************************************************************
+ * FORM EVENT 영역(onload, onbeforeclose)
+ ************************************************************************************************/
+this.Application_onload = function(obj:nexacro.Application,e:nexacro.LoadEventInfo)
+{
+	// Frame 변수 저장
+	this.avVFrameSet   = this.mainframe.VFrameSet;                // VFrameSet
+	this.avLoginFrame  = this.mainframe.VFrameSet.LoginFrame; 	// Login Frame
+	this.avTopFrame    = this.mainframe.VFrameSet.TopFrame;				// Top Frame
+	this.avHFrameSet   = this.mainframe.VFrameSet.HFrameSet;      		// HFrameSet
+	this.avLeftFrame   = this.mainframe.VFrameSet.HFrameSet.LeftFrame;				// Left Frame
+	this.avVFrameSet2  = this.mainframe.VFrameSet.HFrameSet.VFrameSet2;				
+	this.avMdiFrame    = this.mainframe.VFrameSet.HFrameSet.VFrameSet2.MdiFrame;				// Mdi Frame
+	this.avMainFrame   = this.mainframe.VFrameSet.HFrameSet.VFrameSet2.MainFrame;				// Main Frame
+	this.avWorkFrame   = this.mainframe.VFrameSet.HFrameSet.VFrameSet2.WorkFrame;			// Work Frame
+
+};
+
+
+/************************************************************************************************
+ * CALLBACK 콜백 처리부분(Transaction, Popup)
+ ************************************************************************************************/
+
+
+/************************************************************************************************
+ * CRUD 및 TRANSACTION 서비스 호출 처리
+ ************************************************************************************************/
+
+
+/************************************************************************************************
+ * 사용자 FUNCTION 영역
+ ************************************************************************************************/
+
+
+/************************************************************************************************
+ * 각 COMPONENT 별 EVENT 영역
+ ************************************************************************************************/]]></Script>
+</ADL>

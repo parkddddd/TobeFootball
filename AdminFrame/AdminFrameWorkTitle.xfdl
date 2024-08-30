@@ -1,0 +1,200 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<FDL version="2.1">
+  <Form id="frameWorkTitle" left="0" top="0" width="1048" height="38" scrolltype="none" onload="form_onload" titletext="frameWorkTitle">
+    <Layouts>
+      <Layout>
+        <Button id="btnMyMenu" taborder="0" left="10" top="4" width="17" height="26" onclick="btnMyMenu_onclick" visible="true" cssclass="btn_WF_Mymnu"/>
+        <Button id="btnSel" taborder="1" text="조회" top="5" width="50" height="28" right="285" onclick="fnBtnClick" cssclass="btn_WF_CRUD" visible="false"/>
+        <Button id="btnAdd" taborder="2" text="입력" top="5" width="50" height="28" right="230" onclick="fnBtnClick" cssclass="btn_WF_CRUD" visible="false"/>
+        <Button id="btnSav" taborder="3" text="저장" top="5" width="50" height="28" right="10" onclick="fnBtnClick" cssclass="btn_WF_CRUD" visible="false"/>
+        <Button id="btnDel" taborder="4" text="삭제" top="5" width="50" height="28" right="175" onclick="fnBtnClick" cssclass="btn_WF_CRUD" visible="false"/>
+        <Button id="btnExl" taborder="5" text="엑셀" top="5" width="50" height="28" right="120" onclick="fnBtnClick" cssclass="btn_WF_CRUD" visible="false"/>
+        <Button id="btnPrt" taborder="6" text="출력" top="5" width="50" height="28" right="65" onclick="fnBtnClick" cssclass="btn_WF_CRUD" visible="false"/>
+        <Static id="staTitle" taborder="7" text="HOME &gt; 1 DEPTH MENU 01 &gt; 2 depth menu 01 &gt; Template 03" left="31" top="5" width="560" height="26"/>
+      </Layout>
+    </Layouts>
+    <Script type="xscript5.1"><![CDATA[/**
+*  Nexacro Professional Training Couse
+*  @MenuPath    Frame > FrameWorkTitle 
+*  @FileName 	FrameWorkTitle.xfdl 
+*  @Creator 	TOBESOFT Education
+*  @CreateDate 	2022/12/22
+*  @Desction    업무화면 공통 타이틀
+************** 소스 수정 이력 ***********************************************
+*  date          		Modifier                Description
+*******************************************************************************
+*  2022/12/22      		 TOBESOFT Education	 	  	최초 생성 
+*******************************************************************************
+*/
+
+
+
+/************************************************************************************************
+ * FORM 변수 선언 영역
+ ************************************************************************************************/
+
+/************************************************************************************************
+ * FORM 변수 선언 영역
+ ************************************************************************************************/
+this.objApp 		= this.gfnGetApplication();
+this.fvMenuId 		= "";
+this.fvObjArray 	= new Array();
+this.fvObjArray[0] 	= "btnSel";  //조회
+this.fvObjArray[1] 	= "btnAdd";  //등록
+this.fvObjArray[2] 	= "btnDel";  //삭제
+this.fvObjArray[3] 	= "btnSav";  //저장
+this.fvObjArray[4] 	= "btnExl";  //엑셀
+this.fvObjArray[5] 	= "btnPrt";  //인쇄
+
+/***********************************************************************************************
+* FORM EVENT 영역(onload)
+/***********************************************************************************************/
+/**
+ * @description 화면 온로드
+*/
+this.form_onload = function(obj:nexacro.Form,e:nexacro.LoadEventInfo)
+{	
+	var sTitle = this.getOwnerFrame().arguments["menuPath"];
+	this.staTitle.set_text(sTitle);
+	
+	this.fvMenuId = this.getOwnerFrame().arguments["menuId"];
+	this.fnSetMyMenuBtn();
+	
+	
+};
+
+/************************************************************************************************
+ * CALLBACK 콜백 처리부분(Transaction, Popup)
+ ************************************************************************************************/
+
+/************************************************************************************************
+ * CRUD 및 TRANSACTION 서비스 호출 처리
+ ************************************************************************************************/
+
+/************************************************************************************************
+ * 사용자 FUNCTION 영역
+ ************************************************************************************************/
+/**
+ * @description 마이메뉴버튼 텍스트바꾸기<br>
+	즐겨찾기되어있는 화면 -> ★ <br>
+	즐겨찾기가안되있는화면 -> ☆
+*/
+this.fnSetMyMenuBtn = function ()
+{
+	var objDs = this.objApp.gdsMyMenu;
+	var nRow = objDs.findRow("MENU_ID", this.fvMenuId);
+
+	if( nRow < 0 ){
+		this.btnMyMenu.set_cssclass("btn_WF_Mymnu");
+	}
+	else{
+		this.btnMyMenu.set_cssclass("btn_WF_MymnuS");
+	}
+};
+
+/**
+ * @description  폼권한에 따른 공통버튼 visible처리(6자리)
+*/
+this.fnSetAuthBtn = function(sAuth)
+{
+	var nRigth = 10; //right기준값
+	var nGap = 2;    //버튼사이 폭
+	for (var i = 0; i < 6; i++)
+	{
+		if(sAuth.substr(i,1) == "Y"){
+
+			var sObj = this[this.fvObjArray[i]];
+			sObj.set_visible(true);
+
+			//=================글자크기에 맞게 버튼 폭을 변경하려면 주석 해제==========
+			//var arr = nexacro.getTextSize(sObj.text, sObj);
+			//sObj.set_width(arr.nx + 30);
+			//===============================================================================
+		}else{
+			var sObj = this[this.fvObjArray[i]];
+			sObj.set_visible(false);
+		}
+	}
+
+	for(var i = 5; i > -1; i--) {
+		var sObj = this[this.fvObjArray[i]];
+		if (sObj.visible){
+			sObj.move(null, 15, sObj.getOffsetWidth(), sObj.getOffsetHeight(), nRigth);
+			nRigth = nRigth + nexacro.toNumber(nGap) + nexacro.toNumber(sObj.getOffsetWidth());
+		}
+	}
+};
+
+
+/************************************************************************************************
+ * 각 COMPONENT 별 EVENT 영역
+ ************************************************************************************************/
+/**
+ * @description  즐겨찾기버튼 클릭 이벤트
+*/
+this.btnMyMenu_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	var bIsMymenu=false;
+	var sBtnCss = this.btnMyMenu.cssclass;
+	if( sBtnCss == "btn_WF_MymnuS") bIsMymenu = true;
+
+	var objDs     = this.objApp.gdsMyMenu;
+	var objMenuDs = this.objApp.gdsMenu;
+
+	objDs.set_enableevent(false);
+	this.objApp.avLeftFrame.form.divLeft.form.grdMyMenu.set_enableredraw(false);
+
+	if( bIsMymenu ) {
+		//즐겨찾기해제
+		var nRow = objDs.findRow("MENU_ID",this.fvMenuId);
+		if( nRow > -1 ) objDs.deleteRow(nRow);
+	}
+	else{
+		//즐겨찾기추가
+		var nRow = objMenuDs.findRow("MENU_ID", this.fvMenuId);
+		var nNewRow =  objDs.addRow();
+		objDs.copyRow(nNewRow, objMenuDs, nRow);
+	}
+
+	objDs.set_enableevent(true);
+	this.objApp.avLeftFrame.form.divLeft.form.grdMyMenu.set_enableredraw(true);
+	nexacro.setPrivateProfile("gdsMyMenu", objDs.saveXML());
+	this.fnSetMyMenuBtn();
+};
+
+/**
+ * @description  공통버튼클릭이벤트
+*/
+this.fnBtnClick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	//this.parent.divWork.fn_comBtnClick(obj, e);
+	var sName = String(obj.name).substr(3,3);
+
+    switch(sName) {
+    case "Sel":
+	    this.parent.parent.divWork.form.fnSearch();
+    	break;
+    case "Add":
+    	 this.parent.parent.divWork.form.fnAdd();
+    	break;
+    case "Sav":
+    	 this.parent.parent.divWork.form.fnSave();
+    	break;
+    case "Del":
+    	 this.parent.parent.divWork.form.fnDel();
+    	break;
+    case "Exl":
+    	 this.parent.parent.divWork.form.fnExcel();
+    	break;
+    case "Prt":
+    	 this.parent.parent.divWork.form.fnPrint();
+    	break;
+    default:
+    }
+
+}
+
+]]></Script>
+    <Objects/>
+  </Form>
+</FDL>

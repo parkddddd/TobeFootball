@@ -1,0 +1,100 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<FDL version="2.1">
+  <Form id="CmmCalMMPdv" width="180" height="200" titletext="월 달력" onload="form_onload">
+    <Layouts>
+      <Layout height="200" width="180">
+        <Static id="sta00" taborder="19" left="0" top="30" width="180" height="170" cssclass="sta_WF_PdvCalbg"/>
+        <Static id="sta01" taborder="18" left="0" top="0" width="180" height="200" font="bold 18px/normal &quot;Arial Unicode MS&quot;" textAlign="center" verticalAlign="top"/>
+        <Button id="btnBefore" taborder="0" left="6" top="35" width="21" height="21" onclick="pdvCal_btnBefore_onclick" cssclass="btn_WF_ShuttleL"/>
+        <Button id="btnPdvClose" taborder="1" top="12" width="21" height="21" right="63" onclick="pdvCal_btnPdvCancle_onclick" cssclass="btn_POP_Close"/>
+        <Button id="btnNext" taborder="2" top="35" width="21" height="21" right="5" onclick="pdvCal_btnNext_onclick" cssclass="btn_WF_ShuttleR"/>
+        <Static id="staYYYY" taborder="3" text="9999" left="0" top="35" height="21" right="0" cssclass="sta_WF_PdvCalYYYY"/>
+        <Button id="btn1" taborder="4" text="01" left="6" top="62" width="40" height="40" onclick="pdvCal_btn1_onclick" cssclass="btn_WF_CRUD"/>
+        <Button id="btn2" taborder="5" text="02" left="49" top="62" width="40" height="40" onclick="pdvCal_btn1_onclick" cssclass="btn_WF_CRUD"/>
+        <Button id="btn3" taborder="6" text="03" left="92" top="62" width="40" height="40" onclick="pdvCal_btn1_onclick" cssclass="btn_WF_CRUD"/>
+        <Button id="btn4" taborder="7" text="04" left="135" top="62" width="40" height="40" onclick="pdvCal_btn1_onclick" cssclass="btn_WF_CRUD"/>
+        <Button id="btn5" taborder="8" text="05" left="6" top="105" width="40" height="40" onclick="pdvCal_btn1_onclick" cssclass="btn_WF_CRUD"/>
+        <Button id="btn6" taborder="9" text="06" left="49" top="105" width="40" height="40" onclick="pdvCal_btn1_onclick" cssclass="btn_WF_CRUD"/>
+        <Button id="btn7" taborder="10" text="07" left="92" top="105" width="40" height="40" onclick="pdvCal_btn1_onclick" cssclass="btn_WF_CRUD"/>
+        <Button id="btn8" taborder="11" text="08" left="135" top="105" width="40" height="40" onclick="pdvCal_btn1_onclick" cssclass="btn_WF_CRUD"/>
+        <Button id="btn9" taborder="12" text="09" left="6" top="148" width="40" height="40" onclick="pdvCal_btn1_onclick" cssclass="btn_WF_CRUD"/>
+        <Button id="btn10" taborder="13" text="10" left="49" top="148" width="40" height="40" onclick="pdvCal_btn1_onclick" cssclass="btn_WF_CRUD"/>
+        <Button id="btn11" taborder="14" text="11" left="92" top="148" width="40" height="40" onclick="pdvCal_btn1_onclick" cssclass="btn_WF_CRUD"/>
+        <Button id="btn12" taborder="15" text="12" left="135" top="148" width="40" height="40" onclick="pdvCal_btn1_onclick" cssclass="btn_WF_CRUD"/>
+        <Static id="staTitle" taborder="16" text="월 선택" left="0" top="0" height="30" right="0" uWord="popup.monthselect" cssclass="sta_POP_Title"/>
+        <Button id="btnPdvClose00" taborder="17" top="5" width="21" height="21" right="8" onclick="pdvCal_btnPdvCancle_onclick" cssclass="btn_POP_Close"/>
+      </Layout>
+    </Layouts>
+    <Script type="xscript5.1"><![CDATA[/**
+*  Necacro EduPack
+*  @MenuPath    Cmm > CmmCalMMPdv
+*  @FileName 	CmmCalMMPdv.xfdl 
+*  @Creator 	Education
+*  @CreateDate 2022.05.01
+*  @Desction    월달력 칼렌더 방식(user comp) 에서 PopupDiv Link 용
+************** 소스 수정 이력 ***************************************************
+*  date          		Modifier                Description
+*******************************************************************************
+*  2022.05.01     	Education 	                최초 생성
+*******************************************************************************
+*/
+
+/************************************************************************************************
+ * FORM 변수 선언 영역
+ ************************************************************************************************/
+this.fvToday;
+
+/***********************************************************************************************
+* FORM EVENT 영역(onload)
+/***********************************************************************************************/
+this.form_onload = function(obj:nexacro.Form,e:nexacro.LoadEventInfo)
+{
+	this.fvToday = this.gfnGetDate(); // 오늘 날자 세팅
+	
+	var sDate = this.parent.calVal;
+	
+	if (this.gfnIsNull(sDate)) sDate = this.fvToday;
+	this.staYYYY.set_text(sDate.substr(0,4));
+};
+
+ /************************************************************************************************
+ * 사용자 FUNCTION 영역
+ ************************************************************************************************/
+/**
+* @description   월달력 popDiv컴포넌트 닫기
+*/    
+this.pdvCal_btnPdvCancle_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	this.parent.closePopup();
+};
+
+/**
+* @description   이전 년도 버튼 클릭
+*/   
+this.pdvCal_btnBefore_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	var sDate = nexacro.toNumber(this.staYYYY.text);
+	this.staYYYY.set_text(sDate - 1 );
+	
+};
+
+/**
+* @description  다음년도 버튼 클릭
+*/    
+this.pdvCal_btnNext_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	var sDate = nexacro.toNumber(this.staYYYY.text);
+	this.staYYYY.set_text(sDate + 1 );
+};
+
+/**
+* @description  월 버튼 클릭
+*/     
+this.pdvCal_btn1_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	var rtn = this.staYYYY.text + obj.text;
+	this.parent.calObj.set_value(rtn);
+	this.parent.closePopup();
+};]]></Script>
+  </Form>
+</FDL>

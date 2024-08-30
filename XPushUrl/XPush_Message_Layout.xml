@@ -1,0 +1,30 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<message_layout> 
+	<message type="1000"> 
+		<field id="TOPIC_ID" type="string" size="9" key="true"/> 
+		<field id="TOPIC_TYPE" type="string" size="255"/>
+		<field id="CODE" type="string" size="255"/>
+		<field id="MSG" type="string" size="255"/>
+	</message> 
+	<message type="2000"> 
+		<field id="TOPIC_ID" type="string" size="9" key="true"/> 
+		<field id="TOPIC_TYPE" type="string" size="255"/>
+		<field id="CODE" type="string" size="255"/>
+		<field id="MSG" type="string" size="255"/>
+	</message> 
+	<message type="9999"> 
+		<field id="TOPIC_ID" type="string" size="9" key="true"/> 
+		<field id="TOPIC_TYPE" type="string" size="255"/>
+		<field id="CODE" type="string" size="255"/>
+		<field id="MSG" type="string" size="255"/>
+	</message> 
+	<message type="CODETYPE"> 
+		<field id="TOPIC_ID" type="string" size="9" key="true"/> 
+		<field id="USER" type="string" size="255"/>
+	</message>  
+	<message type="CODEMSG"> 
+		<field id="TOPIC_ID" type="string" size="9"/> 
+		<field id="MSG" type="string" size="255"/>
+		<field id="USER" type="string" size="255"/>
+	</message> 
+</message_layout>
